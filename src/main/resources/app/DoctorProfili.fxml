@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DoctorProfiliController">
+   <children>
+      <AnchorPane prefHeight="41.0" prefWidth="1100.0">
+         <children>
+            <BorderPane layoutX="100.0" layoutY="34.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="51.0" prefWidth="1100.0" style="-fx-background-color: #D6EAF8;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="22.0" layoutY="17.0" text="Hospital Management" />
+                        <Button layoutX="700.0" layoutY="13.0" mnemonicParsing="false" text="Logout" />
+                        <Label layoutX="775.0" layoutY="17.0" text="Welcome" />
+                        <Label layoutX="834.0" layoutY="17.0" text="Doc" />
+                        <Label layoutX="264.0" layoutY="17.0" text="Ndrysho Profilin" />
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="549.0" prefWidth="237.0" style="-fx-background-color: #AED6F1;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="26.0" layoutY="96.0" text="doc id:" />
+                        <Line endX="127.00001525878906" layoutX="101.0" layoutY="153.0" startX="-100.0" />
+                        <Label layoutX="12.0" layoutY="172.0" text="Features" />
+                        <Button layoutX="9.0" layoutY="221.0" mnemonicParsing="false" onMouseClicked="#handleClickApp" prefHeight="37.0" prefWidth="221.0" text="Appointments" />
+                        <Button layoutX="9.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#handleRegjistro" prefHeight="37.0" prefWidth="221.0" text="Regjistro pacient" />
+                        <Button layoutX="9.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#handleMenaxho" prefHeight="37.0" prefWidth="221.0" text="Menaxho Pacient" />
+                        <Button layoutX="9.0" layoutY="471.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="221.0" text="Ndrysho profilin" />
+                        <Label layoutX="20.0" layoutY="436.0" text="Change settings:" />
+                        <Label layoutX="30.0" layoutY="125.0" text="username:" />
+                        <Button layoutX="8.0" layoutY="382.0" mnemonicParsing="false" onMouseClicked="#handleLab" prefHeight="37.0" prefWidth="221.0" text="Testet e Laboratorit" />
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="14.0" layoutY="25.0" prefHeight="510.0" prefWidth="200.0" style="-fx-background-color: #EBF5FB;">
+                           <children>
+                              <Label layoutX="23.0" layoutY="116.0" text="Doctor ID:" />
+                              <Label layoutX="23.0" layoutY="149.0" text="Emri" />
+                              <Label layoutX="21.0" layoutY="179.0" text="Mbiemri" />
+                              <Label layoutX="21.0" layoutY="212.0" text="Nr.Tel" />
+                              <Label fx:id="labelID" layoutX="100.0" layoutY="116.0" prefHeight="18.0" prefWidth="71.0" text="1" />
+                              <Label fx:id="labelEmri" layoutX="100.0" layoutY="149.0" text="filan" />
+                              <Label fx:id="labelMbiemri" layoutX="100.0" layoutY="179.0" text="fisteku" />
+                              <Label fx:id="labelNrTel" layoutX="100.0" layoutY="212.0" text="044 999 888" />
+                              <Label layoutX="23.0" layoutY="247.0" text="Adresa" />
+                              <Label fx:id="labelAdresa" layoutX="97.0" layoutY="247.0" text="Prishtine" />
+                              <Label layoutX="23.0" layoutY="278.0" text="Specializimi" />
+                              <Label fx:id="labelSpecializimi" layoutX="97.0" layoutY="278.0" text="Kardiologji" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="231.0" layoutY="25.0" prefHeight="508.0" prefWidth="615.0" style="-fx-background-color: #EBF5FB;">
+                           <children>
+                              <Label layoutX="32.0" layoutY="14.0" text="Edito Profilin" />
+                              <Label layoutX="32.0" layoutY="63.0" text="Doctor ID:" />
+                              <Label layoutX="32.0" layoutY="111.0" text="Emri" />
+                              <Label layoutX="32.0" layoutY="160.0" text="Mbiemri" />
+                              <Label layoutX="32.0" layoutY="202.0" text="Nr.Tel" />
+                              <Label layoutX="32.0" layoutY="260.0" text="Adresa" />
+                              <TextField fx:id="txtID" layoutX="145.0" layoutY="59.0" />
+                              <TextField fx:id="txtEmri" layoutX="145.0" layoutY="107.0" />
+                              <TextField fx:id="txtMbiemri" layoutX="145.0" layoutY="156.0" />
+                              <TextField fx:id="txtNrTel" layoutX="145.0" layoutY="198.0" />
+                              <TextArea fx:id="txtAdresa" layoutX="133.0" layoutY="254.0" prefHeight="42.0" prefWidth="157.0" />
+                              <Button layoutX="156.0" layoutY="398.0" mnemonicParsing="false" onMouseClicked="#handleUpdate" text="UPDATE" />
+                              <Label layoutX="36.0" layoutY="323.0" text="Specializimi" />
+                              <TextField fx:id="txtSpecializimi" layoutX="145.0" layoutY="319.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

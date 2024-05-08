@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdatePacientController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" />
+      <AnchorPane prefHeight="399.0" prefWidth="533.0" style="-fx-background-color: #D6EAF8;">
+         <children>
+            <Label layoutX="31.0" layoutY="21.0" text="ID:" />
+            <Label layoutX="24.0" layoutY="56.0" text="Emri:" />
+            <Label layoutX="24.0" layoutY="89.0" text="Mbiemri:" />
+            <Label layoutX="24.0" layoutY="125.0" text="Gjinia:" />
+            <Label layoutX="24.0" layoutY="163.0" text="Mosha:" />
+            <Label layoutX="24.0" layoutY="205.0" text="Ditelindja:" />
+            <Label layoutX="24.0" layoutY="248.0" text="NR.Tel" />
+            <Label layoutX="24.0" layoutY="283.0" text="Adresa:" />
+            <Label layoutX="16.0" layoutY="317.0" text="Data e shtrirjes:" />
+            <Label layoutX="12.0" layoutY="349.0" text="Data e lirimit:" />
+            <TextField fx:id="txtPID" layoutX="106.0" layoutY="17.0" />
+            <TextField fx:id="txtemri" layoutX="106.0" layoutY="52.0" />
+            <TextField fx:id="txtmbiemri" layoutX="106.0" layoutY="85.0" />
+            <TextField fx:id="txtgjinia" layoutX="106.0" layoutY="121.0" />
+            <TextField fx:id="txtmosha" layoutX="106.0" layoutY="159.0" />
+            <TextField fx:id="txtditelindja" layoutX="114.0" layoutY="201.0" />
+            <TextField fx:id="txtTel" layoutX="106.0" layoutY="244.0" />
+            <TextField fx:id="txtadresa" layoutX="106.0" layoutY="279.0" />
+            <TextField fx:id="txtDataSh" layoutX="114.0" layoutY="313.0" />
+            <TextField fx:id="txtDataL" layoutX="114.0" layoutY="345.0" />
+            <Button layoutX="276.0" layoutY="357.0" mnemonicParsing="false" onAction="#handleUpdate" text="update" />
+            <Label layoutX="347.0" layoutY="21.0" text="Diagnoza" />
+            <Label layoutX="347.0" layoutY="56.0" text="Tretmani" />
+            <Label layoutX="347.0" layoutY="98.0" text="Pershkrim" />
+            <Label layoutX="354.0" layoutY="260.0" text="Pagesa" />
+            <TextField fx:id="txtDiagnoza" layoutX="438.0" layoutY="17.0" />
+            <TextField fx:id="txtTretmani" layoutX="438.0" layoutY="64.0" />
+            <TextArea fx:id="txtPershkrimi" layoutX="400.0" layoutY="117.0" prefHeight="91.0" prefWidth="186.0" />
+            <TextField fx:id="txtPagesa" layoutX="418.0" layoutY="256.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
