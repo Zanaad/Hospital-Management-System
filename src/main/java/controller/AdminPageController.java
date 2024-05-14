@@ -3,23 +3,19 @@ package controller;
 import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.Data;
-import service.ChoiceBox;
 import model.dto.StaffDto;
 import service.StaffService;
 
-import java.net.URL;
 import java.sql.Date;
-import java.util.ResourceBundle;
 
-public class AdminPageController implements Initializable {
+
+public class AdminPageController {
 
     @FXML
     private Button accountant_btn;
@@ -127,11 +123,18 @@ public class AdminPageController implements Initializable {
         Date birthdate = Date.valueOf(this.txtBirthdate.getValue());
         Date startDate = Date.valueOf(this.dataStart.getValue());
         Date endDate = Date.valueOf(this.dateEnd.getValue());
-        String selectedPosition = (String) this.comboxPosition.getValue();
 
-        StaffDto staff = new StaffDto(this.txtFirstName.getText(), this.txtLastName.getText(), birthdate, this.txtPhone.getText(), this.txtEmail.getText(), this.pwdPassword.getText(), this.txtAddress.getText(), selectedPosition, this.comboxDepartment.getAccessibleText(), this.txtSpecialization.getText(), startDate, endDate, this.txtBankName.getText(), this.txtAccountOwner.getText(), this.txtRoutingNumber.getText());
+        StaffDto staff = new StaffDto(this.txtFirstName.getText(), this.txtLastName.getText(), birthdate, this.txtPhone.getText(), this.txtEmail.getText(), this.pwdPassword.getText(), this.txtAddress.getText(), (String) this.comboxPosition.getValue(), (String) this.comboxDepartment.getValue(), this.txtSpecialization.getText(), startDate, endDate, this.txtBankName.getText(), this.txtAccountOwner.getText(), this.txtRoutingNumber.getText());
         boolean staffCreated = StaffService.createStaff(staff);
-        if (staffCreated) Navigator.navigate(event, Navigator.AdminPage);
+        if (staffCreated) {
+            Navigator.navigate(event, Navigator.AdminPage);
+            System.out.println();
+        }
+    }
+
+    @FXML
+    void registerDepartment(ActionEvent event) {
+
     }
 
     @FXML
@@ -164,11 +167,6 @@ public class AdminPageController implements Initializable {
         receptionist_form.setVisible(form == receptionist_form);
         register_staff_form.setVisible(form == register_staff_form);
         department_form.setVisible(form == department_form);
-    }
-
-    public void initialize(URL url, ResourceBundle rb) {
-        ChoiceBox.ChoiceBoxList(comboxDepartment, Data.departments);
-        ChoiceBox.ChoiceBoxList(comboxPosition, Data.positions);
     }
 
 }
