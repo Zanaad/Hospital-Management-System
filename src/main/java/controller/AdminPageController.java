@@ -32,7 +32,8 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private ComboBox<?> comboxPosition;
-
+    @FXML
+    private Button account_btn;
     @FXML
     private Button dashboard_btn;
 
@@ -62,15 +63,6 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private AnchorPane nurse_form;
-
-    @FXML
-    private Button patients_btn;
-
-    @FXML
-    private AnchorPane patients_form;
-
-    @FXML
-    private Button profile_btn;
 
     @FXML
     private AnchorPane profile_form;
@@ -150,13 +142,11 @@ public class AdminPageController implements Initializable {
             showForm(department_form);
         } else if (event.getSource() == doctors_btn) {
             showForm(doctors_form);
-        } else if (event.getSource() == patients_btn) {
-            showForm(patients_form);
         } else if (event.getSource() == nurse_btn) {
             showForm(nurse_form);
         } else if (event.getSource() == accountant_btn) {
             showForm(accountant_form);
-        } else if (event.getSource() == profile_btn) {
+        } else if (event.getSource() == account_btn) {
             showForm(profile_form);
         } else if (event.getSource() == receptionist_btn) {
             showForm(receptionist_form);
@@ -168,7 +158,6 @@ public class AdminPageController implements Initializable {
     private void showForm(AnchorPane form) {
         dashboard_form.setVisible(form == dashboard_form);
         doctors_form.setVisible(form == doctors_form);
-        patients_form.setVisible(form == patients_form);
         nurse_form.setVisible(form == nurse_form);
         accountant_form.setVisible(form == accountant_form);
         profile_form.setVisible(form == profile_form);
