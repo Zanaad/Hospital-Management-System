@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DoctorProfiliController">
    <children>
@@ -17,11 +18,35 @@
                <top>
                   <AnchorPane prefHeight="51.0" prefWidth="1100.0" style="-fx-background-color: #D6EAF8;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="22.0" layoutY="17.0" text="Hospital Management" />
-                        <Button layoutX="700.0" layoutY="13.0" mnemonicParsing="false" text="Logout" />
-                        <Label layoutX="775.0" layoutY="17.0" text="Welcome" />
-                        <Label layoutX="834.0" layoutY="17.0" text="Doc" />
-                        <Label layoutX="264.0" layoutY="17.0" text="Ndrysho Profilin" />
+                        <AnchorPane layoutX="-3.0" prefHeight="45.0" prefWidth="1100.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
+                           <children>
+                              <Button layoutX="1002.0" layoutY="7.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Logout" textFill="#efefef">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="776.0" layoutY="11.0" text="Welcome" textFill="#f2eeee">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="837.0" layoutY="11.0" text="Doc" textFill="#e2dddd">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="315.0" layoutY="4.0" prefHeight="27.0" prefWidth="88.0" text="Profili" textFill="#e2dddd">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="35.0" layoutY="5.0" prefHeight="29.0" prefWidth="197.0" text="Hospital Management" textFill="#fbf7f7">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </top>
@@ -37,45 +62,151 @@
                         <Button layoutX="9.0" layoutY="471.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="221.0" text="Ndrysho profilin" />
                         <Label layoutX="20.0" layoutY="436.0" text="Change settings:" />
                         <Label layoutX="30.0" layoutY="125.0" text="username:" />
-                        <Button layoutX="8.0" layoutY="382.0" mnemonicParsing="false" onMouseClicked="#handleLab" prefHeight="37.0" prefWidth="221.0" text="Testet e Laboratorit" />
+                        <AnchorPane layoutY="-8.0" prefHeight="557.0" prefWidth="237.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
+                           <children>
+                              <Label layoutX="25.0" layoutY="123.0" text="Doctor id:" textFill="#fffefe" />
+                              <Line endX="127.00001525878906" layoutX="101.0" layoutY="174.0" startX="-87.00000762939453" stroke="#fffdfd" />
+                              <Label layoutX="10.0" layoutY="201.0" text="Features" textFill="#fff9f9">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="10.0" layoutY="238.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="222.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Takimet" textFill="#fffefe">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#handleRegjistro" prefHeight="37.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Regjistro pacient" textFill="#fffdfd">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#handleMenaxho" prefHeight="37.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Menaxho Pacient" textFill="WHITE">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="9.0" layoutY="471.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Ndrysho profilin" textFill="WHITE">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="11.0" layoutY="433.0" text="Change settings:" textFill="#fffafa">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="25.0" layoutY="148.0" text="Username:" textFill="#fffdfd" />
+                              <Label layoutX="85.0" layoutY="119.0" text="1" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="89.0" layoutY="148.0" text="Doctor" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </left>
                <center>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="545.0" prefWidth="863.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="14.0" layoutY="25.0" prefHeight="510.0" prefWidth="200.0" style="-fx-background-color: #EBF5FB;">
+                        <AnchorPane layoutX="14.0" layoutY="25.0" prefHeight="510.0" prefWidth="239.0" style="-fx-background-color: #EBF5FB; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-background-radius: 10;">
                            <children>
-                              <Label layoutX="23.0" layoutY="116.0" text="Doctor ID:" />
-                              <Label layoutX="23.0" layoutY="149.0" text="Emri" />
-                              <Label layoutX="21.0" layoutY="179.0" text="Mbiemri" />
-                              <Label layoutX="21.0" layoutY="212.0" text="Nr.Tel" />
-                              <Label fx:id="labelID" layoutX="100.0" layoutY="116.0" prefHeight="18.0" prefWidth="71.0" text="1" />
-                              <Label fx:id="labelEmri" layoutX="100.0" layoutY="149.0" text="filan" />
-                              <Label fx:id="labelMbiemri" layoutX="100.0" layoutY="179.0" text="fisteku" />
-                              <Label fx:id="labelNrTel" layoutX="100.0" layoutY="212.0" text="044 999 888" />
-                              <Label layoutX="23.0" layoutY="247.0" text="Adresa" />
-                              <Label fx:id="labelAdresa" layoutX="97.0" layoutY="247.0" text="Prishtine" />
-                              <Label layoutX="23.0" layoutY="278.0" text="Specializimi" />
-                              <Label fx:id="labelSpecializimi" layoutX="97.0" layoutY="278.0" text="Kardiologji" />
+                              <Label layoutX="23.0" layoutY="116.0" text="Doctor ID:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="23.0" layoutY="149.0" text="Emri">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="21.0" layoutY="189.0" text="Mbiemri">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="21.0" layoutY="232.0" text="Nr.Tel">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="labelID" layoutX="100.0" layoutY="116.0" prefHeight="18.0" prefWidth="71.0" text="1" textFill="#807e7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="labelEmri" layoutX="100.0" layoutY="149.0" text="filan" textFill="#807e7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="labelMbiemri" layoutX="100.0" layoutY="188.0" text="fisteku" textFill="#807e7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="labelNrTel" layoutX="97.0" layoutY="232.0" text="044 999 888" textFill="#807e7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="22.0" layoutY="268.0" text="Adresa">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="labelAdresa" layoutX="100.0" layoutY="268.0" text="Prishtine" textFill="#807e7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="19.0" layoutY="314.0" text="Specializimi">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="labelSpecializimi" layoutX="102.0" layoutY="314.0" text="Kardiologji" textFill="#807e7e">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="231.0" layoutY="25.0" prefHeight="508.0" prefWidth="615.0" style="-fx-background-color: #EBF5FB;">
+                        <AnchorPane layoutX="264.0" layoutY="26.0" prefHeight="508.0" prefWidth="545.0" style="-fx-background-color: #EBF5FB; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-background-radius: 10;">
                            <children>
-                              <Label layoutX="32.0" layoutY="14.0" text="Edito Profilin" />
-                              <Label layoutX="32.0" layoutY="63.0" text="Doctor ID:" />
-                              <Label layoutX="32.0" layoutY="111.0" text="Emri" />
-                              <Label layoutX="32.0" layoutY="160.0" text="Mbiemri" />
-                              <Label layoutX="32.0" layoutY="202.0" text="Nr.Tel" />
-                              <Label layoutX="32.0" layoutY="260.0" text="Adresa" />
-                              <TextField fx:id="txtID" layoutX="145.0" layoutY="59.0" />
-                              <TextField fx:id="txtEmri" layoutX="145.0" layoutY="107.0" />
-                              <TextField fx:id="txtMbiemri" layoutX="145.0" layoutY="156.0" />
-                              <TextField fx:id="txtNrTel" layoutX="145.0" layoutY="198.0" />
-                              <TextArea fx:id="txtAdresa" layoutX="133.0" layoutY="254.0" prefHeight="42.0" prefWidth="157.0" />
-                              <Button layoutX="156.0" layoutY="398.0" mnemonicParsing="false" onMouseClicked="#handleUpdate" text="UPDATE" />
-                              <Label layoutX="36.0" layoutY="323.0" text="Specializimi" />
-                              <TextField fx:id="txtSpecializimi" layoutX="145.0" layoutY="319.0" />
+                              <Label layoutX="32.0" layoutY="14.0" text="Edito Profilin" textFill="#6e6a6a">
+                                 <font>
+                                    <Font size="23.0" />
+                                 </font></Label>
+                              <Label layoutX="12.0" layoutY="112.0" text="Doctor ID:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                              <Label layoutX="18.0" layoutY="221.0" text="Emri">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label layoutX="18.0" layoutY="322.0" text="Mbiemri">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                              <Label layoutX="314.0" layoutY="109.0" text="Nr.Tel">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                              <Label layoutX="311.0" layoutY="220.0" text="Adresa">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                              <TextField fx:id="txtID" layoutX="98.0" layoutY="212.0" prefHeight="38.0" prefWidth="168.0" />
+                              <TextField fx:id="txtEmri" layoutX="98.0" layoutY="313.0" prefHeight="39.0" prefWidth="169.0" />
+                              <TextField fx:id="txtMbiemri" layoutX="97.0" layoutY="103.0" prefHeight="40.0" prefWidth="169.0" />
+                              <TextField fx:id="txtNrTel" layoutX="379.0" layoutY="98.0" prefHeight="43.0" prefWidth="156.0" />
+                              <TextArea fx:id="txtAdresa" layoutX="378.0" layoutY="210.0" prefHeight="42.0" prefWidth="157.0" />
+                              <Button layoutX="326.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#handleUpdate" prefHeight="44.0" prefWidth="152.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-background-radius: 12;" text="UPDATE" textFill="#00137d">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Button>
+                              <Label layoutX="295.0" layoutY="322.0" text="Specializimi">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                              <TextField fx:id="txtSpecializimi" layoutX="380.0" layoutY="311.0" prefHeight="43.0" prefWidth="153.0" />
                            </children>
                         </AnchorPane>
                      </children>
