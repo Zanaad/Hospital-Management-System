@@ -3,13 +3,12 @@ package controller;
 import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import model.dto.CreateDepartmentDto;
+import model.dto.DepartmentDto;
 import model.dto.StaffDto;
+import service.DepartmentService;
 import service.StaffService;
 
 import java.sql.Date;
@@ -116,6 +115,10 @@ public class AdminPageController {
 
     @FXML
     private TextField txtSpecialization;
+    @FXML
+    private TextField txtDepartmentName;
+    @FXML
+    private TextArea txtDepartmentDescription;
 
     @FXML
     void registerStaff(ActionEvent event) {
@@ -128,13 +131,14 @@ public class AdminPageController {
         boolean staffCreated = StaffService.createStaff(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminPage);
-            System.out.println();
         }
     }
 
     @FXML
     void registerDepartment(ActionEvent event) {
-
+        DepartmentDto department = new DepartmentDto(this.txtDepartmentName.getText(), this.txtDepartmentDescription.getText());
+        boolean departmentCreated = DepartmentService.createDepartment(department);
+        if (departmentCreated) Navigator.navigate(event, Navigator.AdminPage);
     }
 
     @FXML
