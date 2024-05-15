@@ -9,7 +9,7 @@ public class DBconnection {
 
     private static String URL = "jdbc:mysql://localhost:3306/projektiknk";
     private static String USER = "root";
-    private static String PASSWORD = "Mathem12$";
+    private static String PASSWORD = " ";
     private static Connection connection = null;
 
     public static Connection getConnection(){
