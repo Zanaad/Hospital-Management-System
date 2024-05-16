@@ -1,12 +1,10 @@
 package model_repository;
 
 import database.DBconnection;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Doktor {
     int ID,NrTel;
@@ -68,30 +66,34 @@ public class Doktor {
     public void setSpecializimi(String specializimi) {
         this.specializimi = specializimi;
     }
+public static Doktor getDoctorData(int doctorID) {
+        Doktor doctor = null;
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
 
-    public static ObservableList<Doktor> getDoktorData(){
-        Connection conn= DBconnection.getConnection();
-        ObservableList<Doktor> list= FXCollections.observableArrayList();
-        try{
-            PreparedStatement ps = conn.prepareStatement("select * from doktori");
-            ResultSet rs=ps.executeQuery();
+        try {
+            conn = DBconnection.getConnection();
+            String query = "SELECT * FROM doktori WHERE ID = ?";
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, doctorID);
+            rs = pst.executeQuery();
 
-            while(rs.next()){
-                list.add(new Doktor(Integer.parseInt(rs.getString("ID")),
-                        Integer.parseInt(rs.getString("nrtel")),
-                        rs.getString("emri"),
-                        rs.getString("mbiemri"),
-                        rs.getString("adresa"),
-                        rs.getString("specializimi")
+            if (rs.next()) {
+                int ID = rs.getInt("ID");
+                int nrTel = rs.getInt("NrTel");
+                String emri = rs.getString("emri");
+                String mbiemri = rs.getString("mbiemri");
+                String adresa = rs.getString("adresa");
+                String specializimi = rs.getString("specializimi");
 
-
-                ));
+                doctor = new Doktor(ID, nrTel, emri, mbiemri, adresa, specializimi);
             }
-        }
-        catch (Exception e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return list;
+        return doctor;
     }
+
 }
