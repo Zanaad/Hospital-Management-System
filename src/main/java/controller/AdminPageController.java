@@ -7,8 +7,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.dto.DepartmentDto;
 import model.dto.StaffDto.DoctorDto;
+import model.dto.StaffDto.NurseDto;
+import model.dto.StaffDto.ReceptionistDto;
 import service.DepartmentService;
 import service.Staff.DoctorService;
+import service.Staff.NurseService;
+import service.Staff.ReceptionistService;
 
 import java.sql.Date;
 
@@ -212,7 +216,15 @@ public class AdminPageController {
 
     @FXML
     void registerNurse(ActionEvent event) {
+        Date birthdate = Date.valueOf(this.nurseBirthdate.getValue());
+        Date startDate = Date.valueOf(this.nurseStart.getValue());
+        Date endDate = Date.valueOf(this.nurseEnd.getValue());
 
+        NurseDto staff = new NurseDto(this.nurseFirstName.getText(), this.nurseLastName.getText(), birthdate, this.nursePhone.getText(), this.nurseEmail.getText(), this.nursePassword.getText(), this.nurseAddress.getText(), (String) this.nurseDep.getValue(), this.nurseSpecialization.getText(), startDate, endDate, this.nurseBank.getText(), this.nurseAccount.getText(), this.nurseRoutingNr.getText());
+        boolean staffCreated = NurseService.createNurse(staff);
+        if (staffCreated) {
+            Navigator.navigate(event, Navigator.AdminPage);
+        }
     }
 
     @FXML
@@ -230,7 +242,15 @@ public class AdminPageController {
 
     @FXML
     public void registerReceptionist(ActionEvent event) {
+        Date birthdate = Date.valueOf(this.recBirthdate.getValue());
+        Date startDate = Date.valueOf(this.recStart.getValue());
+        Date endDate = Date.valueOf(this.recEnd.getValue());
 
+        ReceptionistDto staff = new ReceptionistDto(this.recFirstName.getText(), this.recLastName.getText(), birthdate, this.recPhone.getText(), this.recEmail.getText(), this.recPassword.getText(), this.recAddress.getText(), (String) this.recDep.getValue(), this.recSpecialization.getText(), startDate, endDate, this.recBank.getText(), this.recAccount.getText(), this.recRoutingNr.getText());
+        boolean staffCreated = ReceptionistService.createReceptionist(staff);
+        if (staffCreated) {
+            Navigator.navigate(event, Navigator.AdminPage);
+        }
     }
 
     @FXML
