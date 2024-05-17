@@ -8,4 +8,5 @@ module com.example.projektiknk {
     opens com.example.projektiknk to javafx.fxml;
     exports com.example.projektiknk;
     exports app;
+    opens model.dto.StaffDto to javafx.base;
 }
