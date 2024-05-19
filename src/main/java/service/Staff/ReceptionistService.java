@@ -21,7 +21,7 @@ public class ReceptionistService {
                 salt,
                 receptionistData.getAddress(),
                 receptionistData.getDepartment(),
-                receptionistData.getSpecialization(),
+                receptionistData.getuniversity(),
                 receptionistData.getStartDate(),
                 receptionistData.getEndDate(),
                 receptionistData.getBankName(),
