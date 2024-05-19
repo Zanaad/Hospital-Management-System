@@ -23,12 +23,6 @@ public class AdminPageController {
     private Button account_btn;
 
     @FXML
-    private Button accountant_btn;
-
-    @FXML
-    private AnchorPane accountant_form;
-
-    @FXML
     private Button add_doctor_btn;
 
     @FXML
@@ -86,7 +80,7 @@ public class AdminPageController {
     private TextField docRoutingNr;
 
     @FXML
-    private TextField docSpecialization;
+    private TextField docUni;
 
     @FXML
     private DatePicker docStart;
@@ -137,7 +131,7 @@ public class AdminPageController {
     private TextField nurseRoutingNr;
 
     @FXML
-    private TextField nurseSpecialization;
+    private TextField nurseUni;
 
     @FXML
     private DatePicker nurseStart;
@@ -188,7 +182,7 @@ public class AdminPageController {
     private TextField recRoutingNr;
 
     @FXML
-    private TextField recSpecialization;
+    private TextField recUni;
 
     @FXML
     private DatePicker recStart;
@@ -220,7 +214,7 @@ public class AdminPageController {
         Date startDate = Date.valueOf(this.nurseStart.getValue());
         Date endDate = Date.valueOf(this.nurseEnd.getValue());
 
-        NurseDto staff = new NurseDto(this.nurseFirstName.getText(), this.nurseLastName.getText(), birthdate, this.nursePhone.getText(), this.nurseEmail.getText(), this.nursePassword.getText(), this.nurseAddress.getText(), (String) this.nurseDep.getValue(), this.nurseSpecialization.getText(), startDate, endDate, this.nurseBank.getText(), this.nurseAccount.getText(), this.nurseRoutingNr.getText());
+        NurseDto staff = new NurseDto(this.nurseFirstName.getText(), this.nurseLastName.getText(), birthdate, this.nursePhone.getText(), this.nurseEmail.getText(), this.nursePassword.getText(), this.nurseAddress.getText(), (String) this.nurseDep.getValue(), this.nurseUni.getText(), startDate, endDate, this.nurseBank.getText(), this.nurseAccount.getText(), this.nurseRoutingNr.getText());
         boolean staffCreated = NurseService.createNurse(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminPage);
@@ -233,7 +227,7 @@ public class AdminPageController {
         Date startDate = Date.valueOf(this.docStart.getValue());
         Date endDate = Date.valueOf(this.docEnd.getValue());
 
-        DoctorDto staff = new DoctorDto(this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), this.docPassword.getText(), this.docAddress.getText(), (String) this.docDep.getValue(), this.docSpecialization.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
+        DoctorDto staff = new DoctorDto(this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), this.docPassword.getText(), this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
         boolean staffCreated = DoctorService.createDoctor(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminPage);
@@ -246,7 +240,7 @@ public class AdminPageController {
         Date startDate = Date.valueOf(this.recStart.getValue());
         Date endDate = Date.valueOf(this.recEnd.getValue());
 
-        ReceptionistDto staff = new ReceptionistDto(this.recFirstName.getText(), this.recLastName.getText(), birthdate, this.recPhone.getText(), this.recEmail.getText(), this.recPassword.getText(), this.recAddress.getText(), (String) this.recDep.getValue(), this.recSpecialization.getText(), startDate, endDate, this.recBank.getText(), this.recAccount.getText(), this.recRoutingNr.getText());
+        ReceptionistDto staff = new ReceptionistDto(this.recFirstName.getText(), this.recLastName.getText(), birthdate, this.recPhone.getText(), this.recEmail.getText(), this.recPassword.getText(), this.recAddress.getText(), (String) this.recDep.getValue(), this.recUni.getText(), startDate, endDate, this.recBank.getText(), this.recAccount.getText(), this.recRoutingNr.getText());
         boolean staffCreated = ReceptionistService.createReceptionist(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminPage);
@@ -266,7 +260,6 @@ public class AdminPageController {
         else if (event.getSource() == department_btn) showForm(department_form);
         else if (event.getSource() == doctors_btn) showForm(doctors_form);
         else if (event.getSource() == nurse_btn) showForm(nurse_form);
-        else if (event.getSource() == accountant_btn) showForm(accountant_form);
         else if (event.getSource() == account_btn) showForm(profile_form);
         else if (event.getSource() == receptionist_btn) showForm(receptionist_form);
         else if (event.getSource() == add_doctor_btn) showForm(register_doctor_form);
@@ -279,7 +272,6 @@ public class AdminPageController {
         dashboard_form.setVisible(form == dashboard_form);
         doctors_form.setVisible(form == doctors_form);
         nurse_form.setVisible(form == nurse_form);
-        accountant_form.setVisible(form == accountant_form);
         profile_form.setVisible(form == profile_form);
         receptionist_form.setVisible(form == receptionist_form);
         department_form.setVisible(form == department_form);

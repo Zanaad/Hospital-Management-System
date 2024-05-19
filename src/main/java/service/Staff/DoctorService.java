@@ -21,7 +21,7 @@ public class DoctorService {
                 salt,
                 doctorData.getAddress(),
                 doctorData.getDepartment(),
-                doctorData.getSpecialization(),
+                doctorData.getuniversity(),
                 doctorData.getStartDate(),
                 doctorData.getEndDate(),
                 doctorData.getBankName(),

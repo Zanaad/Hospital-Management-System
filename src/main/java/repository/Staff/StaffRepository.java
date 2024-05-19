@@ -20,7 +20,7 @@ public class StaffRepository {
             pst.setString(7, staffData.getSalt());
             pst.setString(8, staffData.getAddress());
             pst.setString(9, staffData.getDepartment());
-            pst.setString(10, staffData.getSpecialization());
+            pst.setString(10, staffData.getuniversity());
             pst.setDate(11, staffData.getStartDate());
             pst.setDate(12, staffData.getEndDate());
             pst.setString(13, staffData.getBankName());
