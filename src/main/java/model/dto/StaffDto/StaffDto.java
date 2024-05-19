@@ -11,14 +11,14 @@ public class StaffDto {
     private String password;
     private String address;
     private String department;
-    private String specialization;
+    private String university;
     private Date startDate;
     private Date endDate;
     private String bankName;
     private String bankAccount;
     private String routingNumber;
 
-    public StaffDto(String firstName, String lastName, Date birthdate, String phone, String email, String password, String address, String department, String specialization, Date startDate, Date endDate, String bankName, String bankAccount, String routingNumber) {
+    public StaffDto(String firstName, String lastName, Date birthdate, String phone, String email, String password, String address, String department, String university, Date startDate, Date endDate, String bankName, String bankAccount, String routingNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
@@ -27,7 +27,7 @@ public class StaffDto {
         this.password = password;
         this.address = address;
         this.department = department;
-        this.specialization = specialization;
+        this.university = university;
         this.startDate = startDate;
         this.endDate = endDate;
         this.bankName = bankName;
@@ -67,8 +67,8 @@ public class StaffDto {
         return department;
     }
 
-    public String getSpecialization() {
-        return specialization;
+    public String getuniversity() {
+        return university;
     }
 
     public Date getStartDate() {
