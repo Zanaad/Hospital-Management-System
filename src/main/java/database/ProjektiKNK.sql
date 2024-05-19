@@ -84,6 +84,25 @@ create table department
     department_name        nvarchar(100),
     department_description text
 );
+create table patients
+(
+    patient_id             int primary key auto_increment,
+    patient_firstName      nvarchar(100),
+    patient_lastName       nvarchar(100),
+    patient_birthdate      date,
+    patient_phone          nvarchar(100),
+    patient_email          nvarchar(100) not null,
+    patient_hashPassword   nvarchar(64) not null,
+    patient_salt           nvarchar(32) not null,
+    patient_address        nvarchar(150),
+    patient_department     nvarchar(100),
+    patient_specialization nvarchar(100),
+    patient_start          date,
+    patient_end            date,
+    bankName                    nvarchar(100),
+    bankAccount                 nvarchar(100),
+    routingNumber               nvarchar(100)
+);
 select *
 from doctors;
 select *

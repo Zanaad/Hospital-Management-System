@@ -14,19 +14,21 @@ public class ReceptionistPageController
     private Button accountant_btn;
 
     @FXML
+    private Button appointments_btn;
+
+    @FXML
     private AnchorPane accountant_form;
 
     @FXML
-    private Button add_doctor_btn;
+    private Button add_patient_btn;
+    //  @FXML
+//    private Button add_nurse_btn;
 
-    @FXML
-    private Button add_nurse_btn;
+    //@FXML
+    //private Button add_receptionist_btn;
 
-    @FXML
-    private Button add_receptionist_btn;
-
-    @FXML
-    private ComboBox<?> docDep;
+    //@FXML
+    //private ComboBox<?> docDep;
 
     @FXML
     private Button dashboard_btn;
@@ -34,11 +36,11 @@ public class ReceptionistPageController
     @FXML
     private AnchorPane dashboard_form;
 
-    @FXML
-    private Button department_btn;
+    //@FXML
+    //private Button department_btn;
 
-    @FXML
-    private AnchorPane department_form;
+    //@FXML
+    //private AnchorPane department_form;
 
     @FXML
     private TextField docAccount;
@@ -80,13 +82,13 @@ public class ReceptionistPageController
     private DatePicker docStart;
 
     @FXML
-    private AnchorPane doctor_table;
+    private AnchorPane patient_table;
 
     @FXML
-    private Button doctors_btn;
+    private Button patients_btn;
 
     @FXML
-    private AnchorPane doctors_form;
+    private AnchorPane patients_form;
 
     @FXML
     private TextField nurseAccount;
@@ -191,6 +193,9 @@ public class ReceptionistPageController
     private AnchorPane register_doctor_form;
 
     @FXML
+    private AnchorPane register_patient_form;
+
+    @FXML
     private AnchorPane register_nurse_form;
 
     @FXML
@@ -204,27 +209,28 @@ public class ReceptionistPageController
     @FXML
     void switchForm(ActionEvent event) {
         if (event.getSource() == dashboard_btn) showForm(dashboard_form);
-        else if (event.getSource() == department_btn) showForm(department_form);
-        else if (event.getSource() == doctors_btn) showForm(doctors_form);
-        else if (event.getSource() == nurse_btn) showForm(nurse_form);
+        //else if (event.getSource() == department_btn) showForm(department_form);
+        else if (event.getSource() == patients_btn) showForm(patients_form);
+        else if (event.getSource() == appointments_btn) showForm(patients_form);
+      //  else if (event.getSource() == nurse_btn) showForm(nurse_form);
         else if (event.getSource() == accountant_btn) showForm(accountant_form);
         else if (event.getSource() == account_btn) showForm(profile_form);
-        else if (event.getSource() == receptionist_btn) showForm(receptionist_form);
-        else if (event.getSource() == add_doctor_btn) showForm(register_doctor_form);
-        else if (event.getSource() == add_nurse_btn) showForm(register_nurse_form);
-        else if (event.getSource() == add_receptionist_btn) showForm(register_receptionist_form);
+      //  else if (event.getSource() == receptionist_btn) showForm(receptionist_form);
+        else if (event.getSource() == add_patient_btn) showForm(register_patient_form);
+      //  else if (event.getSource() == add_nurse_btn) showForm(register_nurse_form);
+      //  else if (event.getSource() == add_receptionist_btn) showForm(register_receptionist_form);
 
     }
     private void showForm(AnchorPane form) {
         dashboard_form.setVisible(form == dashboard_form);
-        doctors_form.setVisible(form == doctors_form);
-        nurse_form.setVisible(form == nurse_form);
+        patients_form.setVisible(form == patients_form);
+       // nurse_form.setVisible(form == nurse_form);
         accountant_form.setVisible(form == accountant_form);
         profile_form.setVisible(form == profile_form);
-        receptionist_form.setVisible(form == receptionist_form);
-        department_form.setVisible(form == department_form);
-        register_doctor_form.setVisible(form == register_doctor_form);
-        register_nurse_form.setVisible(form == register_nurse_form);
-        register_receptionist_form.setVisible(form == register_receptionist_form);
+        //receptionist_form.setVisible(form == receptionist_form);
+        //department_form.setVisible(form == department_form);
+        //register_doctor_form.setVisible(form == register_doctor_form);
+        //register_nurse_form.setVisible(form == register_nurse_form);
+        //register_receptionist_form.setVisible(form == register_receptionist_form);
     }
 }
