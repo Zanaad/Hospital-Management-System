@@ -459,6 +459,22 @@ public class AdminPageController implements Initializable {
     }
 
 
+    public ObservableList<ReceptionistDto> getReceptionists() {
+        ObservableList<ReceptionistDto> listreceptionists = FXCollections.observableArrayList();
+        String query = "select * from receptionists";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                ReceptionistDto receptionistData = new ReceptionistDto(result.getString("receptionist_firstName"), result.getString("receptionist_lastName"), result.getDate("receptionist_birthdate"), result.getString("receptionist_phone"), result.getString("receptionist_email"), result.getString("receptionist_hashPassword"), result.getString("receptionist_address"), result.getString("receptionist_department"), result.getString("receptionist_university"), result.getDate("receptionist_start"), result.getDate("receptionist_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
+                listreceptionists.add(receptionistData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listreceptionists;
+    }
 
     public void nurseDisplayData() {
         nurse_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -480,12 +496,20 @@ public class AdminPageController implements Initializable {
         doctors_table.setItems(getDoctors());
     }
 
-
+    public void recDisplayData() {
+        rec_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        rec_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
+        rec_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        rec_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        rec_col_uni.setCellValueFactory(new PropertyValueFactory<>("university"));
+        rec_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        receptionist_table.setItems(getReceptionists());
+    }
 
     public void initialize(URL location, ResourceBundle resources) {
         nurseDisplayData();
         doctorDisplayData();
-
+        recDisplayData();
     }
 
 
