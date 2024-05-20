@@ -13,4 +13,5 @@ public class OperationRepository extends ReportRepository {
     public static boolean createOperation(createOperationDto receptionistData) {
         return createReport(receptionistData, query);
     }
+
 }

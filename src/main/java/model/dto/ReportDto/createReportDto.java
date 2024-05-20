@@ -17,6 +17,7 @@ public class createReportDto {
         this.time = time;
     }
 
+
     public String getDescription() {
         return description;
     }
