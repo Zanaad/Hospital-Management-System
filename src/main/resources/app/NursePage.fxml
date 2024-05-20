@@ -96,7 +96,7 @@
                                 <children>
                                     <ImageView fitHeight="132.0" fitWidth="233.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/patient.jpeg" />
+                                            <Image url="@../images/patient.jpeg" />
                                         </image>
                                     </ImageView>
                                     <Label fx:id="patients_number" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -115,7 +115,7 @@
                         <children>
                            <ImageView fitHeight="139.0" fitWidth="234.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/bloodDonator.jpg" />
+                                 <Image url="@../images/bloodDonator.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="BloodDonors" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -134,7 +134,7 @@
                         <children>
                            <ImageView fitHeight="134.0" fitWidth="237.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/bedWards.jpg" />
+                                 <Image url="@../images/bedWards.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="BedWards" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">

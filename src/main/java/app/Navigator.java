@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class Navigator {
     public final static String AdminPage = "AdminPage.fxml";
+    public final static String ReceptionistPage = "ReceptionistPage.fxml";
+    public final static String NursePage = "NursePage.fxml";
 
     public static void navigate(Stage stage, String page) {
         try {
