@@ -7,5 +7,4 @@ public class createOperationDto extends createReportDto{
         super(description,patient,doctor, date,time);
     }
 
-
 }
