@@ -250,7 +250,7 @@
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
-                                             <TableView layoutX="14.0" layoutY="34.0" prefHeight="379.0" prefWidth="816.0">
+                                             <TableView fx:id="other_table" layoutX="14.0" layoutY="34.0" prefHeight="379.0" prefWidth="816.0">
                                                <columns>
                                                  <TableColumn fx:id="others_col_otherID" prefWidth="75.0" text="OtherID" />
                                                  <TableColumn fx:id="others_col_description" prefWidth="256.0000228881836" text="Description" />

@@ -201,6 +201,9 @@ public class NursePageController {
     private TableColumn<?, ?> operations_col_time;
 
     @FXML
+    private TableView<OthersDto> other_table;
+
+    @FXML
     private TableColumn<?, ?> others_col_date;
 
     @FXML
@@ -498,6 +501,37 @@ public class NursePageController {
         death_table.setItems(getDeaths());
     }
 
+    public ObservableList<OthersDto> getOthers() {
+        ObservableList<OthersDto> listOthers = FXCollections.observableArrayList();
+        String query = "SELECT * FROM others";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                OthersDto otherData = new OthersDto(
+                        result.getString("other_description"),
+                        result.getString("other_patient"),
+                        result.getDate("other_date"),
+                        result.getString("other_time")
+                );
+                listOthers.add(otherData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listOthers;
+    }
+
+    public void otherDisplayData(){
+        others_col_otherID.setCellValueFactory(new PropertyValueFactory<>("otherID"));
+        others_col_description.setCellValueFactory(new PropertyValueFactory<>("otherDescription"));
+        others_col_patient.setCellValueFactory(new PropertyValueFactory<>("otherPatient"));
+        others_col_date.setCellValueFactory(new PropertyValueFactory<>("otherDate"));
+        others_col_time.setCellValueFactory(new PropertyValueFactory<>("otherTime"));
+
+        other_table.setItems(getOthers());
+    }
 
 
 }
