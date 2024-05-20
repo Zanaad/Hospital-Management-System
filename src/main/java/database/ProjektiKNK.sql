@@ -2,6 +2,16 @@ create
 database HospitalManagementSystem;
 use
 HospitalManagementSystem;
+
+create table admin(
+id int primary key auto_increment,
+firstName nvarchar(100),
+lastName nvarchar(100),
+email nvarchar(100),
+address nvarchar(150),
+passwordHash nvarchar(64),
+salt nvarchar(32)
+);
 create table doctors
 (
     doctor_id             int primary key auto_increment,
@@ -60,7 +70,7 @@ create table nurses
     routingNumber        nvarchar(100)
 );
 
-create table department
+create table departments
 (
     department_id          int primary key auto_increment,
     department_name        nvarchar(100),
@@ -69,10 +79,7 @@ create table department
 select *
 from doctors;
 select *
-from accountants;
-select *
 from receptionists;
 select *
 from nurses;
 select * from departments;
-
