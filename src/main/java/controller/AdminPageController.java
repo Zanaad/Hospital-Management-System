@@ -1,9 +1,16 @@
 package controller;
 
 import app.Navigator;
+import database.DatabaseUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.dto.DepartmentDto;
 import model.dto.StaffDto.DoctorDto;
@@ -14,13 +21,21 @@ import service.Staff.DoctorService;
 import service.Staff.NurseService;
 import service.Staff.ReceptionistService;
 
+import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ResourceBundle;
 
 
-public class AdminPageController {
+public class AdminPageController implements Initializable {
 
     @FXML
     private Button account_btn;
+
+    @FXML
+    private Button addDepartment_btn;
 
     @FXML
     private Button add_doctor_btn;
@@ -32,13 +47,22 @@ public class AdminPageController {
     private Button add_receptionist_btn;
 
     @FXML
-    private ComboBox<?> docDep;
+    private Label app_count;
+
+    @FXML
+    private BarChart<?, ?> dashboad_chart_AD;
+
+    @FXML
+    private AreaChart<?, ?> dashboad_chart_PD;
 
     @FXML
     private Button dashboard_btn;
 
     @FXML
     private AnchorPane dashboard_form;
+
+    @FXML
+    private Label dep_count;
 
     @FXML
     private Button department_btn;
@@ -57,6 +81,9 @@ public class AdminPageController {
 
     @FXML
     private DatePicker docBirthdate;
+
+    @FXML
+    private ComboBox<?> docDep;
 
     @FXML
     private TextField docEmail;
@@ -80,19 +107,61 @@ public class AdminPageController {
     private TextField docRoutingNr;
 
     @FXML
-    private TextField docUni;
-
-    @FXML
     private DatePicker docStart;
 
     @FXML
-    private AnchorPane doctor_table;
+    private TextField docUni;
+
+    @FXML
+    private Label docs_count;
 
     @FXML
     private Button doctors_btn;
 
     @FXML
+    private TableColumn<?, ?> doctors_col_action;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_address;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_department;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_department1;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_doctorID;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_doctorID1;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_email;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_name;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_name1;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_phone;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_uni;
+
+    @FXML
+    private TableColumn<?, ?> doctors_col_status;
+
+    @FXML
     private AnchorPane doctors_form;
+
+    @FXML
+    private TableView<DoctorDto> doctors_table;
+
+    @FXML
+    private TableView<ReceptionistDto> receptionist_table;
 
     @FXML
     private TextField nurseAccount;
@@ -131,16 +200,52 @@ public class AdminPageController {
     private TextField nurseRoutingNr;
 
     @FXML
-    private TextField nurseUni;
+    private DatePicker nurseStart;
 
     @FXML
-    private DatePicker nurseStart;
+    private TextField nurseUni;
 
     @FXML
     private Button nurse_btn;
 
     @FXML
+    private TableColumn<?, ?> nurse_col_action;
+
+    @FXML
+    private TableColumn<?, ?> nurse_col_address;
+
+    @FXML
+    private TableColumn<?, ?> nurse_col_department;
+
+    @FXML
+    private TableColumn<?, ?> nurse_col_email;
+
+    @FXML
+    private TableColumn<?, ?> nurse_col_name;
+
+    @FXML
+    private TableColumn<?, ?> nurse_col_nurseID;
+
+    @FXML
+    private TableColumn<?, ?> nurse_col_phone;
+
+    @FXML
+    private TableColumn<?, ?> nurse_col_university;
+
+    @FXML
+    private TableColumn<?, ?> nurse_col_status;
+
+    @FXML
     private AnchorPane nurse_form;
+
+    @FXML
+    private Label nurses_count;
+
+    @FXML
+    private TableView<NurseDto> nurses_table;
+
+    @FXML
+    private Label patients_count;
 
     @FXML
     private AnchorPane profile_form;
@@ -182,22 +287,61 @@ public class AdminPageController {
     private TextField recRoutingNr;
 
     @FXML
+    private DatePicker recStart;
+
+    @FXML
     private TextField recUni;
 
     @FXML
-    private DatePicker recStart;
+    private Label rec_count;
 
     @FXML
     private Button receptionist_btn;
 
     @FXML
+    private TableColumn<?, ?> rec_col_action;
+
+    @FXML
+    private TableColumn<?, ?> rec_col_address;
+
+    @FXML
+    private TableColumn<?, ?> rec_col_department;
+
+    @FXML
+    private TableColumn<?, ?> rec_col_email;
+
+    @FXML
+    private TableColumn<?, ?> rec_col_name;
+
+    @FXML
+    private TableColumn<?, ?> rec_col_phone;
+
+    @FXML
+    private TableColumn<?, ?> rec_col_ID;
+
+    @FXML
+    private TableColumn<?, ?> rec_col_uni;
+
+    @FXML
+    private TableColumn<?, ?> rec_col_status;
+
+    @FXML
     private AnchorPane receptionist_form;
+
+    @FXML
+    private Button register_doctor_btn;
 
     @FXML
     private AnchorPane register_doctor_form;
 
     @FXML
+    private Button register_nurse_btn;
+
+    @FXML
     private AnchorPane register_nurse_form;
+
+    @FXML
+    private Button register_receptionist_btn;
 
     @FXML
     private AnchorPane register_receptionist_form;
@@ -279,5 +423,94 @@ public class AdminPageController {
         register_nurse_form.setVisible(form == register_nurse_form);
         register_receptionist_form.setVisible(form == register_receptionist_form);
     }
+
+    public ObservableList<NurseDto> getNurses() {
+        ObservableList<NurseDto> listNurses = FXCollections.observableArrayList();
+        String query = "select * from nurses";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                NurseDto nurseData = new NurseDto(result.getString("nurse_firstName"), result.getString("nurse_lastName"), result.getDate("nurse_birthdate"), result.getString("nurse_phone"), result.getString("nurse_email"), result.getString("nurse_hashPassword"), result.getString("nurse_address"), result.getString("nurse_department"), result.getString("nurse_university"), result.getDate("nurse_start"), result.getDate("nurse_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
+                listNurses.add(nurseData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listNurses;
+    }
+
+    public ObservableList<DoctorDto> getDoctors() {
+        ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList();
+        String query = "select * from doctors";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                DoctorDto doctorData = new DoctorDto(result.getString("doctor_firstName"), result.getString("doctor_lastName"), result.getDate("doctor_birthdate"), result.getString("doctor_phone"), result.getString("doctor_email"), result.getString("doctor_hashPassword"), result.getString("doctor_address"), result.getString("doctor_department"), result.getString("doctor_university"), result.getDate("doctor_start"), result.getDate("doctor_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
+                listDoctors.add(doctorData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDoctors;
+    }
+
+
+    public ObservableList<ReceptionistDto> getReceptionists() {
+        ObservableList<ReceptionistDto> listreceptionists = FXCollections.observableArrayList();
+        String query = "select * from receptionists";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                ReceptionistDto receptionistData = new ReceptionistDto(result.getString("receptionist_firstName"), result.getString("receptionist_lastName"), result.getDate("receptionist_birthdate"), result.getString("receptionist_phone"), result.getString("receptionist_email"), result.getString("receptionist_hashPassword"), result.getString("receptionist_address"), result.getString("receptionist_department"), result.getString("receptionist_university"), result.getDate("receptionist_start"), result.getDate("receptionist_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
+                listreceptionists.add(receptionistData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listreceptionists;
+    }
+
+    public void nurseDisplayData() {
+        nurse_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        nurse_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
+        nurse_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        nurse_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        nurse_col_university.setCellValueFactory(new PropertyValueFactory<>("university"));
+        nurse_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        nurses_table.setItems(getNurses());
+    }
+
+    public void doctorDisplayData() {
+        doctors_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        doctors_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
+        doctors_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        doctors_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        doctors_col_uni.setCellValueFactory(new PropertyValueFactory<>("university"));
+        doctors_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        doctors_table.setItems(getDoctors());
+    }
+
+    public void recDisplayData() {
+        rec_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        rec_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
+        rec_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        rec_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        rec_col_uni.setCellValueFactory(new PropertyValueFactory<>("university"));
+        rec_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        receptionist_table.setItems(getReceptionists());
+    }
+
+    public void initialize(URL location, ResourceBundle resources) {
+        nurseDisplayData();
+        doctorDisplayData();
+        recDisplayData();
+    }
+
 
 }
