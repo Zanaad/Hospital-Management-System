@@ -116,9 +116,6 @@ public class AdminPageController implements Initializable {
     private Label docs_count;
 
     @FXML
-    private AnchorPane doctor_table;
-
-    @FXML
     private Button doctors_btn;
 
     @FXML
@@ -152,7 +149,7 @@ public class AdminPageController implements Initializable {
     private TableColumn<?, ?> doctors_col_phone;
 
     @FXML
-    private TableColumn<?, ?> doctors_col_specialization;
+    private TableColumn<?, ?> doctors_col_uni;
 
     @FXML
     private TableColumn<?, ?> doctors_col_status;
@@ -161,16 +158,10 @@ public class AdminPageController implements Initializable {
     private AnchorPane doctors_form;
 
     @FXML
-    private TableView<?> doctors_tableView;
+    private TableView<DoctorDto> doctors_table;
 
     @FXML
-    private TableView<?> doctors_tableView2;
-
-    @FXML
-    private TableView<?> doctors_tableView4;
-
-    @FXML
-    private AnchorPane main_form;
+    private TableView<ReceptionistDto> receptionist_table;
 
     @FXML
     private TextField nurseAccount;
@@ -248,9 +239,6 @@ public class AdminPageController implements Initializable {
     private AnchorPane nurse_form;
 
     @FXML
-    private AnchorPane nurse_table;
-
-    @FXML
     private Label nurses_count;
 
     @FXML
@@ -311,37 +299,34 @@ public class AdminPageController implements Initializable {
     private Button receptionist_btn;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_action;
+    private TableColumn<?, ?> rec_col_action;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_address;
+    private TableColumn<?, ?> rec_col_address;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_department;
+    private TableColumn<?, ?> rec_col_department;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_email;
+    private TableColumn<?, ?> rec_col_email;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_name;
+    private TableColumn<?, ?> rec_col_name;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_phone;
+    private TableColumn<?, ?> rec_col_phone;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_receptionistID;
+    private TableColumn<?, ?> rec_col_ID;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_specialization;
+    private TableColumn<?, ?> rec_col_uni;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_status;
+    private TableColumn<?, ?> rec_col_status;
 
     @FXML
     private AnchorPane receptionist_form;
-
-    @FXML
-    private AnchorPane receptionist_table;
 
     @FXML
     private Button register_doctor_btn;
@@ -456,6 +441,25 @@ public class AdminPageController implements Initializable {
         return listNurses;
     }
 
+    public ObservableList<DoctorDto> getDoctors() {
+        ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList();
+        String query = "select * from doctors";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                DoctorDto doctorData = new DoctorDto(result.getString("doctor_firstName"), result.getString("doctor_lastName"), result.getDate("doctor_birthdate"), result.getString("doctor_phone"), result.getString("doctor_email"), result.getString("doctor_hashPassword"), result.getString("doctor_address"), result.getString("doctor_department"), result.getString("doctor_university"), result.getDate("doctor_start"), result.getDate("doctor_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
+                listDoctors.add(doctorData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDoctors;
+    }
+
+
+
     public void nurseDisplayData() {
         nurse_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         nurse_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
@@ -466,8 +470,22 @@ public class AdminPageController implements Initializable {
         nurses_table.setItems(getNurses());
     }
 
+    public void doctorDisplayData() {
+        doctors_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        doctors_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
+        doctors_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        doctors_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        doctors_col_uni.setCellValueFactory(new PropertyValueFactory<>("university"));
+        doctors_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        doctors_table.setItems(getDoctors());
+    }
+
+
+
     public void initialize(URL location, ResourceBundle resources) {
         nurseDisplayData();
+        doctorDisplayData();
+
     }
 
 
