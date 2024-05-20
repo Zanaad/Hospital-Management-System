@@ -50,7 +50,7 @@
                     </Button>
                     <Button fx:id="patients_btn" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Patients" textFill="WHITE">
                         <graphic>
-                            <FontAwesomeIcon fill="WHITE" glyphName="USER" size="1.5em" />
+                            <FontAwesomeIcon fill="WHITE" glyphName="USER_MD" size="1.5em" />
                         </graphic>
                         <font>
                             <Font name="Arial" size="13.0" />
@@ -97,7 +97,7 @@
                                 <children>
                                     <ImageView fitHeight="132.0" fitWidth="233.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../images/patient.jpeg" />
+                                            <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/patient.jpeg" />
                                         </image>
                                     </ImageView>
                                     <Label fx:id="dashboard_patients" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -116,7 +116,7 @@
                         <children>
                            <ImageView fitHeight="139.0" fitWidth="234.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../images/bloodDonator.jpg" />
+                                 <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/bloodDonator.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="dashboard_donors" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -135,7 +135,7 @@
                         <children>
                            <ImageView fitHeight="134.0" fitWidth="237.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../images/bedWards.jpg" />
+                                 <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/bedWards.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="dashboard_beds" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -188,7 +188,7 @@
                                  <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="844.0">
                                           <children>
-                                             <TableView layoutX="14.0" layoutY="24.0" prefHeight="386.0" prefWidth="821.0">
+                                             <TableView fx:id="operation_table" layoutX="14.0" layoutY="24.0" prefHeight="386.0" prefWidth="821.0">
                                                <columns>
                                                  <TableColumn fx:id="operations_col_operationID" prefWidth="90.4000072479248" text="OperationID" />
                                                  <TableColumn fx:id="operations_col_description" prefWidth="125.59998321533203" text="Description" />
@@ -209,7 +209,7 @@
                                  <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
-                                             <TableView layoutX="14.0" layoutY="27.0" prefHeight="394.0" prefWidth="820.0">
+                                             <TableView fx:id="death_table" layoutX="14.0" layoutY="27.0" prefHeight="394.0" prefWidth="820.0">
                                                <columns>
                                                  <TableColumn fx:id="deaths_col_deathID" prefWidth="75.0" text="DeathID" />
                                                  <TableColumn fx:id="deaths_col_description" prefWidth="239.1999740600586" text="Description" />
@@ -229,7 +229,7 @@
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
-                                             <TableView layoutX="14.0" layoutY="28.0" prefHeight="382.0" prefWidth="814.0">
+                                             <TableView fx:id="birth_table" layoutX="14.0" layoutY="28.0" prefHeight="382.0" prefWidth="814.0">
                                                <columns>
                                                  <TableColumn fx:id="births_col_birthID" prefWidth="75.0" text="BirthID" />
                                                  <TableColumn fx:id="births_col_description" prefWidth="163.20000457763672" text="Description" />
@@ -246,12 +246,11 @@
                                        <FontAwesomeIcon glyphName="ASTERISK" />
                                     </graphic>
                                  </Tab>
-
                                  <Tab text="Other">
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
-                                             <TableView layoutX="14.0" layoutY="34.0" prefHeight="379.0" prefWidth="816.0">
+                                             <TableView fx:id="other_table" layoutX="14.0" layoutY="34.0" prefHeight="379.0" prefWidth="816.0">
                                                <columns>
                                                  <TableColumn fx:id="others_col_otherID" prefWidth="75.0" text="OtherID" />
                                                  <TableColumn fx:id="others_col_description" prefWidth="256.0000228881836" text="Description" />
@@ -299,7 +298,7 @@
                                                    <Button fx:id="add_death_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerDeath" prefHeight="34.0" prefWidth="142.0" text="Add Death" />
                                                 </children>
                                              </AnchorPane>
-                                             <AnchorPane fx:id="add_reportBirth" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
+                                             <AnchorPane fx:id="add_reportBirth" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
                                                 <children>
                                                    <TextField fx:id="txtBirthDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
                                                    <Label layoutX="62.0" layoutY="44.0" text="Description" />
@@ -314,7 +313,7 @@
                                                    <TextField fx:id="txtBirthNewBorn" layoutX="62.0" layoutY="254.0" prefHeight="31.0" prefWidth="189.0" />
                                                 </children>
                                              </AnchorPane>
-                                             <AnchorPane fx:id="add_reportOther" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
+                                             <AnchorPane fx:id="add_reportOther" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                 <children>
                                                    <TextField fx:id="txtOtherDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
                                                    <Label layoutX="62.0" layoutY="44.0" text="Description" />
@@ -348,7 +347,7 @@
                </AnchorPane>
                     <AnchorPane fx:id="patients_form" layoutX="324.0" layoutY="144.0" prefHeight="560.0" prefWidth="886.0" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
-                            <AnchorPane fx:id="doctor_table" layoutX="178.0" layoutY="-66.0" prefHeight="560.0" prefWidth="886.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <AnchorPane fx:id="doctor_table" layoutX="178.0" layoutY="-66.0" prefHeight="560.0" prefWidth="886.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <children>
                                     <Button fx:id="add_patient_btn" layoutX="733.0" layoutY="509.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="28.0" prefWidth="126.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Add New Patient" textFill="WHITE">
                                         <font>

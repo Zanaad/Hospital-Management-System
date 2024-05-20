@@ -99,16 +99,39 @@ create table patients
 
 );
 
-CREATE TABLE Operation
-(
-    OperationID INTEGER PRIMARY KEY AUTO_INCREMENT,
-    Description TEXT NOT NULL,
-    Patient     TEXT NOT NULL,
-    Doctor      TEXT NOT NULL,
-    Date        TEXT NOT NULL,
-    Time        TEXT NOT NULL
+create table operations (
+    operationID              int primary key auto_increment,
+    opDescription            nvarchar(100),
+    opPatient                nvarchar(100),
+    opDoctor                 nvarchar(100),
+    opDate                   date,
+    opTime                   nvarchar(100)
 );
 
+create table births (
+    birthID                 int primary key auto_increment,
+    birth_description       nvarchar(100),
+    birth_patient           nvarchar(100),
+    birth_newborn           nvarchar(100),
+    birth_date              date,
+    birth_time              nvarchar(100)
+);
+
+create table deaths (
+    deathID                 int primary key auto_increment,
+    death_description       nvarchar(100),
+    death_patient           nvarchar(100),
+    death_date              date,
+    death_time              nvarchar(100)
+);
+
+create table others (
+    other_ID                int primary key auto_increment,
+    other_description       nvarchar(100),
+    other_patient           nvarchar(100),
+    other_date              date,
+    other_time              nvarchar(100)
+);
 
 select *
 from doctors;
@@ -122,3 +145,9 @@ select *
 from departments;
 select *
 from patients;
+select *
+from births;
+select *
+from deaths;
+select *
+from others;
