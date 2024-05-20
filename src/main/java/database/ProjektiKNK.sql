@@ -66,6 +66,31 @@ create table department
     department_name        nvarchar(100),
     department_description text
 );
+
+create table patients(
+    patient_id             int primary key auto_increment,
+    patient_firstName      nvarchar(100),
+    patient_lastName       nvarchar(100),
+    patient_birthdate      date,
+    patient_phone          nvarchar(100),
+    patient_email          nvarchar(100) not null,
+    patient_address        nvarchar(150),
+    patient_status         nvarchar(100),
+    patient_action         nvarchar(100)
+    
+);
+
+CREATE TABLE Operation (
+    OperationID INTEGER PRIMARY KEY AUTO_INCREMENT,
+    Description TEXT NOT NULL,
+    Patient TEXT NOT NULL,
+    Doctor TEXT NOT NULL,
+    Date TEXT NOT NULL,
+    Time TEXT NOT NULL
+);
+
+
+
 select *
 from doctors;
 select *
@@ -75,4 +100,4 @@ from receptionists;
 select *
 from nurses;
 select * from departments;
-
+select * from patients;
