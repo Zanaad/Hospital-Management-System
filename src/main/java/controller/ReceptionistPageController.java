@@ -73,31 +73,26 @@ public class ReceptionistPageController
     private AnchorPane profile_form;
 
     @FXML
-    private TextField recAccount;
+    private TextField recID;
 
     @FXML
-    private TextField recAddress;
-
-    @FXML
-    private TextField recBank;
-
-    @FXML
-    private DatePicker recBirthdate;
-
-    @FXML
-    private ComboBox<?> recDep;
+    private TextField recUsername;
 
     @FXML
     private TextField recEmail;
 
-    @FXML
-    private DatePicker recEnd;
 
     @FXML
-    private TextField recFirstName;
+    private RadioButton radioMale;
 
     @FXML
-    private TextField recLastName;
+    private RadioButton radioFemale;
+
+    @FXML
+    private Button import_btn;
+    @FXML
+    private Button update_btn;
+
 
     @FXML
     private PasswordField recPassword;
