@@ -170,56 +170,10 @@ public class ReceptionistPageController
 
 
     @FXML
-    private TextField nurseAccount;
-
-    @FXML
-    private TextField nurseAddress;
-
-    @FXML
-    private TextField nurseBank;
-
-    @FXML
-    private DatePicker nurseBirthdate;
-
-    @FXML
-    private ComboBox<?> nurseDep;
-
-
-    @FXML
-    private TextField nurseEmail;
-
-    @FXML
-    private DatePicker nurseEnd;
-
-    @FXML
-    private TextField nurseFirstName;
-
-    @FXML
-    private TextField nurseLastName;
-
-    @FXML
-    private PasswordField nursePassword;
-
-    @FXML
-    private TextField nursePhone;
-
-    @FXML
-    private TextField nurseRoutingNr;
-
-    @FXML
-    private TextField nurseSpecialization;
-
-    @FXML
-    private DatePicker nurseStart;
-
-    @FXML
     private Button nurse_btn;
 
     @FXML
     private AnchorPane nurse_form;
-
-
-
 
     @FXML
     private TextField recSpecialization;

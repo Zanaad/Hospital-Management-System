@@ -192,7 +192,7 @@
                         <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="527.0" prefWidth="274.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0">
 
                             <Circle fill="#3c434a" layoutX="137.0" layoutY="95.0" radius="81.0" stroke="BLACK" strokeType="INSIDE" />
-                            <Button layoutX="62.0" layoutY="184.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Import" textFill="WHITE">
+                            <Button fx:id="import_btn" layoutX="62.0" layoutY="184.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Import" textFill="WHITE">
                                 <font>
                                     <Font name="Arial" size="13.0" />
                                 </font>
@@ -232,31 +232,31 @@
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <TextField layoutX="189.0" layoutY="96.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="96.0" />
+                            <TextField fx:id="recID" layoutX="189.0" layoutY="96.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="193.0" AnchorPane.topAnchor="96.0" />
                             <Label layoutX="113.0" layoutY="138.0" text="Username:">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <TextField layoutX="189.0" layoutY="136.0" prefHeight="25.0" prefWidth="306.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="136.0" />
+                            <TextField fx:id="recUsername" layoutX="189.0" layoutY="136.0" prefHeight="25.0" prefWidth="306.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="136.0" />
                             <Label layoutX="88.0" layoutY="176.0" text="Email Address:">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <TextField layoutX="189.0" layoutY="174.0" prefHeight="25.0" prefWidth="307.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="174.0" />
+                            <TextField fx:id="recEmail" layoutX="189.0" layoutY="174.0" prefHeight="25.0" prefWidth="307.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="174.0" />
                             <Label layoutX="129.0" layoutY="212.0" text="Gender:">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <Button layoutX="215.0" layoutY="292.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Update" textFill="WHITE" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="194.0" AnchorPane.topAnchor="292.0">
+                            <Button fx:id="update_btn" layoutX="215.0" layoutY="292.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Update" textFill="WHITE" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="194.0" AnchorPane.topAnchor="292.0">
                                 <font>
                                     <Font name="Arial" size="13.0" />
                                 </font>
                             </Button>
-                     <RadioButton layoutX="189.0" layoutY="214.0" mnemonicParsing="false" text="Male" />
-                     <RadioButton layoutX="250.0" layoutY="214.0" mnemonicParsing="false" text="Female" />
+                     <RadioButton fx:id="radioMale" layoutX="189.0" layoutY="214.0" mnemonicParsing="false" text="Male" />
+                     <RadioButton fx:id="radioFemale" layoutX="250.0" layoutY="214.0" mnemonicParsing="false" text="Female" />
 
                         </AnchorPane>
                     </AnchorPane>
