@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
@@ -30,13 +31,15 @@ import service.Report.operationService;
 import service.Report.otherService;
 import service.Staff.ReceptionistService;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ResourceBundle;
 
-public class NursePageController {
+public class NursePageController implements Initializable {
 
     @FXML
     private Button account_btn;
@@ -533,6 +536,12 @@ public class NursePageController {
         other_table.setItems(getOthers());
     }
 
+    public void initialize(URL location, ResourceBundle resources) {
+        operationDisplayData();
+        birthDisplayData();
+        deathDisplayData();
+        otherDisplayData();
+    }
 
 }
 
