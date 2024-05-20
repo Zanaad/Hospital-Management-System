@@ -22,7 +22,7 @@ public class NurseService {
                 salt,
                 nurseData.getAddress(),
                 nurseData.getDepartment(),
-                nurseData.getuniversity(),
+                nurseData.getUniversity(),
                 nurseData.getStartDate(),
                 nurseData.getEndDate(),
                 nurseData.getBankName(),

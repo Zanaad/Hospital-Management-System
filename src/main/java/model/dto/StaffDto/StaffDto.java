@@ -67,7 +67,7 @@ public class StaffDto {
         return department;
     }
 
-    public String getuniversity() {
+    public String getUniversity() {
         return university;
     }
 

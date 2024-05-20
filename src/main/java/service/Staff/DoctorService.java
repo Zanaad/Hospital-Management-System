@@ -3,6 +3,7 @@ package service.Staff;
 import model.dto.StaffDto.CreateDoctorDto;
 import model.dto.StaffDto.DoctorDto;
 import repository.Staff.DoctorRepository;
+import repository.Staff.StaffRepository;
 import service.PasswordHasher;
 
 public class DoctorService {
@@ -21,7 +22,7 @@ public class DoctorService {
                 salt,
                 doctorData.getAddress(),
                 doctorData.getDepartment(),
-                doctorData.getuniversity(),
+                doctorData.getUniversity(),
                 doctorData.getStartDate(),
                 doctorData.getEndDate(),
                 doctorData.getBankName(),

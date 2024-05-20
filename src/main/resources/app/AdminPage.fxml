@@ -93,7 +93,7 @@
             </left>
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="886.0">
+                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="886.0" visible="false">
                         <children>
                             <AnchorPane layoutX="607.0" layoutY="10.0" prefHeight="134.0" prefWidth="198.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
@@ -102,7 +102,7 @@
                                             <Image url="@../images/doc.jpg" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="doctors_number" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
+                                    <Label fx:id="docs_count" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
@@ -121,7 +121,7 @@
                                             <Image url="@../images/patient.jpeg" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="patients_number" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
+                                    <Label fx:id="patients_count" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
@@ -140,7 +140,7 @@
                                             <Image url="@../images/nurses.png" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="nurses_number" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="14.0" prefHeight="26.0" prefWidth="10.0" text="0">
+                                    <Label fx:id="nurses_count" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="14.0" prefHeight="26.0" prefWidth="10.0" text="0">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
@@ -159,7 +159,7 @@
                                             <Image url="@../images/rec.jpg" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="receptionist_number" alignment="CENTER_RIGHT" layoutX="5.0" layoutY="14.0" prefHeight="26.0" prefWidth="18.0" text="0">
+                                    <Label fx:id="rec_count" alignment="CENTER_RIGHT" layoutX="5.0" layoutY="14.0" prefHeight="26.0" prefWidth="18.0" text="0">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
@@ -178,12 +178,12 @@
                                             <Image url="@../images/accountant.jpg" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="accountant_number" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="13.0" text="0">
+                                    <Label fx:id="app_count" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="13.0" text="0">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
                                     </Label>
-                                    <Label alignment="CENTER" layoutX="14.0" layoutY="48.0" prefHeight="20.0" prefWidth="87.0" text="Accountants">
+                                    <Label alignment="CENTER" layoutX="14.0" layoutY="48.0" prefHeight="20.0" prefWidth="87.0" text="Appointments">
                                         <font>
                                             <Font size="14.0" />
                                         </font>
@@ -197,7 +197,7 @@
                                             <Image url="@../images/dep.jpg" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="departments_number" alignment="CENTER_RIGHT" layoutX="17.0" layoutY="21.0" prefHeight="20.0" prefWidth="12.0" text="0">
+                                    <Label fx:id="dep_count" alignment="CENTER_RIGHT" layoutX="17.0" layoutY="21.0" prefHeight="20.0" prefWidth="12.0" text="0">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
@@ -279,7 +279,7 @@
                         </children>
 
                     </AnchorPane>
-                    <AnchorPane fx:id="nurse_form" layoutX="94.0" layoutY="67.0" prefHeight="560.0" prefWidth="885.6" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <AnchorPane fx:id="nurse_form" layoutX="94.0" layoutY="67.0" prefHeight="560.0" prefWidth="885.6" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
                             <AnchorPane fx:id="nurse_table" layoutX="221.0" layoutY="-53.0" prefHeight="560.0" prefWidth="886.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <children>
@@ -301,7 +301,7 @@
                                                             <TableColumn fx:id="nurse_col_department" prefWidth="75.0" text="Department" />
                                                             <TableColumn fx:id="nurse_col_phone" prefWidth="114.0" text="Phone" />
                                                             <TableColumn fx:id="nurse_col_email" prefWidth="100.0" text="Email" />
-                                                            <TableColumn fx:id="nurse_col_specialization" prefWidth="110.0" text="Specialization" />
+                                                            <TableColumn fx:id="nurse_col_university" prefWidth="110.0" text="University" />
                                                             <TableColumn fx:id="nurse_col_address" prefWidth="109.0" text="Address" />
                                                             <TableColumn fx:id="nurse_col_status" prefWidth="101.0" text="Status" />
                                                             <TableColumn fx:id="nurse_col_action" prefWidth="100.0" text="Action" />

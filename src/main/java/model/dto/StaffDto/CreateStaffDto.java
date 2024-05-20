@@ -73,7 +73,7 @@ public class CreateStaffDto {
         return department;
     }
 
-    public String getuniversity() {
+    public String getUniversity() {
         return university;
     }
 
