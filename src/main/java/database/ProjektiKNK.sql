@@ -125,6 +125,14 @@ create table deaths (
     death_time              nvarchar(100)
 );
 
+create table others (
+    other_ID                int primary key auto_increment,
+    other_description       nvarchar(100),
+    other_patient           nvarchar(100),
+    other_date              date,
+    other_time              nvarchar(100)
+);
+
 select *
 from doctors;
 select *
@@ -141,3 +149,5 @@ select *
 from births;
 select *
 from deaths;
+select *
+from others;

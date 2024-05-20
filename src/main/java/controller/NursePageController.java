@@ -21,11 +21,13 @@ import javafx.scene.layout.AnchorPane;
 import model.dto.ReportDto.BirthsDto;
 import model.dto.ReportDto.DeathsDto;
 import model.dto.ReportDto.OperationDto;
+import model.dto.ReportDto.OthersDto;
 import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
 import service.Report.birthService;
 import service.Report.deathService;
 import service.Report.operationService;
+import service.Report.otherService;
 import service.Staff.ReceptionistService;
 
 import java.sql.Connection;
@@ -128,6 +130,9 @@ public class NursePageController {
 
     @FXML
     private TableView<OperationDto> operation_table;
+
+    @FXML
+    private TableView<DeathsDto> death_table;
 
     @FXML
     private BarChart<?, ?> dashboad_chart_BD;
@@ -345,7 +350,6 @@ public class NursePageController {
     }
 
 
-
     //database tools--------------------------------------------------------------------------------------------------
 
     @FXML
@@ -353,7 +357,7 @@ public class NursePageController {
         Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
 
 
-        OperationDto report = new OperationDto(this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
+        OperationDto report = new OperationDto(this.txtOperationDescription.getText(), this.txtOperationPatient.getText(), this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
         boolean reportCreated = operationService.createOperation(report);
         if (reportCreated) {
             Navigator.navigate(event, Navigator.NursePage);
@@ -365,7 +369,7 @@ public class NursePageController {
         Date birthsDate = Date.valueOf(this.txtBirthDate.getValue());
 
 
-        BirthsDto report = new BirthsDto(this.txtBirthDescription.getText(), this.txtBirthPatient.getText(),this.txtBirthNewBorn.getText(), birthsDate, this.txtBirthTime.getText());
+        BirthsDto report = new BirthsDto(this.txtBirthDescription.getText(), this.txtBirthPatient.getText(), this.txtBirthNewBorn.getText(), birthsDate, this.txtBirthTime.getText());
         boolean reportCreated = birthService.createBirth(report);
         if (reportCreated) {
             Navigator.navigate(event, Navigator.NursePage);
@@ -377,7 +381,6 @@ public class NursePageController {
     void registerDeath(ActionEvent event) {
         Date deathDate = Date.valueOf(this.txtDeathDate.getValue());
 
-
         DeathsDto report = new DeathsDto(this.txtDeathDescription.getText(), this.txtDeathPatient.getText(), deathDate, this.txtDeathTime.getText());
         boolean reportCreated = deathService.createDeath(report);
         if (reportCreated) {
@@ -386,10 +389,15 @@ public class NursePageController {
     }
 
 
-
     @FXML
     void registerOther(ActionEvent event) {
+        Date otherDate = Date.valueOf(this.txtOtherDate.getValue());
 
+        OthersDto report = new OthersDto(this.txtOtherDescription.getText(), this.txtOtherPatient.getText(), otherDate, this.txtOtherTime.getText());
+        boolean reportCreated = otherService.createOther(report);
+        if (reportCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
     }
 
 
@@ -446,7 +454,7 @@ public class NursePageController {
         return listBirths;
     }
 
-    public void birthDisplayData(){
+    public void birthDisplayData() {
         births_col_birthID.setCellValueFactory(new PropertyValueFactory<>("birthID"));
         births_col_description.setCellValueFactory(new PropertyValueFactory<>("birthDescription"));
         births_col_patient.setCellValueFactory(new PropertyValueFactory<>("birthPatient"));
@@ -457,10 +465,40 @@ public class NursePageController {
         birth_table.setItems(getBirths());
     }
 
+    public ObservableList<DeathsDto> getDeaths() {
+        ObservableList<DeathsDto> listDeaths = FXCollections.observableArrayList();
+        String query = "SELECT * FROM deaths";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                DeathsDto deathData = new DeathsDto(
+                        result.getString("death_description"),
+                        result.getString("death_patient"),
+                        result.getDate("death_date"),
+                        result.getString("death_time")
+                );
+                listDeaths.add(deathData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDeaths;
+    }
 
 
+    public void deathDisplayData() {
+        deaths_col_deathID.setCellValueFactory(new PropertyValueFactory<>("deathID"));
+        deaths_col_description.setCellValueFactory(new PropertyValueFactory<>("deathDescription"));
+        deaths_col_patient.setCellValueFactory(new PropertyValueFactory<>("deathPatient"));
+        deaths_col_date.setCellValueFactory(new PropertyValueFactory<>("deathDate"));
+        deaths_col_time.setCellValueFactory(new PropertyValueFactory<>("deathTime"));
 
+        death_table.setItems(getDeaths());
+    }
 
 
 
 }
+

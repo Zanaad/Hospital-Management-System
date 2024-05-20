@@ -209,7 +209,7 @@
                                  <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
-                                             <TableView layoutX="14.0" layoutY="27.0" prefHeight="394.0" prefWidth="820.0">
+                                             <TableView fx:id="death_table" layoutX="14.0" layoutY="27.0" prefHeight="394.0" prefWidth="820.0">
                                                <columns>
                                                  <TableColumn fx:id="deaths_col_deathID" prefWidth="75.0" text="DeathID" />
                                                  <TableColumn fx:id="deaths_col_description" prefWidth="239.1999740600586" text="Description" />
