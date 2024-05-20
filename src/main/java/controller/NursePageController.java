@@ -1,50 +1,58 @@
 package controller;
 
-
-
+import app.Navigator;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import model.dto.ReportDto.OperationDto;
+import model.dto.StaffDto.ReceptionistDto;
+import service.Report.operationService;
+import service.Staff.ReceptionistService;
 
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.ResourceBundle;
 
-public class NursePageController implements Initializable {
+public class NursePageController {
 
     @FXML
     private Button account_btn;
 
     @FXML
-    private AnchorPane add_birth_operation;
+    private Button addOperation_btn;
 
     @FXML
-    private AnchorPane add_case_operation;
+    private Button add_birth_btn;
 
     @FXML
-    private AnchorPane add_death_operation;
+    private Button add_death_btn;
 
     @FXML
-    private AnchorPane add_other_operation;
+    private Button add_other_btn;
 
     @FXML
     private Button add_patient_btn;
+
+    @FXML
+    private AnchorPane add_reportBirth;
+
+    @FXML
+    private AnchorPane add_reportDeath;
+
+    @FXML
+    private AnchorPane add_reportOperation;
+
+    @FXML
+    private AnchorPane add_reportOther;
 
     @FXML
     private Button bedWards_btn;
@@ -110,9 +118,6 @@ public class NursePageController implements Initializable {
     private AreaChart<?, ?> dashboad_chart_PD;
 
     @FXML
-    private Label date_time;
-
-    @FXML
     private Label dashboard_beds;
 
     @FXML
@@ -126,6 +131,9 @@ public class NursePageController implements Initializable {
 
     @FXML
     private Label dashboard_patients;
+
+    @FXML
+    private Label date_time;
 
     @FXML
     private TableColumn<?, ?> deaths_col_date;
@@ -226,14 +234,61 @@ public class NursePageController implements Initializable {
     @FXML
     private AnchorPane report_form;
 
+    @FXML
+    private DatePicker txtBirthDate;
 
-    //database tools
+    @FXML
+    private TextField txtBirthDescription;
 
-    private Connection connect;
-    private PreparedStatement prepare;
-    private ResultSet result;
-    private Statement statement;
+    @FXML
+    private TextField txtBirthNewBorn;
 
+    @FXML
+    private TextField txtBirthPatient;
+
+    @FXML
+    private TextField txtBirthTime;
+
+    @FXML
+    private DatePicker txtDeathDate;
+
+    @FXML
+    private TextField txtDeathDescription;
+
+    @FXML
+    private TextField txtDeathPatient;
+
+    @FXML
+    private TextField txtDeathTime;
+
+    @FXML
+    private DatePicker txtOperationDate;
+
+    @FXML
+    private TextField txtOperationDescription;
+
+    @FXML
+    private TextField txtOperationDoctor;
+
+    @FXML
+    private TextField txtOperationPatient;
+
+    @FXML
+    private TextField txtOperationTime;
+
+    @FXML
+    private DatePicker txtOtherDate;
+
+    @FXML
+    private TextField txtOtherDescription;
+
+    @FXML
+    private TextField txtOtherPatient;
+
+    @FXML
+    private TextField txtOtherTime;
+
+    //change the forms depending what the user chooses-----------------------------------------------------------
 
     @FXML
     void switchForm(ActionEvent event) {
@@ -271,33 +326,48 @@ public class NursePageController implements Initializable {
         }
     }
 
-    public void runTime() {
 
-        new Thread(() -> {
-            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
-            while (true) {
-                try {
+    //database tools--------------------------------------------------------------------------------------------------
 
-                    Thread.sleep(1000);
+    @FXML
+    void registerOperation(ActionEvent event) {
+        Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
-                Platform.runLater(() -> {
-                    date_time.setText(format.format(new Date()));
-                });
-            }
-        }).start();
+        OperationDto staff = new OperationDto(this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
+        boolean reportCreated = operationService.createOperation(staff);
+        if (reportCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
+    }
+
+    @FXML
+    void registerBirth(ActionEvent event) {
+
+
+    }
+
+    @FXML
+    void registerDeath(ActionEvent event) {
+
+    }
+
+
+
+    @FXML
+    void registerOther(ActionEvent event) {
 
     }
 
 
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        runTime();
 
-    }
+
+
+
+
+
+
+
 }
