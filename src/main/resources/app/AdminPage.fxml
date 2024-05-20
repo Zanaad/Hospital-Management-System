@@ -93,7 +93,7 @@
             </left>
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="886.0" visible="false">
+                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="886.0">
                         <children>
                             <AnchorPane layoutX="607.0" layoutY="10.0" prefHeight="134.0" prefWidth="198.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
@@ -403,9 +403,9 @@
                             </AnchorPane>
                         </children>
                     </AnchorPane>
-                    <AnchorPane fx:id="profile_form" prefHeight="560.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <AnchorPane fx:id="profile_form" prefHeight="560.0" prefWidth="886.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
-                        <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="527.0" prefWidth="274.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0">
+                        <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="527.0" prefWidth="274.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0">
 
                             <Circle fill="#3c434a" layoutX="137.0" layoutY="95.0" radius="81.0" stroke="BLACK" strokeType="INSIDE" />
                             <Button layoutX="62.0" layoutY="184.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Import" textFill="WHITE">
@@ -455,70 +455,70 @@
                             </Label>
 
                         </AnchorPane>
-                        <AnchorPane layoutX="307.0" layoutY="17.0" prefHeight="308.0" prefWidth="565.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);" AnchorPane.bottomAnchor="235.0" AnchorPane.leftAnchor="307.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="17.0">
-                            <Label layoutX="114.0" layoutY="59.0" text="Admin ID:">
+                        <AnchorPane layoutX="307.0" layoutY="17.0" prefHeight="289.0" prefWidth="565.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" AnchorPane.bottomAnchor="254.0" AnchorPane.leftAnchor="307.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="17.0">
+                            <Label layoutX="95.0" layoutY="28.0" text="Admin ID">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <TextField layoutX="188.0" layoutY="57.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="193.60000000000002" AnchorPane.topAnchor="57.0" />
-                            <Label layoutX="112.0" layoutY="99.0" text="First Name:">
+                            <TextField layoutX="169.0" layoutY="26.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="212.60000000000002" AnchorPane.topAnchor="26.0" />
+                            <Label layoutX="93.0" layoutY="68.0" text="First Name">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <TextField layoutX="188.0" layoutY="97.0" prefHeight="25.0" prefWidth="306.0" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="71.20000000000005" AnchorPane.topAnchor="97.0" />
-                            <Label layoutX="106.0" layoutY="137.0" text="Last Name:">
+                            <TextField layoutX="169.0" layoutY="66.0" prefHeight="25.0" prefWidth="306.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="90.20000000000005" AnchorPane.topAnchor="66.0" />
+                            <Label layoutX="87.0" layoutY="106.0" text="Last Name">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <TextField layoutX="188.0" layoutY="135.0" prefHeight="25.0" prefWidth="307.0" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="69.60000000000002" AnchorPane.topAnchor="135.0" />
-                            <Label layoutX="128.0" layoutY="173.0" text="Email:">
+                            <TextField layoutX="169.0" layoutY="104.0" prefHeight="25.0" prefWidth="307.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="88.60000000000002" AnchorPane.topAnchor="104.0" />
+                            <Label layoutX="110.0" layoutY="142.0" text="Email">
                                 <font>
                                     <Font size="15.0" />
                                 </font>
                             </Label>
-                            <Button layoutX="214.0" layoutY="253.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Update" textFill="WHITE" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="195.60000000000002" AnchorPane.topAnchor="253.0">
+                            <Button layoutX="196.0" layoutY="222.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Update" textFill="WHITE" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="214.39999999999998" AnchorPane.topAnchor="222.0">
                                 <font>
                                     <Font name="Arial" size="13.0" />
                                 </font>
                             </Button>
-                     <TextField layoutX="188.0" layoutY="171.0" prefHeight="25.0" prefWidth="307.0" />
-                     <TextField layoutX="187.0" layoutY="207.0" prefHeight="25.0" prefWidth="307.0" />
+                     <TextField layoutX="169.0" layoutY="140.0" prefHeight="25.0" prefWidth="307.0" />
+                     <TextField layoutX="168.0" layoutY="176.0" prefHeight="25.0" prefWidth="307.0" />
 
                         </AnchorPane>
-                  <AnchorPane layoutX="299.0" layoutY="251.0" prefHeight="295.0" prefWidth="566.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                  <AnchorPane layoutX="309.0" layoutY="311.0" prefHeight="234.0" prefWidth="566.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;">
                      <children>
-                        <Label layoutX="97.0" layoutY="59.0" text="Admin ID:">
+                        <Label layoutX="104.0" layoutY="16.0" text="Admin ID">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="188.0" layoutY="57.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="193.60000000000002" AnchorPane.topAnchor="57.0" />
-                        <Label layoutX="48.0" layoutY="99.0" text="Current password">
+                        <TextField layoutX="195.0" layoutY="14.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="186.60000000000002" AnchorPane.topAnchor="14.0" />
+                        <Label layoutX="55.0" layoutY="56.0" text="Current password">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="188.0" layoutY="97.0" prefHeight="25.0" prefWidth="306.0" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="71.20000000000005" AnchorPane.topAnchor="97.0" />
-                        <Label layoutX="65.0" layoutY="137.0" text="New password">
+                        <TextField layoutX="195.0" layoutY="54.0" prefHeight="25.0" prefWidth="306.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="64.19999999999999" AnchorPane.topAnchor="54.0" />
+                        <Label layoutX="72.0" layoutY="94.0" text="New password">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="188.0" layoutY="135.0" prefHeight="25.0" prefWidth="307.0" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="69.60000000000002" AnchorPane.topAnchor="135.0" />
-                        <Label layoutX="46.0" layoutY="173.0" text="Confirm password">
+                        <TextField layoutX="195.0" layoutY="92.0" prefHeight="25.0" prefWidth="307.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="62.60000000000002" AnchorPane.topAnchor="92.0" />
+                        <Label layoutX="53.0" layoutY="130.0" text="Confirm password">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button layoutX="173.0" layoutY="222.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="237.39999999999998" AnchorPane.topAnchor="222.0">
+                        <Button layoutX="179.0" layoutY="180.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="231.39999999999998" AnchorPane.topAnchor="180.0">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>
                         </Button>
-                        <TextField layoutX="188.0" layoutY="171.0" prefHeight="25.0" prefWidth="307.0" />
+                        <TextField layoutX="195.0" layoutY="128.0" prefHeight="25.0" prefWidth="307.0" />
                      </children>
                   </AnchorPane>
                     </AnchorPane>
