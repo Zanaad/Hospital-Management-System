@@ -14,8 +14,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import model.dto.ReportDto.BirthsDto;
 import model.dto.ReportDto.OperationDto;
 import model.dto.StaffDto.ReceptionistDto;
+import service.Report.birthService;
 import service.Report.operationService;
 import service.Staff.ReceptionistService;
 
@@ -335,8 +337,8 @@ public class NursePageController {
         Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
 
 
-        OperationDto staff = new OperationDto(this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
-        boolean reportCreated = operationService.createOperation(staff);
+        OperationDto report = new OperationDto(this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
+        boolean reportCreated = operationService.createOperation(report);
         if (reportCreated) {
             Navigator.navigate(event, Navigator.NursePage);
         }
@@ -344,7 +346,14 @@ public class NursePageController {
 
     @FXML
     void registerBirth(ActionEvent event) {
+        Date birthsDate = Date.valueOf(this.txtBirthDate.getValue());
 
+
+        BirthsDto report = new BirthsDto(this.txtBirthDescription.getText(), this.txtBirthPatient.getText(),this.txtBirthNewBorn.getText(), birthsDate, this.txtBirthTime.getText());
+        boolean reportCreated = birthService.createBirth(report);
+        if (reportCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
 
     }
 

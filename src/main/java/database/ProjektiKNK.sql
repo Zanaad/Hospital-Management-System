@@ -99,16 +99,14 @@ create table patients
 
 );
 
-CREATE TABLE Operation
-(
-    OperationID INTEGER PRIMARY KEY AUTO_INCREMENT,
-    Description TEXT NOT NULL,
-    Patient     TEXT NOT NULL,
-    Doctor      TEXT NOT NULL,
-    Date        TEXT NOT NULL,
-    Time        TEXT NOT NULL
+CREATE TABLE operations (
+    operationID              int primary key auto_increment,
+    opDescription            nvarchar(100),
+    opPatient                nvarchar(100),
+    opDoctor                 nvarchar(100),
+    opDate                   date,
+    opTime                   nvarchar(100)
 );
-
 
 select *
 from doctors;

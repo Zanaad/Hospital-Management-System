@@ -14,8 +14,9 @@ public class ReportRepository {
             pst.setString(1, reportData.getDescription());
             pst.setString(2, reportData.getPatient());
             pst.setString(3,reportData.getDoctor() );
-            pst.setDate(4, reportData.getDate());
-            pst.setString(5, reportData.getTime());
+            pst.setString(4,reportData.getNewBorn());
+            pst.setDate(5, reportData.getDate());
+            pst.setString(6, reportData.getTime());
 
             pst.execute();
             pst.close();
