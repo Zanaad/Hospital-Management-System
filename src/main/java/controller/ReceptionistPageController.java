@@ -2,6 +2,8 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
@@ -11,36 +13,117 @@ public class ReceptionistPageController
     private Button account_btn;
 
     @FXML
-    private Button accountant_btn;
-
-    @FXML
-    private Button appointments_btn;
-
-    @FXML
-    private AnchorPane accountant_form;
-
-    @FXML
-    private Button add_patient_btn;
-    //  @FXML
-//    private Button add_nurse_btn;
-
-    //@FXML
-    //private Button add_receptionist_btn;
-
-    //@FXML
-    //private ComboBox<?> docDep;
+    private Button logout_btn;
 
     @FXML
     private Button dashboard_btn;
 
     @FXML
+    private Button patients_btn;
+
+    @FXML
+    private Button appointments_btn;
+
+    @FXML
     private AnchorPane dashboard_form;
 
-    //@FXML
-    //private Button department_btn;
+    @FXML
+    private BarChart<?, ?> dashboad_chart_AD;
+
+    @FXML
+    private AreaChart<?, ?> dashboad_chart_PD;
+
+    @FXML
+    private AnchorPane patients_form;
+
+    @FXML
+    private TableView<?> patients_tableView;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_patientID;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_name;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_department;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_doctor;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_nurse;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_phonenumber;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_email;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_address;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_payment;
+
+    @FXML
+    private Button add_patient_btn;
+
+    @FXML
+    private AnchorPane profile_form;
+
+    @FXML
+    private TextField recAccount;
+
+    @FXML
+    private TextField recAddress;
+
+    @FXML
+    private TextField recBank;
+
+    @FXML
+    private DatePicker recBirthdate;
+
+    @FXML
+    private ComboBox<?> recDep;
+
+    @FXML
+    private TextField recEmail;
+
+    @FXML
+    private DatePicker recEnd;
+
+    @FXML
+    private TextField recFirstName;
+
+    @FXML
+    private TextField recLastName;
+
+    @FXML
+    private PasswordField recPassword;
+
+    @FXML
+    private TextField recPhone;
+
+    @FXML
+    private TextField recRoutingNr;
+
+    @FXML
+    private TextField recUni;
+
+    @FXML
+    private DatePicker recStart;
+
+
+
+
+
+
+
 
     //@FXML
-    //private AnchorPane department_form;
+    //private ComboBox<?> docDep;
+
 
     @FXML
     private TextField docAccount;
@@ -84,11 +167,7 @@ public class ReceptionistPageController
     @FXML
     private AnchorPane patient_table;
 
-    @FXML
-    private Button patients_btn;
 
-    @FXML
-    private AnchorPane patients_form;
 
     @FXML
     private TextField nurseAccount;
@@ -104,6 +183,7 @@ public class ReceptionistPageController
 
     @FXML
     private ComboBox<?> nurseDep;
+
 
     @FXML
     private TextField nurseEmail;
@@ -138,50 +218,12 @@ public class ReceptionistPageController
     @FXML
     private AnchorPane nurse_form;
 
-    @FXML
-    private AnchorPane profile_form;
 
-    @FXML
-    private TextField recAccount;
 
-    @FXML
-    private TextField recAddress;
-
-    @FXML
-    private TextField recBank;
-
-    @FXML
-    private DatePicker recBirthdate;
-
-    @FXML
-    private ComboBox<?> recDep;
-
-    @FXML
-    private TextField recEmail;
-
-    @FXML
-    private DatePicker recEnd;
-
-    @FXML
-    private TextField recFirstName;
-
-    @FXML
-    private TextField recLastName;
-
-    @FXML
-    private PasswordField recPassword;
-
-    @FXML
-    private TextField recPhone;
-
-    @FXML
-    private TextField recRoutingNr;
 
     @FXML
     private TextField recSpecialization;
 
-    @FXML
-    private DatePicker recStart;
 
     @FXML
     private Button receptionist_btn;
@@ -209,11 +251,8 @@ public class ReceptionistPageController
     @FXML
     void switchForm(ActionEvent event) {
         if (event.getSource() == dashboard_btn) showForm(dashboard_form);
-        //else if (event.getSource() == department_btn) showForm(department_form);
         else if (event.getSource() == patients_btn) showForm(patients_form);
         else if (event.getSource() == appointments_btn) showForm(patients_form);
-      //  else if (event.getSource() == nurse_btn) showForm(nurse_form);
-        else if (event.getSource() == accountant_btn) showForm(accountant_form);
         else if (event.getSource() == account_btn) showForm(profile_form);
       //  else if (event.getSource() == receptionist_btn) showForm(receptionist_form);
         else if (event.getSource() == add_patient_btn) showForm(register_patient_form);
@@ -225,7 +264,7 @@ public class ReceptionistPageController
         dashboard_form.setVisible(form == dashboard_form);
         patients_form.setVisible(form == patients_form);
        // nurse_form.setVisible(form == nurse_form);
-        accountant_form.setVisible(form == accountant_form);
+        //accountant_form.setVisible(form == accountant_form);
         profile_form.setVisible(form == profile_form);
         //receptionist_form.setVisible(form == receptionist_form);
         //department_form.setVisible(form == department_form);
