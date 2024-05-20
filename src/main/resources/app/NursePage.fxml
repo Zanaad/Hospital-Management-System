@@ -35,11 +35,12 @@
                         </font>
                     </Label>
                     <Button fx:id="account_btn" layoutX="903.0" layoutY="9.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Account" textFill="WHITE" />
+               <Label fx:id="date_time" layoutX="672.0" layoutY="13.0" text="mm:dd:yyyy  xx:yy" />
                 </AnchorPane>
             </top>
             <left>
                 <AnchorPane prefHeight="560.0" prefWidth="214.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" BorderPane.alignment="CENTER">
-                    <Button fx:id="receptionist_btn" layoutX="15.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Bed Wards" textFill="WHITE">
+                    <Button fx:id="bedWards_btn" layoutX="15.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Bed Wards" textFill="WHITE">
                         <graphic>
                             <FontAwesomeIcon fill="WHITE" glyphName="BED" size="1.5em" />
                         </graphic>
@@ -47,7 +48,7 @@
                             <Font name="Arial" size="13.0" />
                         </font>
                     </Button>
-                    <Button fx:id="doctors_btn" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Patients" textFill="WHITE">
+                    <Button fx:id="patients_btn" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Patients" textFill="WHITE">
                         <graphic>
                             <FontAwesomeIcon fill="WHITE" glyphName="USER" size="1.5em" />
                         </graphic>
@@ -55,7 +56,7 @@
                             <Font name="Arial" size="13.0" />
                         </font>
                     </Button>
-                    <Button fx:id="nurse_btn" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Blood Bank" textFill="WHITE">
+                    <Button fx:id="bloodBank_btn" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Blood Bank" textFill="WHITE">
                         <graphic>
                             <FontAwesomeIcon fill="WHITE" glyphName="AMBULANCE" size="1.5em" />
                         </graphic>
@@ -71,7 +72,7 @@
                             <Font name="Arial" size="13.0" />
                         </font>
                     </Button>
-                    <Button fx:id="department_btn" layoutX="15.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Report" textFill="WHITE">
+                    <Button fx:id="report_btn" layoutX="15.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Report" textFill="WHITE">
                         <graphic>
                             <FontAwesomeIcon fill="WHITE" glyphName="HOSPITAL_ALT" size="1.5em" text="" />
                         </graphic>
@@ -99,7 +100,7 @@
                                             <Image url="@../images/patient.jpeg" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="patients_number" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
+                                    <Label fx:id="dashboard_patients" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
@@ -118,7 +119,7 @@
                                  <Image url="@../images/bloodDonator.jpg" />
                               </image>
                            </ImageView>
-                           <Label fx:id="BloodDonors" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
+                           <Label fx:id="dashboard_donors" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
                               <font>
                                  <Font size="16.0" />
                               </font>
@@ -137,7 +138,7 @@
                                  <Image url="@../images/bedWards.jpg" />
                               </image>
                            </ImageView>
-                           <Label fx:id="BedWards" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
+                           <Label fx:id="dashboard_beds" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
                               <font>
                                  <Font size="16.0" />
                               </font>
@@ -165,7 +166,7 @@
                             </AnchorPane>
                             <AnchorPane layoutX="43.0" layoutY="234.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
-                                    <BarChart fx:id="dashboad_chart_AD" layoutX="11.2" layoutY="12.0" prefHeight="250.4" prefWidth="400.0" title="Blood Donated" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <BarChart fx:id="dashboad_chart_BD" layoutX="11.2" layoutY="12.0" prefHeight="250.4" prefWidth="400.0" title="Blood Donated" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <xAxis>
                                             <CategoryAxis side="BOTTOM" />
                                         </xAxis>
@@ -177,7 +178,7 @@
                             </AnchorPane>
                         </children>
                     </AnchorPane>
-               <AnchorPane prefHeight="200.0" prefWidth="200.0" visible="false">
+               <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0">
                   <children>
                      <AnchorPane prefHeight="410.0" prefWidth="837.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="124.0">
                         <children>
@@ -189,12 +190,12 @@
                                           <children>
                                              <TableView layoutX="14.0" layoutY="24.0" prefHeight="386.0" prefWidth="821.0">
                                                <columns>
-                                                 <TableColumn prefWidth="90.4000072479248" text="OperationID" />
-                                                 <TableColumn prefWidth="125.59998321533203" text="Description" />
-                                                   <TableColumn prefWidth="199.20005798339844" text="Patient" />
-                                                   <TableColumn prefWidth="209.59988403320312" text="Doctor" />
-                                                   <TableColumn prefWidth="102.39996337890625" text="Date" />
-                                                   <TableColumn prefWidth="95.19989013671875" text="Time" />
+                                                 <TableColumn fx:id="operations_col_operationID" prefWidth="90.4000072479248" text="OperationID" />
+                                                 <TableColumn fx:id="operations_col_description" prefWidth="125.59998321533203" text="Description" />
+                                                   <TableColumn fx:id="operations_col_patient" prefWidth="199.20005798339844" text="Patient" />
+                                                   <TableColumn fx:id="operations_col_doctor" prefWidth="209.59988403320312" text="Doctor" />
+                                                   <TableColumn fx:id="operations_col_date" prefWidth="102.39996337890625" text="Date" />
+                                                   <TableColumn fx:id="operations_col_time" prefWidth="95.19989013671875" text="Time" />
                                                </columns>
                                              </TableView>
                                           </children>
@@ -210,11 +211,11 @@
                                           <children>
                                              <TableView layoutX="14.0" layoutY="27.0" prefHeight="394.0" prefWidth="820.0">
                                                <columns>
-                                                 <TableColumn prefWidth="75.0" text="DeathID" />
-                                                 <TableColumn prefWidth="239.1999740600586" text="Description" />
-                                                   <TableColumn prefWidth="181.59994506835938" text="Patient" />
-                                                   <TableColumn prefWidth="181.59994506835938" text="Date" />
-                                                   <TableColumn prefWidth="147.99997558593748" text="Time" />
+                                                 <TableColumn fx:id="deaths_col_deathID" prefWidth="75.0" text="DeathID" />
+                                                 <TableColumn fx:id="deaths_col_description" prefWidth="239.1999740600586" text="Description" />
+                                                   <TableColumn fx:id="deaths_col_patient" prefWidth="181.59994506835938" text="Patient" />
+                                                   <TableColumn fx:id="deaths_col_date" prefWidth="181.59994506835938" text="Date" />
+                                                   <TableColumn fx:id="deaths_col_time" prefWidth="147.99997558593748" text="Time" />
                                                </columns>
                                              </TableView>
                                           </children>
@@ -230,12 +231,12 @@
                                           <children>
                                              <TableView layoutX="14.0" layoutY="28.0" prefHeight="382.0" prefWidth="814.0">
                                                <columns>
-                                                 <TableColumn prefWidth="75.0" text="BirthID" />
-                                                 <TableColumn prefWidth="163.20000457763672" text="Description" />
-                                                   <TableColumn prefWidth="163.20000457763672" text="Patient" />
-                                                   <TableColumn prefWidth="163.20000457763672" text="New Born's Name" />
-                                                   <TableColumn prefWidth="124.0" text="Date" />
-                                                   <TableColumn prefWidth="121.59991455078125" text="Time" />
+                                                 <TableColumn fx:id="births_col_birthID" prefWidth="75.0" text="BirthID" />
+                                                 <TableColumn fx:id="births_col_description" prefWidth="163.20000457763672" text="Description" />
+                                                   <TableColumn fx:id="births_col_patient" prefWidth="163.20000457763672" text="Patient" />
+                                                   <TableColumn fx:id="births_col_newBorn" prefWidth="163.20000457763672" text="New Born's Name" />
+                                                   <TableColumn fx:id="births_col_date" prefWidth="124.0" text="Date" />
+                                                   <TableColumn fx:id="births_col_time" prefWidth="121.59991455078125" text="Time" />
                                                </columns>
                                              </TableView>
                                           </children>
@@ -245,17 +246,18 @@
                                        <FontAwesomeIcon glyphName="ASTERISK" />
                                     </graphic>
                                  </Tab>
+
                                  <Tab text="Other">
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
                                              <TableView layoutX="14.0" layoutY="34.0" prefHeight="379.0" prefWidth="816.0">
                                                <columns>
-                                                 <TableColumn prefWidth="75.0" text="OtherID" />
-                                                 <TableColumn prefWidth="256.0000228881836" text="Description" />
-                                                   <TableColumn prefWidth="238.39993286132812" text="Patient" />
-                                                   <TableColumn prefWidth="119.20001220703125" text="Date" />
-                                                   <TableColumn prefWidth="126.39984130859375" text="Time" />
+                                                 <TableColumn fx:id="others_col_otherID" prefWidth="75.0" text="OtherID" />
+                                                 <TableColumn fx:id="others_col_description" prefWidth="256.0000228881836" text="Description" />
+                                                   <TableColumn fx:id="others_col_patient" prefWidth="238.39993286132812" text="Patient" />
+                                                   <TableColumn fx:id="others_col_date" prefWidth="119.20001220703125" text="Date" />
+                                                   <TableColumn fx:id="others_col_time" prefWidth="126.39984130859375" text="Time" />
                                                </columns>
                                              </TableView>
                                           </children>
@@ -269,63 +271,63 @@
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
-                                             <AnchorPane layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
+                                             <AnchorPane fx:id="add_reportOperation" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                 <children>
-                                                   <TextField layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
+                                                   <TextField fx:id="txtOperationDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
                                                    <Label layoutX="62.0" layoutY="44.0" text="Description" />
                                                    <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                   <TextField layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <TextField fx:id="txtOperationPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
                                                    <Label layoutX="62.0" layoutY="230.0" prefHeight="18.0" prefWidth="70.0" text="Doctor" />
-                                                   <TextField layoutX="62.0" layoutY="258.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <DatePicker layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
+                                                   <TextField fx:id="txtOperationDoctor" layoutX="62.0" layoutY="258.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <DatePicker fx:id="txtOperationDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
                                                    <Label layoutX="359.0" layoutY="44.0" text="Date" />
                                                    <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
-                                                   <TextField layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <Button layoutX="359.0" layoutY="256.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="142.0" text="Add Operation" />
+                                                   <TextField fx:id="txtOperationTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <Button fx:id="addOperation_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerOperation" prefHeight="34.0" prefWidth="142.0" text="Add Operation" />
                                                 </children>
                                              </AnchorPane>
-                                             <AnchorPane layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
+                                             <AnchorPane fx:id="add_reportDeath" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                 <children>
-                                                   <TextField layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
+                                                   <TextField fx:id="txtDeathDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
                                                    <Label layoutX="62.0" layoutY="44.0" text="Description" />
                                                    <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                   <TextField layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <DatePicker layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
+                                                   <TextField fx:id="txtDeathPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <DatePicker fx:id="txtDeathDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
                                                    <Label layoutX="359.0" layoutY="44.0" text="Date" />
                                                    <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
-                                                   <TextField layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <Button layoutX="359.0" layoutY="256.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="142.0" text="Add Death" />
+                                                   <TextField fx:id="txtDeathTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <Button fx:id="add_death_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerDeath" prefHeight="34.0" prefWidth="142.0" text="Add Death" />
                                                 </children>
                                              </AnchorPane>
-                                             <AnchorPane layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
+                                             <AnchorPane fx:id="add_reportBirth" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                 <children>
-                                                   <TextField layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
+                                                   <TextField fx:id="txtBirthDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
                                                    <Label layoutX="62.0" layoutY="44.0" text="Description" />
                                                    <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                   <TextField layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <DatePicker layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
+                                                   <TextField fx:id="txtBirthPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <DatePicker fx:id="txtBirthDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
                                                    <Label layoutX="359.0" layoutY="44.0" text="Date" />
                                                    <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
-                                                   <TextField layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <Button layoutX="359.0" layoutY="256.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="142.0" text="Add Birth" />
+                                                   <TextField fx:id="txtBirthTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <Button fx:id="add_birth_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerBirth" prefHeight="34.0" prefWidth="142.0" text="Add Birth" />
                                                    <Label layoutX="62.0" layoutY="226.0" prefHeight="18.0" prefWidth="119.0" text="New Born's Name" />
-                                                   <TextField layoutX="62.0" layoutY="254.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <TextField fx:id="txtBirthNewBorn" layoutX="62.0" layoutY="254.0" prefHeight="31.0" prefWidth="189.0" />
                                                 </children>
                                              </AnchorPane>
-                                             <AnchorPane layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
+                                             <AnchorPane fx:id="add_reportOther" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
                                                 <children>
-                                                   <TextField layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
+                                                   <TextField fx:id="txtOtherDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
                                                    <Label layoutX="62.0" layoutY="44.0" text="Description" />
                                                    <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                   <TextField layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <DatePicker layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
+                                                   <TextField fx:id="txtOtherPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <DatePicker fx:id="txtOtherDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
                                                    <Label layoutX="359.0" layoutY="44.0" text="Date" />
                                                    <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
-                                                   <TextField layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <Button layoutX="359.0" layoutY="256.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="142.0" text="Add Other" />
+                                                   <TextField fx:id="txtOtherTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <Button fx:id="add_other_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerOther" prefHeight="34.0" prefWidth="142.0" text="Add Other" />
                                                 </children>
                                              </AnchorPane>
-                                             <ComboBox layoutX="79.0" layoutY="29.0" prefHeight="34.0" prefWidth="189.0" promptText="Choose Report Case..." />
+                                             <ComboBox fx:id="reportCase_comboBox" layoutX="79.0" layoutY="29.0" prefHeight="34.0" prefWidth="189.0" promptText="Choose Report Case..." />
                                           </children>
                                        </AnchorPane>
                                    </content>
@@ -346,9 +348,9 @@
                </AnchorPane>
                     <AnchorPane fx:id="patients_form" layoutX="324.0" layoutY="144.0" prefHeight="560.0" prefWidth="886.0" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
-                            <AnchorPane fx:id="doctor_table" layoutX="178.0" layoutY="-66.0" prefHeight="560.0" prefWidth="886.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <AnchorPane fx:id="doctor_table" layoutX="178.0" layoutY="-66.0" prefHeight="560.0" prefWidth="886.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <children>
-                                    <Button fx:id="add_doctor_btn" layoutX="733.0" layoutY="509.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="28.0" prefWidth="126.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Add New Doctor" textFill="WHITE">
+                                    <Button fx:id="add_patient_btn" layoutX="733.0" layoutY="509.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="28.0" prefWidth="126.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Add New Patient" textFill="WHITE">
                                         <font>
                                             <Font name="Arial" size="12.0" />
                                         </font>
@@ -363,15 +365,15 @@
                                                         <children>
                                                             <TableView fx:id="doctors_tableView" prefHeight="1000.0" prefWidth="826.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                                 <columns>
-                                                                    <TableColumn fx:id="doctors_col_doctorID" prefWidth="75.0" text="Patient ID" />
-                                                                    <TableColumn fx:id="doctors_col_name" prefWidth="75.0" text="Name" />
-                                                                    <TableColumn fx:id="doctors_col_department" prefWidth="75.0" text="Department" />
-                                                                    <TableColumn fx:id="doctors_col_phone" prefWidth="114.0" text="Phone Number" />
-                                                                    <TableColumn fx:id="doctors_col_email" prefWidth="100.0" text="Email " />
-                                                                    <TableColumn fx:id="doctors_col_specialization" prefWidth="110.0" text="Specialization" />
-                                                                    <TableColumn fx:id="doctors_col_address" prefWidth="109.0" text="Address" />
-                                                                    <TableColumn fx:id="doctors_col_status" prefWidth="101.0" text="Status" />
-                                                                    <TableColumn fx:id="doctors_col_action" prefWidth="100.0" text="Action" />
+                                                                    <TableColumn fx:id="patient_col_patientID" prefWidth="75.0" text="Patient ID" />
+                                                                    <TableColumn fx:id="patient_col_name" prefWidth="75.0" text="Name" />
+                                                                    <TableColumn fx:id="patient_col_department" prefWidth="75.0" text="Department" />
+                                                                    <TableColumn fx:id="patient_col_phone" prefWidth="114.0" text="Phone Number" />
+                                                                    <TableColumn fx:id="patient_col_email" prefWidth="100.0" text="Email " />
+                                                                    <TableColumn fx:id="patient_col_specialization" prefWidth="110.0" text="Specialization" />
+                                                                    <TableColumn fx:id="patient_col_address" prefWidth="109.0" text="Address" />
+                                                                    <TableColumn fx:id="patient_col_status" prefWidth="101.0" text="Status" />
+                                                                    <TableColumn fx:id="patient_col_action" prefWidth="100.0" text="Action" />
                                                                 </columns>
                                                                 <columnResizePolicy>
                                                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -388,7 +390,7 @@
                         </children>
 
                     </AnchorPane>
-               <AnchorPane prefHeight="561.0" prefWidth="885.0">
+               <AnchorPane fx:id="bloodBank_form" prefHeight="561.0" prefWidth="885.0" visible="false">
                   <children>
                      <TabPane layoutX="38.4" layoutY="93.0" prefHeight="439.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="29.0">
                        <tabs>
@@ -400,11 +402,11 @@
                                           <children>
                                              <TableView layoutX="14.0" layoutY="34.0" prefHeight="354.0" prefWidth="789.0">
                                                <columns>
-                                                 <TableColumn prefWidth="110.4000301361084" text="DonorID" />
-                                                 <TableColumn prefWidth="151.20001983642578" text="Blood Group" />
-                                                   <TableColumn prefWidth="148.0" text="Age" />
-                                                   <TableColumn prefWidth="110.39996337890625" text="Gender" />
-                                                   <TableColumn prefWidth="180.00006103515625" text="Last Donation Date" />
+                                                 <TableColumn fx:id="blood_col_donorID" prefWidth="110.4000301361084" text="DonorID" />
+                                                 <TableColumn fx:id="blood_col_bloodGroup" prefWidth="151.20001983642578" text="Blood Group" />
+                                                   <TableColumn fx:id="blood_col_age" prefWidth="148.0" text="Age" />
+                                                   <TableColumn fx:id="blood_col_gender" prefWidth="110.39996337890625" text="Gender" />
+                                                   <TableColumn fx:id="blood_col_lastDonationDate" prefWidth="180.00006103515625" text="Last Donation Date" />
                                                </columns>
                                              </TableView>
                                           </children>
@@ -447,7 +449,7 @@
                      </Label>
                   </children>
                </AnchorPane>
-               <AnchorPane prefHeight="561.0" prefWidth="885.0" visible="false">
+               <AnchorPane fx:id="bedWards_form" prefHeight="561.0" prefWidth="885.0" visible="false">
                   <children>
                      <TabPane layoutX="33.0" layoutY="90.0" prefHeight="439.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE">
                         <tabs>
@@ -459,10 +461,10 @@
                                           <children>
                                              <TableView layoutX="14.0" layoutY="34.0" prefHeight="354.0" prefWidth="602.0">
                                                 <columns>
-                                                   <TableColumn prefWidth="110.4000301361084" text="BedID" />
-                                                   <TableColumn prefWidth="151.20001983642578" text="Bed Number" />
-                                                   <TableColumn prefWidth="148.0" text="Type" />
-                                                   <TableColumn prefWidth="190.39999999999998" text="Patient" />
+                                                   <TableColumn fx:id="bed_col_bedID" prefWidth="110.4000301361084" text="BedID" />
+                                                   <TableColumn fx:id="bed_col_bedNumber" prefWidth="151.20001983642578" text="Bed Number" />
+                                                   <TableColumn fx:id="bed_col_type" prefWidth="148.0" text="Type" />
+                                                   <TableColumn fx:id="bed_col_patient" prefWidth="190.39999999999998" text="Patient" />
                                                 </columns>
                                              </TableView>
                                           </children>

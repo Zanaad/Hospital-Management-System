@@ -110,7 +110,6 @@ CREATE TABLE Operation
 );
 
 
-
 select *
 from doctors;
 select *
