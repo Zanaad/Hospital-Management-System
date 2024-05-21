@@ -12,7 +12,7 @@ public class AppointmentDto
     private String Pemail;
     private String Paddress;
     private Date Pdate;
-    private int Ppayment;
+    private String Phour;
 
     public AppointmentDto(int AppID,String PfirstName, String PlastName, java.sql.Date Pbirthdate, String Pphone, String Pemail, String Paddress, java.sql.Date Pdate, int Ppayment) {
         this.AppID = AppID;
@@ -23,7 +23,7 @@ public class AppointmentDto
         this.Pemail = Pemail;
         this.Paddress = Paddress;
         this.Pdate = Pdate;
-        this.Ppayment = Ppayment;
+        this.Phour = Phour;
     }
     public int getAppID() { return AppID; }
     public String getPFirstName() {
@@ -50,10 +50,7 @@ public class AppointmentDto
         return Paddress;
     }
 
-    public Date getPdate() {
-        return Pdate;
-    }
-    public int getPpayment() {
-        return Ppayment;
+    public String getPhour() {
+        return Phour;
     }
 }
