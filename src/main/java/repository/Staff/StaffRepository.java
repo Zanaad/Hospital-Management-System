@@ -5,12 +5,14 @@ import model.dto.StaffDto.CreateStaffDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class StaffRepository {
     public static boolean createStaff(CreateStaffDto staffData, String query) {
         Connection conn = DatabaseUtil.getConnection();
+        PreparedStatement pst = null;
         try {
-            PreparedStatement pst = conn.prepareStatement(query);
+            pst = conn.prepareStatement(query);
             pst.setString(1, staffData.getFirstName());
             pst.setString(2, staffData.getLastName());
             pst.setDate(3, staffData.getBirthdate());
@@ -27,9 +29,9 @@ public class StaffRepository {
             pst.setString(14, staffData.getBankAccount());
             pst.setString(15, staffData.getRoutingNumber());
             pst.execute();
-            pst.close();
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
             return false;
         }

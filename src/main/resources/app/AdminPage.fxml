@@ -94,146 +94,170 @@
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="886.0" visible="false">
-                        <children>
-                            <AnchorPane layoutX="607.0" layoutY="10.0" prefHeight="134.0" prefWidth="198.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                                <children>
-                                    <ImageView fitHeight="138.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../images/doc.jpg" />
-                                        </image>
-                                    </ImageView>
-                                    <Label fx:id="docs_count" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
-                                        <font>
-                                            <Font size="16.0" />
-                                        </font>
-                                    </Label>
-                                    <Label alignment="CENTER" layoutX="7.0" layoutY="46.0" prefHeight="20.0" prefWidth="63.0" text="Doctors">
-                                        <font>
-                                            <Font size="14.0" />
-                                        </font>
-                                    </Label>
-                                </children>
-                            </AnchorPane>
-                            <AnchorPane layoutX="324.0" layoutY="19.0" prefHeight="119.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                                <children>
-                                    <ImageView fitHeight="127.0" fitWidth="218.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../images/patient.jpeg" />
-                                        </image>
-                                    </ImageView>
-                                    <Label fx:id="patients_count" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
-                                        <font>
-                                            <Font size="16.0" />
-                                        </font>
-                                    </Label>
-                                    <Label alignment="CENTER" layoutX="2.0" layoutY="36.0" prefHeight="20.0" prefWidth="58.0" text="Patients">
-                                        <font>
-                                            <Font size="14.0" />
-                                        </font>
-                                    </Label>
-                                </children>
-                            </AnchorPane>
-                            <AnchorPane layoutX="43.0" layoutY="158.0" prefHeight="139.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                                <children>
-                                    <ImageView fitHeight="163.0" fitWidth="212.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../images/nurses.png" />
-                                        </image>
-                                    </ImageView>
-                                    <Label fx:id="nurses_count" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="14.0" prefHeight="26.0" prefWidth="10.0" text="0">
-                                        <font>
-                                            <Font size="16.0" />
-                                        </font>
-                                    </Label>
-                                    <Label alignment="CENTER" layoutX="2.0" layoutY="46.0" prefHeight="20.0" prefWidth="60.0" text="Nurses">
-                                        <font>
-                                            <Font size="14.0" />
-                                        </font>
-                                    </Label>
-                                </children>
-                            </AnchorPane>
-                            <AnchorPane layoutX="325.0" layoutY="159.0" prefHeight="140.0" prefWidth="210.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                                <children>
-                                    <ImageView fitHeight="140.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../images/rec.jpg" />
-                                        </image>
-                                    </ImageView>
-                                    <Label fx:id="rec_count" alignment="CENTER_RIGHT" layoutX="5.0" layoutY="14.0" prefHeight="26.0" prefWidth="18.0" text="0">
-                                        <font>
-                                            <Font size="16.0" />
-                                        </font>
-                                    </Label>
-                                    <Label alignment="CENTER" layoutY="44.0" prefHeight="20.0" prefWidth="93.0" text="Receptionists">
-                                        <font>
-                                            <Font size="14.0" />
-                                        </font>
-                                    </Label>
-                                </children>
-                            </AnchorPane>
-                            <AnchorPane layoutX="606.0" layoutY="160.0" prefHeight="136.0" prefWidth="207.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                                <children>
-                                    <ImageView fitHeight="137.0" fitWidth="216.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../images/accountant.jpg" />
-                                        </image>
-                                    </ImageView>
-                                    <Label fx:id="app_count" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="13.0" text="0">
-                                        <font>
-                                            <Font size="16.0" />
-                                        </font>
-                                    </Label>
-                                    <Label alignment="CENTER" layoutX="14.0" layoutY="48.0" prefHeight="20.0" prefWidth="87.0" text="Appointments">
-                                        <font>
-                                            <Font size="14.0" />
-                                        </font>
-                                    </Label>
-                                </children>
-                            </AnchorPane>
-                            <AnchorPane layoutX="43.0" layoutY="15.0" prefHeight="128.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                                <children>
-                                    <ImageView fitHeight="135.0" fitWidth="212.0" layoutX="1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                                        <image>
-                                            <Image url="@../images/dep.jpg" />
-                                        </image>
-                                    </ImageView>
-                                    <Label fx:id="dep_count" alignment="CENTER_RIGHT" layoutX="17.0" layoutY="21.0" prefHeight="20.0" prefWidth="12.0" text="0">
-                                        <font>
-                                            <Font size="16.0" />
-                                        </font>
-                                    </Label>
-                                    <Label alignment="CENTER" layoutX="14.0" layoutY="46.0" prefHeight="20.0" prefWidth="91.0" text="Departments">
-                                        <font>
-                                            <Font size="14.0" />
-                                        </font>
-                                    </Label>
-                                </children>
-                            </AnchorPane>
-                            <AnchorPane layoutX="437.0" layoutY="323.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                                <children>
-                                    <AreaChart fx:id="dashboad_chart_PD" layoutY="32.0" prefHeight="250.4" prefWidth="399.0" title="Patient's Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                        <xAxis>
-                                            <CategoryAxis side="BOTTOM" />
-                                        </xAxis>
-                                        <yAxis>
-                                            <NumberAxis side="LEFT" />
-                                        </yAxis>
-                                    </AreaChart>
-                                </children>
-                            </AnchorPane>
-                            <AnchorPane layoutX="43.0" layoutY="326.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                                <children>
-                                    <BarChart fx:id="dashboad_chart_AD" layoutX="11.2" layoutY="12.0" prefHeight="250.4" prefWidth="400.0" title="Appointment's Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                        <xAxis>
-                                            <CategoryAxis side="BOTTOM" />
-                                        </xAxis>
-                                        <yAxis>
-                                            <NumberAxis side="LEFT" />
-                                        </yAxis>
-                                    </BarChart>
-                                </children>
-                            </AnchorPane>
-                        </children>
+                        <AnchorPane layoutX="607.0" layoutY="10.0" prefHeight="134.0" prefWidth="198.0"
+                                    style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <children>
+                                <ImageView fitHeight="138.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@../images/doc.jpg"/>
+                                </ImageView>
+                                <Label fx:id="docs_count" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="14.0"
+                                       prefHeight="20.0" prefWidth="18.0" text="0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" layoutX="7.0" layoutY="46.0" prefHeight="20.0"
+                                       prefWidth="63.0" text="Doctors">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="324.0" layoutY="19.0" prefHeight="119.0" prefWidth="214.0"
+                                    style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <ImageView fitHeight="127.0" fitWidth="218.0" layoutY="-3.0" pickOnBounds="true"
+                                       preserveRatio="true">
+                                <image>
+                                    <Image url="@../images/patient.jpeg"/>
+                                </image>
+                            </ImageView>
+                            <Label fx:id="patients_count" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0"
+                                   prefHeight="20.0" prefWidth="18.0" text="0">
+                                <font>
+                                    <Font size="16.0"/>
+                                </font>
+                            </Label>
+                            <Label alignment="CENTER" layoutX="2.0" layoutY="36.0" prefHeight="20.0"
+                                   prefWidth="58.0" text="Patients">
+                                <font>
+                                    <Font size="14.0"/>
+                                </font>
+                            </Label>
+                        </AnchorPane>
+                        <AnchorPane layoutX="43.0" layoutY="158.0" prefHeight="139.0" prefWidth="214.0"
+                                    style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <children>
+                                <ImageView fitHeight="163.0" fitWidth="212.0" layoutX="1.0" pickOnBounds="true"
+                                           preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/nurses.png"/>
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="nurses_count" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="14.0"
+                                       prefHeight="26.0" prefWidth="10.0" text="0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" layoutX="2.0" layoutY="46.0" prefHeight="20.0"
+                                       prefWidth="60.0" text="Nurses">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="325.0" layoutY="159.0" prefHeight="140.0" prefWidth="210.0"
+                                    style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <children>
+                                <ImageView fitHeight="140.0" fitWidth="216.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/rec.jpg"/>
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="rec_count" alignment="CENTER_RIGHT" layoutX="5.0" layoutY="14.0"
+                                       prefHeight="26.0" prefWidth="18.0" text="0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" layoutY="44.0" prefHeight="20.0" prefWidth="93.0"
+                                       text="Receptionists">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="606.0" layoutY="160.0" prefHeight="136.0" prefWidth="207.0"
+                                    style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <children>
+                                <ImageView fitHeight="137.0" fitWidth="216.0" layoutY="-1.0" pickOnBounds="true"
+                                           preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/accountant.jpg"/>
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="app_count" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="11.0"
+                                       prefHeight="26.0" prefWidth="13.0" text="0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="48.0" prefHeight="20.0"
+                                       prefWidth="87.0" text="Appointments">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="43.0" layoutY="15.0" prefHeight="128.0" prefWidth="214.0"
+                                    style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <children>
+                                <ImageView fitHeight="135.0" fitWidth="212.0" layoutX="1.0" layoutY="5.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/dep.jpg"/>
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="dep_count" alignment="CENTER_RIGHT" layoutX="17.0" layoutY="21.0"
+                                       prefHeight="20.0" prefWidth="12.0" text="0">
+                                    <font>
+                                        <Font size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="46.0" prefHeight="20.0"
+                                       prefWidth="91.0" text="Departments">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="437.0" layoutY="323.0" prefHeight="222.0" prefWidth="376.0"
+                                    style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <children>
+                                <AreaChart fx:id="dashboad_chart_PD" layoutY="32.0" prefHeight="250.4" prefWidth="399.0"
+                                           title="Patient's Data" AnchorPane.bottomAnchor="0.0"
+                                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                           AnchorPane.topAnchor="0.0">
+                                    <xAxis>
+                                        <CategoryAxis side="BOTTOM"/>
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis side="LEFT"/>
+                                    </yAxis>
+                                </AreaChart>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="43.0" layoutY="326.0" prefHeight="219.0" prefWidth="370.0"
+                                    style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <children>
+                                <BarChart fx:id="dashboad_chart_AD" layoutX="11.2" layoutY="12.0" prefHeight="250.4"
+                                          prefWidth="400.0" title="Appointment's Data" AnchorPane.bottomAnchor="0.0"
+                                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                          AnchorPane.topAnchor="0.0">
+                                    <xAxis>
+                                        <CategoryAxis side="BOTTOM"/>
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis side="LEFT"/>
+                                    </yAxis>
+                                </BarChart>
+                            </children>
+                        </AnchorPane>
                     </AnchorPane>
                     <AnchorPane fx:id="doctors_form" layoutX="324.0" layoutY="144.0" prefHeight="560.0" prefWidth="886.0" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
@@ -357,7 +381,7 @@
                         </AnchorPane>
 
                     </AnchorPane>
-                    <AnchorPane fx:id="department_form" prefHeight="560.0" prefWidth="884.0" style="-fx-background-color: #fff;" visible="false">
+                    <AnchorPane fx:id="department_form" prefHeight="560.0" prefWidth="884.0" style="-fx-background-color: #fff;">
                         <children>
                             <AnchorPane layoutX="20.0" layoutY="80.0" prefHeight="445.0" prefWidth="494.0">
                                 <children>
@@ -365,11 +389,12 @@
                                         <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="493.0">
                                                 <children>
-                                                    <TableView fx:id="doctors_tableView4" prefHeight="500.0" prefWidth="493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <TableView fx:id="department_table" prefHeight="500.0" prefWidth="493.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                         <columns>
-                                                            <TableColumn fx:id="doctors_col_doctorID1" prefWidth="75.0" text="Department ID" />
-                                                            <TableColumn fx:id="doctors_col_name1" prefWidth="75.0" text="Department Name" />
-                                                            <TableColumn fx:id="doctors_col_department1" prefWidth="75.0" text="Description" />
+                                                            <TableColumn fx:id="dep_col_ID" prefWidth="75.0" text="Department ID" />
+                                                            <TableColumn fx:id="dep_col_name" prefWidth="75.0" text="Department Name" />
+                                                            <TableColumn fx:id="dep_col_desc" prefWidth="75.0" text="Description" />
+                                             <TableColumn fx:id="dep_col_emp" prefWidth="75.0" text="Employees" />
                                                         </columns>
                                                         <columnResizePolicy>
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -403,7 +428,7 @@
                             </AnchorPane>
                         </children>
                     </AnchorPane>
-                    <AnchorPane fx:id="profile_form" prefHeight="560.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <AnchorPane fx:id="profile_form" prefHeight="560.0" prefWidth="886.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
                         <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="527.0" prefWidth="274.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0">
 
