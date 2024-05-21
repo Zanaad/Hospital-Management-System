@@ -1,6 +1,6 @@
 package model.dto.RecDto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class CreatePatientDto
 {
@@ -10,15 +10,21 @@ public class CreatePatientDto
     private String Pphone;
     private String Pemail;
     private String Paddress;
+    private String Pdepartment;
+    private String Pdoctor;
+    private String Pnurse;
     private Date Pdate;
     private int Ppayment;
 
-    public CreatePatientDto(String PfirstName, String PlastName, java.sql.Date Pbirthdate, String Pphone, String Pemail, String Paddress, java.sql.Date Pdate, int Ppayment) {
+    public CreatePatientDto(String PfirstName, String PlastName, Date Pbirthdate, String Pphone, String Pemail,String Pdepartment,String Pdoctor,String Pnurse, String Paddress, java.sql.Date Pdate, int Ppayment) {
         this.PfirstName = PfirstName;
         this.PlastName = PlastName;
         this.Pbirthdate = Pbirthdate;
         this.Pphone = Pphone;
         this.Pemail = Pemail;
+        this.Pdepartment=Pdepartment;
+        this.Pdoctor=Pdoctor;
+        this.Pnurse=Pnurse;
         this.Paddress = Paddress;
         this.Pdate = Pdate;
         this.Ppayment = Ppayment;
@@ -43,6 +49,9 @@ public class CreatePatientDto
         return Pemail;
     }
 
+    public String getPdepartment(){return Pdepartment; }
+    public String getPdoctor(){return Pdoctor; }
+    public String getPnurse(){return Pnurse; }
     public String getPaddress() {
         return Paddress;
     }

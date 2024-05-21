@@ -117,7 +117,7 @@ create table patients
     patient_payment   int
 
 );
-create table patients
+create table appointments
 (
     appointment_id        int primary key auto_increment,
     appointment_firstName nvarchar(100),
