@@ -12,15 +12,20 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import model.dto.ChangeUserPasswordDto;
 import model.dto.DepartmentDto;
 import model.dto.StaffDto.DoctorDto;
 import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
+import repository.UpdatePwdRepository;
 import service.DepartmentService;
 import service.Staff.DoctorService;
 import service.Staff.NurseService;
 import service.Staff.ReceptionistService;
+import service.UpdatePwdService;
+import service.AlertMessage;
 
+import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -353,6 +358,15 @@ public class AdminPageController implements Initializable {
     private TextField txtDepartmentName;
 
     @FXML
+    private PasswordField currentPassword;
+    @FXML
+    private PasswordField newPassword;
+    @FXML
+    private PasswordField confirmNewPassword;
+    @FXML
+    private TextField ChangePwdAdminID;
+
+    @FXML
     void registerNurse(ActionEvent event) {
         Date birthdate = Date.valueOf(this.nurseBirthdate.getValue());
         Date startDate = Date.valueOf(this.nurseStart.getValue());
@@ -424,96 +438,66 @@ public class AdminPageController implements Initializable {
         register_receptionist_form.setVisible(form == register_receptionist_form);
     }
 
-    public ObservableList<NurseDto> getNurses() {
-        ObservableList<NurseDto> listNurses = FXCollections.observableArrayList();
-        String query = "select * from nurses";
+    public <T> ObservableList<T> getEntities(String tableName, Class<T> dtoClass) {
+        ObservableList<T> entities = FXCollections.observableArrayList();
+        String query = "SELECT * FROM " + tableName;
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                NurseDto nurseData = new NurseDto(result.getString("nurse_firstName"), result.getString("nurse_lastName"), result.getDate("nurse_birthdate"), result.getString("nurse_phone"), result.getString("nurse_email"), result.getString("nurse_hashPassword"), result.getString("nurse_address"), result.getString("nurse_department"), result.getString("nurse_university"), result.getDate("nurse_start"), result.getDate("nurse_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
-                listNurses.add(nurseData);
+                Constructor<T> constructor = dtoClass.getConstructor(String.class, String.class, Date.class, String.class, String.class, String.class, String.class, String.class, String.class, Date.class, Date.class, String.class, String.class, String.class);
+                T entity = constructor.newInstance(result.getString(tableName + "_firstName"), result.getString(tableName + "_lastName"), result.getDate(tableName + "_birthdate"), result.getString(tableName + "_phone"), result.getString(tableName + "_email"), result.getString(tableName + "_hashPassword"), result.getString(tableName + "_address"), result.getString(tableName + "_department"), result.getString(tableName + "_university"), result.getDate(tableName + "_start"), result.getDate(tableName + "_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
+                entities.add(entity);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listNurses;
+        return entities;
+    }
+
+    public ObservableList<NurseDto> getNurses() {
+        return getEntities("nurse", NurseDto.class);
     }
 
     public ObservableList<DoctorDto> getDoctors() {
-        ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList();
-        String query = "select * from doctors";
-        Connection con = DatabaseUtil.getConnection();
-        try {
-            PreparedStatement prepare = con.prepareStatement(query);
-            ResultSet result = prepare.executeQuery();
-            while (result.next()) {
-                DoctorDto doctorData = new DoctorDto(result.getString("doctor_firstName"), result.getString("doctor_lastName"), result.getDate("doctor_birthdate"), result.getString("doctor_phone"), result.getString("doctor_email"), result.getString("doctor_hashPassword"), result.getString("doctor_address"), result.getString("doctor_department"), result.getString("doctor_university"), result.getDate("doctor_start"), result.getDate("doctor_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
-                listDoctors.add(doctorData);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listDoctors;
+        return getEntities("doctor", DoctorDto.class);
     }
-
 
     public ObservableList<ReceptionistDto> getReceptionists() {
-        ObservableList<ReceptionistDto> listreceptionists = FXCollections.observableArrayList();
-        String query = "select * from receptionists";
-        Connection con = DatabaseUtil.getConnection();
-        try {
-            PreparedStatement prepare = con.prepareStatement(query);
-            ResultSet result = prepare.executeQuery();
-            while (result.next()) {
-                ReceptionistDto receptionistData = new ReceptionistDto(result.getString("receptionist_firstName"), result.getString("receptionist_lastName"), result.getDate("receptionist_birthdate"), result.getString("receptionist_phone"), result.getString("receptionist_email"), result.getString("receptionist_hashPassword"), result.getString("receptionist_address"), result.getString("receptionist_department"), result.getString("receptionist_university"), result.getDate("receptionist_start"), result.getDate("receptionist_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
-                listreceptionists.add(receptionistData);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listreceptionists;
+        return getEntities("receptionist", ReceptionistDto.class);
     }
 
-    public void nurseDisplayData() {
-        nurse_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        nurse_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
-        nurse_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        nurse_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        nurse_col_university.setCellValueFactory(new PropertyValueFactory<>("university"));
-        nurse_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
-        nurses_table.setItems(getNurses());
-    }
-
-    public void doctorDisplayData() {
-        doctors_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        doctors_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
-        doctors_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        doctors_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        doctors_col_uni.setCellValueFactory(new PropertyValueFactory<>("university"));
-        doctors_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
-        doctors_table.setItems(getDoctors());
-    }
-
-    public void recDisplayData() {
-        rec_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        rec_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
-        rec_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        rec_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        rec_col_uni.setCellValueFactory(new PropertyValueFactory<>("university"));
-        rec_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
-        receptionist_table.setItems(getReceptionists());
+    public void displayData(TableView tableView, ObservableList entities) {
+        tableView.setItems(entities);
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        nurseDisplayData();
-        doctorDisplayData();
-        recDisplayData();
+        displayData(nurses_table, getNurses());
+        displayData(doctors_table, getDoctors());
+        displayData(receptionist_table, getReceptionists());
+        UpdatePwdRepository.addSaltAndHashToAdmins();
     }
 
 
+    @FXML
     public void changePassword(ActionEvent event) {
+        String currentPassword = this.currentPassword.getText();
+        String newPassword = this.newPassword.getText();
+        String confirmNewPassword = this.confirmNewPassword.getText();
 
+        if (newPassword.isEmpty() || confirmNewPassword.isEmpty() || currentPassword.isEmpty()) {
+            AlertMessage.errorMessage("All fields are required");
+        } else if (!newPassword.equals(confirmNewPassword)) {
+            AlertMessage.errorMessage("Passwords do not match");
+        } else {
+            ChangeUserPasswordDto change = new ChangeUserPasswordDto(this.ChangePwdAdminID.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
+            boolean changed = UpdatePwdService.changePassword(change);
+            if (changed) {
+                AlertMessage.successMessage("Password changed successfully");
+            } else {
+                AlertMessage.errorMessage("Error occured");
+            }
+        }
     }
 }

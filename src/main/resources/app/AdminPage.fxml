@@ -484,43 +484,43 @@
                                     <Font name="Arial" size="13.0" />
                                 </font>
                             </Button>
-                     <TextField layoutX="169.0" layoutY="140.0" prefHeight="25.0" prefWidth="307.0" />
-                     <TextField layoutX="168.0" layoutY="176.0" prefHeight="25.0" prefWidth="307.0" />
+                            <TextField layoutX="169.0" layoutY="140.0" prefHeight="25.0" prefWidth="307.0" />
+                            <TextField layoutX="168.0" layoutY="176.0" prefHeight="25.0" prefWidth="307.0" />
 
                         </AnchorPane>
-                  <AnchorPane layoutX="309.0" layoutY="311.0" prefHeight="234.0" prefWidth="566.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;">
-                     <children>
-                        <Label layoutX="104.0" layoutY="16.0" text="Admin ID">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="195.0" layoutY="14.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="186.60000000000002" AnchorPane.topAnchor="14.0" />
-                        <Label layoutX="55.0" layoutY="56.0" text="Current password">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="195.0" layoutY="54.0" prefHeight="25.0" prefWidth="306.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="64.19999999999999" AnchorPane.topAnchor="54.0" />
-                        <Label layoutX="72.0" layoutY="94.0" text="New password">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="195.0" layoutY="92.0" prefHeight="25.0" prefWidth="307.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="62.60000000000002" AnchorPane.topAnchor="92.0" />
-                        <Label layoutX="53.0" layoutY="130.0" text="Confirm password">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="changePasswordbtn" layoutX="179.0" layoutY="180.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="231.39999999999998" AnchorPane.topAnchor="180.0">
-                           <font>
-                              <Font name="Arial" size="13.0" />
-                           </font>
-                        </Button>
-                        <TextField layoutX="195.0" layoutY="128.0" prefHeight="25.0" prefWidth="307.0" />
-                     </children>
-                  </AnchorPane>
+                        <AnchorPane layoutX="309.0" layoutY="311.0" prefHeight="234.0" prefWidth="566.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;">
+                            <children>
+                                <Label layoutX="104.0" layoutY="16.0" text="Admin ID">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="ChangePwdAdminID" layoutX="195.0" layoutY="14.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="186.60000000000002" AnchorPane.topAnchor="14.0" />
+                                <Label layoutX="55.0" layoutY="56.0" text="Current password">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="72.0" layoutY="94.0" text="New password">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="53.0" layoutY="130.0" text="Confirm password">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Label>
+                                <Button fx:id="changePasswordbtn" layoutX="329.0" layoutY="180.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="329.0" AnchorPane.rightAnchor="81.39999999999998" AnchorPane.topAnchor="180.0">
+                                    <font>
+                                        <Font name="Arial" size="13.0" />
+                                    </font>
+                                </Button>
+                                <PasswordField fx:id="currentPassword" layoutX="195.0" layoutY="54.0" prefHeight="26.0" prefWidth="290.0" />
+                                <PasswordField fx:id="newPassword" layoutX="195.0" layoutY="91.0" prefHeight="26.0" prefWidth="290.0" />
+                                <PasswordField fx:id="confirmNewPassword" layoutX="195.0" layoutY="127.0" prefHeight="26.0" prefWidth="290.0" />
+                            </children>
+                        </AnchorPane>
                     </AnchorPane>
                     <AnchorPane fx:id="register_doctor_form" prefHeight="560.0" prefWidth="885.6" visible="false">
                         <children>
@@ -723,8 +723,8 @@
                                     </ComboBox>
                                     <DatePicker fx:id="recStart" layoutX="120.0" layoutY="151.0" maxWidth="149.0" />
                                     <DatePicker fx:id="recEnd" layoutX="120.0" layoutY="190.0" maxWidth="149.0" />
-                           <Label layoutX="15.0" layoutY="75.0" text="University" />
-                           <TextField fx:id="recUni" layoutX="120.0" layoutY="71.0" />
+                                    <Label layoutX="15.0" layoutY="75.0" text="University" />
+                                    <TextField fx:id="recUni" layoutX="120.0" layoutY="71.0" />
                                 </children>
                             </AnchorPane>
                             <AnchorPane layoutX="537.0" layoutY="312.0" prefHeight="233.0" prefWidth="334.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">

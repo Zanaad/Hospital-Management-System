@@ -1,4 +1,4 @@
-package utilities;
+package service;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -6,9 +6,9 @@ import javafx.scene.control.ButtonType;
 import java.util.Optional;
 
 public class AlertMessage {
-    private Alert alert;
+    private static Alert alert;
 
-    public void errorMessage(String message) {
+    public static void errorMessage(String message) {
         alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error message");
         alert.setHeaderText(null);
@@ -16,7 +16,7 @@ public class AlertMessage {
         alert.showAndWait();
     }
 
-    public void successMessage(String message) {
+    public static void successMessage(String message) {
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Message");
         alert.setHeaderText(null);
@@ -24,7 +24,7 @@ public class AlertMessage {
         alert.showAndWait();
     }
 
-    public boolean confirmationMessage(String message) {
+    public static boolean confirmationMessage(String message) {
         alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Message");
         alert.setHeaderText(null);
