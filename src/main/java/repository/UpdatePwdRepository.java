@@ -18,10 +18,7 @@ public class UpdatePwdRepository {
         String selectQuery = "SELECT id, salt, passwordHash FROM admin";
         String updateQuery = "UPDATE admin SET salt = ?, passwordHash = ? WHERE id = ? AND (salt IS NULL OR passwordHash IS NULL)";
 
-        try (
-                Connection connection = DatabaseUtil.getConnection();
-                PreparedStatement selectStatement = connection.prepareStatement(selectQuery);
-                PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
+        try (Connection connection = DatabaseUtil.getConnection(); PreparedStatement selectStatement = connection.prepareStatement(selectQuery); PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
 
             ResultSet resultSet = selectStatement.executeQuery();
 
@@ -30,7 +27,6 @@ public class UpdatePwdRepository {
                 String salt = resultSet.getString("salt");
                 String passwordHash = resultSet.getString("passwordHash");
 
-                // Check if salt or passwordHash is empty
                 if (salt == null || passwordHash == null) {
                     salt = PasswordHasher.generateSalt();
                     String password = "defaultPassword";
@@ -47,5 +43,41 @@ public class UpdatePwdRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean checkPassword(String userID, String newPassword) {
+        String query = "SELECT salt, hashPassword from admin where id=?";
+        try {
+            Connection con = DatabaseUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1, userID);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String salt = rs.getString("salt");
+                String hashPassword = rs.getString("hashPassword");
+                return PasswordHasher.compareSaltedHash(newPassword, salt, hashPassword);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean updatePassword(UpdateUserDto userDto) {
+        String salt = generateSalt();
+        String saltedHash = PasswordHasher.generateSaltedHash(userDto.getPasswordHash(), salt);
+        String query = "UPDATE admin SET salt = ?, hashPassword = ? WHERE id = ?";
+        try {
+            Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, salt);
+            pst.setString(2, saltedHash);
+            pst.setString(3, userDto.getId());
+            int rowsUpdated = pst.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
