@@ -319,7 +319,7 @@
                         </children>
 
                     </AnchorPane>
-                    <AnchorPane fx:id="receptionist_form" layoutX="181.0" layoutY="103.0" prefHeight="560.0" prefWidth="885.6" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <AnchorPane fx:id="receptionist_form" layoutX="181.0" layoutY="103.0" prefHeight="560.0" prefWidth="885.6" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <AnchorPane layoutX="253.0" layoutY="-36.0" prefHeight="560.0" prefWidth="886.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <ComboBox layoutX="702.0" layoutY="32.0" prefWidth="150.0" promptText="Filter" />
@@ -403,7 +403,7 @@
                             </AnchorPane>
                         </children>
                     </AnchorPane>
-                    <AnchorPane fx:id="profile_form" prefHeight="560.0" prefWidth="886.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <AnchorPane fx:id="profile_form" prefHeight="560.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
                         <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="527.0" prefWidth="274.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0">
 
@@ -513,7 +513,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button layoutX="179.0" layoutY="180.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="231.39999999999998" AnchorPane.topAnchor="180.0">
+                        <Button fx:id="changePasswordbtn" layoutX="179.0" layoutY="180.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="231.39999999999998" AnchorPane.topAnchor="180.0">
                            <font>
                               <Font name="Arial" size="13.0" />
                            </font>

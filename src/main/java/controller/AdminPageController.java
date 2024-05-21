@@ -513,4 +513,7 @@ public class AdminPageController implements Initializable {
     }
 
 
+    public void changePassword(ActionEvent event) {
+
+    }
 }

@@ -229,4 +229,7 @@ public class ReceptionistPageController
         appointments_form.setVisible(form == appointments_form);
 
     }
+
+    public void registerPatient(ActionEvent event) {
+    }
 }
