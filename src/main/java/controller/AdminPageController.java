@@ -18,6 +18,7 @@ import model.dto.StaffDto.DoctorDto;
 import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
 
+import service.CountStaffService;
 import service.AlertMessage;
 import service.ChangePwdService;
 import service.DepartmentService;
@@ -549,11 +550,23 @@ public class AdminPageController implements Initializable {
         department_table.setItems(getDepartments());
     }
 
+    public void nurses_count() {
+        String query = "select count(nurse_id) from nurses";
+        String query1 = "select count(doctor_id) from doctors";
+        String query2 = "select count(receptionist_id) from receptionists";
+        String query3 = "select count(department_id) from departments";
+        CountStaffService.countStaff(nurses_count, query);
+        CountStaffService.countStaff(docs_count, query1);
+        CountStaffService.countStaff(rec_count, query2);
+        CountStaffService.countStaff(dep_count, query3);
+    }
+
     public void initialize(URL location, ResourceBundle resources) {
         nurseDisplayData();
         doctorDisplayData();
         recDisplayData();
         depDisplayData();
+        nurses_count();
 //        UpdatePwdRepository.addSaltAndHashToAdmins();
     }
 
