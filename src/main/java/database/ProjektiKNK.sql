@@ -78,7 +78,7 @@ create table nurses
     routingNumber      nvarchar(100)
 );
 
-create table department
+create table departments
 (
     department_id          int primary key auto_increment,
     department_name        nvarchar(100),
