@@ -19,14 +19,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import model.dto.ReportDto.BirthsDto;
-import model.dto.ReportDto.DeathsDto;
-import model.dto.ReportDto.OperationDto;
-import model.dto.ReportDto.OthersDto;
+import model.dto.ReportDto.*;
 import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
 import service.Report.birthService;
 import service.Report.deathService;
+import service.Report.donorService;
 import service.Report.operationService;
 import service.Report.otherService;
 import service.Staff.ReceptionistService;
@@ -317,7 +315,26 @@ public class NursePageController implements Initializable {
     @FXML
     private TextField txtOtherTime;
 
-    //change the forms depending what the user chooses-----------------------------------------------------------
+    @FXML
+    private TextField txtDonorAge;
+
+    @FXML
+    private TextField txtDonorBlood;
+
+    @FXML
+    private DatePicker txtDonorDate;
+
+    @FXML
+    private Button add_donor_btn;
+
+    @FXML
+    private ComboBox<String> chooseDonorBloodGroup;
+
+    @FXML
+    private ComboBox<String> chooseDonorGender;
+
+
+    //change the forms depending on what the user chooses-----------------------------------------------------------
 
     @FXML
     void switchForm(ActionEvent event) {
@@ -405,6 +422,24 @@ public class NursePageController implements Initializable {
             Navigator.navigate(event, Navigator.NursePage);
         }
     }
+
+    @FXML
+    void registerDonor(ActionEvent event) {
+        String donorAge = txtDonorAge.getText();
+        String bloodGroup = chooseDonorBloodGroup.getValue();
+        String gender = chooseDonorGender.getValue();
+        Date lastDonationDate = Date.valueOf(txtDonorDate.getValue());
+
+
+        DonorDto donor = new DonorDto(bloodGroup, donorAge, gender, lastDonationDate);
+
+        boolean donorCreated = donorService.createDonor(donor);
+
+        if (donorCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
+    }
+
 
 
     //display data at the tables---------------------------------------------------------------------------------------
@@ -537,11 +572,43 @@ public class NursePageController implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
+        // Initialize tables
         operationDisplayData();
         birthDisplayData();
         deathDisplayData();
         otherDisplayData();
+
+        // Initialize blood group ComboBox
+        ObservableList<String> bloodGroupOptions = FXCollections.observableArrayList(
+                "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"
+        );
+        chooseDonorBloodGroup.setItems(bloodGroupOptions);
+
+        // Initialize gender ComboBox
+        ObservableList<String> genderOptions = FXCollections.observableArrayList(
+                "Male", "Female", "Other"
+        );
+        chooseDonorGender.setItems(genderOptions);
+
+        // Handle selection changes
+        chooseDonorBloodGroup.setOnAction(event -> handleBloodGroupSelection());
+        chooseDonorGender.setOnAction(event -> handleGenderSelection());
+    }
+
+    // Method to handle blood group selection
+    private void handleBloodGroupSelection() {
+        String selectedBloodGroup = chooseDonorBloodGroup.getValue();
+
+    }
+
+    // Method to handle gender selection
+    private void handleGenderSelection() {
+        String selectedGender = chooseDonorGender.getValue();
+
     }
 
 }
+
+
+
 

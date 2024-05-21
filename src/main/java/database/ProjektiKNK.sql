@@ -133,6 +133,14 @@ create table others (
     other_time              nvarchar(100)
 );
 
+create table donors (
+    donor_ID                int primary key auto_increment,
+    donor_bloodGroup        nvarchar(100),
+    donor_age               nvarchar(100),
+    donor_gender            nvarchar(100),
+    donor_lastDonation      date
+);
+
 select *
 from doctors;
 select *
@@ -151,3 +159,5 @@ select *
 from deaths;
 select *
 from others;
+select *
+from donors;

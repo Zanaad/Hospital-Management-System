@@ -178,7 +178,7 @@
                             </AnchorPane>
                         </children>
                     </AnchorPane>
-               <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0">
+               <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0" visible="false">
                   <children>
                      <AnchorPane prefHeight="410.0" prefWidth="837.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="124.0">
                         <children>
@@ -389,7 +389,7 @@
                         </children>
 
                     </AnchorPane>
-               <AnchorPane fx:id="bloodBank_form" prefHeight="561.0" prefWidth="885.0" visible="false">
+               <AnchorPane fx:id="bloodBank_form" prefHeight="561.0" prefWidth="885.0">
                   <children>
                      <TabPane layoutX="38.4" layoutY="93.0" prefHeight="439.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="29.0">
                        <tabs>
@@ -399,7 +399,7 @@
                                     <children>
                                        <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="407.0" prefWidth="816.0">
                                           <children>
-                                             <TableView layoutX="14.0" layoutY="34.0" prefHeight="354.0" prefWidth="789.0">
+                                             <TableView fx:id="blood_table" layoutX="14.0" layoutY="34.0" prefHeight="354.0" prefWidth="789.0">
                                                <columns>
                                                  <TableColumn fx:id="blood_col_donorID" prefWidth="110.4000301361084" text="DonorID" />
                                                  <TableColumn fx:id="blood_col_bloodGroup" prefWidth="151.20001983642578" text="Blood Group" />
@@ -424,12 +424,12 @@
                                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="382.0" prefWidth="791.0">
                                           <children>
                                              <Label layoutX="44.0" layoutY="107.0" text="Age" />
-                                             <TextField layoutX="44.0" layoutY="125.0" prefHeight="39.0" prefWidth="232.0" />
-                                             <ComboBox layoutX="44.0" layoutY="191.0" prefWidth="150.0" promptText="Gender..." />
+                                             <TextField fx:id="txtDonorAge" layoutX="44.0" layoutY="125.0" prefHeight="39.0" prefWidth="232.0" />
+                                             <ComboBox fx:id="chooseDonorGender" layoutX="44.0" layoutY="191.0" prefWidth="150.0" promptText="Gender..." />
                                              <Label layoutX="44.0" layoutY="32.0" text="Blood Group" />
-                                             <TextField layoutX="44.0" layoutY="50.0" prefHeight="39.0" prefWidth="232.0" />
-                                             <DatePicker layoutX="44.0" layoutY="257.0" prefHeight="39.0" prefWidth="231.0" promptText="Last Donation Date..." />
-                                             <Button layoutX="396.0" layoutY="257.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="97.0" text="Add Donor" />
+                                             <DatePicker fx:id="txtDonorDate" layoutX="44.0" layoutY="257.0" prefHeight="39.0" prefWidth="231.0" promptText="Last Donation Date..." />
+                                             <Button fx:id="add_donor_btn" layoutX="396.0" layoutY="257.0" mnemonicParsing="false" onAction="#registerDonor" prefHeight="38.0" prefWidth="97.0" text="Add Donor" />
+                                             <ComboBox fx:id="chooseDonorBloodGroup" layoutX="44.0" layoutY="62.0" prefWidth="150.0" promptText="Blood Group..." />
                                           </children>
                                        </AnchorPane>
                                     </children>
@@ -458,7 +458,7 @@
                                     <children>
                                        <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="407.0" prefWidth="816.0">
                                           <children>
-                                             <TableView layoutX="14.0" layoutY="34.0" prefHeight="354.0" prefWidth="602.0">
+                                             <TableView fx:id="bed_table" layoutX="14.0" layoutY="34.0" prefHeight="354.0" prefWidth="602.0">
                                                 <columns>
                                                    <TableColumn fx:id="bed_col_bedID" prefWidth="110.4000301361084" text="BedID" />
                                                    <TableColumn fx:id="bed_col_bedNumber" prefWidth="151.20001983642578" text="Bed Number" />
