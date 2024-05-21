@@ -5,6 +5,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public void start(Stage stage) {
-        Navigator.navigate(stage, Navigator.AdminPage);
+        Navigator.navigate(stage, Navigator.ReceptionistPage);
     }
 }
