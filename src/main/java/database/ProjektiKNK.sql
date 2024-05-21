@@ -94,10 +94,45 @@ create table patients
     patient_phone     nvarchar(100),
     patient_email     nvarchar(100) not null,
     patient_address   nvarchar(150),
-    patient_status    nvarchar(100),
-    patient_action    nvarchar(100)
+    patient_department nvarchar(100),
+    patient_doctor    nvarchar(100),
+    patient_nurse    nvarchar(100)
+    patient_date     date,
+    patient_payment   int
 
 );
+create table patients
+(
+    patient_id        int primary key auto_increment,
+    patient_firstName nvarchar(100),
+    patient_lastName  nvarchar(100),
+    patient_birthdate date,
+    patient_phone     nvarchar(100),
+    patient_email     nvarchar(100) not null,
+    patient_address   nvarchar(150),
+    patient_department nvarchar(100),
+    patient_doctor    nvarchar(100),
+    patient_nurse    nvarchar(100)
+    patient_date     date,
+    patient_payment   int
+
+);
+create table patients
+(
+    appointment_id        int primary key auto_increment,
+    appointment_firstName nvarchar(100),
+    appointment_lastName  nvarchar(100),
+    appointment_phone     nvarchar(100),
+    appointment_address   nvarchar(100),
+    appointment_description nvarchar(100),
+    appointment_department nvarchar(100),
+    appointment_doctor    nvarchar(100),
+    appointment_nurse     nvarchar(100),
+    appointment_date          date,
+    appointment_hour      nvarchar(100)
+
+);
+
 
 create table operations (
     operationID              int primary key auto_increment,

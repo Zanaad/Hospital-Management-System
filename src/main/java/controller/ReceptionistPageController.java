@@ -146,6 +146,9 @@ public class ReceptionistPageController
     private TextField appName;
 
     @FXML
+    private TextField LastName;
+
+    @FXML
     private RadioButton appMale ;
 
     @FXML
@@ -225,5 +228,8 @@ public class ReceptionistPageController
         register_patient_form.setVisible(form == register_patient_form);
         appointments_form.setVisible(form == appointments_form);
 
+    }
+
+    public void registerPatient(ActionEvent event) {
     }
 }
