@@ -146,6 +146,9 @@ public class ReceptionistPageController
     private TextField appName;
 
     @FXML
+    private TextField LastName;
+
+    @FXML
     private RadioButton appMale ;
 
     @FXML
