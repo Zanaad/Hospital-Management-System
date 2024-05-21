@@ -11,7 +11,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -26,7 +25,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminPageController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReceptionistPageController">
     <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
         <BorderPane layoutX="144.0" layoutY="64.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -278,10 +277,9 @@
                            <TextField fx:id="patPhone" layoutX="24.8" layoutY="239.2" prefHeight="26.0" prefWidth="439.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="239.0" />
                            <Label layoutX="25.0" layoutY="275.0" text="Email" />
                            <TextField fx:id="patEmail" layoutX="24.8" layoutY="293.4" prefHeight="25.0" prefWidth="439.0" AnchorPane.leftAnchor="24.8" AnchorPane.rightAnchor="46.39999999999998" AnchorPane.topAnchor="293.4" />
-                           <Label layoutX="26.0" layoutY="378.0" text="Address:" />
+                           <Label layoutX="27.0" layoutY="330.0" text="Address:" />
                            <DatePicker fx:id="patBirthdate" layoutX="25.0" layoutY="186.0" prefHeight="26.0" prefWidth="439.0" />
-                           <Label layoutX="24.0" layoutY="325.0" text="Password" />
-                           <TextField fx:id="patAddress" layoutX="25.0" layoutY="394.0" prefHeight="25.0" prefWidth="439.0" />
+                           <TextField fx:id="patAddress" layoutX="24.0" layoutY="348.0" prefHeight="25.0" prefWidth="439.0" />
                            <Button fx:id="register_patient_btn" layoutX="126.0" layoutY="446.0" mnemonicParsing="false" onAction="#registerDoctor" prefHeight="36.0" prefWidth="258.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Add" textFill="WHITE" AnchorPane.bottomAnchor="52.39999999999998" AnchorPane.leftAnchor="126.0">
                               <graphic>
                                  <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
@@ -290,7 +288,6 @@
                                  <Font size="14.0" />
                               </font>
                            </Button>
-                           <PasswordField fx:id="patPassword" layoutX="25.0" layoutY="343.0" prefHeight="26.0" prefWidth="436.0" />
                         </children>
                      </AnchorPane>
                      <AnchorPane layoutX="536.0" layoutY="14.0" prefHeight="531.0" prefWidth="334.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
