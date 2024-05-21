@@ -119,15 +119,15 @@ create table patients
 );
 create table appointments
 (
-    appointment_id        int primary key auto_increment,
+    appointment_id        nvarchar(100),
     appointment_firstName nvarchar(100),
     appointment_lastName  nvarchar(100),
-    appointment_phone     nvarchar(100),
-    appointment_address   nvarchar(100),
     appointment_description nvarchar(100),
     appointment_department nvarchar(100),
     appointment_doctor    nvarchar(100),
     appointment_nurse     nvarchar(100),
+    appointment_phone     nvarchar(100),
+    appointment_address   nvarchar(100),
     appointment_date          date,
     appointment_hour      nvarchar(100)
 

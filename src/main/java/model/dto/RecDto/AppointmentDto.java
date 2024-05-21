@@ -1,25 +1,29 @@
 package model.dto.RecDto;
-
-import java.util.Date;
+import java.sql.Date;
 
 public class AppointmentDto
 {
     private int AppID;
     private String PfirstName;
     private String PlastName;
-    private Date Pbirthdate;
+    private String Adescription;
+    private String Pdepartment;
+    private String Pdoctor;
+    private String Pnurse;
     private String Pphone;
-    private String Pemail;
     private String Paddress;
     private Date Pdate;
     private String Phour;
 
-    public AppointmentDto(int AppID,String PfirstName, String PlastName, String Pphone, String Pemail, String Paddress, java.sql.Date Pdate, String Phour) {
+    public AppointmentDto(int AppID,String PfirstName,String PlastName,String Adescription,String Pdepartment,String Pdoctor,String Pnurse, String Pphone, String Paddress, Date Pdate, String Phour) {
         this.AppID = AppID;
         this.PfirstName = PfirstName;
         this.PlastName = PlastName;
+        this.Adescription=Adescription;
+        this.Pdepartment=Pdepartment;
+        this.Pdoctor=Pdoctor;
+        this.Pnurse=Pnurse;
         this.Pphone = Pphone;
-        this.Pemail = Pemail;
         this.Paddress = Paddress;
         this.Pdate = Pdate;
         this.Phour = Phour;
@@ -33,16 +37,20 @@ public class AppointmentDto
         return PlastName;
     }
 
+    public String getAdescription(){ return Adescription; }
+    public String getPdepartment(){ return Pdepartment; }
+    public String getPdoctor(){ return Pdoctor; }
+    public String getPnurse(){ return Pnurse; }
+
     public String getPphone() {
         return Pphone;
     }
 
-    public String getPEmail() {
-        return Pemail;
-    }
-
     public String getPaddress() {
         return Paddress;
+    }
+    public Date getPdate() {
+        return Pdate;
     }
 
     public String getPhour() {

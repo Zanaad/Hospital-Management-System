@@ -1,13 +1,9 @@
 package service.Rec;
 
-import model.dto.CreateDepartmentDto;
 import model.dto.RecDto.CreatePatientDto;
 import model.dto.RecDto.PatientDto;
-import model.dto.StaffDto.CreateReceptionistDto;
-import model.dto.StaffDto.ReceptionistDto;
 import repository.Rec.PatientRepository;
-import repository.Staff.ReceptionistRepository;
-import service.PasswordHasher;
+
 
 public class PatientService
 {
