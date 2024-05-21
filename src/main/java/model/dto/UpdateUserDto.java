@@ -1,15 +1,15 @@
 package model.dto;
 
 public class UpdateUserDto {
-    private int id;
+    private String id;
     private String passwordHash;
 
-    public UpdateUserDto(int id, String passwordHash) {
+    public UpdateUserDto(String id, String passwordHash) {
         this.id = id;
         this.passwordHash = passwordHash;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

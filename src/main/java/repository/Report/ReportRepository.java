@@ -13,13 +13,11 @@ public class ReportRepository {
             PreparedStatement pst = conn.prepareStatement(query);
             pst.setString(1, reportData.getDescription());
             pst.setString(2, reportData.getPatient());
-            pst.setString(3,reportData.getDoctor() );
-            pst.setString(4,reportData.getNewBorn());
+            pst.setString(3, reportData.getDoctor());
+            pst.setString(4, reportData.getNewBorn());
             pst.setDate(5, reportData.getDate());
             pst.setString(6, reportData.getTime());
-
             pst.execute();
-            pst.close();
             return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());

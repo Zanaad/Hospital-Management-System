@@ -16,6 +16,7 @@ import model.dto.DepartmentDto;
 import model.dto.StaffDto.DoctorDto;
 import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
+
 import service.DepartmentService;
 import service.Staff.DoctorService;
 import service.Staff.NurseService;
@@ -120,6 +121,12 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> doctors_col_action;
+    @FXML
+    private TableColumn<?, ?> dep_col_ID;
+    @FXML
+    private TableColumn<?, ?> dep_col_name;
+    @FXML
+    private TableColumn<?, ?> dep_col_desc;
 
     @FXML
     private TableColumn<?, ?> doctors_col_address;
@@ -162,6 +169,8 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private TableView<ReceptionistDto> receptionist_table;
+    @FXML
+    private TableView<DepartmentDto> department_table;
 
     @FXML
     private TextField nurseAccount;
@@ -353,6 +362,15 @@ public class AdminPageController implements Initializable {
     private TextField txtDepartmentName;
 
     @FXML
+    private PasswordField currentPassword;
+    @FXML
+    private PasswordField newPassword;
+    @FXML
+    private PasswordField confirmNewPassword;
+    @FXML
+    private TextField ChangePwdAdminID;
+
+    @FXML
     void registerNurse(ActionEvent event) {
         Date birthdate = Date.valueOf(this.nurseBirthdate.getValue());
         Date startDate = Date.valueOf(this.nurseStart.getValue());
@@ -441,6 +459,23 @@ public class AdminPageController implements Initializable {
         return listNurses;
     }
 
+    public ObservableList<DepartmentDto> getDepartments() {
+        ObservableList<DepartmentDto> listDepartments = FXCollections.observableArrayList();
+        String query = "select * from departments";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                DepartmentDto depData = new DepartmentDto(result.getString("department_name"), result.getString("department_description"));
+                listDepartments.add(depData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDepartments;
+    }
+
     public ObservableList<DoctorDto> getDoctors() {
         ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList();
         String query = "select * from doctors";
@@ -457,7 +492,6 @@ public class AdminPageController implements Initializable {
         }
         return listDoctors;
     }
-
 
     public ObservableList<ReceptionistDto> getReceptionists() {
         ObservableList<ReceptionistDto> listreceptionists = FXCollections.observableArrayList();
@@ -506,14 +540,24 @@ public class AdminPageController implements Initializable {
         receptionist_table.setItems(getReceptionists());
     }
 
+    public void depDisplayData() {
+        dep_col_name.setCellValueFactory(new PropertyValueFactory<>("departmentName"));
+        dep_col_desc.setCellValueFactory(new PropertyValueFactory<>("departmentDescription"));
+        department_table.setItems(getDepartments());
+    }
+
     public void initialize(URL location, ResourceBundle resources) {
         nurseDisplayData();
         doctorDisplayData();
         recDisplayData();
+        depDisplayData();
+//        UpdatePwdRepository.addSaltAndHashToAdmins();
     }
 
 
+    @FXML
     public void changePassword(ActionEvent event) {
 
     }
 }
+

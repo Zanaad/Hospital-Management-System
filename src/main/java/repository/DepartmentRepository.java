@@ -18,8 +18,6 @@ public class DepartmentRepository {
             pst.setString(1, departmentData.getDepartmentName());
             pst.setString(2, departmentData.getDepartmentDescription());
             pst.execute();
-            pst.close();
-            conn.close();
             return true;
 
         } catch (Exception e) {
