@@ -12,11 +12,14 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import model.dto.ChangePasswordDto;
 import model.dto.DepartmentDto;
 import model.dto.StaffDto.DoctorDto;
 import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
 
+import service.AlertMessage;
+import service.ChangePwdService;
 import service.DepartmentService;
 import service.Staff.DoctorService;
 import service.Staff.NurseService;
@@ -557,7 +560,22 @@ public class AdminPageController implements Initializable {
 
     @FXML
     public void changePassword(ActionEvent event) {
-
+        String currentPassword = this.currentPassword.getText();
+        String newPassword = this.newPassword.getText();
+        String confirmNewPassword = this.confirmNewPassword.getText();
+        if (currentPassword.isBlank() || confirmNewPassword.isEmpty() || newPassword.isBlank() || confirmNewPassword.isEmpty()) {
+            AlertMessage.errorMessage("Please fill all the fields before proceeding.");
+        } else if (!newPassword.equals(confirmNewPassword)) {
+            AlertMessage.errorMessage("Passwords do not match.");
+        } else {
+            ChangePasswordDto change = new ChangePasswordDto(this.ChangePwdAdminID.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
+            boolean changed = ChangePwdService.changePassword(change);
+            if (changed) {
+                AlertMessage.successMessage("Password changed.");
+            } else {
+                AlertMessage.errorMessage("Password's were not changed");
+            }
+        }
     }
 }
 
