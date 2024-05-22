@@ -531,6 +531,7 @@ public class AdminPageController implements Initializable {
         nurseDep.setItems(observableList);
     }
 
+    @FXML
     public void handleLanguage(ActionEvent event) {
         Locale defaultLocale = Locale.getDefault();
         if (defaultLocale.getLanguage().equals("en")) {

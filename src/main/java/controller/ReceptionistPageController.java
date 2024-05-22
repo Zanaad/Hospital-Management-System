@@ -25,8 +25,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-public class ReceptionistPageController implements Initializable
-{
+public class ReceptionistPageController implements Initializable {
     @FXML
     private Button account_btn;
 
@@ -167,10 +166,10 @@ public class ReceptionistPageController implements Initializable
     private TextField appLastName;
 
     @FXML
-    private RadioButton appMale ;
+    private RadioButton appMale;
 
     @FXML
-    private RadioButton appFemale ;
+    private RadioButton appFemale;
 
     @FXML
     private TextField appDesc;
@@ -235,10 +234,9 @@ public class ReceptionistPageController implements Initializable
         Date birthdate = Date.valueOf(this.patBirthdate.getValue());
         Date date = Date.valueOf(this.patDate.getValue());
 
-        PatientDto patient = new PatientDto(this.patFirstName.getText(), this.patLastName.getText(), birthdate, this.patPhone.getText(), this.patEmail.getText(), this.patAddress.getText(), (String) this.patDep.getValue(),(String) this.patDoctor.getValue(),(String) this.patNurse.getValue(),date, this.patPayment.getText());
+        PatientDto patient = new PatientDto(this.patFirstName.getText(), this.patLastName.getText(), birthdate, this.patPhone.getText(), this.patEmail.getText(), this.patAddress.getText(), (String) this.patDep.getValue(), (String) this.patDoctor.getValue(), (String) this.patNurse.getValue(), date, this.patPayment.getText());
         boolean patientCreated = PatientService.createPatient(patient);
         if (patientCreated) {
-            patientDisplayData(); // Refresh the TableView
             Navigator.navigate(event, Navigator.ReceptionistPage);
         }
     }
@@ -246,12 +244,11 @@ public class ReceptionistPageController implements Initializable
     @FXML
     public void registerAppointment(ActionEvent event) {
 
-        Date date = Date.valueOf(this.patDate.getValue());
+        Date date = Date.valueOf(this.appDate.getValue());
 
-        AppointmentDto appointment = new AppointmentDto(this.appID.getText(),this.appName.getText(), this.appLastName.getText(),this.appDesc.getText(),(String) this.appDep.getValue(),(String) this.appDoctor.getValue(),(String) this.appNurse.getValue() ,this.appPhone.getText(),this.appAddress.getText(), date, this.appHour.getText());
+        AppointmentDto appointment = new AppointmentDto(this.appID.getText(), this.appName.getText(), this.appLastName.getText(), this.appDesc.getText(), (String) this.appDep.getValue(), (String) this.appDoctor.getValue(), (String) this.appNurse.getValue(), this.appPhone.getText(), this.appAddress.getText(), date, this.appHour.getText());
         boolean appointmentCreated = AppointmentService.createAppointment(appointment);
         if (appointmentCreated) {
-            appointmentDisplayData(); // Refresh the TableView
             Navigator.navigate(event, Navigator.ReceptionistPage);
         }
     }
@@ -264,6 +261,7 @@ public class ReceptionistPageController implements Initializable
         else if (event.getSource() == add_patient_btn) showForm(register_patient_form);
         else if (event.getSource() == appointments_btn) showForm(appointments_form);
     }
+
     private void showForm(AnchorPane form) {
         dashboard_form.setVisible(form == dashboard_form);
         patients_form.setVisible(form == patients_form);
@@ -281,7 +279,7 @@ public class ReceptionistPageController implements Initializable
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                PatientDto patientData = new PatientDto(result.getString("patient_firstName"), result.getString("patient_lastName"), result.getDate("patient_birthdate"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_department"), result.getString("patient_doctor"),result.getString("patient_nurse"), result.getDate("patient_date"), result.getString("patient_payment"));
+                PatientDto patientData = new PatientDto(result.getString("patient_firstName"), result.getString("patient_lastName"), result.getDate("patient_birthdate"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getDate("patient_date"), result.getString("patient_payment"));
                 listPatients.add(patientData);
             }
         } catch (Exception e) {
@@ -299,7 +297,7 @@ public class ReceptionistPageController implements Initializable
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                AppointmentDto appointmentData = new AppointmentDto(result.getString("appointment_id"),result.getString("appointment_firstName"), result.getString("appointment_lastName"),result.getString("appointment_description"),  result.getString("appointment_department"), result.getString("appointment_doctor"),result.getString("appointment_nurse"),result.getString("appointment_phone"),  result.getString("appointment_address"), result.getDate("appointment_date"), result.getString("appointment_hour"));
+                AppointmentDto appointmentData = new AppointmentDto(result.getString("appointment_id"), result.getString("appointment_firstName"), result.getString("appointment_lastName"), result.getString("appointment_description"), result.getString("appointment_department"), result.getString("appointment_doctor"), result.getString("appointment_nurse"), result.getString("appointment_phone"), result.getString("appointment_address"), result.getDate("appointment_date"), result.getString("appointment_hour"));
                 listAppointments.add(appointmentData);
             }
         } catch (Exception e) {
@@ -309,14 +307,14 @@ public class ReceptionistPageController implements Initializable
     }
 
     public void patientDisplayData() {
-        patients_col_name.setCellValueFactory(new PropertyValueFactory<>("patient_firstName"));
-        patients_col_department.setCellValueFactory(new PropertyValueFactory<>("patient_department"));
-        patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("patient_doctor"));
-        patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("patient_nurse"));
-        patients_col_phonenumber.setCellValueFactory(new PropertyValueFactory<>("patient_phone"));
-        patients_col_email.setCellValueFactory(new PropertyValueFactory<>("patient_email"));
-        patients_col_address.setCellValueFactory(new PropertyValueFactory<>("patient_address"));
-        patients_col_payment.setCellValueFactory(new PropertyValueFactory<>("patient_payment"));
+        patients_col_name.setCellValueFactory(new PropertyValueFactory<>("PfirstName"));
+        patients_col_department.setCellValueFactory(new PropertyValueFactory<>("Pdepartment"));
+        patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("Pdoctor"));
+        patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("Pnurse"));
+        patients_col_phonenumber.setCellValueFactory(new PropertyValueFactory<>("Pphone"));
+        patients_col_email.setCellValueFactory(new PropertyValueFactory<>("Pemail"));
+        patients_col_address.setCellValueFactory(new PropertyValueFactory<>("Paddress"));
+        patients_col_payment.setCellValueFactory(new PropertyValueFactory<>("Ppayment"));
         patients_tableView.setItems(getPatients());
 
     }
