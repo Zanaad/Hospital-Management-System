@@ -52,6 +52,8 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private Button dashboard_btn;
+    @FXML
+    private Button logout_btn;
 
     @FXML
     private AnchorPane dashboard_form;
@@ -543,6 +545,15 @@ public class AdminPageController implements Initializable {
         Locale locale = Locale.getDefault();
         ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
         this.dashboard_btn.setText(rb.getString("Dashboard"));
+        this.department_btn.setText(rb.getString("Departments"));
+        this.doctors_btn.setText(rb.getString("Doctors"));
+        this.nurse_btn.setText(rb.getString("Nurses"));
+        this.receptionist_btn.setText(rb.getString("Receptionists"));
+        this.account_btn.setText(rb.getString("Account"));
+        this.logout_btn.setText(rb.getString("Logout"));
+        this.add_doctor_btn.setText(rb.getString("Add New Doctor"));
+        this.add_nurse_btn.setText(rb.getString("Add New Nurse"));
+        this.add_receptionist_btn.setText(rb.getString("Add New Receptionist"));
     }
 }
 
