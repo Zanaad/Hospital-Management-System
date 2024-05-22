@@ -20,22 +20,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.dto.ReportDto.*;
-import model.dto.StaffDto.NurseDto;
-import model.dto.StaffDto.ReceptionistDto;
-import service.DBConnection;
-import service.Report.birthService;
-import service.Report.deathService;
 import service.Report.donorService;
-import service.Report.operationService;
-import service.Report.otherService;
-import service.Staff.ReceptionistService;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 public class NursePageController implements Initializable {
@@ -399,7 +390,7 @@ public class NursePageController implements Initializable {
 
     @FXML
     void registerOperation(ActionEvent event) {
-        conn= DBConnection.getConnection();
+        conn= DatabaseUtil.getConnection();
         String sql="insert into births (operationID, opDescription, opPatient, opDoctor, opDate, opTime) values (? , ? , ? , ? , ?, ?)";
         try{
             pst=conn.prepareStatement(sql);
@@ -421,7 +412,7 @@ public class NursePageController implements Initializable {
     }
     @FXML
     void registerBirth(ActionEvent event) {
-        conn = DBConnection.getConnection();
+        conn = DatabaseUtil.getConnection();
         String sql = "insert into births (birthID, birth_description, birth_patient, birth_newborn, birth_date, birth_time) values (?, ?, ?, ?, ?, ?)";
         try {
             pst = conn.prepareStatement(sql);
@@ -443,7 +434,7 @@ public class NursePageController implements Initializable {
 
     @FXML
     void registerDeath(ActionEvent event) {
-        conn= DBConnection.getConnection();
+        conn= DatabaseUtil.getConnection();
         String sql="insert into deaths (deathID, death_description, death_patient, death_date, death_time) values (? , ? , ? , ? , ?)";
         try{
             pst=conn.prepareStatement(sql);
@@ -465,7 +456,7 @@ public class NursePageController implements Initializable {
 
     @FXML
     void registerOther(ActionEvent event) {
-        conn= DBConnection.getConnection();
+        conn=DatabaseUtil.getConnection();
         String sql="insert into others (other_ID, other_description, other_patient, other_date, other_time) values (? , ? , ? , ? , ?)";
         try{
             pst=conn.prepareStatement(sql);

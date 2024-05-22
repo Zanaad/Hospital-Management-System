@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import model.Staff;
 import model.dto.ChangePasswordDto;
 import model.dto.DepartmentDto;
 import model.dto.StaffDto.DoctorDto;
@@ -115,7 +116,6 @@ public class AdminPageController implements Initializable {
     private TableColumn<?, ?> dep_col_name;
     @FXML
     private TableColumn<?, ?> dep_col_desc;
-
     @FXML
     private TableColumn<?, ?> doctors_col_address;
 
@@ -124,6 +124,12 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> doctors_col_email;
+    @FXML
+    private TableColumn<?, ?> doctors_col_ID;
+    @FXML
+    private TableColumn<?, ?> nurse_col_ID;
+    @FXML
+    private TableColumn<?, ?> rec_col_ID;
 
     @FXML
     private TableColumn<?, ?> doctors_col_name;
@@ -138,10 +144,10 @@ public class AdminPageController implements Initializable {
     private AnchorPane doctors_form;
 
     @FXML
-    private TableView<DoctorDto> doctors_table;
+    private TableView<Staff> doctors_table;
 
     @FXML
-    private TableView<ReceptionistDto> receptionist_table;
+    private TableView<Staff> receptionist_table;
     @FXML
     private TableView<DepartmentDto> department_table;
 
@@ -215,7 +221,7 @@ public class AdminPageController implements Initializable {
     private Label nurses_count;
 
     @FXML
-    private TableView<NurseDto> nurses_table;
+    private TableView<Staff> nurses_table;
 
     @FXML
     private AnchorPane profile_form;
@@ -385,16 +391,16 @@ public class AdminPageController implements Initializable {
         register_receptionist_form.setVisible(form == register_receptionist_form);
     }
 
-    public ObservableList<NurseDto> getNurses() {
-        ObservableList<NurseDto> listNurses = FXCollections.observableArrayList();
+    public ObservableList<Staff> getNurses() {
+        ObservableList<Staff> listNurses = FXCollections.observableArrayList();
         String query = "select * from nurses";
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                NurseDto nurseData = new NurseDto(result.getString("nurse_firstName"), result.getString("nurse_lastName"), result.getDate("nurse_birthdate"), result.getString("nurse_phone"), result.getString("nurse_email"), result.getString("nurse_hashPassword"), result.getString("nurse_address"), result.getString("nurse_department"), result.getString("nurse_university"), result.getDate("nurse_start"), result.getDate("nurse_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
-                listNurses.add(nurseData);
+                Staff nurse = new Staff(result.getInt("nurse_id"), result.getString("nurse_firstName"), result.getString("nurse_department"), result.getString("nurse_phone"), result.getString("nurse_email"), result.getString("nurse_university"), result.getString("nurse_address"));
+                listNurses.add(nurse);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -419,16 +425,16 @@ public class AdminPageController implements Initializable {
         return listDepartments;
     }
 
-    public ObservableList<DoctorDto> getDoctors() {
-        ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList();
+    public ObservableList<Staff> getDoctors() {
+        ObservableList<Staff> listDoctors = FXCollections.observableArrayList();
         String query = "select * from doctors";
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                DoctorDto doctorData = new DoctorDto(result.getString("doctor_firstName"), result.getString("doctor_lastName"), result.getDate("doctor_birthdate"), result.getString("doctor_phone"), result.getString("doctor_email"), result.getString("doctor_hashPassword"), result.getString("doctor_address"), result.getString("doctor_department"), result.getString("doctor_university"), result.getDate("doctor_start"), result.getDate("doctor_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
-                listDoctors.add(doctorData);
+                Staff doctor = new Staff(result.getInt("doctor_id"), result.getString("doctor_firstName"), result.getString("doctor_department"), result.getString("doctor_phone"), result.getString("doctor_email"), result.getString("doctor_university"), result.getString("doctor_address"));
+                listDoctors.add(doctor);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -436,16 +442,16 @@ public class AdminPageController implements Initializable {
         return listDoctors;
     }
 
-    public ObservableList<ReceptionistDto> getReceptionists() {
-        ObservableList<ReceptionistDto> listReceptionists = FXCollections.observableArrayList();
+    public ObservableList<Staff> getReceptionists() {
+        ObservableList<Staff> listReceptionists = FXCollections.observableArrayList();
         String query = "select * from receptionists";
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                ReceptionistDto receptionistData = new ReceptionistDto(result.getString("receptionist_firstName"), result.getString("receptionist_lastName"), result.getDate("receptionist_birthdate"), result.getString("receptionist_phone"), result.getString("receptionist_email"), result.getString("receptionist_hashPassword"), result.getString("receptionist_address"), result.getString("receptionist_department"), result.getString("receptionist_university"), result.getDate("receptionist_start"), result.getDate("receptionist_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
-                listReceptionists.add(receptionistData);
+                Staff rec = new Staff(result.getInt("receptionist_id"), result.getString("receptionist_firstName"), result.getString("receptionist_department"), result.getString("receptionist_phone"), result.getString("receptionist_email"), result.getString("receptionist_university"), result.getString("receptionist_address"));
+                listReceptionists.add(rec);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -454,18 +460,18 @@ public class AdminPageController implements Initializable {
     }
 
     public void nurseDisplayData() {
-        Table.staffDisplayData(nurse_col_name, nurse_col_department, nurse_col_phone, nurse_col_email, nurse_col_university, nurse_col_address);
+        Table.staffDisplayData(nurse_col_ID, nurse_col_name, nurse_col_department, nurse_col_phone, nurse_col_email, nurse_col_university, nurse_col_address);
         nurses_table.setItems(getNurses());
     }
 
 
     public void doctorDisplayData() {
-        Table.staffDisplayData(doctors_col_name, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_address);
+        Table.staffDisplayData(doctors_col_ID, doctors_col_name, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_address);
         doctors_table.setItems(getDoctors());
     }
 
     public void recDisplayData() {
-        Table.staffDisplayData(rec_col_name, rec_col_department, rec_col_phone, rec_col_email, rec_col_uni, rec_col_address);
+        Table.staffDisplayData(rec_col_ID, rec_col_name, rec_col_department, rec_col_phone, rec_col_email, rec_col_uni, rec_col_address);
         receptionist_table.setItems(getReceptionists());
     }
 
@@ -491,7 +497,6 @@ public class AdminPageController implements Initializable {
         loadDepartmentNames();
 //        UpdatePwdRepository.addSaltAndHashToAdmins();
     }
-
 
     @FXML
     public void changePassword() {
