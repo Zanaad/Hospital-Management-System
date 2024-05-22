@@ -10,11 +10,12 @@ public class birthService {
 
 
         createBirthDto createBirthDto = new createBirthDto(
-                birthData.getDescription(),
-                birthData.getPatient(),
-                birthData.getNewBorn(),
-                birthData.getDate(),
-                birthData.getTime()
+                birthData.getBirthID(),
+                birthData.getBirth_description(),
+                birthData.getBirth_patient(),
+                birthData.getBirth_newborn(),
+                birthData.getBirth_date(),
+                birthData.getBirth_time()
         );
         return BirthRepository.createBirth(createBirthDto);
     }

@@ -22,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import model.dto.ReportDto.*;
 import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
+import service.DBConnection;
 import service.Report.birthService;
 import service.Report.deathService;
 import service.Report.donorService;
@@ -307,6 +308,9 @@ public class NursePageController implements Initializable {
     private DatePicker txtOtherDate;
 
     @FXML
+    private TextField txtOtherID;
+
+    @FXML
     private TextField txtOtherDescription;
 
     @FXML
@@ -332,6 +336,24 @@ public class NursePageController implements Initializable {
 
     @FXML
     private ComboBox<String> chooseDonorGender;
+
+    @FXML
+    private TextField txtDeathID;
+
+    @FXML
+    private TextField txtBirthID;
+
+    @FXML
+    private TextField txtOperationID;
+
+
+    Connection conn=null;
+
+
+    ResultSet rs=null;
+
+    PreparedStatement pst=null;
+
 
 
     //change the forms depending on what the user chooses-----------------------------------------------------------
@@ -377,51 +399,92 @@ public class NursePageController implements Initializable {
 
     @FXML
     void registerOperation(ActionEvent event) {
-        Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
+        conn= DBConnection.getConnection();
+        String sql="insert into births (operationID, opDescription, opPatient, opDoctor, opDate, opTime) values (? , ? , ? , ? , ?, ?)";
+        try{
+            pst=conn.prepareStatement(sql);
+            Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
+            pst.setInt(1, Integer.parseInt(txtOperationID.getText()));
+            pst.setString(2,txtOperationDescription.getText());
+            pst.setString(3,txtOperationPatient.getText());
+            pst.setString(4,txtOperationDoctor.getText());
+            pst.setDate(4, operationDate);
+            pst.setString(5,txtOperationTime.getText());
 
+            pst.execute();
+            pst.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
 
-        OperationDto report = new OperationDto(this.txtOperationDescription.getText(), this.txtOperationPatient.getText(), this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
-        boolean reportCreated = operationService.createOperation(report);
-        if (reportCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
         }
     }
-
     @FXML
     void registerBirth(ActionEvent event) {
-        Date birthsDate = Date.valueOf(this.txtBirthDate.getValue());
+        conn = DBConnection.getConnection();
+        String sql = "insert into births (birthID, birth_description, birth_patient, birth_newborn, birth_date, birth_time) values (?, ?, ?, ?, ?, ?)";
+        try {
+            pst = conn.prepareStatement(sql);
+            Date birthDate = Date.valueOf(this.txtBirthDate.getValue());
+            pst.setInt(1, Integer.parseInt(txtBirthID.getText()));
+            pst.setString(2, txtBirthDescription.getText());
+            pst.setString(3, txtBirthPatient.getText());
+            pst.setString(4, txtBirthNewBorn.getText());
+            pst.setDate(5, birthDate);
+            pst.setString(6, txtBirthTime.getText());
 
-
-        BirthsDto report = new BirthsDto(this.txtBirthDescription.getText(), this.txtBirthPatient.getText(), this.txtBirthNewBorn.getText(), birthsDate, this.txtBirthTime.getText());
-        boolean reportCreated = birthService.createBirth(report);
-        if (reportCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
+            pst.execute();
+            pst.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
+
 
     @FXML
     void registerDeath(ActionEvent event) {
-        Date deathDate = Date.valueOf(this.txtDeathDate.getValue());
+        conn= DBConnection.getConnection();
+        String sql="insert into deaths (deathID, death_description, death_patient, death_date, death_time) values (? , ? , ? , ? , ?)";
+        try{
+            pst=conn.prepareStatement(sql);
+            Date deathDate = Date.valueOf(this.txtDeathDate.getValue());
+            pst.setInt(1, Integer.parseInt(txtDeathID.getText()));
+            pst.setString(2,txtDeathDescription.getText());
+            pst.setDate(4, deathDate);
+            pst.setString(5,txtDeathTime.getText());
 
-        DeathsDto report = new DeathsDto(this.txtDeathDescription.getText(), this.txtDeathPatient.getText(), deathDate, this.txtDeathTime.getText());
-        boolean reportCreated = deathService.createDeath(report);
-        if (reportCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
+            pst.execute();
+            pst.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+
         }
     }
 
 
     @FXML
     void registerOther(ActionEvent event) {
-        Date otherDate = Date.valueOf(this.txtOtherDate.getValue());
+        conn= DBConnection.getConnection();
+        String sql="insert into others (other_ID, other_description, other_patient, other_date, other_time) values (? , ? , ? , ? , ?)";
+        try{
+            pst=conn.prepareStatement(sql);
+            Date otherDate = Date.valueOf(this.txtOtherDate.getValue());
+            pst.setInt(1, Integer.parseInt(txtOtherID.getText()));
+            pst.setString(2,txtOtherDescription.getText());
+            pst.setString(3,txtOtherPatient.getText());
+            pst.setDate(4,otherDate);
+            pst.setString(5,txtOtherTime.getText());
 
-        OthersDto report = new OthersDto(this.txtOtherDescription.getText(), this.txtOtherPatient.getText(), otherDate, this.txtOtherTime.getText());
-        boolean reportCreated = otherService.createOther(report);
-        if (reportCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
+            pst.execute();
+            pst.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+
         }
     }
+
 
     @FXML
     void registerDonor(ActionEvent event) {
@@ -452,7 +515,7 @@ public class NursePageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                OperationDto operationData = new OperationDto(result.getString("opDescription"), result.getString("opPatient"), result.getString("opDoctor"), result.getDate("opDate"), result.getString("opTime"));
+                OperationDto operationData = new OperationDto(result.getInt("operationID"), result.getString("opDescription"), result.getString("opPatient"), result.getString("opDoctor"), result.getDate("opDate"), result.getString("opTime"));
                 listOperation.add(operationData);
             }
         } catch (Exception e) {
@@ -460,6 +523,8 @@ public class NursePageController implements Initializable {
         }
         return listOperation;
     }
+
+
 
     public void operationDisplayData() {
         operations_col_operationID.setCellValueFactory(new PropertyValueFactory<>("operationID"));
@@ -471,7 +536,6 @@ public class NursePageController implements Initializable {
         operation_table.setItems(getOperations());
     }
 
-
     public ObservableList<BirthsDto> getBirths() {
         ObservableList<BirthsDto> listBirths = FXCollections.observableArrayList();
         String query = "SELECT * FROM births";
@@ -481,6 +545,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 BirthsDto birthData = new BirthsDto(
+                        result.getInt("birthID"),
                         result.getString("birth_description"),
                         result.getString("birth_patient"),
                         result.getString("birth_newborn"),
@@ -495,16 +560,20 @@ public class NursePageController implements Initializable {
         return listBirths;
     }
 
+
+
+
     public void birthDisplayData() {
         births_col_birthID.setCellValueFactory(new PropertyValueFactory<>("birthID"));
-        births_col_description.setCellValueFactory(new PropertyValueFactory<>("birthDescription"));
-        births_col_patient.setCellValueFactory(new PropertyValueFactory<>("birthPatient"));
-        births_col_newBorn.setCellValueFactory(new PropertyValueFactory<>("birthNewBorn"));
-        births_col_date.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
-        births_col_time.setCellValueFactory(new PropertyValueFactory<>("birthTime"));
+        births_col_description.setCellValueFactory(new PropertyValueFactory<>("birth_description"));
+        births_col_patient.setCellValueFactory(new PropertyValueFactory<>("birth_patient"));
+        births_col_newBorn.setCellValueFactory(new PropertyValueFactory<>("birth_newborn"));
+        births_col_date.setCellValueFactory(new PropertyValueFactory<>("birth_date"));
+        births_col_time.setCellValueFactory(new PropertyValueFactory<>("birth_time"));
 
         birth_table.setItems(getBirths());
     }
+
 
     public ObservableList<DeathsDto> getDeaths() {
         ObservableList<DeathsDto> listDeaths = FXCollections.observableArrayList();
@@ -515,6 +584,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 DeathsDto deathData = new DeathsDto(
+                        result.getInt("deathID"),
                         result.getString("death_description"),
                         result.getString("death_patient"),
                         result.getDate("death_date"),
@@ -548,6 +618,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 OthersDto otherData = new OthersDto(
+                        result.getInt("otherID"),
                         result.getString("other_description"),
                         result.getString("other_patient"),
                         result.getDate("other_date"),
