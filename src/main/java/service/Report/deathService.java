@@ -9,6 +9,7 @@ public class deathService {
 
 
         createDeathsDto createDeathDto = new createDeathsDto(
+                deathData.getID(),
                 deathData.getDescription(),
                 deathData.getPatient(),
                 deathData.getDate(),

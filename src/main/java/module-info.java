@@ -10,4 +10,5 @@ module com.example.projektiknk {
     exports app;
     opens model.dto.StaffDto to javafx.base;
     opens model.dto to javafx.base;
+    opens model to javafx.base;
 }

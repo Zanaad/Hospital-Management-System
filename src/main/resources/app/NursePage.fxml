@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -97,7 +97,7 @@
                                 <children>
                                     <ImageView fitHeight="132.0" fitWidth="233.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/patient.jpeg" />
+                                            <Image url="@../images/patient.jpeg" />
                                         </image>
                                     </ImageView>
                                     <Label fx:id="dashboard_patients" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -116,7 +116,7 @@
                         <children>
                            <ImageView fitHeight="139.0" fitWidth="234.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/bloodDonator.jpg" />
+                                 <Image url="@../images/bloodDonator.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="dashboard_donors" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -135,7 +135,7 @@
                         <children>
                            <ImageView fitHeight="134.0" fitWidth="237.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/bedWards.jpg" />
+                                 <Image url="@../images/bedWards.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="dashboard_beds" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -178,7 +178,7 @@
                             </AnchorPane>
                         </children>
                     </AnchorPane>
-               <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0">
                   <children>
                      <AnchorPane prefHeight="410.0" prefWidth="837.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="124.0">
                         <children>
@@ -270,60 +270,68 @@
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
-                                             <AnchorPane fx:id="add_reportOperation" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
+                                             <AnchorPane fx:id="add_reportOperation" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
                                                 <children>
-                                                   <TextField fx:id="txtOperationDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
-                                                   <Label layoutX="62.0" layoutY="44.0" text="Description" />
-                                                   <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                   <TextField fx:id="txtOperationPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <Label layoutX="62.0" layoutY="230.0" prefHeight="18.0" prefWidth="70.0" text="Doctor" />
-                                                   <TextField fx:id="txtOperationDoctor" layoutX="62.0" layoutY="258.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <DatePicker fx:id="txtOperationDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
-                                                   <Label layoutX="359.0" layoutY="44.0" text="Date" />
-                                                   <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
-                                                   <TextField fx:id="txtOperationTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <TextField fx:id="txtOperationDescription" layoutX="66.0" layoutY="130.0" prefHeight="70.0" prefWidth="190.0" />
+                                                   <Label layoutX="66.0" layoutY="106.0" text="Description" />
+                                                   <Label layoutX="66.0" layoutY="215.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
+                                                   <TextField fx:id="txtOperationPatient" layoutX="66.0" layoutY="243.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <Label layoutX="359.0" layoutY="32.0" prefHeight="18.0" prefWidth="70.0" text="Doctor" />
+                                                   <TextField fx:id="txtOperationDoctor" layoutX="359.0" layoutY="60.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <DatePicker fx:id="txtOperationDate" layoutX="359.0" layoutY="130.0" prefHeight="34.0" prefWidth="210.0" />
+                                                   <Label layoutX="359.0" layoutY="106.0" text="Date" />
+                                                   <Label layoutX="359.0" layoutY="179.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
+                                                   <TextField fx:id="txtOperationTime" layoutX="359.0" layoutY="198.0" prefHeight="31.0" prefWidth="189.0" />
                                                    <Button fx:id="addOperation_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerOperation" prefHeight="34.0" prefWidth="142.0" text="Add Operation" />
+                                                   <Label layoutX="66.0" layoutY="30.0" prefHeight="18.0" prefWidth="70.0" text="ReportID" />
+                                                   <TextField fx:id="txtOperationID" layoutX="66.0" layoutY="58.0" prefHeight="31.0" prefWidth="189.0" />
                                                 </children>
                                              </AnchorPane>
                                              <AnchorPane fx:id="add_reportDeath" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                 <children>
-                                                   <TextField fx:id="txtDeathDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
-                                                   <Label layoutX="62.0" layoutY="44.0" text="Description" />
-                                                   <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                   <TextField fx:id="txtDeathPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <TextField fx:id="txtDeathDescription" layoutX="64.0" layoutY="145.0" prefHeight="70.0" prefWidth="190.0" />
+                                                   <Label layoutX="64.0" layoutY="121.0" text="Description" />
+                                                   <Label layoutX="64.0" layoutY="230.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
+                                                   <TextField fx:id="txtDeathPatient" layoutX="64.0" layoutY="258.0" prefHeight="31.0" prefWidth="189.0" />
                                                    <DatePicker fx:id="txtDeathDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
                                                    <Label layoutX="359.0" layoutY="44.0" text="Date" />
-                                                   <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
-                                                   <TextField fx:id="txtDeathTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <Label layoutX="64.0" layoutY="38.0" prefHeight="18.0" prefWidth="70.0" text="ReportID" />
+                                                   <TextField fx:id="txtBirthID" layoutX="64.0" layoutY="66.0" prefHeight="31.0" prefWidth="189.0" />
                                                    <Button fx:id="add_death_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerDeath" prefHeight="34.0" prefWidth="142.0" text="Add Death" />
+                                                   <Label layoutX="359.0" layoutY="133.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
+                                                   <TextField fx:id="txtDeathTime" layoutX="359.0" layoutY="161.0" prefHeight="31.0" prefWidth="189.0" />
                                                 </children>
                                              </AnchorPane>
-                                             <AnchorPane fx:id="add_reportBirth" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
+                                             <AnchorPane fx:id="add_reportBirth" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                 <children>
-                                                   <TextField fx:id="txtBirthDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
-                                                   <Label layoutX="62.0" layoutY="44.0" text="Description" />
-                                                   <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                   <TextField fx:id="txtBirthPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <TextField fx:id="txtBirthDescription" layoutX="62.0" layoutY="94.0" prefHeight="70.0" prefWidth="190.0" />
+                                                   <Label layoutX="62.0" layoutY="70.0" text="Description" />
+                                                   <Label layoutX="62.0" layoutY="179.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
+                                                   <TextField fx:id="txtBirthPatient" layoutX="62.0" layoutY="207.0" prefHeight="31.0" prefWidth="189.0" />
                                                    <DatePicker fx:id="txtBirthDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
                                                    <Label layoutX="359.0" layoutY="44.0" text="Date" />
                                                    <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
                                                    <TextField fx:id="txtBirthTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
-                                                   <Button fx:id="add_birth_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerBirth" prefHeight="34.0" prefWidth="142.0" text="Add Birth" />
-                                                   <Label layoutX="62.0" layoutY="226.0" prefHeight="18.0" prefWidth="119.0" text="New Born's Name" />
-                                                   <TextField fx:id="txtBirthNewBorn" layoutX="62.0" layoutY="254.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <Button fx:id="add_birth_btn" layoutX="382.0" layoutY="253.0" mnemonicParsing="false" onAction="#registerBirth" prefHeight="34.0" prefWidth="142.0" text="Add Birth" />
+                                                   <Label layoutX="62.0" layoutY="252.0" prefHeight="18.0" prefWidth="119.0" text="New Born's Name" />
+                                                   <TextField fx:id="txtBirthNewBorn" layoutX="62.0" layoutY="280.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <Label layoutX="62.0" layoutY="6.0" text="ReportID" />
+                                                   <TextField fx:id="txtBirthTime1" layoutX="62.0" layoutY="28.0" prefHeight="31.0" prefWidth="189.0" />
                                                 </children>
                                              </AnchorPane>
                                              <AnchorPane fx:id="add_reportOther" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                 <children>
-                                                   <TextField fx:id="txtOtherDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
-                                                   <Label layoutX="62.0" layoutY="44.0" text="Description" />
-                                                   <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                   <TextField fx:id="txtOtherPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <TextField fx:id="txtOtherDescription" layoutX="62.0" layoutY="147.0" prefHeight="70.0" prefWidth="190.0" />
+                                                   <Label layoutX="62.0" layoutY="123.0" text="Description" />
+                                                   <Label layoutX="62.0" layoutY="232.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
+                                                   <TextField fx:id="txtOtherPatient" layoutX="62.0" layoutY="260.0" prefHeight="31.0" prefWidth="189.0" />
                                                    <DatePicker fx:id="txtOtherDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
                                                    <Label layoutX="359.0" layoutY="44.0" text="Date" />
                                                    <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
                                                    <TextField fx:id="txtOtherTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
                                                    <Button fx:id="add_other_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerOther" prefHeight="34.0" prefWidth="142.0" text="Add Other" />
+                                                   <Label layoutX="60.0" layoutY="47.0" text="ReportID" />
+                                                   <TextField fx:id="txtOtherID" layoutX="60.0" layoutY="69.0" prefHeight="31.0" prefWidth="189.0" />
                                                 </children>
                                              </AnchorPane>
                                              <ComboBox fx:id="reportCase_comboBox" layoutX="79.0" layoutY="29.0" prefHeight="34.0" prefWidth="189.0" promptText="Choose Report Case..." />
@@ -389,7 +397,7 @@
                         </children>
 
                     </AnchorPane>
-               <AnchorPane fx:id="bloodBank_form" prefHeight="561.0" prefWidth="885.0">
+               <AnchorPane fx:id="bloodBank_form" prefHeight="561.0" prefWidth="885.0" visible="false">
                   <children>
                      <TabPane layoutX="38.4" layoutY="93.0" prefHeight="439.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="29.0">
                        <tabs>

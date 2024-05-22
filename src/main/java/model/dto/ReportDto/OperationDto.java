@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class OperationDto extends reportDto{
 
-    public OperationDto(String description,String patient, String doctor, Date date, String time){
-        super(description, patient, date, time);
+    public OperationDto(int id, String description,String patient, String doctor, Date date, String time){
+        super(id, description, patient, date, time);
         this.setDoctor(doctor);
     }
 }
