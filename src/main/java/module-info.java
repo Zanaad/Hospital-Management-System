@@ -9,6 +9,7 @@ module com.example.projektiknk {
     exports com.example.projektiknk;
     exports app;
     opens model.dto.StaffDto to javafx.base;
+    opens model.dto.RecDto to javafx.base;
     opens model.dto to javafx.base;
     opens model to javafx.base;
 }
