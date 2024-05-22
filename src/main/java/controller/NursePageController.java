@@ -401,7 +401,7 @@ public class NursePageController implements Initializable {
     @FXML
     void registerOperation(ActionEvent event) {
         conn= DBConnection.getConnection();
-        String sql="insert into births (operationID, opDescription, opPatient, opDoctor, opDate, opTime) values (? , ? , ? , ? , ?, ?)";
+        String sql="insert into operations (operationID, opDescription, opPatient, opDoctor, opDate, opTime) values (? , ? , ? , ? , ?, ?)";
         try{
             pst=conn.prepareStatement(sql);
             Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
