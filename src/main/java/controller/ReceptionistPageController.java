@@ -6,32 +6,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import model.dto.DepartmentDto;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
-import model.dto.StaffDto.DoctorDto;
-import model.dto.StaffDto.NurseDto;
-import model.dto.StaffDto.ReceptionistDto;
 
-import service.DepartmentService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
-import service.Staff.DoctorService;
-import service.Staff.NurseService;
-import service.Staff.ReceptionistService;
 
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ResourceBundle;
 
 public class ReceptionistPageController
 {
@@ -63,7 +52,7 @@ public class ReceptionistPageController
     private AnchorPane patients_form;
 
     @FXML
-    private TableView<?> patients_tableView;
+    private TableView<PatientDto> patients_tableView;
 
     @FXML
     private TableColumn<?, ?> patients_col_patientID;
@@ -205,7 +194,7 @@ public class ReceptionistPageController
     private TextField appHour;
 
     @FXML
-    private TableView<?> app_tableView;
+    private TableView<AppointmentDto> app_tableView;
 
     @FXML
     private TableColumn<?, ?> app_col_appID;
@@ -278,6 +267,70 @@ public class ReceptionistPageController
         appointments_form.setVisible(form == appointments_form);
 
     }
+
+    public ObservableList<PatientDto> getPatients() {
+        ObservableList<PatientDto> listPatients = FXCollections.observableArrayList();
+        String query = "select * from patients";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                PatientDto patientData = new PatientDto(result.getString("patient_firstName"), result.getString("patient_lastName"), result.getDate("patient_birthdate"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_department"), result.getString("patient_doctor"),result.getString("patient_nurse"), result.getDate("patient_date"), result.getString("patient_payment"));
+                listPatients.add(patientData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listPatients;
+    }
+
+
+    public ObservableList<AppointmentDto> getAppointments() {
+        ObservableList<AppointmentDto> listAppointments = FXCollections.observableArrayList();
+        String query = "select * from appointments";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                AppointmentDto appointmentData = new AppointmentDto(result.getString("appointment_id"),result.getString("appointment_firstName"), result.getString("appointment_lastName"),result.getString("appointment_description"),  result.getString("appointment_department"), result.getString("appointment_doctor"),result.getString("appointment_nurse"),result.getString("appointment_phone"),  result.getString("appointment_address"), result.getDate("appointment_date"), result.getString("appointment_hour"));
+                listAppointments.add(appointmentData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listAppointments;
+    }
+
+    public void patientDisplayData() {
+        patients_col_name.setCellValueFactory(new PropertyValueFactory<>("patient_firstName"));
+        patients_col_department.setCellValueFactory(new PropertyValueFactory<>("patient_department"));
+        patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("patient_doctor"));
+        patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("patient_nurse"));
+        patients_col_phonenumber.setCellValueFactory(new PropertyValueFactory<>("patient_phone"));
+        patients_col_email.setCellValueFactory(new PropertyValueFactory<>("patient_email"));
+        patients_col_address.setCellValueFactory(new PropertyValueFactory<>("patient_address"));
+        patients_col_payment.setCellValueFactory(new PropertyValueFactory<>("patient_payment"));
+        patients_tableView.setItems(getPatients());
+
+    }
+
+
+    public void appointmentDisplayData() {
+        app_col_appID.setCellValueFactory(new PropertyValueFactory<>("appointment_id"));
+        app_col_name.setCellValueFactory(new PropertyValueFactory<>("appointment_firstName"));
+        app_col_department.setCellValueFactory(new PropertyValueFactory<>("appointment_department"));
+        app_col_doctor.setCellValueFactory(new PropertyValueFactory<>("appointment_doctor"));
+        app_col_nurse.setCellValueFactory(new PropertyValueFactory<>("appointment_nurse"));
+        app_col_phone.setCellValueFactory(new PropertyValueFactory<>("appointment_phone"));
+        app_col_address.setCellValueFactory(new PropertyValueFactory<>("appointment_address"));
+        app_col_date.setCellValueFactory(new PropertyValueFactory<>("appointment_date"));
+        app_col_hour.setCellValueFactory(new PropertyValueFactory<>("appointment_hour"));
+        app_tableView.setItems(getAppointments());
+
+    }
+
 
 
 

@@ -98,25 +98,10 @@ create table patients
     patient_doctor    nvarchar(100),
     patient_nurse    nvarchar(100)
     patient_date     date,
-    patient_payment   int
+    patient_payment   String
 
 );
-create table patients
-(
-    patient_id        int primary key auto_increment,
-    patient_firstName nvarchar(100),
-    patient_lastName  nvarchar(100),
-    patient_birthdate date,
-    patient_phone     nvarchar(100),
-    patient_email     nvarchar(100) not null,
-    patient_address   nvarchar(150),
-    patient_department nvarchar(100),
-    patient_doctor    nvarchar(100),
-    patient_nurse    nvarchar(100)
-    patient_date     date,
-    patient_payment   int
 
-);
 create table appointments
 (
     appointment_id        nvarchar(100),

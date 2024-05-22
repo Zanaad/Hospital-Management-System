@@ -37,7 +37,7 @@ public class PatientRepository {
             pst.setString(8, patientData.getPdoctor());
             pst.setString(9, patientData.getPnurse());
             pst.setDate(10, patientData.getPdate());
-            pst.setInt(11, patientData.getPpayment());
+            pst.setString(11, patientData.getPpayment());
 
             pst.execute();
             pst.close();
