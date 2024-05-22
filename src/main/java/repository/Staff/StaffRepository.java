@@ -5,7 +5,6 @@ import model.dto.StaffDto.CreateStaffDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class StaffRepository {
     public static boolean createStaff(CreateStaffDto staffData, String query) {
