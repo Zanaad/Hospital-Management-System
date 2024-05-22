@@ -10,13 +10,13 @@ public class UserFilter extends Filter {
     }
 
     public String buildQuery() {
-        String query = "";
-        if (!this.firstName.isEmpty()) {
-            query += "firstName like '%" + this.firstName + "%'";
+        StringBuilder query = new StringBuilder();
+        if (firstName != null && !firstName.isEmpty()) {
+            query.append(" AND doctor_firstName LIKE '%").append(firstName).append("%'");
         }
-        if (!this.email.isEmpty()) {
-            query += "email like '%" + this.email + "%'";
+        if (email != null && !email.isEmpty()) {
+            query.append(" AND doctor_email LIKE '%").append(email).append("%'");
         }
-        return query;
+        return query.toString();
     }
 }

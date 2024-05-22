@@ -526,5 +526,9 @@ public class AdminPageController implements Initializable {
         recDep.setItems(observableList);
         nurseDep.setItems(observableList);
     }
+
+    public void handleLanguage(ActionEvent event) {
+
+    }
 }
 
