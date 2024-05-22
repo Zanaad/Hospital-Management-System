@@ -545,6 +545,7 @@ public class NursePageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
+
                 BirthsDto birthData = new BirthsDto(
                         result.getInt("birthID"),
                         result.getString("birth_description"),
