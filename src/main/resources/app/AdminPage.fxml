@@ -490,7 +490,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="ChangePwdAdminID" layoutX="195.0" layoutY="14.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="186.60000000000002" AnchorPane.topAnchor="14.0" />
+                                <TextField fx:id="ChangePwdEmail" layoutX="195.0" layoutY="14.0" prefHeight="25.0" prefWidth="183.0" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="186.60000000000002" AnchorPane.topAnchor="14.0" />
                                 <Label layoutX="55.0" layoutY="56.0" text="Current password">
                                     <font>
                                         <Font size="15.0" />
@@ -506,14 +506,14 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="changePasswordbtn" layoutX="329.0" layoutY="180.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="329.0" AnchorPane.rightAnchor="81.39999999999998" AnchorPane.topAnchor="180.0">
+                                <PasswordField fx:id="currentPassword" layoutX="195.0" layoutY="54.0" prefHeight="26.0" prefWidth="290.0" />
+                                <PasswordField fx:id="newPassword" layoutX="195.0" layoutY="91.0" prefHeight="26.0" prefWidth="290.0" />
+                                <PasswordField fx:id="confirmNewPassword" layoutX="195.0" layoutY="127.0" prefHeight="26.0" prefWidth="290.0" />
+                                <Button fx:id="changePasswordbtn" mnemonicParsing="false" onAction="#changePassword" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="329.0" AnchorPane.rightAnchor="81.39999999999998" AnchorPane.topAnchor="180.0">
                                     <font>
                                         <Font name="Arial" size="13.0" />
                                     </font>
                                 </Button>
-                                <PasswordField fx:id="currentPassword" layoutX="195.0" layoutY="54.0" prefHeight="26.0" prefWidth="290.0" />
-                                <PasswordField fx:id="newPassword" layoutX="195.0" layoutY="91.0" prefHeight="26.0" prefWidth="290.0" />
-                                <PasswordField fx:id="confirmNewPassword" layoutX="195.0" layoutY="127.0" prefHeight="26.0" prefWidth="290.0" />
                             </children>
                         </AnchorPane>
                     </AnchorPane>

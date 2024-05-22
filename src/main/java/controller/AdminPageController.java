@@ -7,8 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +23,7 @@ import service.DepartmentService;
 import service.Staff.DoctorService;
 import service.Staff.NurseService;
 import service.Staff.ReceptionistService;
+import service.Table;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -40,9 +39,6 @@ public class AdminPageController implements Initializable {
     private Button account_btn;
 
     @FXML
-    private Button addDepartment_btn;
-
-    @FXML
     private Button add_doctor_btn;
 
     @FXML
@@ -50,15 +46,6 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private Button add_receptionist_btn;
-
-    @FXML
-    private Label app_count;
-
-    @FXML
-    private BarChart<?, ?> dashboad_chart_AD;
-
-    @FXML
-    private AreaChart<?, ?> dashboad_chart_PD;
 
     @FXML
     private Button dashboard_btn;
@@ -124,10 +111,6 @@ public class AdminPageController implements Initializable {
     private Button doctors_btn;
 
     @FXML
-    private TableColumn<?, ?> doctors_col_action;
-    @FXML
-    private TableColumn<?, ?> dep_col_ID;
-    @FXML
     private TableColumn<?, ?> dep_col_name;
     @FXML
     private TableColumn<?, ?> dep_col_desc;
@@ -139,31 +122,16 @@ public class AdminPageController implements Initializable {
     private TableColumn<?, ?> doctors_col_department;
 
     @FXML
-    private TableColumn<?, ?> doctors_col_department1;
-
-    @FXML
-    private TableColumn<?, ?> doctors_col_doctorID;
-
-    @FXML
-    private TableColumn<?, ?> doctors_col_doctorID1;
-
-    @FXML
     private TableColumn<?, ?> doctors_col_email;
 
     @FXML
     private TableColumn<?, ?> doctors_col_name;
 
     @FXML
-    private TableColumn<?, ?> doctors_col_name1;
-
-    @FXML
     private TableColumn<?, ?> doctors_col_phone;
 
     @FXML
     private TableColumn<?, ?> doctors_col_uni;
-
-    @FXML
-    private TableColumn<?, ?> doctors_col_status;
 
     @FXML
     private AnchorPane doctors_form;
@@ -222,9 +190,6 @@ public class AdminPageController implements Initializable {
     private Button nurse_btn;
 
     @FXML
-    private TableColumn<?, ?> nurse_col_action;
-
-    @FXML
     private TableColumn<?, ?> nurse_col_address;
 
     @FXML
@@ -237,16 +202,10 @@ public class AdminPageController implements Initializable {
     private TableColumn<?, ?> nurse_col_name;
 
     @FXML
-    private TableColumn<?, ?> nurse_col_nurseID;
-
-    @FXML
     private TableColumn<?, ?> nurse_col_phone;
 
     @FXML
     private TableColumn<?, ?> nurse_col_university;
-
-    @FXML
-    private TableColumn<?, ?> nurse_col_status;
 
     @FXML
     private AnchorPane nurse_form;
@@ -256,9 +215,6 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private TableView<NurseDto> nurses_table;
-
-    @FXML
-    private Label patients_count;
 
     @FXML
     private AnchorPane profile_form;
@@ -312,9 +268,6 @@ public class AdminPageController implements Initializable {
     private Button receptionist_btn;
 
     @FXML
-    private TableColumn<?, ?> rec_col_action;
-
-    @FXML
     private TableColumn<?, ?> rec_col_address;
 
     @FXML
@@ -330,31 +283,16 @@ public class AdminPageController implements Initializable {
     private TableColumn<?, ?> rec_col_phone;
 
     @FXML
-    private TableColumn<?, ?> rec_col_ID;
-
-    @FXML
     private TableColumn<?, ?> rec_col_uni;
-
-    @FXML
-    private TableColumn<?, ?> rec_col_status;
 
     @FXML
     private AnchorPane receptionist_form;
 
     @FXML
-    private Button register_doctor_btn;
-
-    @FXML
     private AnchorPane register_doctor_form;
 
     @FXML
-    private Button register_nurse_btn;
-
-    @FXML
     private AnchorPane register_nurse_form;
-
-    @FXML
-    private Button register_receptionist_btn;
 
     @FXML
     private AnchorPane register_receptionist_form;
@@ -372,7 +310,7 @@ public class AdminPageController implements Initializable {
     @FXML
     private PasswordField confirmNewPassword;
     @FXML
-    private TextField ChangePwdAdminID;
+    private TextField ChangePwdEmail;
 
     @FXML
     void registerNurse(ActionEvent event) {
@@ -498,7 +436,7 @@ public class AdminPageController implements Initializable {
     }
 
     public ObservableList<ReceptionistDto> getReceptionists() {
-        ObservableList<ReceptionistDto> listreceptionists = FXCollections.observableArrayList();
+        ObservableList<ReceptionistDto> listReceptionists = FXCollections.observableArrayList();
         String query = "select * from receptionists";
         Connection con = DatabaseUtil.getConnection();
         try {
@@ -506,41 +444,27 @@ public class AdminPageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 ReceptionistDto receptionistData = new ReceptionistDto(result.getString("receptionist_firstName"), result.getString("receptionist_lastName"), result.getDate("receptionist_birthdate"), result.getString("receptionist_phone"), result.getString("receptionist_email"), result.getString("receptionist_hashPassword"), result.getString("receptionist_address"), result.getString("receptionist_department"), result.getString("receptionist_university"), result.getDate("receptionist_start"), result.getDate("receptionist_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
-                listreceptionists.add(receptionistData);
+                listReceptionists.add(receptionistData);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listreceptionists;
+        return listReceptionists;
     }
 
     public void nurseDisplayData() {
-        nurse_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        nurse_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
-        nurse_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        nurse_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        nurse_col_university.setCellValueFactory(new PropertyValueFactory<>("university"));
-        nurse_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        Table.staffDisplayData(nurse_col_name, nurse_col_department, nurse_col_phone, nurse_col_email, nurse_col_university, nurse_col_address);
         nurses_table.setItems(getNurses());
     }
 
+
     public void doctorDisplayData() {
-        doctors_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        doctors_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
-        doctors_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        doctors_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        doctors_col_uni.setCellValueFactory(new PropertyValueFactory<>("university"));
-        doctors_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        Table.staffDisplayData(doctors_col_name, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_address);
         doctors_table.setItems(getDoctors());
     }
 
     public void recDisplayData() {
-        rec_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        rec_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
-        rec_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        rec_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        rec_col_uni.setCellValueFactory(new PropertyValueFactory<>("university"));
-        rec_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        Table.staffDisplayData(rec_col_name, rec_col_department, rec_col_phone, rec_col_email, rec_col_uni, rec_col_address);
         receptionist_table.setItems(getReceptionists());
     }
 
@@ -568,21 +492,21 @@ public class AdminPageController implements Initializable {
 
 
     @FXML
-    public void changePassword(ActionEvent event) {
+    public void changePassword() {
         String currentPassword = this.currentPassword.getText();
         String newPassword = this.newPassword.getText();
         String confirmNewPassword = this.confirmNewPassword.getText();
-        if (currentPassword.isBlank() || confirmNewPassword.isEmpty() || newPassword.isBlank() || confirmNewPassword.isEmpty()) {
+        if (currentPassword.isBlank() || ChangePwdEmail.getText().isEmpty() || newPassword.isBlank() || confirmNewPassword.isEmpty())
             Alerts.errorMessage("Please fill all the fields before proceeding.");
-        } else if (!newPassword.equals(confirmNewPassword)) {
+        else if (!newPassword.equals(confirmNewPassword)) {
             Alerts.errorMessage("Passwords do not match.");
         } else {
-            ChangePasswordDto change = new ChangePasswordDto(this.ChangePwdAdminID.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
+            ChangePasswordDto change = new ChangePasswordDto(this.ChangePwdEmail.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
             boolean changed = ChangePwdService.changePassword(change);
             if (changed) {
-                Alerts.successMessage("Password changed.");
+                Alerts.successMessage("Password was successfully changed.");
             } else {
-                Alerts.errorMessage("Password's were not changed");
+                Alerts.errorMessage("Password was not changed");
             }
         }
     }
