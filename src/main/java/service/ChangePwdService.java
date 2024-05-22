@@ -14,7 +14,7 @@ public class ChangePwdService {
         String storedPasswordHash = userPasswordInfo.getPasswordHash();
         String salt = userPasswordInfo.getSalt();
         if (!PasswordHasher.compareSaltedHash(ChangePasswordDto.getCurrentPassword(), salt, storedPasswordHash)) {
-            AlertMessage.errorMessage("Credentials are not correct");
+            Alerts.errorMessage("Credentials are not correct");
             return false;
         }
 

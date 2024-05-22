@@ -8,6 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class CountStaffService {
+    public static final String countNurse = "select count(nurse_id) from nurses";
+    public static final String countDoctor = "select count(doctor_id) from doctors";
+    public static final String countReceptionist = "select count(receptionist_id) from receptionists";
+    public static final String countDepartment = "select count(department_id) from departments";
+
     public static void countStaff(Label label, String query) {
         int count = 0;
         try {

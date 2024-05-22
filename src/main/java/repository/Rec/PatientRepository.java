@@ -3,6 +3,7 @@ package repository.Rec;
 import database.DatabaseUtil;
 import model.dto.CreateDepartmentDto;
 import model.dto.RecDto.CreatePatientDto;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Date;
@@ -37,7 +38,7 @@ public class PatientRepository {
             pst.setString(8, patientData.getPdoctor());
             pst.setString(9, patientData.getPnurse());
             pst.setDate(10, patientData.getPdate());
-            pst.setInt(11, patientData.getPpayment());
+            pst.setString(11, patientData.getPpayment());
 
             pst.execute();
             pst.close();

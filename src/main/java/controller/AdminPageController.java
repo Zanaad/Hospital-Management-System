@@ -19,7 +19,7 @@ import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
 
 import service.CountStaffService;
-import service.AlertMessage;
+import service.Alerts;
 import service.ChangePwdService;
 import service.DepartmentService;
 import service.Staff.DoctorService;
@@ -550,15 +550,11 @@ public class AdminPageController implements Initializable {
         department_table.setItems(getDepartments());
     }
 
-    public void nurses_count() {
-        String query = "select count(nurse_id) from nurses";
-        String query1 = "select count(doctor_id) from doctors";
-        String query2 = "select count(receptionist_id) from receptionists";
-        String query3 = "select count(department_id) from departments";
-        CountStaffService.countStaff(nurses_count, query);
-        CountStaffService.countStaff(docs_count, query1);
-        CountStaffService.countStaff(rec_count, query2);
-        CountStaffService.countStaff(dep_count, query3);
+    public void staff_count() {
+        CountStaffService.countStaff(nurses_count, CountStaffService.countNurse);
+        CountStaffService.countStaff(docs_count, CountStaffService.countDoctor);
+        CountStaffService.countStaff(rec_count, CountStaffService.countReceptionist);
+        CountStaffService.countStaff(dep_count, CountStaffService.countDepartment);
     }
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -566,7 +562,7 @@ public class AdminPageController implements Initializable {
         doctorDisplayData();
         recDisplayData();
         depDisplayData();
-        nurses_count();
+        staff_count();
 //        UpdatePwdRepository.addSaltAndHashToAdmins();
     }
 
@@ -577,16 +573,16 @@ public class AdminPageController implements Initializable {
         String newPassword = this.newPassword.getText();
         String confirmNewPassword = this.confirmNewPassword.getText();
         if (currentPassword.isBlank() || confirmNewPassword.isEmpty() || newPassword.isBlank() || confirmNewPassword.isEmpty()) {
-            AlertMessage.errorMessage("Please fill all the fields before proceeding.");
+            Alerts.errorMessage("Please fill all the fields before proceeding.");
         } else if (!newPassword.equals(confirmNewPassword)) {
-            AlertMessage.errorMessage("Passwords do not match.");
+            Alerts.errorMessage("Passwords do not match.");
         } else {
             ChangePasswordDto change = new ChangePasswordDto(this.ChangePwdAdminID.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
             boolean changed = ChangePwdService.changePassword(change);
             if (changed) {
-                AlertMessage.successMessage("Password changed.");
+                Alerts.successMessage("Password changed.");
             } else {
-                AlertMessage.errorMessage("Password's were not changed");
+                Alerts.errorMessage("Password's were not changed");
             }
         }
     }
