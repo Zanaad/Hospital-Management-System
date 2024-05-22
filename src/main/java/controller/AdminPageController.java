@@ -30,6 +30,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -75,7 +76,7 @@ public class AdminPageController implements Initializable {
     private DatePicker docBirthdate;
 
     @FXML
-    private ComboBox<?> docDep;
+    private ComboBox<String> docDep;
 
     @FXML
     private TextField docEmail;
@@ -157,7 +158,7 @@ public class AdminPageController implements Initializable {
     private DatePicker nurseBirthdate;
 
     @FXML
-    private ComboBox<?> nurseDep;
+    private ComboBox<String> nurseDep;
 
     @FXML
     private TextField nurseEmail;
@@ -232,7 +233,7 @@ public class AdminPageController implements Initializable {
     private DatePicker recBirthdate;
 
     @FXML
-    private ComboBox<?> recDep;
+    private ComboBox<String> recDep;
 
     @FXML
     private TextField recEmail;
@@ -487,6 +488,7 @@ public class AdminPageController implements Initializable {
         recDisplayData();
         depDisplayData();
         staff_count();
+        loadDepartmentNames();
 //        UpdatePwdRepository.addSaltAndHashToAdmins();
     }
 
@@ -509,6 +511,15 @@ public class AdminPageController implements Initializable {
                 Alerts.errorMessage("Password was not changed");
             }
         }
+    }
+
+
+    private void loadDepartmentNames() {
+        List<String> departmentNames = DepartmentService.getAllDepartmentNames();
+        ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
+        docDep.setItems(observableList);
+        recDep.setItems(observableList);
+        nurseDep.setItems(observableList);
     }
 }
 
