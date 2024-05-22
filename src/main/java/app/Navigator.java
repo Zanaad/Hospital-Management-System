@@ -4,7 +4,9 @@ import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.util.Locale;
@@ -13,7 +15,7 @@ import java.util.ResourceBundle;
 import java.io.IOException;
 
 public class Navigator {
-    public final static String AdminPage = "AdminPage.fxml";
+    public final static String AdminMainForm = "AdminMainForm.fxml";
     public final static String ReceptionistPage = "ReceptionistPage.fxml";
     public final static String NursePage = "NursePage.fxml";
 
@@ -30,6 +32,15 @@ public class Navigator {
         stage.show();
     }
 
+    public static void loadContent(AnchorPane contentPane, String fxmlFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(fxmlFile));
+            Node content = loader.load();
+            contentPane.getChildren().setAll(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private static Pane loadPane(String form) {
 
