@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
@@ -17,12 +18,14 @@ import model.dto.RecDto.PatientDto;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ResourceBundle;
 
-public class ReceptionistPageController
+public class ReceptionistPageController implements Initializable
 {
     @FXML
     private Button account_btn;
@@ -235,6 +238,7 @@ public class ReceptionistPageController
         PatientDto patient = new PatientDto(this.patFirstName.getText(), this.patLastName.getText(), birthdate, this.patPhone.getText(), this.patEmail.getText(), this.patAddress.getText(), (String) this.patDep.getValue(),(String) this.patDoctor.getValue(),(String) this.patNurse.getValue(),date, this.patPayment.getText());
         boolean patientCreated = PatientService.createPatient(patient);
         if (patientCreated) {
+            patientDisplayData(); // Refresh the TableView
             Navigator.navigate(event, Navigator.ReceptionistPage);
         }
     }
@@ -247,6 +251,7 @@ public class ReceptionistPageController
         AppointmentDto appointment = new AppointmentDto(this.appID.getText(),this.appName.getText(), this.appLastName.getText(),this.appDesc.getText(),(String) this.appDep.getValue(),(String) this.appDoctor.getValue(),(String) this.appNurse.getValue() ,this.appPhone.getText(),this.appAddress.getText(), date, this.appHour.getText());
         boolean appointmentCreated = AppointmentService.createAppointment(appointment);
         if (appointmentCreated) {
+            appointmentDisplayData(); // Refresh the TableView
             Navigator.navigate(event, Navigator.ReceptionistPage);
         }
     }
@@ -332,6 +337,9 @@ public class ReceptionistPageController
     }
 
 
-
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        patientDisplayData();
+        appointmentDisplayData();
+    }
 }
