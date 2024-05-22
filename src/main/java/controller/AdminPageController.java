@@ -32,6 +32,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 
@@ -495,6 +496,7 @@ public class AdminPageController implements Initializable {
         depDisplayData();
         staff_count();
         loadDepartmentNames();
+        this.translate();
 //        UpdatePwdRepository.addSaltAndHashToAdmins();
     }
 
@@ -528,7 +530,19 @@ public class AdminPageController implements Initializable {
     }
 
     public void handleLanguage(ActionEvent event) {
+        Locale defaultLocale = Locale.getDefault();
+        if (defaultLocale.getLanguage().equals("en")) {
+            Locale.setDefault(new Locale("sq"));
+        } else {
+            Locale.setDefault(Locale.ENGLISH);
+        }
+        this.translate();
+    }
 
+    private void translate() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
+        this.dashboard_btn.setText(rb.getString("Dashboard"));
     }
 }
 
