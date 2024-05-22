@@ -17,22 +17,5 @@ public class DepartmentService {
         return DepartmentRepository.createDepartment(createDepartmentDto);
     }
 
-    public static List<String> getAllDepartmentNames() {
-        List<String> departments = new ArrayList<>();
-        String query = "SELECT department_name FROM departments";
 
-        try {
-            Connection connection = DatabaseUtil.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                departments.add(resultSet.getString("department_name"));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return departments;
-    }
 }
