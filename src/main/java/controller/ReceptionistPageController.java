@@ -1,11 +1,37 @@
 package controller;
 
+import app.Navigator;
+import database.DatabaseUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import model.dto.DepartmentDto;
+import model.dto.RecDto.AppointmentDto;
+import model.dto.RecDto.PatientDto;
+import model.dto.StaffDto.DoctorDto;
+import model.dto.StaffDto.NurseDto;
+import model.dto.StaffDto.ReceptionistDto;
+
+import service.DepartmentService;
+import service.Rec.AppointmentService;
+import service.Rec.PatientService;
+import service.Staff.DoctorService;
+import service.Staff.NurseService;
+import service.Staff.ReceptionistService;
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ResourceBundle;
 
 public class ReceptionistPageController
 {
@@ -146,7 +172,7 @@ public class ReceptionistPageController
     private TextField appName;
 
     @FXML
-    private TextField LastName;
+    private TextField appLastName;
 
     @FXML
     private RadioButton appMale ;
@@ -211,7 +237,30 @@ public class ReceptionistPageController
     @FXML
     private Button addApp_btn;
 
+    @FXML
+    public void registerPatient(ActionEvent event) {
 
+        Date birthdate = Date.valueOf(this.patBirthdate.getValue());
+        Date date = Date.valueOf(this.patDate.getValue());
+
+        PatientDto patient = new PatientDto(this.patFirstName.getText(), this.patLastName.getText(), birthdate, this.patPhone.getText(), this.patEmail.getText(), this.patAddress.getText(), (String) this.patDep.getValue(),(String) this.patDoctor.getValue(),(String) this.patNurse.getValue(),date, this.patPayment.getText());
+        boolean patientCreated = PatientService.createPatient(patient);
+        if (patientCreated) {
+            Navigator.navigate(event, Navigator.ReceptionistPage);
+        }
+    }
+
+    @FXML
+    public void registerAppointment(ActionEvent event) {
+
+        Date date = Date.valueOf(this.patDate.getValue());
+
+        AppointmentDto appointment = new AppointmentDto(this.appID.getText(),this.appName.getText(), this.appLastName.getText(),this.appDesc.getText(),(String) this.appDep.getValue(),(String) this.appDoctor.getValue(),(String) this.appNurse.getValue() ,this.appPhone.getText(),this.appAddress.getText(), date, this.appHour.getText());
+        boolean appointmentCreated = AppointmentService.createAppointment(appointment);
+        if (appointmentCreated) {
+            Navigator.navigate(event, Navigator.ReceptionistPage);
+        }
+    }
 
     @FXML
     void switchForm(ActionEvent event) {
@@ -230,6 +279,6 @@ public class ReceptionistPageController
 
     }
 
-    public void registerPatient(ActionEvent event) {
-    }
+
+
 }

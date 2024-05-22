@@ -3,7 +3,7 @@ import java.sql.Date;
 
 public class AppointmentDto
 {
-    private int AppID;
+    private String AppID;
     private String PfirstName;
     private String PlastName;
     private String Adescription;
@@ -15,7 +15,7 @@ public class AppointmentDto
     private Date Pdate;
     private String Phour;
 
-    public AppointmentDto(int AppID,String PfirstName,String PlastName,String Adescription,String Pdepartment,String Pdoctor,String Pnurse, String Pphone, String Paddress, Date Pdate, String Phour) {
+    public AppointmentDto(String AppID, String PfirstName, String PlastName, String Adescription, String Pdepartment, String Pdoctor, String Pnurse, String Pphone, String Paddress, Date Pdate, String Phour) {
         this.AppID = AppID;
         this.PfirstName = PfirstName;
         this.PlastName = PlastName;
@@ -28,7 +28,7 @@ public class AppointmentDto
         this.Pdate = Pdate;
         this.Phour = Phour;
     }
-    public int getAppID() { return AppID; }
+    public String getAppID() { return AppID; }
     public String getPFirstName() {
         return PfirstName;
     }

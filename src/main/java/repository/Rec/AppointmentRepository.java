@@ -30,7 +30,7 @@ public class AppointmentRepository {
                 """;
         try {
             PreparedStatement pst = conn.prepareStatement(query);
-            pst.setInt(1, appointmentData.getAppID());
+            pst.setString(1, appointmentData.getAppID());
             pst.setString(2, appointmentData.getPFirstName());
             pst.setString(3, appointmentData.getPLastName());
             pst.setString(4, appointmentData.getAdescription());

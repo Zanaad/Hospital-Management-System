@@ -14,9 +14,9 @@ public class PatientDto
     private String Pdoctor;
     private String Pnurse;
     private Date Pdate;
-    private int Ppayment;
+    private String Ppayment;
 
-    public PatientDto(String PfirstName, String PlastName, Date Pbirthdate, String Pphone, String Pemail,String Pdepartment,String Pdoctor,String Pnurse, String Paddress, java.sql.Date Pdate, int Ppayment) {
+    public PatientDto(String PfirstName, String PlastName, Date Pbirthdate, String Pphone, String Pemail, String Pdepartment, String Pdoctor, String Pnurse, String Paddress, Date Pdate, String Ppayment) {
         this.PfirstName = PfirstName;
         this.PlastName = PlastName;
         this.Pbirthdate = Pbirthdate;
@@ -59,7 +59,7 @@ public class PatientDto
     public Date getPdate() {
         return Pdate;
     }
-    public int getPpayment() {
+    public String getPpayment() {
         return Ppayment;
     }
 
