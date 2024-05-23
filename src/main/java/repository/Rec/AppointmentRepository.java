@@ -24,7 +24,8 @@ public class AppointmentRepository {
                                           appointment_address,
                                           appointment_date,
                                           appointment_hour 
-                
+               
+               
                 )
                 value(?,?,?,?,?,?,?,?,?,?,?)
                 """;
