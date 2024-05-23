@@ -60,7 +60,7 @@
                             style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Appointments"
                             textFill="WHITE">
                         <graphic>
-                          <!--  <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" size="1.5em" text=""/>-->
+                          <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" size="1.5em" text=""/>
                         </graphic>
                         <font>
                             <Font name="Arial" size="13.0"/>
@@ -71,7 +71,7 @@
                             style="-fx-background-color: transparent; -fx-alignment: center_left;" text="Dashboard"
                             textFill="WHITE">
                         <graphic>
-                           <!-- <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.5em"/>-->
+                            <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.5em"/>
                         </graphic>
                         <font>
                             <Font name="Arial" size="13.0"/>
@@ -81,21 +81,21 @@
                             onAction="#switchForm" prefHeight="40.0" prefWidth="150.0"
                             style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Patients"
                             textFill="WHITE">
-                    <!-- <graphic>
+                     <graphic>
                        <FontAwesomeIcon fill="WHITE" glyphName="USER" size="1.5em"/>
-                    </graphic> -->
+                    </graphic>
                     <font>
                         <Font name="Arial" size="13.0"/>
                     </font>
                 </Button>
-               <!-- <FontAwesomeIcon fill="WHITE" glyphName="STETHOSCOPE" layoutX="32.0" layoutY="67.0" size="4em"
+                <FontAwesomeIcon fill="WHITE" glyphName="STETHOSCOPE" layoutX="32.0" layoutY="67.0" size="4em"
                                  text=""/>
                 <Line endX="88.0" layoutX="113.0" layoutY="87.0" startX="-100.0" stroke="WHITE"/>
                 <Label layoutX="88.0" layoutY="34.0" text="HMS" textFill="WHITE">
                     <font>
                         <Font name="Arial Bold" size="28.0"/>
                     </font>
-                </Label>-->
+                </Label>
                 </AnchorPane>
             </left>
             <center>
@@ -307,13 +307,13 @@
                                     <Font size="20.0"/>
                                 </font>
                             </Label>
-                            <!--<FontAwesomeIcon glyphName="EDIT" layoutX="124.0" layoutY="37.0" size="2em"/>
+                            <FontAwesomeIcon glyphName="EDIT" layoutX="124.0" layoutY="37.0" size="2em"/>
                             <Label layoutX="81.0" layoutY="98.0" prefHeight="21.0" prefWidth="109.0"
                                    text="Receptionist ID:">
                                 <font>
                                     <Font size="15.0"/>
                                 </font>
-                            </Label>-->
+                            </Label>
                             <TextField fx:id="recID" layoutX="189.0" layoutY="96.0" prefHeight="25.0" prefWidth="183.0"
                                        AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="193.0"
                                        AnchorPane.topAnchor="96.0"/>
@@ -392,12 +392,12 @@
                                             style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);"
                                             text="Add" textFill="WHITE" AnchorPane.bottomAnchor="52.39999999999998"
                                             AnchorPane.leftAnchor="126.0">
-                                       <!-- <graphic>
+                                        <graphic>
                                             <FontAwesomeIcon fill="WHITE" glyphName="PLUS"/>
                                         </graphic>
                                         <font>
                                             <Font size="14.0"/>
-                                        </font>-->
+                                        </font>
                                     </Button>
                                 </children>
                             </AnchorPane>
