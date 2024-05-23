@@ -162,7 +162,7 @@ public class AddDoctorController implements Initializable {
         String firstName = filterDocName.getText();
         String email = filterDocEmail.getText();
 
-        UserFilter filter = new UserFilter(firstName, email);
+        UserFilter filter = new UserFilter(firstName, email, "doctor");
         List<DoctorDto> filteredDoctors = DoctorService.filter(filter);
         updateDoctorTable(filteredDoctors);
     }
