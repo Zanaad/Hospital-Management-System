@@ -53,6 +53,8 @@ public class AdminDashboardController implements Initializable {
         CountStaffService.countStaff(docs_count, CountStaffService.countDoctor);
         CountStaffService.countStaff(rec_count, CountStaffService.countReceptionist);
         CountStaffService.countStaff(dep_count, CountStaffService.countDepartment);
+        CountStaffService.countStaff(patients_count, CountStaffService.countPatients);
+        CountStaffService.countStaff(app_count, CountStaffService.countAppointments);
     }
 
     @Override
