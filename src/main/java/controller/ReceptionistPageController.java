@@ -12,6 +12,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import model.Appointment;
 import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
@@ -197,7 +198,7 @@ public class ReceptionistPageController implements Initializable {
     private TextField appHour;
 
     @FXML
-    private TableView<AppointmentDto> app_tableView;
+    private TableView<Appointment> app_tableView;
 
     @FXML
     private TableColumn<?, ?> app_col_appID;
@@ -290,15 +291,15 @@ public class ReceptionistPageController implements Initializable {
     }
 
 
-    public ObservableList<AppointmentDto> getAppointments() {
-        ObservableList<AppointmentDto> listAppointments = FXCollections.observableArrayList();
+    public ObservableList<Appointment> getAppointments() {
+        ObservableList<Appointment> listAppointments = FXCollections.observableArrayList();
         String query = "select * from appointments";
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                AppointmentDto appointmentData = new AppointmentDto(result.getString("appointment_id"), result.getString("appointment_firstName"), result.getString("appointment_lastName"), result.getString("appointment_description"), result.getString("appointment_department"), result.getString("appointment_doctor"), result.getString("appointment_nurse"), result.getString("appointment_phone"), result.getString("appointment_address"), result.getDate("appointment_date"), result.getString("appointment_hour"));
+                Appointment appointmentData = new Appointment(result.getString("appointment_id"), result.getString("appointment_firstName"),result.getString("appointment_department"), result.getString("appointment_doctor"), result.getString("appointment_nurse"), result.getString("appointment_phone"), result.getString("appointment_address"), result.getDate("appointment_date"), result.getString("appointment_hour"));
                 listAppointments.add(appointmentData);
             }
         } catch (Exception e) {
@@ -323,15 +324,15 @@ public class ReceptionistPageController implements Initializable {
 
 
     public void appointmentDisplayData() {
-        app_col_appID.setCellValueFactory(new PropertyValueFactory<>("appointment_id"));
-        app_col_name.setCellValueFactory(new PropertyValueFactory<>("appointment_firstName"));
-        app_col_department.setCellValueFactory(new PropertyValueFactory<>("appointment_department"));
-        app_col_doctor.setCellValueFactory(new PropertyValueFactory<>("appointment_doctor"));
-        app_col_nurse.setCellValueFactory(new PropertyValueFactory<>("appointment_nurse"));
-        app_col_phone.setCellValueFactory(new PropertyValueFactory<>("appointment_phone"));
-        app_col_address.setCellValueFactory(new PropertyValueFactory<>("appointment_address"));
-        app_col_date.setCellValueFactory(new PropertyValueFactory<>("appointment_date"));
-        app_col_hour.setCellValueFactory(new PropertyValueFactory<>("appointment_hour"));
+        app_col_appID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        app_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        app_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
+        app_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
+        app_col_nurse.setCellValueFactory(new PropertyValueFactory<>("nurse"));
+        app_col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        app_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        app_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        app_col_hour.setCellValueFactory(new PropertyValueFactory<>("hour"));
         app_tableView.setItems(getAppointments());
 
     }
