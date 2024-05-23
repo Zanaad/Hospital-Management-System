@@ -39,6 +39,8 @@ public class AddNurseController implements Initializable {
 
     @FXML
     private TextField nurseAddress;
+    @FXML
+    private TextField nurseID;
 
     @FXML
     private TextField nurseBank;
@@ -121,7 +123,7 @@ public class AddNurseController implements Initializable {
         Date startDate = Date.valueOf(this.nurseStart.getValue());
         Date endDate = Date.valueOf(this.nurseEnd.getValue());
 
-        NurseDto staff = new NurseDto(this.nurseFirstName.getText(), this.nurseLastName.getText(), birthdate, this.nursePhone.getText(), this.nurseEmail.getText(), this.nursePassword.getText(), this.nurseAddress.getText(), (String) this.nurseDep.getValue(), this.nurseUni.getText(), startDate, endDate, this.nurseBank.getText(), this.nurseAccount.getText(), this.nurseRoutingNr.getText());
+        NurseDto staff = new NurseDto(this.nurseID.getText(), this.nurseFirstName.getText(), this.nurseLastName.getText(), birthdate, this.nursePhone.getText(), this.nurseEmail.getText(), this.nursePassword.getText(), this.nurseAddress.getText(), (String) this.nurseDep.getValue(), this.nurseUni.getText(), startDate, endDate, this.nurseBank.getText(), this.nurseAccount.getText(), this.nurseRoutingNr.getText());
         boolean staffCreated = NurseService.createNurse(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminMainForm);

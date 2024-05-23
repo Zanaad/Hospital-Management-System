@@ -36,7 +36,8 @@ public class AddRecController implements Initializable {
 
     @FXML
     private TextField recAccount;
-
+    @FXML
+    private TextField recID;
     @FXML
     private TextField recAddress;
 
@@ -121,7 +122,7 @@ public class AddRecController implements Initializable {
         Date startDate = Date.valueOf(this.recStart.getValue());
         Date endDate = Date.valueOf(this.recEnd.getValue());
 
-        ReceptionistDto staff = new ReceptionistDto(this.recFirstName.getText(), this.recLastName.getText(), birthdate, this.recPhone.getText(), this.recEmail.getText(), this.recPassword.getText(), this.recAddress.getText(), (String) this.recDep.getValue(), this.recUni.getText(), startDate, endDate, this.recBank.getText(), this.recAccount.getText(), this.recRoutingNr.getText());
+        ReceptionistDto staff = new ReceptionistDto(this.recID.getText(), this.recFirstName.getText(), this.recLastName.getText(), birthdate, this.recPhone.getText(), this.recEmail.getText(), this.recPassword.getText(), this.recAddress.getText(), (String) this.recDep.getValue(), this.recUni.getText(), startDate, endDate, this.recBank.getText(), this.recAccount.getText(), this.recRoutingNr.getText());
         boolean staffCreated = ReceptionistService.createReceptionist(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminMainForm);

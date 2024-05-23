@@ -1,7 +1,6 @@
 package controller;
 
 import app.Navigator;
-import database.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,12 +16,9 @@ import repository.Staff.DoctorRepository;
 import service.Staff.DoctorService;
 import service.Table;
 
+import javax.print.Doc;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -45,7 +41,8 @@ public class AddDoctorController implements Initializable {
 
     @FXML
     private ComboBox<String> docDep;
-
+    @FXML
+    private TextField docID;
     @FXML
     private TextField docEmail;
 
@@ -104,7 +101,7 @@ public class AddDoctorController implements Initializable {
     private AnchorPane doctors_form;
 
     @FXML
-    private TableView<Staff> doctors_table;
+    private TableView<DoctorDto> doctors_table;
 
     @FXML
     private Button filter_doctor_btn;
@@ -142,7 +139,7 @@ public class AddDoctorController implements Initializable {
         Date startDate = Date.valueOf(this.docStart.getValue());
         Date endDate = Date.valueOf(this.docEnd.getValue());
 
-        DoctorDto staff = new DoctorDto(this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), this.docPassword.getText(), this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
+        DoctorDto staff = new DoctorDto(this.docID.getText(), this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), this.docPassword.getText(), this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
         boolean staffCreated = DoctorService.createDoctor(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminMainForm);
@@ -150,7 +147,7 @@ public class AddDoctorController implements Initializable {
     }
 
     //Adding doctors in the table
-    public ObservableList<Staff> getDoctors() {
+    public ObservableList<DoctorDto> getDoctors() {
         return FXCollections.observableArrayList(DoctorRepository.getAllDoctors());
     }
 
@@ -166,13 +163,13 @@ public class AddDoctorController implements Initializable {
         String email = filterDocEmail.getText();
 
         UserFilter filter = new UserFilter(firstName, email);
-        List<Staff> filteredDoctors = DoctorService.filter(filter);
+        List<DoctorDto> filteredDoctors = DoctorService.filter(filter);
         updateDoctorTable(filteredDoctors);
     }
 
 
-    public void updateDoctorTable(List<Staff> doctors) {
-        ObservableList<Staff> listDoctors = FXCollections.observableArrayList(doctors);
+    public void updateDoctorTable(List<DoctorDto> doctors) {
+        ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList(doctors);
         doctors_table.setItems(listDoctors);
     }
 

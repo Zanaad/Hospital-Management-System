@@ -22,7 +22,7 @@ select *
 from admins;
 create table doctors
 (
-    doctor_id           int primary key auto_increment,
+    doctor_id           nvarchar(100) primary key,
     doctor_firstName    nvarchar(100),
     doctor_lastName     nvarchar(100),
     doctor_birthdate    date,
@@ -117,7 +117,8 @@ create table appointments
     appointment_hour      nvarchar(100)
 
 );
-
+select * from appointments;
+select * from patients;
 
 create table operations (
     operationID              int primary key auto_increment,

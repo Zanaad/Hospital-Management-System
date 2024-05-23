@@ -17,6 +17,7 @@ public class DoctorService {
         String passwordHash = PasswordHasher.generateSaltedHash(password, salt);
 
         CreateDoctorDto createDoctorDto = new CreateDoctorDto(
+                doctorData.getId(),
                 doctorData.getFirstName(),
                 doctorData.getLastName(),
                 doctorData.getBirthdate(),
@@ -36,7 +37,7 @@ public class DoctorService {
         return DoctorRepository.createDoctor(createDoctorDto);
     }
 
-    public static List<Staff> filter(UserFilter filter) {
+    public static List<DoctorDto> filter(UserFilter filter) {
         return DoctorRepository.getByFilter(filter);
     }
 }

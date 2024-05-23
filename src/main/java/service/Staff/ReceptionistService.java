@@ -12,6 +12,7 @@ public class ReceptionistService {
         String passwordHash = PasswordHasher.generateSaltedHash(password, salt);
 
         CreateReceptionistDto createReceptionistDto = new CreateReceptionistDto(
+                receptionistData.getId(),
                 receptionistData.getFirstName(),
                 receptionistData.getLastName(),
                 receptionistData.getBirthdate(),
