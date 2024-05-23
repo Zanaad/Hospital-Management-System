@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.ReceptionistDto;
+import model.filter.ReceptionistFilter;
 import model.filter.UserFilter;
 import repository.DepartmentRepository;
 import repository.Staff.ReceptionistRepository;
@@ -37,7 +38,8 @@ public class AddRecController implements Initializable {
 
     @FXML
     private TextField filterRecName;
-
+    @FXML
+    private TextField filterRecID;
     @FXML
     private TextField recAccount;
 
@@ -166,11 +168,12 @@ public class AddRecController implements Initializable {
     }
 
     public void handleRecFilter(ActionEvent event) {
-//        String firstName = filterRecName.getText();
-//        String email = filterRecEmail.getText();
-//        UserFilter filter = new UserFilter(firstName, email);
-//        List<ReceptionistDto> filteredRecs = ReceptionistService.filter(filter);
-//        updateRecTable(filteredRecs);
+        String firstName = filterRecName.getText();
+        String email = filterRecEmail.getText();
+        String id = filterRecID.getText();
+        ReceptionistFilter filter = new ReceptionistFilter(firstName, email, id);
+        List<ReceptionistDto> filteredRecs = ReceptionistService.filter(filter);
+        updateRecTable(filteredRecs);
     }
 
     public void updateRecTable(List<ReceptionistDto> recs) {
