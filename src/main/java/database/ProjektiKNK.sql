@@ -22,71 +22,74 @@ select *
 from admin;
 create table doctors
 (
-    doctor_id           nvarchar(100) primary key,
-    doctor_firstName    nvarchar(100),
-    doctor_lastName     nvarchar(100),
-    doctor_birthdate    date,
-    doctor_phone        nvarchar(100),
-    doctor_email        nvarchar(100) not null,
-    doctor_hashPassword nvarchar(64) not null,
-    doctor_salt         nvarchar(32) not null,
-    doctor_address      nvarchar(150),
-    doctor_department   nvarchar(100),
-    doctor_university   nvarchar(100),
-    doctor_start        date,
-    doctor_end          date,
+    id           nvarchar(100) primary key,
+    firstName    nvarchar(100),
+    lastName     nvarchar(100),
+    birthdate    date,
+    phone        nvarchar(100),
+    email        nvarchar(100) not null,
+    hashPassword nvarchar(64) not null,
+    salt         nvarchar(32) not null,
+    address      nvarchar(150),
+    department   nvarchar(100),
+    university   nvarchar(100),
+    contractStart        date,
+    contractEnd          date,
     bankName            nvarchar(100),
     bankAccount         nvarchar(100),
     routingNumber       nvarchar(100)
 );
 create table receptionists
 (
-    receptionist_id           nvarchar(100) primary key,
-    receptionist_firstName    nvarchar(100),
-    receptionist_lastName     nvarchar(100),
-    receptionist_birthdate    date,
-    receptionist_phone        nvarchar(100),
-    receptionist_email        nvarchar(100) not null,
-    receptionist_hashPassword nvarchar(64) not null,
-    receptionist_salt         nvarchar(32) not null,
-    receptionist_address      nvarchar(150),
-    receptionist_department   nvarchar(100),
-    receptionist_university   nvarchar(100),
-    receptionist_start        date,
-    receptionist_end          date,
+    id           nvarchar(100) primary key,
+    firstName    nvarchar(100),
+    lastName     nvarchar(100),
+    birthdate    date,
+    phone        nvarchar(100),
+    email        nvarchar(100) not null,
+    hashPassword nvarchar(64) not null,
+    salt         nvarchar(32) not null,
+    address      nvarchar(150),
+    department   nvarchar(100),
+    university   nvarchar(100),
+    contractStart        date,
+    contractEnd          date,
     bankName                  nvarchar(100),
     bankAccount               nvarchar(100),
     routingNumber             nvarchar(100)
 );
 create table nurses
 (
-    nurse_id           nvarchar(100) primary key,
-    nurse_firstName    nvarchar(100),
-    nurse_lastName     nvarchar(100),
-    nurse_birthdate    date,
-    nurse_phone        nvarchar(100),
-    nurse_email        nvarchar(100) not null,
-    nurse_hashPassword nvarchar(64) not null,
-    nurse_salt         nvarchar(32) not null,
-    nurse_address      nvarchar(150),
-    nurse_department   nvarchar(100),
-    nurse_university   nvarchar(100),
-    nurse_start        date,
-    nurse_end          date,
+    id           nvarchar(100) primary key,
+    firstName    nvarchar(100),
+    lastName     nvarchar(100),
+    birthdate    date,
+    phone        nvarchar(100),
+    email        nvarchar(100) not null,
+    hashPassword nvarchar(64) not null,
+    salt         nvarchar(32) not null,
+    address      nvarchar(150),
+    department   nvarchar(100),
+    university   nvarchar(100),
+    contractStart        date,
+    contractEnd          date,
     bankName           nvarchar(100),
     bankAccount        nvarchar(100),
     routingNumber      nvarchar(100)
 );
-
+drop table nurses;
+drop table doctors;
+drop table receptionists;
 create table departments
 (
     department_id          nvarchar(100) primary key,
     department_name        nvarchar(100),
     department_description text,
-    nrDoctors nvarchar(200),
-    nrNurses nvarchar(200)
+    nrDoctors int,
+    nrNurses int
 );
 
+select * from departments;
 create table patients
 (
     patient_id        int primary key auto_increment,
@@ -102,7 +105,7 @@ create table patients
     patient_date     date,
     patient_payment   nvarchar(100)
 );
-
+select * from doctors;
 create table appointments
 (
     appointment_id        nvarchar(100),
@@ -120,7 +123,7 @@ create table appointments
 );
 
 create table operations (
-    operationID              nvarchar(100) primary key not null,
+    operationID              int primary key auto_increment,
     opDescription            nvarchar(100),
     opPatient                nvarchar(100),
     opDoctor                 nvarchar(100),
@@ -146,7 +149,7 @@ create table deaths (
 );
 
 create table others (
-    otherID                 nvarchar(100) primary key not null,
+    other_ID                int primary key auto_increment,
     other_description       nvarchar(100),
     other_patient           nvarchar(100),
     other_date              date,
@@ -181,7 +184,4 @@ select *
 from others;
 select *
 from donors;
-select * from operations;
-
 drop database hospitalmanagementsystem;
-describe others;
