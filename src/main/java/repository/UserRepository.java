@@ -139,6 +139,7 @@ public class UserRepository {
         return null;
     }
 
+
     private static User extractUserFromResultSet(ResultSet rs) throws SQLException {
 
         String email = rs.getString("email");

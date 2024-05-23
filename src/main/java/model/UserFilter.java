@@ -8,6 +8,7 @@ abstract  class Filter {
     public abstract String buildQuery();
 }
 
+
 public class UserFilter extends Filter{
     private String userName;
     private LocalDateTime from;
