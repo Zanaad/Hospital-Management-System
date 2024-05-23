@@ -180,7 +180,7 @@ public class ReceptionistPageController implements Initializable {
     private ComboBox<?> appDep;
 
     @FXML
-    private ComboBox<?> appDoctor;
+    private ComboBox<?> appDoc;
 
     @FXML
     private ComboBox<?> appNurse;
@@ -248,7 +248,7 @@ public class ReceptionistPageController implements Initializable {
 
         Date date = Date.valueOf(this.appDate.getValue());
 
-        AppointmentDto appointment = new AppointmentDto(this.appID.getText(), this.appName.getText(), this.appLastName.getText(), this.appDesc.getText(), (String) this.appDep.getValue(), (String) this.appDoctor.getValue(), (String) this.appNurse.getValue(), this.appPhone.getText(), this.appAddress.getText(), date, this.appHour.getText());
+        AppointmentDto appointment = new AppointmentDto(this.appID.getText(), this.appName.getText(), this.appLastName.getText(), this.appDesc.getText(), (String) this.appDep.getValue(), (String) this.appDoc.getValue(), (String) this.appNurse.getValue(), this.appPhone.getText(), this.appAddress.getText(), date, this.appHour.getText());
         boolean appointmentCreated = AppointmentService.createAppointment(appointment);
         if (appointmentCreated) {
             Navigator.navigate(event, Navigator.ReceptionistPage);
