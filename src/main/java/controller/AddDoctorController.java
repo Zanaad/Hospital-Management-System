@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.DoctorDto;
+import model.filter.DoctorFilter;
 import model.filter.UserFilter;
 import repository.DepartmentRepository;
 import repository.Staff.DoctorRepository;
@@ -31,6 +32,8 @@ public class AddDoctorController implements Initializable {
 
     @FXML
     private TextField docAddress;
+    @FXML
+    private TextField docSpecialty;
 
     @FXML
     private TextField docBank;
@@ -59,6 +62,8 @@ public class AddDoctorController implements Initializable {
 
     @FXML
     private TextField docPhone;
+    @FXML
+    private TextField filterDocSpecialty;
 
     @FXML
     private TextField docRoutingNr;
@@ -94,7 +99,7 @@ public class AddDoctorController implements Initializable {
     private TableColumn<?, ?> doctors_col_phone;
 
     @FXML
-    private TableColumn<?, ?> doctors_col_uni;
+    private TableColumn<?, ?> doctors_col_specialty;
 
     @FXML
     private AnchorPane doctors_form;
@@ -152,7 +157,7 @@ public class AddDoctorController implements Initializable {
     }
 
     public void doctorDisplayData() {
-        Table.staffDisplayData(doctors_col_ID, doctors_col_name, doctors_col_surname, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_address);
+        Table.staffDisplayData(doctors_col_ID, doctors_col_name, doctors_col_surname, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_specialty, doctors_col_address);
         doctors_table.setItems(getDoctors());
     }
 
@@ -161,7 +166,8 @@ public class AddDoctorController implements Initializable {
     void handleDoctorFilter(ActionEvent event) {
         String firstName = filterDocName.getText();
         String email = filterDocEmail.getText();
-        UserFilter filter = new UserFilter(firstName, email, "doctor");
+        String specialty = filterDocSpecialty.getText();
+        DoctorFilter filter = new DoctorFilter(firstName, email, specialty);
         List<DoctorDto> filteredDoctors = DoctorService.filter(filter);
         updateDoctorTable(filteredDoctors);
     }
