@@ -7,16 +7,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.Staff;
 import model.dto.StaffDto.DoctorDto;
+import model.filter.UserFilter;
 import repository.DepartmentRepository;
 import service.Staff.DoctorService;
 import service.Table;
@@ -117,6 +112,10 @@ public class AddDoctorController implements Initializable {
 
     @FXML
     private AnchorPane register_doctor_form;
+    @FXML
+    private TextField filterDocName;
+    @FXML
+    private TextField filterDocEmail;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -146,6 +145,16 @@ public class AddDoctorController implements Initializable {
 
     }
 
+    @FXML
+    void handleDoctorFilter(ActionEvent event) {
+        String firstName = filterDocName.getText();
+        String email = filterDocEmail.getText();
+
+        UserFilter filter = new UserFilter(firstName, email);
+        List<Staff> filteredDoctors = DoctorService.filter(filter);
+        updateDoctorTable(filteredDoctors);
+    }
+
     public ObservableList<Staff> getDoctors() {
         ObservableList<Staff> listDoctors = FXCollections.observableArrayList();
         String query = "select * from doctors";
@@ -168,10 +177,14 @@ public class AddDoctorController implements Initializable {
         doctors_table.setItems(getDoctors());
     }
 
+    public void updateDoctorTable(List<Staff> doctors) {
+        ObservableList<Staff> listDoctors = FXCollections.observableArrayList(doctors);
+        doctors_table.setItems(listDoctors);
+    }
+
     private void loadDepartmentNames() {
         List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
         docDep.setItems(observableList);
     }
-
 }

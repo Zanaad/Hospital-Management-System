@@ -20,9 +20,9 @@
          <children>
             <AnchorPane layoutX="253.0" layoutY="-36.0" prefHeight="560.0" prefWidth="886.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TextField layoutX="29.0" layoutY="34.0" promptText="Name" />
-                  <TextField layoutX="200.0" layoutY="34.0" promptText="Email" />
-                  <Button layoutX="738.0" layoutY="34.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Filter" textFill="WHITE" />
+                  <TextField fx:id="filterRecName" layoutX="29.0" layoutY="34.0" promptText="Name" />
+                  <TextField fx:id="filterRecEmail" layoutX="200.0" layoutY="34.0" promptText="Email" />
+                  <Button layoutX="738.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleRecFilter" prefHeight="26.0" prefWidth="118.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Filter" textFill="WHITE" />
                   <ScrollPane layoutX="29.0" layoutY="70.0" prefHeight="419.0" prefWidth="828.0">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="828.0">
