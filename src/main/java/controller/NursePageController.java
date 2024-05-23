@@ -19,14 +19,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import model.Births;
 import model.Deaths;
 import model.Operation;
+import model.Others;
 import model.dto.RecDto.PatientDto;
 import model.dto.ReportDto.*;
 import service.Rec.PatientService;
-import service.Report.deathService;
-import service.Report.donorService;
-import service.Report.operationService;
+import service.Report.*;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -86,7 +86,7 @@ public class NursePageController implements Initializable {
     private TableColumn<?, ?> bed_col_type;
 
     @FXML
-    private TableView<BirthsDto> birth_table;
+    private TableView<Births> birth_table;
 
     @FXML
     private TableColumn<?, ?> births_col_birthID;
@@ -200,7 +200,7 @@ public class NursePageController implements Initializable {
     private TableColumn<?, ?> operations_col_time;
 
     @FXML
-    private TableView<OthersDto> other_table;
+    private TableView<Others> other_table;
 
     @FXML
     private TableColumn<?, ?> others_col_date;
@@ -407,6 +407,63 @@ public class NursePageController implements Initializable {
         }
     }
 
+
+    @FXML
+    void registerBirth(ActionEvent event) {
+        Date birthDate = Date.valueOf(this.txtBirthDate.getValue());
+
+        BirthsDto birth = new BirthsDto (this.txtBirthID.getText(), this.txtBirthDescription.getText(), this.txtBirthPatient.getText(),this.txtBirthNewBorn.getText(), birthDate, this.txtBirthTime.getText());
+        boolean birthCreated = birthService.createBirth(birth);
+        if (birthCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
+    }
+
+
+    @FXML
+    void registerDeath(ActionEvent event) {
+        Date deathDate = Date.valueOf(this.txtDeathDate.getValue());
+
+        DeathsDto deaths = new DeathsDto(this.txtDeathID.getText(), this.txtDeathDescription.getText(), this.txtDeathPatient.getText(), deathDate, this.txtDeathTime.getText());
+        boolean deathCreated = deathService.createDeath(deaths);
+        if (deathCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
+    }
+
+
+    @FXML
+    void registerOther(ActionEvent event) {
+        Date otherdate = Date.valueOf(this.txtOtherDate.getValue());
+
+        OthersDto others = new OthersDto(this.txtOtherID.getText(), this.txtOtherDescription.getText(), this.txtOtherPatient.getText(), otherdate, this.txtOtherTime.getText());
+        boolean otherCreated = otherService.createOther(others);
+        if (otherCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
+    }
+    @FXML
+    void registerDonor(ActionEvent event) {
+        String donorAge = txtDonorAge.getText();
+        String bloodGroup = chooseDonorBloodGroup.getValue();
+        String gender = chooseDonorGender.getValue();
+        Date lastDonationDate = Date.valueOf(txtDonorDate.getValue());
+
+
+        DonorDto donor = new DonorDto(bloodGroup, donorAge, gender, lastDonationDate);
+
+        boolean donorCreated = donorService.createDonor(donor);
+
+        if (donorCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
+    }
+
+
+
+    //display data at the tables---------------------------------------------------------------------------------------
+
+//display Operations
     public ObservableList<Operation> getOperations() {
         ObservableList<Operation> listOperation = FXCollections.observableArrayList();
         String query = "SELECT * FROM operations";
@@ -442,94 +499,19 @@ public class NursePageController implements Initializable {
 
         operation_table.setItems(getOperations());
     }
-    @FXML
-    void registerBirth(ActionEvent event) {
-        conn = DatabaseUtil.getConnection();
-        String sql = "insert into births (birthID, birth_description, birth_patient, birth_newborn, birth_date, birth_time) values (?, ?, ?, ?, ?, ?)";
-        try {
-            pst = conn.prepareStatement(sql);
-            Date birthDate = Date.valueOf(this.txtBirthDate.getValue());
-            pst.setString(1, txtBirthID.getText());
-            pst.setString(2, txtBirthDescription.getText());
-            pst.setString(3, txtBirthPatient.getText());
-            pst.setString(4, txtBirthNewBorn.getText());
-            pst.setDate(5, birthDate);
-            pst.setString(6, txtBirthTime.getText());
-
-            pst.execute();
-            pst.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
-    void registerDeath(ActionEvent event) {
-        Date deathDate = Date.valueOf(this.txtDeathDate.getValue());
-
-        DeathsDto deaths = new DeathsDto(this.txtDeathID.getText(), this.txtDeathDescription.getText(), this.txtDeathPatient.getText(), deathDate, this.txtDeathTime.getText());
-        boolean deathCreated = deathService.createDeath(deaths);
-        if (deathCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
-        }
-    }
-
-
-    @FXML
-    void registerOther(ActionEvent event) {
-        conn= DatabaseUtil.getConnection();
-        String sql="insert into others (other_ID, other_description, other_patient, other_date, other_time) values (? , ? , ? , ? , ?)";
-        try{
-            pst=conn.prepareStatement(sql);
-            Date otherDate = Date.valueOf(this.txtOtherDate.getValue());
-            pst.setString(1, txtOtherID.getText());
-            pst.setString(2,txtOtherDescription.getText());
-            pst.setString(3,txtOtherPatient.getText());
-            pst.setDate(4,otherDate);
-            pst.setString(5,txtOtherTime.getText());
-
-            pst.execute();
-
-            pst.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-
-        }
-    }
-    @FXML
-    void registerDonor(ActionEvent event) {
-        String donorAge = txtDonorAge.getText();
-        String bloodGroup = chooseDonorBloodGroup.getValue();
-        String gender = chooseDonorGender.getValue();
-        Date lastDonationDate = Date.valueOf(txtDonorDate.getValue());
-
-
-        DonorDto donor = new DonorDto(bloodGroup, donorAge, gender, lastDonationDate);
-
-        boolean donorCreated = donorService.createDonor(donor);
-
-        if (donorCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
-        }
-    }
 
 
 
-    //display data at the tables---------------------------------------------------------------------------------------
-
-
-
-    public ObservableList<BirthsDto> getBirths() {
-        ObservableList<BirthsDto> listBirths = FXCollections.observableArrayList();
+//display Births
+    public ObservableList<Births> getBirths() {
+        ObservableList<Births> listBirths = FXCollections.observableArrayList();
         String query = "SELECT * FROM births";
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                BirthsDto birthData = new BirthsDto(
+                Births birthData = new Births(
                         result.getString("birthID"),
                         result.getString("birth_description"),
                         result.getString("birth_patient"),
@@ -539,27 +521,24 @@ public class NursePageController implements Initializable {
                 );
                 listBirths.add(birthData);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listBirths;
     }
-
-
-
-
     public void birthDisplayData() {
         births_col_birthID.setCellValueFactory(new PropertyValueFactory<>("birthID"));
-        births_col_description.setCellValueFactory(new PropertyValueFactory<>("birth_description"));
-        births_col_patient.setCellValueFactory(new PropertyValueFactory<>("birth_patient"));
-        births_col_newBorn.setCellValueFactory(new PropertyValueFactory<>("birth_newborn"));
-        births_col_date.setCellValueFactory(new PropertyValueFactory<>("birth_date"));
-        births_col_time.setCellValueFactory(new PropertyValueFactory<>("birth_time"));
+        births_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        births_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
+        births_col_newBorn.setCellValueFactory(new PropertyValueFactory<>("newborn"));
+        births_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        births_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         birth_table.setItems(getBirths());
     }
 
-
+//display Deaths
     public ObservableList<Deaths> getDeaths() {
         ObservableList<Deaths> listDeaths = FXCollections.observableArrayList();
         String query = "SELECT * FROM deaths";
@@ -595,15 +574,18 @@ public class NursePageController implements Initializable {
         death_table.setItems(getDeaths());
     }
 
-    public ObservableList<OthersDto> getOthers() {
-        ObservableList<OthersDto> listOthers = FXCollections.observableArrayList();
+
+//display Others
+
+    public ObservableList<Others> getOthers() {
+        ObservableList<Others> listOthers = FXCollections.observableArrayList();
         String query = "SELECT * FROM others";
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                OthersDto otherData = new OthersDto(
+                Others otherData = new Others(
                         result.getString("otherID"),
                         result.getString("other_description"),
                         result.getString("other_patient"),
@@ -620,10 +602,10 @@ public class NursePageController implements Initializable {
 
     public void otherDisplayData(){
         others_col_otherID.setCellValueFactory(new PropertyValueFactory<>("otherID"));
-        others_col_description.setCellValueFactory(new PropertyValueFactory<>("otherDescription"));
-        others_col_patient.setCellValueFactory(new PropertyValueFactory<>("otherPatient"));
-        others_col_date.setCellValueFactory(new PropertyValueFactory<>("otherDate"));
-        others_col_time.setCellValueFactory(new PropertyValueFactory<>("otherTime"));
+        others_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        others_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
+        others_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        others_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         other_table.setItems(getOthers());
     }

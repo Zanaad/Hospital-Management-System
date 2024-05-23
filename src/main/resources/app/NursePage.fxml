@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -41,7 +42,7 @@
                 <AnchorPane prefHeight="560.0" prefWidth="214.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" BorderPane.alignment="CENTER">
                     <Button fx:id="bedWards_btn" layoutX="15.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Bed Wards" textFill="WHITE">
                         <graphic>
-                           <!-- <FontAwesomeIcon fill="WHITE" glyphName="BED" size="1.5em" />-->
+                            <FontAwesomeIcon fill="WHITE" glyphName="BED" size="1.5em" />
                         </graphic>
                         <font>
                             <Font name="Arial" size="13.0" />
@@ -49,7 +50,7 @@
                     </Button>
                     <Button fx:id="patients_btn" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Patients" textFill="WHITE">
                         <graphic>
-                            <!--<FontAwesomeIcon fill="WHITE" glyphName="USER_MD" size="1.5em" />-->
+                            <FontAwesomeIcon fill="WHITE" glyphName="USER_MD" size="1.5em" />
                         </graphic>
                         <font>
                             <Font name="Arial" size="13.0" />
@@ -57,7 +58,7 @@
                     </Button>
                     <Button fx:id="bloodBank_btn" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Blood Bank" textFill="WHITE">
                         <graphic>
-                            <!--<FontAwesomeIcon fill="WHITE" glyphName="AMBULANCE" size="1.5em" />-->
+                            <FontAwesomeIcon fill="WHITE" glyphName="AMBULANCE" size="1.5em" />
                         </graphic>
                         <font>
                             <Font name="Arial" size="13.0" />
@@ -65,7 +66,7 @@
                     </Button>
                     <Button fx:id="dashboard_btn" layoutX="15.0" layoutY="126.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-alignment: center_left;" text="Dashboard" textFill="WHITE">
                         <graphic>
-                            <!--<FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.5em" />-->
+                            <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.5em" />
                         </graphic>
                         <font>
                             <Font name="Arial" size="13.0" />
@@ -73,13 +74,13 @@
                     </Button>
                     <Button fx:id="report_btn" layoutX="15.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Report" textFill="WHITE">
                         <graphic>
-                            <!--<FontAwesomeIcon fill="WHITE" glyphName="HOSPITAL_ALT" size="1.5em" text="" />-->
+                            <FontAwesomeIcon fill="WHITE" glyphName="HOSPITAL_ALT" size="1.5em" text="" />
                         </graphic>
                         <font>
                             <Font name="Arial" size="13.0" />
                         </font>
                     </Button>
-                    <!--<FontAwesomeIcon fill="WHITE" glyphName="STETHOSCOPE" layoutX="32.0" layoutY="67.0" size="4em" text="" />-->
+                    <FontAwesomeIcon fill="WHITE" glyphName="USER" layoutX="32.0" layoutY="67.0" size="4em" text="" />
                     <Line endX="88.0" layoutX="113.0" layoutY="87.0" startX="-100.0" stroke="WHITE" />
                     <Label layoutX="88.0" layoutY="34.0" text="HMS" textFill="WHITE">
                         <font>
@@ -96,7 +97,7 @@
                                 <children>
                                     <ImageView fitHeight="132.0" fitWidth="233.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/patient.jpeg" />
+                                            <Image url="@../../resources/images" />
                                         </image>
                                     </ImageView>
                                     <Label fx:id="dashboard_patients" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -115,7 +116,7 @@
                         <children>
                            <ImageView fitHeight="139.0" fitWidth="234.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/bloodDonator.jpg" />
+                                 <Image url="@../../resources/images/bloodDonator.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="dashboard_donors" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -134,7 +135,7 @@
                         <children>
                            <ImageView fitHeight="134.0" fitWidth="237.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../../../../../Users/adeat/Downloads/ProjektiKNK-main/ProjektiKNK-main/ProjektiKNK/src/main/resources/images/bedWards.jpg" />
+                                 <Image url="@../../resources/images" />
                               </image>
                            </ImageView>
                            <Label fx:id="dashboard_beds" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -201,7 +202,7 @@
                                        </AnchorPane>
                                  </content>
                                     <graphic>
-                                       <!--<FontAwesomeIcon glyphName="ASTERISK" />-->
+                                       <FontAwesomeIcon glyphName="ASTERISK" />
                                     </graphic>
                                </Tab>
                                <Tab text="Deaths">
@@ -221,7 +222,7 @@
                                        </AnchorPane>
                                  </content>
                                     <graphic>
-                                       <!--<FontAwesomeIcon glyphName="ASTERISK" />-->
+                                       <FontAwesomeIcon glyphName="ASTERISK" />
                                     </graphic>
                                </Tab>
                                  <Tab text="Births">
@@ -242,7 +243,7 @@
                                        </AnchorPane>
                                    </content>
                                     <graphic>
-                                       <!--<FontAwesomeIcon glyphName="ASTERISK" />-->
+                                       <FontAwesomeIcon glyphName="ASTERISK" />
                                     </graphic>
                                  </Tab>
                                  <Tab text="Other">
@@ -262,14 +263,14 @@
                                        </AnchorPane>
                                    </content>
                                     <graphic>
-                                        <!-- <FontAwesomeIcon glyphName="ASTERISK" />-->
+                                        <FontAwesomeIcon glyphName="ASTERISK" />
                                       </graphic>
                                    </Tab>
                                    <Tab text="Add Report">
                                      <content>
                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                             <children>
-                                               <AnchorPane fx:id="add_reportOperation" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
+                                               <AnchorPane fx:id="add_reportOperation" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
                                                   <children>
                                                      <TextField fx:id="txtOperationDescription" layoutX="69.0" layoutY="148.0" prefHeight="70.0" prefWidth="190.0" />
                                                      <Label layoutX="69.0" layoutY="124.0" text="Description" />
@@ -286,7 +287,7 @@
                                                    <TextField fx:id="txtOperationID" layoutX="69.0" layoutY="58.0" prefHeight="31.0" prefWidth="189.0" />
                                                   </children>
                                                </AnchorPane>
-                                               <AnchorPane fx:id="add_reportDeath" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
+                                               <AnchorPane fx:id="add_reportDeath" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                   <children>
                                                      <TextField fx:id="txtDeathDescription" layoutX="68.0" layoutY="147.0" prefHeight="70.0" prefWidth="190.0" />
                                                      <Label layoutX="68.0" layoutY="123.0" text="Description" />
@@ -303,30 +304,34 @@
                                                </AnchorPane>
                                                <AnchorPane fx:id="add_reportBirth" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                   <children>
-                                                     <TextField fx:id="txtBirthDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
-                                                     <Label layoutX="62.0" layoutY="44.0" text="Description" />
-                                                     <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                     <TextField fx:id="txtBirthPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
-                                                     <DatePicker fx:id="txtBirthDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
-                                                     <Label layoutX="359.0" layoutY="44.0" text="Date" />
-                                                     <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
-                                                     <TextField fx:id="txtBirthTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
+                                                     <TextField fx:id="txtBirthDescription" layoutX="62.0" layoutY="148.0" prefHeight="70.0" prefWidth="190.0" />
+                                                     <Label layoutX="62.0" layoutY="124.0" text="Description" />
+                                                     <Label layoutX="62.0" layoutY="233.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
+                                                     <TextField fx:id="txtBirthPatient" layoutX="62.0" layoutY="261.0" prefHeight="31.0" prefWidth="189.0" />
+                                                     <DatePicker fx:id="txtBirthDate" layoutX="359.0" layoutY="126.0" prefHeight="34.0" prefWidth="210.0" />
+                                                     <Label layoutX="359.0" layoutY="102.0" text="Date" />
+                                                     <Label layoutX="62.0" layoutY="32.0" prefHeight="18.0" prefWidth="70.0" text="ID" />
+                                                     <TextField fx:id="txtBirthID" layoutX="62.0" layoutY="60.0" prefHeight="31.0" prefWidth="189.0" />
                                                      <Button fx:id="add_birth_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerBirth" onMouseClicked="#handleRegjistro" prefHeight="34.0" prefWidth="142.0" text="Add Birth" />
-                                                     <Label layoutX="62.0" layoutY="226.0" prefHeight="18.0" prefWidth="119.0" text="New Born's Name" />
-                                                     <TextField fx:id="txtBirthNewBorn" layoutX="62.0" layoutY="254.0" prefHeight="31.0" prefWidth="189.0" />
+                                                     <Label layoutX="359.0" layoutY="32.0" prefHeight="18.0" prefWidth="119.0" text="New Born's Name" />
+                                                     <TextField fx:id="txtBirthNewBorn" layoutX="359.0" layoutY="60.0" prefHeight="31.0" prefWidth="189.0" />
+                                                   <Label layoutX="359.0" layoutY="173.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
+                                                   <TextField fx:id="txtBirthTime" layoutX="359.0" layoutY="201.0" prefHeight="31.0" prefWidth="189.0" />
                                                   </children>
                                                </AnchorPane>
                                                <AnchorPane fx:id="add_reportOther" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                   <children>
-                                                     <TextField fx:id="txtOtherDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
-                                                     <Label layoutX="62.0" layoutY="44.0" text="Description" />
-                                                     <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                     <TextField fx:id="txtOtherPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
-                                                     <DatePicker fx:id="txtOtherDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
-                                                     <Label layoutX="359.0" layoutY="44.0" text="Date" />
-                                                     <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
-                                                     <TextField fx:id="txtOtherTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
+                                                     <TextField fx:id="txtOtherDescription" layoutX="73.0" layoutY="139.0" prefHeight="70.0" prefWidth="190.0" />
+                                                     <Label layoutX="73.0" layoutY="115.0" text="Description" />
+                                                     <Label layoutX="359.0" layoutY="29.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
+                                                     <TextField fx:id="txtOtherPatient" layoutX="359.0" layoutY="54.0" prefHeight="37.0" prefWidth="190.0" />
+                                                     <DatePicker fx:id="txtOtherDate" layoutX="359.0" layoutY="131.0" prefHeight="34.0" prefWidth="193.0" />
+                                                     <Label layoutX="359.0" layoutY="104.0" text="Date" />
+                                                     <Label layoutX="359.0" layoutY="188.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
+                                                     <TextField fx:id="txtOtherTime" layoutX="359.0" layoutY="209.0" prefHeight="35.0" prefWidth="190.0" />
                                                      <Button fx:id="add_other_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerOther" prefHeight="34.0" prefWidth="142.0" text="Add Other" />
+                                                   <Label layoutX="73.0" layoutY="34.0" prefHeight="18.0" prefWidth="70.0" text="ID" />
+                                                   <TextField fx:id="txtOtherID" layoutX="73.0" layoutY="59.0" prefHeight="38.0" prefWidth="190.0" />
                                                   </children>
                                                </AnchorPane>
                                                <ComboBox fx:id="reportCase_comboBox" layoutX="79.0" layoutY="29.0" prefHeight="34.0" prefWidth="189.0" promptText="Choose Report Case..." />
@@ -334,7 +339,7 @@
                                          </AnchorPane>
                                      </content>
                                       <graphic>
-                                          <!-- <FontAwesomeIcon glyphName="PLUS" />-->
+                                           <FontAwesomeIcon glyphName="PLUS" />
                                         </graphic>
                                      </Tab>
                                  </tabs>
@@ -417,7 +422,7 @@
                                      </AnchorPane>
                                </content>
                                   <graphic>
-                                      <!--<FontAwesomeIcon glyphName="ASTERISK" />-->
+                                      <FontAwesomeIcon glyphName="ASTERISK" />
                                    </graphic>
                               </Tab>
                               <Tab text="Add Blood Donor">
@@ -439,7 +444,7 @@
                                       </AnchorPane>
                                 </content>
                                    <graphic>
-                                       <!--<FontAwesomeIcon glyphName="PLUS" />-->
+                                       <FontAwesomeIcon glyphName="PLUS" />
                                     </graphic>
                                </Tab>
                              </tabs>
@@ -475,7 +480,7 @@
                                        </AnchorPane>
                                     </content>
                                     <graphic>
-                                        <!--<FontAwesomeIcon glyphName="ASTERISK" />-->
+                                        <FontAwesomeIcon glyphName="ASTERISK" />
                                      </graphic>
                                   </Tab>
                                   <Tab text="Add Bed">
@@ -496,7 +501,7 @@
                                         </AnchorPane>
                                      </content>
                                      <graphic>
-                                         <!--<FontAwesomeIcon glyphName="PLUS" />-->
+                                         <FontAwesomeIcon glyphName="PLUS" />
                                       </graphic>
                                    </Tab>
                                 </tabs>
