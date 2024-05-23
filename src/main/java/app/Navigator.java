@@ -17,6 +17,9 @@ public class Navigator {
     public final static String AdminMainForm = "AdminMainForm.fxml";
     public final static String ReceptionistPage = "ReceptionistPage.fxml";
     public final static String NursePage = "NursePage.fxml";
+    public final static String LoginPage = "Login.fxml";
+    public static String AdminPage;
+
 
     public static void navigate(Event event, String form) {
         Node eventNode = (Node) event.getSource();

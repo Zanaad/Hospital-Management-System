@@ -52,6 +52,7 @@
                         <Font name="Arial" size="12.0" />
                      </font>
                   </Button>
+                  <TextField fx:id="filterNurseDep" layoutX="370.0" layoutY="43.0" promptText="Department" />
                </children>
             </AnchorPane>
          </children>

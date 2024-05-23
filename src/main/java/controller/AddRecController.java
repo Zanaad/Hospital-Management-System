@@ -15,6 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.ReceptionistDto;
+import model.filter.ReceptionistFilter;
+import model.filter.UserFilter;
 import repository.DepartmentRepository;
 import repository.Staff.ReceptionistRepository;
 import service.Staff.ReceptionistService;
@@ -27,13 +29,20 @@ import java.util.ResourceBundle;
 
 public class AddRecController implements Initializable {
 
+
     @FXML
     private Button add_receptionist_btn;
 
     @FXML
-    private TextField recAccount;
+    private TextField filterRecEmail;
+
     @FXML
-    private TextField recID;
+    private TextField filterRecName;
+    @FXML
+    private TextField filterRecID;
+    @FXML
+    private TextField recAccount;
+
     @FXML
     private TextField recAddress;
 
@@ -54,6 +63,9 @@ public class AddRecController implements Initializable {
 
     @FXML
     private TextField recFirstName;
+
+    @FXML
+    private TextField recID;
 
     @FXML
     private TextField recLastName;
@@ -92,13 +104,13 @@ public class AddRecController implements Initializable {
     private TableColumn<?, ?> rec_col_phone;
 
     @FXML
-    private TableColumn<?, ?> rec_col_status;
+    private TableColumn<?, ?> rec_col_surname;
 
     @FXML
     private TableColumn<?, ?> rec_col_uni;
 
     @FXML
-    private TableColumn<?, ?> rec_col_surname;
+    private TableColumn<?, ?> receptionist_col_action;
 
     @FXML
     private AnchorPane receptionist_form;
@@ -156,5 +168,16 @@ public class AddRecController implements Initializable {
     }
 
     public void handleRecFilter(ActionEvent event) {
+        String firstName = filterRecName.getText();
+        String email = filterRecEmail.getText();
+        String id = filterRecID.getText();
+        ReceptionistFilter filter = new ReceptionistFilter(firstName, email, id);
+        List<ReceptionistDto> filteredRecs = ReceptionistService.filter(filter);
+        updateRecTable(filteredRecs);
+    }
+
+    public void updateRecTable(List<ReceptionistDto> recs) {
+        ObservableList<ReceptionistDto> listRecs = FXCollections.observableArrayList(recs);
+        receptionist_table.setItems(listRecs);
     }
 }

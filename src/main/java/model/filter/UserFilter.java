@@ -1,6 +1,6 @@
 package model.filter;
 
-public class UserFilter extends Filter {
+public abstract class UserFilter {
     private String firstName;
     private String email;
 
@@ -9,15 +9,19 @@ public class UserFilter extends Filter {
         this.email = email;
     }
 
-    @Override
-    public String buildQuery() {
+    public String buildBaseQuery() {
         StringBuilder query = new StringBuilder();
         if (firstName != null && !firstName.isEmpty()) {
-            query.append(" AND doctor_firstName LIKE '%").append(firstName).append("%'");
+            query.append("firstName like '%").append(firstName).append("%'");
         }
         if (email != null && !email.isEmpty()) {
-            query.append(" AND doctor_email LIKE '%").append(email).append("%'");
+            if (query.length() > 0) {
+                query.append(" AND ");
+            }
+            query.append("email like '%").append(email).append("%'");
         }
         return query.toString();
     }
+
+    public abstract String buildQuery();
 }

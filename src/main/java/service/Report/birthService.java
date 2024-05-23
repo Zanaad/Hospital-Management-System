@@ -8,7 +8,6 @@ import repository.Report.BirthRepository;
 public class birthService {
     public static boolean createBirth(BirthsDto birthData) {
 
-
         createBirthDto createBirthDto = new createBirthDto(
                 birthData.getBirthID(),
                 birthData.getBirth_description(),
