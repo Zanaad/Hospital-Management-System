@@ -1,20 +1,20 @@
 package model.dto;
 
-public class ChangeUserPasswordDto {
-    private int id;
+public class ChangePasswordDto {
+    private String email;
     private String currentPassword;
     private String newPassword;
     private String confirmNewPassword;
 
-    public ChangeUserPasswordDto(int id, String currentPassword, String newPassword, String confirmNewPassword) {
-        this.id = id;
+    public ChangePasswordDto(String email, String currentPassword, String newPassword, String confirmNewPassword) {
+        this.email = email;
         this.currentPassword = currentPassword;
         this.newPassword = newPassword;
         this.confirmNewPassword = confirmNewPassword;
     }
 
-    public int getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
     public String getCurrentPassword() {
@@ -28,4 +28,5 @@ public class ChangeUserPasswordDto {
     public String getConfirmNewPassword() {
         return confirmNewPassword;
     }
+
 }

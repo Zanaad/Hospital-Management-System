@@ -3,6 +3,7 @@ package model.dto.StaffDto;
 import java.sql.Date;
 
 public class StaffDto {
+    private String id;
     private String firstName;
     private String lastName;
     private Date birthdate;
@@ -18,7 +19,8 @@ public class StaffDto {
     private String bankAccount;
     private String routingNumber;
 
-    public StaffDto(String firstName, String lastName, Date birthdate, String phone, String email, String password, String address, String department, String university, Date startDate, Date endDate, String bankName, String bankAccount, String routingNumber) {
+    public StaffDto(String id, String firstName, String lastName, Date birthdate, String phone, String email, String password, String address, String department, String university, Date startDate, Date endDate, String bankName, String bankAccount, String routingNumber) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
@@ -33,6 +35,10 @@ public class StaffDto {
         this.bankName = bankName;
         this.bankAccount = bankAccount;
         this.routingNumber = routingNumber;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getFirstName() {

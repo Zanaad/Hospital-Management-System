@@ -12,17 +12,17 @@ create table admin
     passwordHash nvarchar(64),
     salt         nvarchar(32)
 );
-insert into admins (firstName, lastName)
+insert into admin (firstName, lastName)
 values ("Zana", "Ademi"),
        ("Fatjeta", "Gashi"),
        ("Adea", "Lluhani"),
        ("Adea", "Tabaku"),
        ("Yllka", "Kastrati");
 select *
-from admins;
+from admin;
 create table doctors
 (
-    doctor_id           int primary key auto_increment,
+    doctor_id           nvarchar(100) primary key,
     doctor_firstName    nvarchar(100),
     doctor_lastName     nvarchar(100),
     doctor_birthdate    date,
@@ -41,7 +41,7 @@ create table doctors
 );
 create table receptionists
 (
-    receptionist_id           int primary key auto_increment,
+    receptionist_id           nvarchar(100) primary key,
     receptionist_firstName    nvarchar(100),
     receptionist_lastName     nvarchar(100),
     receptionist_birthdate    date,
@@ -60,7 +60,7 @@ create table receptionists
 );
 create table nurses
 (
-    nurse_id           int primary key auto_increment,
+    nurse_id           nvarchar(100) primary key,
     nurse_firstName    nvarchar(100),
     nurse_lastName     nvarchar(100),
     nurse_birthdate    date,
@@ -78,11 +78,13 @@ create table nurses
     routingNumber      nvarchar(100)
 );
 
-create table department
+create table departments
 (
-    department_id          int primary key auto_increment,
+    department_id          nvarchar(100) primary key,
     department_name        nvarchar(100),
-    department_description text
+    department_description text,
+    nrDoctors nvarchar(200),
+    nrNurses nvarchar(200)
 );
 
 create table patients
@@ -94,8 +96,26 @@ create table patients
     patient_phone     nvarchar(100),
     patient_email     nvarchar(100) not null,
     patient_address   nvarchar(150),
-    patient_status    nvarchar(100),
-    patient_action    nvarchar(100)
+    patient_department nvarchar(100),
+    patient_doctor    nvarchar(100),
+    patient_nurse    nvarchar(100),
+    patient_date     date,
+    patient_payment   nvarchar(100)
+);
+
+create table appointments
+(
+    appointment_id        nvarchar(100),
+    appointment_firstName nvarchar(100),
+    appointment_lastName  nvarchar(100),
+    appointment_description nvarchar(100),
+    appointment_department nvarchar(100),
+    appointment_doctor    nvarchar(100),
+    appointment_nurse     nvarchar(100),
+    appointment_phone     nvarchar(100),
+    appointment_address   nvarchar(100),
+    appointment_date          date,
+    appointment_hour      nvarchar(100)
 
 );
 
@@ -161,3 +181,4 @@ select *
 from others;
 select *
 from donors;
+drop database hospitalmanagementsystem;

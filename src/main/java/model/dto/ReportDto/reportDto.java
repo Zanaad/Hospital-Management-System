@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class reportDto  {
 
+    private String id;
     private String description;
     private String patient;
     private String doctor;
@@ -11,7 +12,8 @@ public class reportDto  {
     private Date date;
     private String time;
 
-    public reportDto(String description, String patient, Date date, String time) {
+    public reportDto(String id, String description, String patient, Date date, String time) {
+        this.id=id;
         this.description = description;
         this.patient = patient;
 
@@ -26,6 +28,8 @@ public class reportDto  {
     public void setNewBorn(String newBorn) {
         this.newBorn = newBorn;
     }
+
+    public String getID(){return id;}
 
     public String getDescription() {
         return description;

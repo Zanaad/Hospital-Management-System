@@ -10,6 +10,7 @@ public class operationService {
 
 
         createOperationDto createOperationDto = new createOperationDto(
+                operationData.getID(),
                 operationData.getDescription(),
                 operationData.getPatient(),
                 operationData.getDoctor(),

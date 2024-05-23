@@ -11,7 +11,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -382,11 +381,10 @@
                                     <TextField fx:id="patEmail" layoutX="24.8" layoutY="293.4" prefHeight="25.0"
                                                prefWidth="439.0" AnchorPane.leftAnchor="24.8"
                                                AnchorPane.rightAnchor="46.39999999999998" AnchorPane.topAnchor="293.4"/>
-                                    <Label layoutX="26.0" layoutY="378.0" text="Address:"/>
+                                    <Label layoutX="27.0" layoutY="329.0" text="Address"/>
                                     <DatePicker fx:id="patBirthdate" layoutX="25.0" layoutY="186.0" prefHeight="26.0"
                                                 prefWidth="439.0"/>
-                                    <Label layoutX="24.0" layoutY="325.0" text="Password"/>
-                                    <TextField fx:id="patAddress" layoutX="25.0" layoutY="394.0" prefHeight="25.0"
+                                    <TextField fx:id="patAddress" layoutX="25.0" layoutY="346.0" prefHeight="25.0"
                                                prefWidth="439.0"/>
                                     <Button fx:id="register_patient_btn" layoutX="126.0" layoutY="446.0"
                                             mnemonicParsing="false" onAction="#registerPatient" prefHeight="36.0"
@@ -401,8 +399,6 @@
                                             <Font size="14.0"/>
                                         </font>
                                     </Button>
-                                    <PasswordField fx:id="patPassword" layoutX="25.0" layoutY="343.0" prefHeight="26.0"
-                                                   prefWidth="436.0"/>
                                 </children>
                             </AnchorPane>
                             <AnchorPane layoutX="536.0" layoutY="14.0" prefHeight="531.0" prefWidth="334.0"
@@ -444,7 +440,7 @@
                                         AnchorPane.rightAnchor="0.33333333333337123" AnchorPane.topAnchor="0.0">
                                 <children>
                                     <Button fx:id="addApp_btn" layoutX="706.0" layoutY="509.0" mnemonicParsing="false"
-                                            onAction="#switchForm" prefHeight="28.0" prefWidth="153.0"
+                                            onAction="#registerAppointment" prefHeight="28.0" prefWidth="153.0"
                                             style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);"
                                             text="Add " textFill="WHITE">
                                         <font>
@@ -529,9 +525,27 @@
                                             <DatePicker fx:id="appDate" layoutX="689.0" layoutY="98.0" prefHeight="25.0"
                                                         prefWidth="140.0"/>
                                             <ComboBox fx:id="appDoc" layoutX="383.0" layoutY="97.0" prefHeight="25.0"
-                                                      prefWidth="140.0"/>
+                                                      prefWidth="140.0">
+                                                <items>
+                                                    <FXCollections fx:factory="observableArrayList">
+                                                        <String fx:value="Dep1"/>
+                                                        <String fx:value="Dep2"/>
+                                                        <String fx:value="Dep3"/>
+                                                        <String fx:value="Dep4"/>
+                                                    </FXCollections>
+                                                </items>
+                                            </ComboBox>
                                             <ComboBox fx:id="appDep" layoutX="383.0" layoutY="63.0" prefHeight="25.0"
-                                                      prefWidth="140.0"/>
+                                                      prefWidth="140.0">
+                                                <items>
+                                                    <FXCollections fx:factory="observableArrayList">
+                                                        <String fx:value="Dep1"/>
+                                                        <String fx:value="Dep2"/>
+                                                        <String fx:value="Dep3"/>
+                                                        <String fx:value="Dep4"/>
+                                                    </FXCollections>
+                                                </items>
+                                            </ComboBox>
                                             <Label layoutX="597.0" layoutY="134.0" text="Hour:"/>
                                             <TextField fx:id="appHour" layoutX="689.0" layoutY="130.0" prefHeight="25.0"
                                                        prefWidth="140.0"/>
