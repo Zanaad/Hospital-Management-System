@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.NurseDto;
+import model.filter.UserFilter;
 import repository.DepartmentRepository;
 import repository.Staff.NurseRepository;
 import service.CountStaffService;
@@ -32,12 +33,16 @@ public class AddNurseController implements Initializable {
     private Button add_nurse_btn;
 
     @FXML
+    private TextField filterNurseEmail;
+
+    @FXML
+    private TextField filterNurseName;
+
+    @FXML
     private TextField nurseAccount;
 
     @FXML
     private TextField nurseAddress;
-    @FXML
-    private TextField nurseID;
 
     @FXML
     private TextField nurseBank;
@@ -56,6 +61,9 @@ public class AddNurseController implements Initializable {
 
     @FXML
     private TextField nurseFirstName;
+
+    @FXML
+    private TextField nurseID;
 
     @FXML
     private TextField nurseLastName;
@@ -79,7 +87,7 @@ public class AddNurseController implements Initializable {
     private TableColumn<?, ?> nurse_col_ID;
 
     @FXML
-    private TableColumn<?, ?> nurse_col_surname;
+    private TableColumn<?, ?> nurse_col_action;
 
     @FXML
     private TableColumn<?, ?> nurse_col_address;
@@ -97,7 +105,7 @@ public class AddNurseController implements Initializable {
     private TableColumn<?, ?> nurse_col_phone;
 
     @FXML
-    private TableColumn<?, ?> nurse_col_status;
+    private TableColumn<?, ?> nurse_col_surname;
 
     @FXML
     private TableColumn<?, ?> nurse_col_university;
@@ -157,7 +165,17 @@ public class AddNurseController implements Initializable {
         nurseDep.setItems(observableList);
     }
 
+    @FXML
     public void handleNurseFilter(ActionEvent event) {
+        String firstName = filterNurseName.getText();
+        String email = filterNurseEmail.getText();
+        UserFilter filter = new UserFilter(firstName, email, "nurse");
+        List<NurseDto> filteredNurses = NurseService.filter(filter);
+        updateNurseTable(filteredNurses);
+    }
 
+    public void updateNurseTable(List<NurseDto> nurses) {
+        ObservableList<NurseDto> listNurses = FXCollections.observableArrayList(nurses);
+        nurses_table.setItems(listNurses);
     }
 }
