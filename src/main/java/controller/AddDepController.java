@@ -87,4 +87,6 @@ public class AddDepController implements Initializable {
         if (departmentCreated) Navigator.navigate(event, Navigator.AdminMainForm);
     }
 
+    public void handleDepFilter(ActionEvent event) {
+    }
 }

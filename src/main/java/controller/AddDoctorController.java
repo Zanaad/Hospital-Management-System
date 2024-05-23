@@ -13,6 +13,7 @@ import model.Staff;
 import model.dto.StaffDto.DoctorDto;
 import model.filter.UserFilter;
 import repository.DepartmentRepository;
+import repository.Staff.DoctorRepository;
 import service.Staff.DoctorService;
 import service.Table;
 
@@ -21,6 +22,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -123,6 +125,17 @@ public class AddDoctorController implements Initializable {
         loadDepartmentNames();
     }
 
+    //Switch to the register form
+    @FXML
+    void switchForm(ActionEvent event) {
+        if (event.getSource() == add_doctor_btn) {
+            register_doctor_form.setVisible(true);
+            doctors_form.setVisible(false);
+        }
+
+    }
+
+    //Method for registering doctors
     @FXML
     void registerDoctor(ActionEvent event) {
         Date birthdate = Date.valueOf(this.docBirthdate.getValue());
@@ -136,15 +149,17 @@ public class AddDoctorController implements Initializable {
         }
     }
 
-    @FXML
-    void switchForm(ActionEvent event) {
-        if (event.getSource() == add_doctor_btn) {
-            register_doctor_form.setVisible(true);
-            doctors_form.setVisible(false);
-        }
-
+    //Adding doctors in the table
+    public ObservableList<Staff> getDoctors() {
+        return FXCollections.observableArrayList(DoctorRepository.getAllDoctors());
     }
 
+    public void doctorDisplayData() {
+        Table.staffDisplayData(doctors_col_ID, doctors_col_name, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_address);
+        doctors_table.setItems(getDoctors());
+    }
+
+    //Filter doctors
     @FXML
     void handleDoctorFilter(ActionEvent event) {
         String firstName = filterDocName.getText();
@@ -155,33 +170,13 @@ public class AddDoctorController implements Initializable {
         updateDoctorTable(filteredDoctors);
     }
 
-    public ObservableList<Staff> getDoctors() {
-        ObservableList<Staff> listDoctors = FXCollections.observableArrayList();
-        String query = "select * from doctors";
-        Connection con = DatabaseUtil.getConnection();
-        try {
-            PreparedStatement prepare = con.prepareStatement(query);
-            ResultSet result = prepare.executeQuery();
-            while (result.next()) {
-                Staff doctor = new Staff(result.getInt("doctor_id"), result.getString("doctor_firstName"), result.getString("doctor_department"), result.getString("doctor_phone"), result.getString("doctor_email"), result.getString("doctor_university"), result.getString("doctor_address"));
-                listDoctors.add(doctor);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listDoctors;
-    }
-
-    public void doctorDisplayData() {
-        Table.staffDisplayData(doctors_col_ID, doctors_col_name, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_address);
-        doctors_table.setItems(getDoctors());
-    }
 
     public void updateDoctorTable(List<Staff> doctors) {
         ObservableList<Staff> listDoctors = FXCollections.observableArrayList(doctors);
         doctors_table.setItems(listDoctors);
     }
 
+    //Load department names into combo boxes
     private void loadDepartmentNames() {
         List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);

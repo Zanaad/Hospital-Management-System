@@ -170,4 +170,7 @@ public class AddRecController implements Initializable {
         ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
         recDep.setItems(observableList);
     }
+
+    public void handleRecFilter(ActionEvent event) {
+    }
 }

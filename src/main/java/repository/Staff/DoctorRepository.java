@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DoctorRepository extends StaffRepository {
     private static final String query = """
              INSERT INTO doctors(doctor_firstName, doctor_lastName, doctor_birthdate, doctor_phone, doctor_email, doctor_hashPassword, doctor_salt, doctor_address, doctor_department, doctor_university, doctor_start, doctor_end, bankName, bankAccount, routingNumber)
@@ -23,14 +22,20 @@ public class DoctorRepository extends StaffRepository {
     }
 
     public static List<Staff> getByFilter(UserFilter filter) {
-        List<Staff> doctors = new ArrayList<>();
-        String baseQuery = "SELECT * FROM doctors WHERE 1=1";
-        String filterQuery = filter.buildQuery();
-        String finalQuery = baseQuery + filterQuery;
+        String filterQuery = "SELECT * FROM doctors WHERE 1=1" + filter.buildQuery();
+        return fetchDoctors(filterQuery);
+    }
 
+    public static List<Staff> getAllDoctors() {
+        String query = "SELECT * FROM doctors";
+        return fetchDoctors(query);
+    }
+
+    public static List<Staff> fetchDoctors(String query) {
+        List<Staff> doctors = new ArrayList<>();
         try {
             Connection conn = DatabaseUtil.getConnection();
-            PreparedStatement pst = conn.prepareStatement(finalQuery);
+            PreparedStatement pst = conn.prepareStatement(query);
             ResultSet result = pst.executeQuery();
 
             while (result.next()) {

@@ -169,4 +169,8 @@ public class AddNurseController implements Initializable {
         ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
         nurseDep.setItems(observableList);
     }
+
+    public void handleNurseFilter(ActionEvent event) {
+
+    }
 }
