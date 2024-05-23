@@ -98,7 +98,7 @@ public class AddRecController implements Initializable {
     private TableColumn<?, ?> rec_col_uni;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_action;
+    private TableColumn<?, ?> rec_col_surname;
 
     @FXML
     private AnchorPane receptionist_form;
@@ -139,7 +139,7 @@ public class AddRecController implements Initializable {
     }
 
     public void recDisplayData() {
-        Table.staffDisplayData(rec_col_ID, rec_col_name, rec_col_department, rec_col_phone, rec_col_email, rec_col_uni, rec_col_address);
+        Table.staffDisplayData(rec_col_ID, rec_col_name, rec_col_surname, rec_col_department, rec_col_phone, rec_col_email, rec_col_uni, rec_col_address);
         receptionist_table.setItems(getReceptionists());
     }
 

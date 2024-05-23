@@ -78,7 +78,7 @@ public class AddNurseController implements Initializable {
     private TableColumn<?, ?> nurse_col_ID;
 
     @FXML
-    private TableColumn<?, ?> nurse_col_action;
+    private TableColumn<?, ?> nurse_col_surname;
 
     @FXML
     private TableColumn<?, ?> nurse_col_address;
@@ -139,7 +139,7 @@ public class AddNurseController implements Initializable {
     }
 
     public void nurseDisplayData() {
-        Table.staffDisplayData(nurse_col_ID, nurse_col_name, nurse_col_department, nurse_col_phone, nurse_col_email, nurse_col_university, nurse_col_address);
+        Table.staffDisplayData(nurse_col_ID, nurse_col_name, nurse_col_surname, nurse_col_department, nurse_col_phone, nurse_col_email, nurse_col_university, nurse_col_address);
         nurses_table.setItems(getNurses());
     }
 

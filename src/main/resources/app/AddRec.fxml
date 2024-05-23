@@ -31,12 +31,12 @@
                                  <columns>
                                     <TableColumn fx:id="rec_col_ID" prefWidth="75.0" text="Receptionist ID" />
                                     <TableColumn fx:id="rec_col_name" prefWidth="75.0" text="Name" />
+                                    <TableColumn fx:id="rec_col_surname" prefWidth="101.0" text="Surname" />
                                     <TableColumn fx:id="rec_col_department" prefWidth="75.0" text="Department" />
                                     <TableColumn fx:id="rec_col_phone" prefWidth="114.0" text="Phone" />
                                     <TableColumn fx:id="rec_col_email" prefWidth="100.0" text="Email" />
                                     <TableColumn fx:id="rec_col_uni" prefWidth="110.0" text="University" />
                                     <TableColumn fx:id="rec_col_address" prefWidth="109.0" text="Address" />
-                                    <TableColumn fx:id="rec_col_status" prefWidth="101.0" text="Status" />
                                     <TableColumn fx:id="receptionist_col_action" prefWidth="100.0" text="Action" />
                                  </columns>
                                  <columnResizePolicy>

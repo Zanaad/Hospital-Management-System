@@ -31,10 +31,11 @@
                                             <columns>
                                                 <TableColumn fx:id="doctors_col_ID" prefWidth="75.0" text="Doctor ID" />
                                                 <TableColumn fx:id="doctors_col_name" prefWidth="75.0" text="Name" />
+                                    <TableColumn fx:id="doctors_col_surname" prefWidth="75.0" text="Last Name" />
                                                 <TableColumn fx:id="doctors_col_department" prefWidth="75.0" text="Department" />
                                                 <TableColumn fx:id="doctors_col_phone" prefWidth="114.0" text="Phone Number" />
                                                 <TableColumn fx:id="doctors_col_email" prefWidth="100.0" text="Email " />
-                                                <TableColumn fx:id="doctors_col_uni" prefWidth="110.0" text="Specialization" />
+                                                <TableColumn fx:id="doctors_col_uni" prefWidth="110.0" text="University" />
                                                 <TableColumn fx:id="doctors_col_address" prefWidth="109.0" text="Address" />
                                                 <TableColumn fx:id="doctors_col_action" prefWidth="100.0" text="Action" />
                                             </columns>
