@@ -1,7 +1,6 @@
 package controller;
 
 import app.Navigator;
-import database.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,17 +14,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.Staff;
 import model.dto.StaffDto.NurseDto;
 import repository.DepartmentRepository;
+import repository.Staff.NurseRepository;
 import service.Staff.NurseService;
 import service.Table;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -109,7 +105,7 @@ public class AddNurseController implements Initializable {
     private AnchorPane nurse_form;
 
     @FXML
-    private TableView<Staff> nurses_table;
+    private TableView<NurseDto> nurses_table;
 
     @FXML
     private Button register_nurse_btn;
@@ -138,21 +134,8 @@ public class AddNurseController implements Initializable {
         }
     }
 
-    public ObservableList<Staff> getNurses() {
-        ObservableList<Staff> listNurses = FXCollections.observableArrayList();
-        String query = "select * from nurses";
-        Connection con = DatabaseUtil.getConnection();
-        try {
-            PreparedStatement prepare = con.prepareStatement(query);
-            ResultSet result = prepare.executeQuery();
-            while (result.next()) {
-                Staff nurse = new Staff(result.getInt("nurse_id"), result.getString("nurse_firstName"), result.getString("nurse_department"), result.getString("nurse_phone"), result.getString("nurse_email"), result.getString("nurse_university"), result.getString("nurse_address"));
-                listNurses.add(nurse);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listNurses;
+    public ObservableList<NurseDto> getNurses() {
+        return FXCollections.observableArrayList(NurseRepository.getAllNurses());
     }
 
     public void nurseDisplayData() {

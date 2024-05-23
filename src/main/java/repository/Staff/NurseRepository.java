@@ -1,8 +1,8 @@
 package repository.Staff;
 
 import database.DatabaseUtil;
-import model.Staff;
 import model.dto.StaffDto.CreateNurseDto;
+import model.dto.StaffDto.NurseDto;
 import model.filter.UserFilter;
 
 import java.sql.Connection;
@@ -21,24 +21,24 @@ public class NurseRepository extends StaffRepository {
         return createStaff(nurseData, query);
     }
 
-    public static List<Staff> getByFilter(UserFilter filter) {
+    public static List<NurseDto> getByFilter(UserFilter filter) {
         String filterQuery = "SELECT * FROM nurses WHERE 1=1" + filter.buildQuery();
         return fetchNurses(filterQuery);
     }
 
-    public static List<Staff> getAllNurses() {
+    public static List<NurseDto> getAllNurses() {
         String query = "SELECT * FROM nurses";
         return fetchNurses(query);
     }
 
-    public static List<Staff> fetchNurses(String query) {
-        List<Staff> nurses = new ArrayList<>();
+    public static List<NurseDto> fetchNurses(String query) {
+        List<NurseDto> nurses = new ArrayList<>();
         try {
             Connection conn = DatabaseUtil.getConnection();
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet result = pst.executeQuery();
             while (result.next()) {
-                Staff nurse = new Staff(result.getInt("nurse_id"), result.getString("nurse_firstName"), result.getString("nurse_department"), result.getString("nurse_phone"), result.getString("nurse_email"), result.getString("nurse_university"), result.getString("nurse_address"));
+                NurseDto nurse = new NurseDto(result.getString("nurse_id"), result.getString("nurse_firstName"), result.getString("nurse_lastName"), result.getDate("nurse_birthdate"), result.getString("nurse_phone"), result.getString("nurse_email"), result.getString("nurse_hashPassword"), result.getString("nurse_address"), result.getString("nurse_department"), result.getString("nurse_university"), result.getDate("nurse_start"), result.getDate("nurse_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
                 nurses.add(nurse);
             }
 
