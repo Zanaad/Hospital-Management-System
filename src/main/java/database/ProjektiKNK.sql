@@ -12,14 +12,14 @@ create table admin
     passwordHash nvarchar(64),
     salt         nvarchar(32)
 );
-insert into admins (firstName, lastName)
+insert into admin (firstName, lastName)
 values ("Zana", "Ademi"),
        ("Fatjeta", "Gashi"),
        ("Adea", "Lluhani"),
        ("Adea", "Tabaku"),
        ("Yllka", "Kastrati");
 select *
-from admins;
+from admin;
 create table doctors
 (
     doctor_id           nvarchar(100) primary key,
@@ -41,7 +41,7 @@ create table doctors
 );
 create table receptionists
 (
-    receptionist_id           int primary key auto_increment,
+    receptionist_id           nvarchar(100) primary key,
     receptionist_firstName    nvarchar(100),
     receptionist_lastName     nvarchar(100),
     receptionist_birthdate    date,
@@ -60,7 +60,7 @@ create table receptionists
 );
 create table nurses
 (
-    nurse_id           int primary key auto_increment,
+    nurse_id           nvarchar(100) primary key,
     nurse_firstName    nvarchar(100),
     nurse_lastName     nvarchar(100),
     nurse_birthdate    date,
@@ -80,9 +80,11 @@ create table nurses
 
 create table departments
 (
-    department_id          int primary key auto_increment,
+    department_id          nvarchar(100) primary key,
     department_name        nvarchar(100),
-    department_description text
+    department_description text,
+    nrDoctors nvarchar(200),
+    nrNurses nvarchar(200)
 );
 
 create table patients
@@ -96,10 +98,9 @@ create table patients
     patient_address   nvarchar(150),
     patient_department nvarchar(100),
     patient_doctor    nvarchar(100),
-    patient_nurse    nvarchar(100)
+    patient_nurse    nvarchar(100),
     patient_date     date,
-    patient_payment   String
-
+    patient_payment   nvarchar(100)
 );
 
 create table appointments
@@ -117,8 +118,6 @@ create table appointments
     appointment_hour      nvarchar(100)
 
 );
-select * from appointments;
-select * from patients;
 
 create table operations (
     operationID              int primary key auto_increment,
@@ -182,3 +181,4 @@ select *
 from others;
 select *
 from donors;
+drop database hospitalmanagementsystem;

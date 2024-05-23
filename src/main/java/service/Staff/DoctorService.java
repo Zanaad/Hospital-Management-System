@@ -1,11 +1,9 @@
 package service.Staff;
 
-import model.Staff;
 import model.dto.StaffDto.CreateDoctorDto;
 import model.dto.StaffDto.DoctorDto;
 import model.filter.UserFilter;
 import repository.Staff.DoctorRepository;
-import repository.Staff.StaffRepository;
 import service.PasswordHasher;
 
 import java.util.List;

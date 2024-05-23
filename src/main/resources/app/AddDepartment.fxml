@@ -25,7 +25,8 @@
                                                 <TableColumn fx:id="dep_col_ID" prefWidth="75.0" text="Department ID" />
                                                 <TableColumn fx:id="dep_col_name" prefWidth="75.0" text="Department Name" />
                                                 <TableColumn fx:id="dep_col_desc" prefWidth="75.0" text="Description" />
-                                                <TableColumn fx:id="dep_col_emp" prefWidth="75.0" text="Employees" />
+                                                <TableColumn fx:id="dep_col_docs" prefWidth="75.0" text="Nr. Doctors" />
+                                    <TableColumn fx:id="dep_col_nurses" prefWidth="75.0" text="Nr. Nurses" />
                                             </columns>
                                             <columnResizePolicy>
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

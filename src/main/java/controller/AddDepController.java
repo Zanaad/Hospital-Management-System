@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.dto.DepartmentDto;
+import repository.DepartmentRepository;
 import service.DepartmentService;
 
 import java.net.URL;
@@ -24,6 +25,7 @@ import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class AddDepController implements Initializable {
+
 
     @FXML
     private Button addDepartment_btn;
@@ -38,7 +40,13 @@ public class AddDepController implements Initializable {
     private TableColumn<?, ?> dep_col_emp;
 
     @FXML
+    private TableColumn<?, ?> dep_col_docs;
+
+    @FXML
     private TableColumn<?, ?> dep_col_name;
+
+    @FXML
+    private TableColumn<?, ?> dep_col_nurses;
 
     @FXML
     private AnchorPane department_form;
@@ -47,10 +55,16 @@ public class AddDepController implements Initializable {
     private TableView<DepartmentDto> department_table;
 
     @FXML
-    private TextArea txtDepartmentDescription;
+    private TextField filterDepName;
 
     @FXML
-    private TextField txtDepartmentName;
+    private TextField txtDepID;
+
+    @FXML
+    private TextField txtDepName;
+
+    @FXML
+    private TextArea txtDepartmentDescription;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,23 +72,11 @@ public class AddDepController implements Initializable {
     }
 
     public ObservableList<DepartmentDto> getDepartments() {
-        ObservableList<DepartmentDto> listDepartments = FXCollections.observableArrayList();
-        String query = "select * from departments";
-        Connection con = DatabaseUtil.getConnection();
-        try {
-            PreparedStatement prepare = con.prepareStatement(query);
-            ResultSet result = prepare.executeQuery();
-            while (result.next()) {
-                DepartmentDto depData = new DepartmentDto(result.getString("department_name"), result.getString("department_description"));
-                listDepartments.add(depData);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listDepartments;
+        return FXCollections.observableArrayList(DepartmentRepository.getAllDepartments());
     }
 
     public void depDisplayData() {
+        dep_col_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
         dep_col_name.setCellValueFactory(new PropertyValueFactory<>("departmentName"));
         dep_col_desc.setCellValueFactory(new PropertyValueFactory<>("departmentDescription"));
         department_table.setItems(getDepartments());
@@ -82,7 +84,7 @@ public class AddDepController implements Initializable {
 
     @FXML
     void registerDepartment(ActionEvent event) {
-        DepartmentDto department = new DepartmentDto(this.txtDepartmentName.getText(), this.txtDepartmentDescription.getText());
+        DepartmentDto department = new DepartmentDto(this.txtDepID.getText(), this.txtDepName.getText(), this.txtDepartmentDescription.getText());
         boolean departmentCreated = DepartmentService.createDepartment(department);
         if (departmentCreated) Navigator.navigate(event, Navigator.AdminMainForm);
     }
