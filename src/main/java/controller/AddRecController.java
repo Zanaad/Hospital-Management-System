@@ -166,11 +166,11 @@ public class AddRecController implements Initializable {
     }
 
     public void handleRecFilter(ActionEvent event) {
-        String firstName = filterRecName.getText();
-        String email = filterRecEmail.getText();
-        UserFilter filter = new UserFilter(firstName, email, "receptionist");
-        List<ReceptionistDto> filteredRecs = ReceptionistService.filter(filter);
-        updateRecTable(filteredRecs);
+//        String firstName = filterRecName.getText();
+//        String email = filterRecEmail.getText();
+//        UserFilter filter = new UserFilter(firstName, email);
+//        List<ReceptionistDto> filteredRecs = ReceptionistService.filter(filter);
+//        updateRecTable(filteredRecs);
     }
 
     public void updateRecTable(List<ReceptionistDto> recs) {

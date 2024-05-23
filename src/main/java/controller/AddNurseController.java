@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.NurseDto;
+import model.filter.NurseFilter;
 import model.filter.UserFilter;
 import repository.DepartmentRepository;
 import repository.Staff.NurseRepository;
@@ -37,7 +38,8 @@ public class AddNurseController implements Initializable {
 
     @FXML
     private TextField filterNurseName;
-
+    @FXML
+    private TextField filterNurseDep;
     @FXML
     private TextField nurseAccount;
 
@@ -169,7 +171,8 @@ public class AddNurseController implements Initializable {
     public void handleNurseFilter(ActionEvent event) {
         String firstName = filterNurseName.getText();
         String email = filterNurseEmail.getText();
-        UserFilter filter = new UserFilter(firstName, email, "nurse");
+        String department = filterNurseDep.getText();
+        NurseFilter filter = new NurseFilter(firstName, email, department);
         List<NurseDto> filteredNurses = NurseService.filter(filter);
         updateNurseTable(filteredNurses);
     }
