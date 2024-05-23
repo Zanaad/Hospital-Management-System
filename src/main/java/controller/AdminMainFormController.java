@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import service.CountStaffService;
 
 import java.net.URL;
 import java.util.Locale;
@@ -67,7 +66,7 @@ public class AdminMainFormController implements Initializable {
     }
 
     @FXML
-    public void handleLanguage(ActionEvent event) {
+    public void handleLanguage() {
         Locale defaultLocale = Locale.getDefault();
         if (defaultLocale.getLanguage().equals("en")) {
             Locale.setDefault(new Locale("sq"));
@@ -77,7 +76,7 @@ public class AdminMainFormController implements Initializable {
         this.translate();
     }
 
-    private void translate() {
+    public void translate() {
         Locale locale = Locale.getDefault();
         ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
         this.dashboard_btn.setText(rb.getString("Dashboard"));

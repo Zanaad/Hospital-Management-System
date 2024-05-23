@@ -45,15 +45,17 @@
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Label layoutX="25.0" layoutY="56.0" text="Department Name" />
-                        <TextField fx:id="txtDepartmentName" layoutX="25.0" layoutY="86.0" prefHeight="25.0" prefWidth="439.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="46.19999999999999" AnchorPane.topAnchor="86.0" />
-                        <Label layoutX="25.0" layoutY="125.0" text="Description" />
-                        <TextArea fx:id="txtDepartmentDescription" layoutX="29.0" layoutY="153.0" prefHeight="200.0" prefWidth="285.0" />
-                        <Button fx:id="addDepartment_btn" layoutX="42.0" layoutY="390.0" mnemonicParsing="false" onAction="#registerDepartment" prefHeight="36.0" prefWidth="258.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Add Department" textFill="WHITE" AnchorPane.bottomAnchor="61.19999999999999" AnchorPane.leftAnchor="42.0">
+                        <Label layoutX="25.0" layoutY="106.0" text="Department Name" />
+                        <TextField fx:id="txtDepName" layoutX="25.0" layoutY="127.0" prefHeight="26.0" prefWidth="266.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="57.400000000000034" AnchorPane.topAnchor="127.0" />
+                        <Label layoutX="26.0" layoutY="161.0" text="Description" />
+                        <TextArea fx:id="txtDepartmentDescription" layoutX="29.0" layoutY="189.0" prefHeight="200.0" prefWidth="285.0" />
+                        <Button fx:id="addDepartment_btn" layoutX="45.0" layoutY="425.0" mnemonicParsing="false" onAction="#registerDepartment" prefHeight="36.0" prefWidth="258.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Add Department" textFill="WHITE" AnchorPane.bottomAnchor="26.19999999999999" AnchorPane.leftAnchor="45.0">
                             <font>
                                 <Font size="14.0" />
                             </font>
                         </Button>
+                  <Label layoutX="25.0" layoutY="50.0" prefHeight="18.0" prefWidth="99.0" text="Department ID" />
+                  <TextField fx:id="txtDepID" layoutX="25.0" layoutY="75.0" prefHeight="26.0" prefWidth="265.0" />
                     </children>
                 </AnchorPane>
             <Button layoutX="436.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleDepFilter" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Filter" textFill="WHITE" />
