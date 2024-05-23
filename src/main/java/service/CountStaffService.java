@@ -8,9 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class CountStaffService {
-    public static final String countNurse = "select count(nurse_id) from nurses";
-    public static final String countDoctor = "select count(doctor_id) from doctors";
-    public static final String countReceptionist = "select count(receptionist_id) from receptionists";
+    public static final String countNurse = "select count(id) from nurses";
+    public static final String countDoctor = "select count(id) from doctors";
+    public static final String countReceptionist = "select count(id) from receptionists";
     public static final String countDepartment = "select count(department_id) from departments";
     public static final String countPatients = "select count(patient_id) from patients";
     public static final String countAppointments = "select count(appointment_id) from appointments";
@@ -31,8 +31,8 @@ public class CountStaffService {
     }
 
     public static void updateDepTable(String depName) {
-        String countDocs = "select count(doctor_id) from doctors where doctor_department=?";
-        String countNurses = "select count(nurse_id) from nurses where nurse_department=?";
+        String countDocs = "select count(id) from doctors where department=?";
+        String countNurses = "select count(id) from nurses where department=?";
         int nrDoctors = getCount(countDocs, depName);
         int nrNurses = getCount(countNurses, depName);
 
