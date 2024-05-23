@@ -3,14 +3,14 @@ package model.dto.ReportDto;
 import java.sql.Date;
 
 public class BirthsDto {
-    private int birthID;
+    private String birthID;
     private String birth_description;
     private String birth_patient;
     private String birth_newborn;
     private Date birth_date;
     private String birth_time;
 
-    public BirthsDto(int birthID, String birth_description, String birth_patient, String birth_newborn, Date birth_date, String birth_time) {
+    public BirthsDto(String birthID, String birth_description, String birth_patient, String birth_newborn, Date birth_date, String birth_time) {
         this.birthID = birthID;
         this.birth_description = birth_description;
         this.birth_patient = birth_patient;
@@ -19,13 +19,11 @@ public class BirthsDto {
         this.birth_time = birth_time;
     }
 
-    public int getBirthID() {
+    public String getBirthID() {
         return birthID;
     }
 
-    public void setBirthID(int birthID) {
-        this.birthID = birthID;
-    }
+
 
     public String getBirth_description() {
         return birth_description;

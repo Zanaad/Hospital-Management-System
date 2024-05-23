@@ -3,14 +3,14 @@ package model.dto.ReportDto;
 import java.sql.Date;
 
 public class createReportDto {
-    private int id;
+    private String id;
     private String description;
     private String patient;
     private Date date;
     private String time;
     private String doctor;
 
-    public createReportDto(int id, String description, String patient, Date date, String time) {
+    public createReportDto(String id, String description, String patient, Date date, String time) {
         this.id = id;
         this.description = description;
         this.patient = patient;
@@ -19,7 +19,7 @@ public class createReportDto {
     }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

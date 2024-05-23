@@ -397,7 +397,7 @@ public class NursePageController implements Initializable {
     void registerOperation(ActionEvent event) {
         Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
 
-        OperationDto operation = new OperationDto(Integer.parseInt(this.txtOperationID.getText()), this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
+        OperationDto operation = new OperationDto (this.txtOperationID.getText(), this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
         boolean operationCreated = operationService.createOperation(operation);
         if (operationCreated) {
             Navigator.navigate(event, Navigator.NursePage);
@@ -413,7 +413,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 OperationDto operationData = new OperationDto(
-                        result.getInt("operationID"),
+                        result.getString("operationID"),
                         result.getString("opDescription"),
                         result.getString("opPatient"),
                         result.getString("opDoctor"),
@@ -445,7 +445,7 @@ public class NursePageController implements Initializable {
         try {
             pst = conn.prepareStatement(sql);
             Date birthDate = Date.valueOf(this.txtBirthDate.getValue());
-            pst.setInt(1, Integer.parseInt(txtBirthID.getText()));
+            pst.setString(1, txtBirthID.getText());
             pst.setString(2, txtBirthDescription.getText());
             pst.setString(3, txtBirthPatient.getText());
             pst.setString(4, txtBirthNewBorn.getText());
@@ -467,8 +467,9 @@ public class NursePageController implements Initializable {
         try{
             pst=conn.prepareStatement(sql);
             Date deathDate = Date.valueOf(this.txtDeathDate.getValue());
-            pst.setInt(1, Integer.parseInt(txtDeathID.getText()));
+            pst.setString(1, txtDeathID.getText());
             pst.setString(2,txtDeathDescription.getText());
+            pst.setString(3,txtDeathPatient.getText());
             pst.setDate(4, deathDate);
             pst.setString(5,txtDeathTime.getText());
 
@@ -489,13 +490,14 @@ public class NursePageController implements Initializable {
         try{
             pst=conn.prepareStatement(sql);
             Date otherDate = Date.valueOf(this.txtOtherDate.getValue());
-            pst.setInt(1, Integer.parseInt(txtOtherID.getText()));
+            pst.setString(1, txtOtherID.getText());
             pst.setString(2,txtOtherDescription.getText());
             pst.setString(3,txtOtherPatient.getText());
             pst.setDate(4,otherDate);
             pst.setString(5,txtOtherTime.getText());
 
             pst.execute();
+
             pst.close();
         }
         catch(Exception e){
@@ -503,8 +505,6 @@ public class NursePageController implements Initializable {
 
         }
     }
-
-
     @FXML
     void registerDonor(ActionEvent event) {
         String donorAge = txtDonorAge.getText();
@@ -537,7 +537,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 BirthsDto birthData = new BirthsDto(
-                        result.getInt("birthID"),
+                        result.getString("birthID"),
                         result.getString("birth_description"),
                         result.getString("birth_patient"),
                         result.getString("birth_newborn"),
@@ -576,7 +576,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 DeathsDto deathData = new DeathsDto(
-                        result.getInt("deathID"),
+                        result.getString("deathID"),
                         result.getString("death_description"),
                         result.getString("death_patient"),
                         result.getDate("death_date"),
@@ -610,7 +610,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 OthersDto otherData = new OthersDto(
-                        result.getInt("otherID"),
+                        result.getString("otherID"),
                         result.getString("other_description"),
                         result.getString("other_patient"),
                         result.getDate("other_date"),
@@ -680,7 +680,3 @@ public class NursePageController implements Initializable {
 
 
 }
-
-
-
-

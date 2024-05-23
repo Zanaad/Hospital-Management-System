@@ -22,7 +22,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NursePageController">
     <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
         <BorderPane layoutX="144.0" layoutY="64.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -272,17 +271,19 @@
                                             <children>
                                                <AnchorPane fx:id="add_reportOperation" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
                                                   <children>
-                                                     <TextField fx:id="txtOperationDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
-                                                     <Label layoutX="62.0" layoutY="44.0" text="Description" />
-                                                     <Label layoutX="62.0" layoutY="153.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
-                                                     <TextField fx:id="txtOperationPatient" layoutX="62.0" layoutY="181.0" prefHeight="31.0" prefWidth="189.0" />
-                                                     <Label layoutX="62.0" layoutY="230.0" prefHeight="18.0" prefWidth="70.0" text="Doctor" />
-                                                     <TextField fx:id="txtOperationDoctor" layoutX="62.0" layoutY="258.0" prefHeight="31.0" prefWidth="189.0" />
-                                                     <DatePicker fx:id="txtOperationDate" layoutX="359.0" layoutY="68.0" prefHeight="34.0" prefWidth="210.0" />
-                                                     <Label layoutX="359.0" layoutY="44.0" text="Date" />
-                                                     <Label layoutX="359.0" layoutY="123.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
-                                                     <TextField fx:id="txtOperationTime" layoutX="359.0" layoutY="151.0" prefHeight="31.0" prefWidth="189.0" />
+                                                     <TextField fx:id="txtOperationDescription" layoutX="69.0" layoutY="148.0" prefHeight="70.0" prefWidth="190.0" />
+                                                     <Label layoutX="69.0" layoutY="124.0" text="Description" />
+                                                     <Label layoutX="69.0" layoutY="233.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
+                                                     <TextField fx:id="txtOperationPatient" layoutX="69.0" layoutY="261.0" prefHeight="31.0" prefWidth="189.0" />
+                                                     <Label layoutX="359.0" layoutY="32.0" prefHeight="18.0" prefWidth="70.0" text="Doctor" />
+                                                     <TextField fx:id="txtOperationDoctor" layoutX="359.0" layoutY="60.0" prefHeight="31.0" prefWidth="189.0" />
+                                                     <DatePicker fx:id="txtOperationDate" layoutX="359.0" layoutY="126.0" prefHeight="34.0" prefWidth="210.0" />
+                                                     <Label layoutX="359.0" layoutY="102.0" text="Date" />
+                                                     <Label layoutX="359.0" layoutY="181.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
+                                                     <TextField fx:id="txtOperationTime" layoutX="359.0" layoutY="209.0" prefHeight="31.0" prefWidth="189.0" />
                                                      <Button fx:id="addOperation_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerOperation" prefHeight="34.0" prefWidth="142.0" text="Add Operation" />
+                                                   <Label layoutX="69.0" layoutY="30.0" prefHeight="18.0" prefWidth="70.0" text="ID" />
+                                                   <TextField fx:id="txtOperationID" layoutX="69.0" layoutY="58.0" prefHeight="31.0" prefWidth="189.0" />
                                                   </children>
                                                </AnchorPane>
                                                <AnchorPane fx:id="add_reportDeath" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">

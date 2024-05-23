@@ -14,7 +14,7 @@ public class ReportRepository {
         try {
             PreparedStatement pst = conn.prepareStatement(query);
 
-            pst.setInt(1, reportData.getId());
+            pst.setString(1, reportData.getId());
             pst.setString(2, reportData.getDescription());
             pst.setString(3, reportData.getPatient());
             pst.setString(4, reportData.getDoctor());
