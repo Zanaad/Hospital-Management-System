@@ -19,9 +19,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import model.Deaths;
+import model.Operation;
 import model.dto.RecDto.PatientDto;
 import model.dto.ReportDto.*;
 import service.Rec.PatientService;
+import service.Report.deathService;
 import service.Report.donorService;
 import service.Report.operationService;
 
@@ -125,10 +128,10 @@ public class NursePageController implements Initializable {
     private TableColumn<?, ?> blood_col_lastDonationDate;
 
     @FXML
-    private TableView<OperationDto> operation_table;
+    private TableView<Operation> operation_table;
 
     @FXML
-    private TableView<DeathsDto> death_table;
+    private TableView<Deaths> death_table;
 
     @FXML
     private BarChart<?, ?> dashboad_chart_BD;
@@ -404,15 +407,15 @@ public class NursePageController implements Initializable {
         }
     }
 
-    public ObservableList<OperationDto> getOperations() {
-        ObservableList<OperationDto> listOperation = FXCollections.observableArrayList();
+    public ObservableList<Operation> getOperations() {
+        ObservableList<Operation> listOperation = FXCollections.observableArrayList();
         String query = "SELECT * FROM operations";
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                OperationDto operationData = new OperationDto(
+                Operation operationData = new Operation(
                         result.getString("operationID"),
                         result.getString("opDescription"),
                         result.getString("opPatient"),
@@ -422,7 +425,7 @@ public class NursePageController implements Initializable {
                 );
                 listOperation.add(operationData);
             }
-            prepare.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -430,12 +433,13 @@ public class NursePageController implements Initializable {
     }
 
     public void operationDisplayData() {
-        operations_col_operationID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        operations_col_operationID.setCellValueFactory(new PropertyValueFactory<>("operationID"));
         operations_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         operations_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
         operations_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
         operations_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
         operations_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
+
         operation_table.setItems(getOperations());
     }
     @FXML
@@ -462,23 +466,12 @@ public class NursePageController implements Initializable {
 
     @FXML
     void registerDeath(ActionEvent event) {
-        conn= DatabaseUtil.getConnection();
-        String sql="insert into deaths (deathID, death_description, death_patient, death_date, death_time) values (? , ? , ? , ? , ?)";
-        try{
-            pst=conn.prepareStatement(sql);
-            Date deathDate = Date.valueOf(this.txtDeathDate.getValue());
-            pst.setString(1, txtDeathID.getText());
-            pst.setString(2,txtDeathDescription.getText());
-            pst.setString(3,txtDeathPatient.getText());
-            pst.setDate(4, deathDate);
-            pst.setString(5,txtDeathTime.getText());
+        Date deathDate = Date.valueOf(this.txtDeathDate.getValue());
 
-            pst.execute();
-            pst.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-
+        DeathsDto deaths = new DeathsDto(this.txtDeathID.getText(), this.txtDeathDescription.getText(), this.txtDeathPatient.getText(), deathDate, this.txtDeathTime.getText());
+        boolean deathCreated = deathService.createDeath(deaths);
+        if (deathCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
         }
     }
 
@@ -567,15 +560,15 @@ public class NursePageController implements Initializable {
     }
 
 
-    public ObservableList<DeathsDto> getDeaths() {
-        ObservableList<DeathsDto> listDeaths = FXCollections.observableArrayList();
+    public ObservableList<Deaths> getDeaths() {
+        ObservableList<Deaths> listDeaths = FXCollections.observableArrayList();
         String query = "SELECT * FROM deaths";
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                DeathsDto deathData = new DeathsDto(
+                Deaths deathData = new Deaths(
                         result.getString("deathID"),
                         result.getString("death_description"),
                         result.getString("death_patient"),
@@ -584,6 +577,7 @@ public class NursePageController implements Initializable {
                 );
                 listDeaths.add(deathData);
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -593,10 +587,10 @@ public class NursePageController implements Initializable {
 
     public void deathDisplayData() {
         deaths_col_deathID.setCellValueFactory(new PropertyValueFactory<>("deathID"));
-        deaths_col_description.setCellValueFactory(new PropertyValueFactory<>("deathDescription"));
-        deaths_col_patient.setCellValueFactory(new PropertyValueFactory<>("deathPatient"));
-        deaths_col_date.setCellValueFactory(new PropertyValueFactory<>("deathDate"));
-        deaths_col_time.setCellValueFactory(new PropertyValueFactory<>("deathTime"));
+        deaths_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        deaths_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
+        deaths_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        deaths_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         death_table.setItems(getDeaths());
     }
