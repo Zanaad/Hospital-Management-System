@@ -14,44 +14,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <AnchorPane prefHeight="414.0" prefWidth="600.0">
-            <children>
-                <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/logfoto.jpeg"/>
-                    </image>
-                </ImageView>
-                <Label layoutX="182.0" layoutY="36.0" text="Loggin Account" textFill="#f2ee0e">
-                    <font>
-                        <Font name="Arial Black" size="24.0"/>
-                    </font>
-                </Label>
-                <TextField layoutX="326.0" layoutY="115.0" promptText="Username"/>
-                <PasswordField layoutX="326.0" layoutY="158.0" promptText="Password"/>
-                <CheckBox layoutX="326.0" layoutY="191.0" mnemonicParsing="false" text="Show Password"/>
-                <Button defaultButton="true" layoutX="326.0" layoutY="318.0" mnemonicParsing="false" prefHeight="26.0"
-                        prefWidth="150.0" style="-fx-background-color: #FED700;" text="Loggin" textAlignment="JUSTIFY"
-                        textFill="#030000" wrapText="true"/>
-                <Label layoutX="327.0" layoutY="356.0" text="Not a member?" textFill="#e7d910"/>
-                <ComboBox blendMode="HARD_LIGHT" layoutX="326.0" layoutY="224.0" prefWidth="150.0"
-                          promptText="Select User"/>
-                <!-- Your other UI elements -->
-                <ComboBox fx:id="userTypeComboBox" layoutX="327.0" layoutY="280.0">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Doctor"/>
-                            <String fx:value="Admin"/>
-                            <String fx:value="Nurse"/>
-                            <String fx:value="Receptionist"/>
-                            <String fx:value="Accountant"/>
-                        </FXCollections>
-                    </items>
-                </ComboBox>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <AnchorPane prefHeight="414.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Desktop/logfoto.jpeg" />
+               </image>
+            </ImageView>
+            <Label layoutX="182.0" layoutY="36.0" text="Loggin Account" textFill="#f2ee0e">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtEmail" layoutX="326.0" layoutY="157.0" promptText="Email" />
+            <PasswordField fx:id="pwdPassword" layoutX="326.0" layoutY="200.0" promptText="Password" />
+            <CheckBox layoutX="330.0" layoutY="237.0" mnemonicParsing="false" text="Show Password" />
+            <Button defaultButton="true" layoutX="326.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleLoginClick" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #FED700;" text="Loggin" textAlignment="JUSTIFY" textFill="#030000" wrapText="true" />
+               <!-- Your other UI elements -->
+               <ComboBox fx:id="userTypeComboBox" layoutX="327.0" layoutY="280.0" promptText="Select User">
+                  <items>
+                     <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Doctor" />
+                        <String fx:value="Admin" />
+                        <String fx:value="Nurse" />
+                        <String fx:value="Receptionist" />
+                        <String fx:value="Accountant" />
+                     </FXCollections>
+                  </items>
+               </ComboBox>
 
-            </children>
-        </AnchorPane>
-    </children>
+         </children>
+      </AnchorPane>
+   </children>
 </VBox>
