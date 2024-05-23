@@ -13,17 +13,17 @@ public class AppointmentRepository {
     public static boolean createAppointment(CreateAppointmentDto appointmentData) {
         Connection conn = DatabaseUtil.getConnection();
         String query = """
-                INSERT INTO appointments( appointment_id        nvarchar(100),
-                                          appointment_firstName nvarchar(100),
-                                          appointment_lastName  nvarchar(100),
-                                          appointment_description nvarchar(100),
-                                          appointment_department nvarchar(100),
-                                          appointment_doctor    nvarchar(100),
-                                          appointment_nurse     nvarchar(100),
-                                          appointment_phone     nvarchar(100),
-                                          appointment_address   nvarchar(100),
-                                          appointment_date          date,
-                                          appointment_hour      nvarchar(100)
+                INSERT INTO appointments( appointment_id,
+                                          appointment_firstName,
+                                          appointment_lastName,
+                                          appointment_description,
+                                          appointment_department,
+                                          appointment_doctor,
+                                          appointment_nurse,
+                                          appointment_phone,
+                                          appointment_address,
+                                          appointment_date,
+                                          appointment_hour 
                 
                 )
                 value(?,?,?,?,?,?,?,?,?,?,?)
