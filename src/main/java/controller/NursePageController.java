@@ -19,8 +19,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import model.dto.RecDto.PatientDto;
 import model.dto.ReportDto.*;
+import service.Rec.PatientService;
 import service.Report.donorService;
+import service.Report.operationService;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -388,27 +391,52 @@ public class NursePageController implements Initializable {
 
     //database tools--------------------------------------------------------------------------------------------------
 
+
+
     @FXML
     void registerOperation(ActionEvent event) {
-        conn= DatabaseUtil.getConnection();
-        String sql="insert into births (operationID, opDescription, opPatient, opDoctor, opDate, opTime) values (? , ? , ? , ? , ?, ?)";
-        try{
-            pst=conn.prepareStatement(sql);
-            Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
-            pst.setInt(1, Integer.parseInt(txtOperationID.getText()));
-            pst.setString(2,txtOperationDescription.getText());
-            pst.setString(3,txtOperationPatient.getText());
-            pst.setString(4,txtOperationDoctor.getText());
-            pst.setDate(4, operationDate);
-            pst.setString(5,txtOperationTime.getText());
+        Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
 
-            pst.execute();
-            pst.close();
+        OperationDto operation = new OperationDto(Integer.parseInt(this.txtOperationID.getText()), this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
+        boolean operationCreated = operationService.createOperation(operation);
+        if (operationCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
         }
-        catch(Exception e){
+    }
+
+    public ObservableList<OperationDto> getOperations() {
+        ObservableList<OperationDto> listOperation = FXCollections.observableArrayList();
+        String query = "SELECT * FROM operations";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                OperationDto operationData = new OperationDto(
+                        result.getInt("operationID"),
+                        result.getString("opDescription"),
+                        result.getString("opPatient"),
+                        result.getString("opDoctor"),
+                        result.getDate("opDate"),
+                        result.getString("opTime")
+                );
+                listOperation.add(operationData);
+            }
+            prepare.close();
+        } catch (Exception e) {
             e.printStackTrace();
-
         }
+        return listOperation;
+    }
+
+    public void operationDisplayData() {
+        operations_col_operationID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        operations_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        operations_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
+        operations_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
+        operations_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        operations_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        operation_table.setItems(getOperations());
     }
     @FXML
     void registerBirth(ActionEvent event) {
@@ -498,34 +526,7 @@ public class NursePageController implements Initializable {
 
     //display data at the tables---------------------------------------------------------------------------------------
 
-    public ObservableList<OperationDto> getOperations() {
-        ObservableList<OperationDto> listOperation = FXCollections.observableArrayList();
-        String query = "select * from operations";
-        Connection con = DatabaseUtil.getConnection();
-        try {
-            PreparedStatement prepare = con.prepareStatement(query);
-            ResultSet result = prepare.executeQuery();
-            while (result.next()) {
-                OperationDto operationData = new OperationDto(result.getInt("operationID"), result.getString("opDescription"), result.getString("opPatient"), result.getString("opDoctor"), result.getDate("opDate"), result.getString("opTime"));
-                listOperation.add(operationData);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listOperation;
-    }
 
-
-
-    public void operationDisplayData() {
-        operations_col_operationID.setCellValueFactory(new PropertyValueFactory<>("operationID"));
-        operations_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
-        operations_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
-        operations_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
-        operations_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
-        operations_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
-        operation_table.setItems(getOperations());
-    }
 
     public ObservableList<BirthsDto> getBirths() {
         ObservableList<BirthsDto> listBirths = FXCollections.observableArrayList();

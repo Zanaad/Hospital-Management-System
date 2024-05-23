@@ -270,7 +270,7 @@
                                      <content>
                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                             <children>
-                                               <AnchorPane fx:id="add_reportOperation" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
+                                               <AnchorPane fx:id="add_reportOperation" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
                                                   <children>
                                                      <TextField fx:id="txtOperationDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
                                                      <Label layoutX="62.0" layoutY="44.0" text="Description" />
@@ -313,7 +313,7 @@
                                                      <TextField fx:id="txtBirthNewBorn" layoutX="62.0" layoutY="254.0" prefHeight="31.0" prefWidth="189.0" />
                                                   </children>
                                                </AnchorPane>
-                                               <AnchorPane fx:id="add_reportOther" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
+                                               <AnchorPane fx:id="add_reportOther" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0" visible="false">
                                                   <children>
                                                      <TextField fx:id="txtOtherDescription" layoutX="62.0" layoutY="68.0" prefHeight="70.0" prefWidth="190.0" />
                                                      <Label layoutX="62.0" layoutY="44.0" text="Description" />
