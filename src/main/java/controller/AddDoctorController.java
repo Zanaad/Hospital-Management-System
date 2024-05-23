@@ -161,7 +161,6 @@ public class AddDoctorController implements Initializable {
     void handleDoctorFilter(ActionEvent event) {
         String firstName = filterDocName.getText();
         String email = filterDocEmail.getText();
-
         UserFilter filter = new UserFilter(firstName, email, "doctor");
         List<DoctorDto> filteredDoctors = DoctorService.filter(filter);
         updateDoctorTable(filteredDoctors);

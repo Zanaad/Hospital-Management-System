@@ -2,8 +2,11 @@ package service.Staff;
 
 import model.dto.StaffDto.CreateReceptionistDto;
 import model.dto.StaffDto.ReceptionistDto;
+import model.filter.UserFilter;
 import repository.Staff.ReceptionistRepository;
 import service.PasswordHasher;
+
+import java.util.List;
 
 public class ReceptionistService {
     public static boolean createReceptionist(ReceptionistDto receptionistData) {
@@ -30,5 +33,9 @@ public class ReceptionistService {
                 receptionistData.getRoutingNumber()
         );
         return ReceptionistRepository.createReceptionist(createReceptionistDto);
+    }
+
+    public static List<ReceptionistDto> filter(UserFilter filter) {
+        return ReceptionistRepository.getByFilter(filter);
     }
 }
