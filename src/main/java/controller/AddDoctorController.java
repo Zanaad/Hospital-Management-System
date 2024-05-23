@@ -12,6 +12,7 @@ import model.dto.StaffDto.DoctorDto;
 import model.filter.UserFilter;
 import repository.DepartmentRepository;
 import repository.Staff.DoctorRepository;
+import service.CountStaffService;
 import service.Staff.DoctorService;
 import service.Table;
 
@@ -141,6 +142,7 @@ public class AddDoctorController implements Initializable {
         boolean staffCreated = DoctorService.createDoctor(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminMainForm);
+            CountStaffService.updateDepTable(this.docDep.getValue());
         }
     }
 
