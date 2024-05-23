@@ -1,7 +1,6 @@
 package controller;
 
 import app.Navigator;
-import database.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,17 +14,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.Staff;
 import model.dto.StaffDto.NurseDto;
 import repository.DepartmentRepository;
+import repository.Staff.NurseRepository;
 import service.Staff.NurseService;
 import service.Table;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -39,6 +35,8 @@ public class AddNurseController implements Initializable {
 
     @FXML
     private TextField nurseAddress;
+    @FXML
+    private TextField nurseID;
 
     @FXML
     private TextField nurseBank;
@@ -80,7 +78,7 @@ public class AddNurseController implements Initializable {
     private TableColumn<?, ?> nurse_col_ID;
 
     @FXML
-    private TableColumn<?, ?> nurse_col_action;
+    private TableColumn<?, ?> nurse_col_surname;
 
     @FXML
     private TableColumn<?, ?> nurse_col_address;
@@ -107,7 +105,7 @@ public class AddNurseController implements Initializable {
     private AnchorPane nurse_form;
 
     @FXML
-    private TableView<Staff> nurses_table;
+    private TableView<NurseDto> nurses_table;
 
     @FXML
     private Button register_nurse_btn;
@@ -121,7 +119,7 @@ public class AddNurseController implements Initializable {
         Date startDate = Date.valueOf(this.nurseStart.getValue());
         Date endDate = Date.valueOf(this.nurseEnd.getValue());
 
-        NurseDto staff = new NurseDto(this.nurseFirstName.getText(), this.nurseLastName.getText(), birthdate, this.nursePhone.getText(), this.nurseEmail.getText(), this.nursePassword.getText(), this.nurseAddress.getText(), (String) this.nurseDep.getValue(), this.nurseUni.getText(), startDate, endDate, this.nurseBank.getText(), this.nurseAccount.getText(), this.nurseRoutingNr.getText());
+        NurseDto staff = new NurseDto(this.nurseID.getText(), this.nurseFirstName.getText(), this.nurseLastName.getText(), birthdate, this.nursePhone.getText(), this.nurseEmail.getText(), this.nursePassword.getText(), this.nurseAddress.getText(), (String) this.nurseDep.getValue(), this.nurseUni.getText(), startDate, endDate, this.nurseBank.getText(), this.nurseAccount.getText(), this.nurseRoutingNr.getText());
         boolean staffCreated = NurseService.createNurse(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminMainForm);
@@ -136,25 +134,12 @@ public class AddNurseController implements Initializable {
         }
     }
 
-    public ObservableList<Staff> getNurses() {
-        ObservableList<Staff> listNurses = FXCollections.observableArrayList();
-        String query = "select * from nurses";
-        Connection con = DatabaseUtil.getConnection();
-        try {
-            PreparedStatement prepare = con.prepareStatement(query);
-            ResultSet result = prepare.executeQuery();
-            while (result.next()) {
-                Staff nurse = new Staff(result.getInt("nurse_id"), result.getString("nurse_firstName"), result.getString("nurse_department"), result.getString("nurse_phone"), result.getString("nurse_email"), result.getString("nurse_university"), result.getString("nurse_address"));
-                listNurses.add(nurse);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listNurses;
+    public ObservableList<NurseDto> getNurses() {
+        return FXCollections.observableArrayList(NurseRepository.getAllNurses());
     }
 
     public void nurseDisplayData() {
-        Table.staffDisplayData(nurse_col_ID, nurse_col_name, nurse_col_department, nurse_col_phone, nurse_col_email, nurse_col_university, nurse_col_address);
+        Table.staffDisplayData(nurse_col_ID, nurse_col_name, nurse_col_surname, nurse_col_department, nurse_col_phone, nurse_col_email, nurse_col_university, nurse_col_address);
         nurses_table.setItems(getNurses());
     }
 
@@ -168,5 +153,9 @@ public class AddNurseController implements Initializable {
         List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
         nurseDep.setItems(observableList);
+    }
+
+    public void handleNurseFilter(ActionEvent event) {
+
     }
 }

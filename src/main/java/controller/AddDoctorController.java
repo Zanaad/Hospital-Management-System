@@ -1,31 +1,22 @@
 package controller;
 
 import app.Navigator;
-import database.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import model.Staff;
 import model.dto.StaffDto.DoctorDto;
+import model.filter.UserFilter;
 import repository.DepartmentRepository;
+import repository.Staff.DoctorRepository;
 import service.Staff.DoctorService;
 import service.Table;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -48,7 +39,8 @@ public class AddDoctorController implements Initializable {
 
     @FXML
     private ComboBox<String> docDep;
-
+    @FXML
+    private TextField docID;
     @FXML
     private TextField docEmail;
 
@@ -83,7 +75,7 @@ public class AddDoctorController implements Initializable {
     private TableColumn<?, ?> doctors_col_ID;
 
     @FXML
-    private TableColumn<?, ?> doctors_col_action;
+    private TableColumn<?, ?> doctors_col_surname;
 
     @FXML
     private TableColumn<?, ?> doctors_col_address;
@@ -107,7 +99,7 @@ public class AddDoctorController implements Initializable {
     private AnchorPane doctors_form;
 
     @FXML
-    private TableView<Staff> doctors_table;
+    private TableView<DoctorDto> doctors_table;
 
     @FXML
     private Button filter_doctor_btn;
@@ -117,6 +109,10 @@ public class AddDoctorController implements Initializable {
 
     @FXML
     private AnchorPane register_doctor_form;
+    @FXML
+    private TextField filterDocName;
+    @FXML
+    private TextField filterDocEmail;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -124,19 +120,7 @@ public class AddDoctorController implements Initializable {
         loadDepartmentNames();
     }
 
-    @FXML
-    void registerDoctor(ActionEvent event) {
-        Date birthdate = Date.valueOf(this.docBirthdate.getValue());
-        Date startDate = Date.valueOf(this.docStart.getValue());
-        Date endDate = Date.valueOf(this.docEnd.getValue());
-
-        DoctorDto staff = new DoctorDto(this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), this.docPassword.getText(), this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
-        boolean staffCreated = DoctorService.createDoctor(staff);
-        if (staffCreated) {
-            Navigator.navigate(event, Navigator.AdminMainForm);
-        }
-    }
-
+    //Switch to the register form
     @FXML
     void switchForm(ActionEvent event) {
         if (event.getSource() == add_doctor_btn) {
@@ -146,32 +130,51 @@ public class AddDoctorController implements Initializable {
 
     }
 
-    public ObservableList<Staff> getDoctors() {
-        ObservableList<Staff> listDoctors = FXCollections.observableArrayList();
-        String query = "select * from doctors";
-        Connection con = DatabaseUtil.getConnection();
-        try {
-            PreparedStatement prepare = con.prepareStatement(query);
-            ResultSet result = prepare.executeQuery();
-            while (result.next()) {
-                Staff doctor = new Staff(result.getInt("doctor_id"), result.getString("doctor_firstName"), result.getString("doctor_department"), result.getString("doctor_phone"), result.getString("doctor_email"), result.getString("doctor_university"), result.getString("doctor_address"));
-                listDoctors.add(doctor);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    //Method for registering doctors
+    @FXML
+    void registerDoctor(ActionEvent event) {
+        Date birthdate = Date.valueOf(this.docBirthdate.getValue());
+        Date startDate = Date.valueOf(this.docStart.getValue());
+        Date endDate = Date.valueOf(this.docEnd.getValue());
+
+        DoctorDto staff = new DoctorDto(this.docID.getText(), this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), this.docPassword.getText(), this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
+        boolean staffCreated = DoctorService.createDoctor(staff);
+        if (staffCreated) {
+            Navigator.navigate(event, Navigator.AdminMainForm);
         }
-        return listDoctors;
+    }
+
+    //Adding doctors in the table
+    public ObservableList<DoctorDto> getDoctors() {
+        return FXCollections.observableArrayList(DoctorRepository.getAllDoctors());
     }
 
     public void doctorDisplayData() {
-        Table.staffDisplayData(doctors_col_ID, doctors_col_name, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_address);
+        Table.staffDisplayData(doctors_col_ID, doctors_col_name, doctors_col_surname, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_address);
         doctors_table.setItems(getDoctors());
     }
 
+    //Filter doctors
+    @FXML
+    void handleDoctorFilter(ActionEvent event) {
+        String firstName = filterDocName.getText();
+        String email = filterDocEmail.getText();
+
+        UserFilter filter = new UserFilter(firstName, email);
+        List<DoctorDto> filteredDoctors = DoctorService.filter(filter);
+        updateDoctorTable(filteredDoctors);
+    }
+
+
+    public void updateDoctorTable(List<DoctorDto> doctors) {
+        ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList(doctors);
+        doctors_table.setItems(listDoctors);
+    }
+
+    //Load department names into combo boxes
     private void loadDepartmentNames() {
         List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
         docDep.setItems(observableList);
     }
-
 }

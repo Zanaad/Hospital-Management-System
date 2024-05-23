@@ -9,6 +9,7 @@ public class UserFilter extends Filter {
         this.email = email;
     }
 
+    @Override
     public String buildQuery() {
         StringBuilder query = new StringBuilder();
         if (firstName != null && !firstName.isEmpty()) {

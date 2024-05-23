@@ -13,6 +13,7 @@ public class NurseService {
         String passwordHash = PasswordHasher.generateSaltedHash(password, salt);
 
         CreateNurseDto createNurseDto = new CreateNurseDto(
+                nurseData.getId(),
                 nurseData.getFirstName(),
                 nurseData.getLastName(),
                 nurseData.getBirthdate(),
