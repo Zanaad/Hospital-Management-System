@@ -12,6 +12,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
@@ -54,7 +55,7 @@ public class ReceptionistPageController implements Initializable {
     private AnchorPane patients_form;
 
     @FXML
-    private TableView<PatientDto> patients_tableView;
+    private TableView<Patient> patients_tableView;
 
     @FXML
     private TableColumn<?, ?> patients_col_patientID;
@@ -271,16 +272,16 @@ public class ReceptionistPageController implements Initializable {
 
     }
 
-    public ObservableList<PatientDto> getPatients() {
-        ObservableList<PatientDto> listPatients = FXCollections.observableArrayList();
+    public ObservableList<Patient> getPatients() {
+        ObservableList<Patient> listPatients = FXCollections.observableArrayList();
         String query = "select * from patients";
         Connection con = DatabaseUtil.getConnection();
         try {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                PatientDto patientData = new PatientDto(result.getString("patient_firstName"), result.getString("patient_lastName"), result.getDate("patient_birthdate"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getDate("patient_date"), result.getString("patient_payment"));
-                listPatients.add(patientData);
+                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                listPatients.add(patData);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -307,14 +308,15 @@ public class ReceptionistPageController implements Initializable {
     }
 
     public void patientDisplayData() {
-        patients_col_name.setCellValueFactory(new PropertyValueFactory<>("PfirstName"));
-        patients_col_department.setCellValueFactory(new PropertyValueFactory<>("Pdepartment"));
-        patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("Pdoctor"));
-        patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("Pnurse"));
-        patients_col_phonenumber.setCellValueFactory(new PropertyValueFactory<>("Pphone"));
-        patients_col_email.setCellValueFactory(new PropertyValueFactory<>("Pemail"));
-        patients_col_address.setCellValueFactory(new PropertyValueFactory<>("Paddress"));
-        patients_col_payment.setCellValueFactory(new PropertyValueFactory<>("Ppayment"));
+        patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        patients_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        patients_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
+        patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
+        patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("nurse"));
+        patients_col_phonenumber.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        patients_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        patients_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        patients_col_payment.setCellValueFactory(new PropertyValueFactory<>("payment"));
         patients_tableView.setItems(getPatients());
 
     }
