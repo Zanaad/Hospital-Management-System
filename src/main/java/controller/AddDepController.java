@@ -79,6 +79,8 @@ public class AddDepController implements Initializable {
         dep_col_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
         dep_col_name.setCellValueFactory(new PropertyValueFactory<>("departmentName"));
         dep_col_desc.setCellValueFactory(new PropertyValueFactory<>("departmentDescription"));
+        dep_col_docs.setCellValueFactory(new PropertyValueFactory<>("nrDoctors"));
+        dep_col_nurses.setCellValueFactory(new PropertyValueFactory<>("nrNurses"));
         department_table.setItems(getDepartments());
     }
 

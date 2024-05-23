@@ -46,7 +46,7 @@ public class DepartmentRepository {
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet result = pst.executeQuery();
             while (result.next()) {
-                DepartmentDto dep = new DepartmentDto(result.getString("department_id"), result.getString("department_name"), result.getString("department_description"));
+                DepartmentDto dep = new DepartmentDto(result.getString("department_id"), result.getString("department_name"), result.getString("department_description"), result.getInt("nrDoctors"), result.getInt("nrNurses"));
                 departments.add(dep);
             }
         } catch (Exception e) {
