@@ -1,7 +1,6 @@
 package controller;
 
 import app.Navigator;
-import database.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,17 +14,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.Staff;
 import model.dto.StaffDto.ReceptionistDto;
 import repository.DepartmentRepository;
+import repository.Staff.ReceptionistRepository;
 import service.Staff.ReceptionistService;
 import service.Table;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -108,7 +104,7 @@ public class AddRecController implements Initializable {
     private AnchorPane receptionist_form;
 
     @FXML
-    private TableView<Staff> receptionist_table;
+    private TableView<ReceptionistDto> receptionist_table;
 
     @FXML
     private Button register_receptionist_btn;
@@ -138,21 +134,8 @@ public class AddRecController implements Initializable {
         }
     }
 
-    public ObservableList<Staff> getReceptionists() {
-        ObservableList<Staff> listReceptionists = FXCollections.observableArrayList();
-        String query = "select * from receptionists";
-        Connection con = DatabaseUtil.getConnection();
-        try {
-            PreparedStatement prepare = con.prepareStatement(query);
-            ResultSet result = prepare.executeQuery();
-            while (result.next()) {
-                Staff rec = new Staff(result.getInt("receptionist_id"), result.getString("receptionist_firstName"), result.getString("receptionist_department"), result.getString("receptionist_phone"), result.getString("receptionist_email"), result.getString("receptionist_university"), result.getString("receptionist_address"));
-                listReceptionists.add(rec);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return listReceptionists;
+    public ObservableList<ReceptionistDto> getReceptionists() {
+        return FXCollections.observableArrayList(ReceptionistRepository.getAllReceptionists());
     }
 
     public void recDisplayData() {
