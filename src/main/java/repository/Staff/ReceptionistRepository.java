@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ReceptionistRepository extends StaffRepository {
     private static final String query = """
-            INSERT INTO receptionists(receptionist_id, receptionist_firstName, receptionist_lastName, receptionist_birthdate, receptionist_phone, receptionist_email, receptionist_hashPassword, receptionist_salt, receptionist_address, receptionist_department, receptionist_university, receptionist_start, receptionist_end, bankName, bankAccount, routingNumber)
+            INSERT INTO receptionists(id, firstName, lastName, birthdate, phone, email, hashPassword, salt, address, department, university, contractStart, contractEnd, bankName, bankAccount, routingNumber)
             VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
@@ -38,7 +38,7 @@ public class ReceptionistRepository extends StaffRepository {
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet result = pst.executeQuery();
             while (result.next()) {
-                ReceptionistDto receptionist = new ReceptionistDto(result.getString("receptionist_id"), result.getString("receptionist_firstName"), result.getString("receptionist_lastName"), result.getDate("receptionist_birthdate"), result.getString("receptionist_phone"), result.getString("receptionist_email"), result.getString("receptionist_hashPassword"), result.getString("receptionist_address"), result.getString("receptionist_department"), result.getString("receptionist_university"), result.getDate("receptionist_start"), result.getDate("receptionist_end"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
+                ReceptionistDto receptionist = new ReceptionistDto(result.getString("id"), result.getString("firstName"), result.getString("lastName"), result.getDate("birthdate"), result.getString("phone"), result.getString("email"), result.getString("hashPassword"), result.getString("address"), result.getString("department"), result.getString("university"), result.getDate("contractStart"), result.getDate("contractEnd"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
                 receptionists.add(receptionist);
             }
         } catch (Exception e) {
@@ -47,3 +47,4 @@ public class ReceptionistRepository extends StaffRepository {
         return receptionists;
     }
 }
+

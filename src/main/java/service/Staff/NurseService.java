@@ -2,6 +2,7 @@ package service.Staff;
 
 import model.dto.StaffDto.CreateNurseDto;
 import model.dto.StaffDto.NurseDto;
+import model.filter.NurseFilter;
 import model.filter.UserFilter;
 import repository.Staff.NurseRepository;
 import service.PasswordHasher;
@@ -19,7 +20,7 @@ public class NurseService {
         return NurseRepository.createNurse(createNurseDto);
     }
 
-    public static List<NurseDto> filter(UserFilter filter) {
+    public static List<NurseDto> filter(NurseFilter filter) {
         return NurseRepository.getByFilter(filter);
     }
 }
