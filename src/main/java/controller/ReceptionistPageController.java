@@ -432,8 +432,27 @@ public class ReceptionistPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientDisplayData();
         appointmentDisplayData();
+        //Navigating with Enter through Patients TextFields
+        patFirstName.setOnAction(event -> patLastName.requestFocus());
+        patLastName.setOnAction(event -> patBirthdate.requestFocus());
+        patBirthdate.setOnAction(event -> patPhone.requestFocus());
+        patPhone.setOnAction(event -> patEmail.requestFocus());
+        patEmail.setOnAction(event -> patAddress.requestFocus());
+        patAddress.setOnAction(event -> patDep.requestFocus());
+        patDep.setOnAction(event -> patDoctor.requestFocus());
+        patDoctor.setOnAction(event -> patNurse.requestFocus());
+        patNurse.setOnAction(event -> patDate.requestFocus());
+        patDate.setOnAction(event -> patPayment.requestFocus());
+        patPayment.setOnAction(event -> {
+            registerPatient(event);
+            event.consume();
+
+        });
+
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
+
+
 
 
     }
