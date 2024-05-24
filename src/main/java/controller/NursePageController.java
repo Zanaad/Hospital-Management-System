@@ -13,10 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import model.Births;
-import model.Deaths;
-import model.Operation;
-import model.Others;
+import model.*;
 import model.dto.RecDto.PatientDto;
 import model.dto.ReportDto.*;
 import service.Rec.PatientService;
@@ -435,6 +432,75 @@ public class NursePageController implements Initializable {
     @FXML
     private Label Project_title;
 
+    @FXML
+    private TextField patAddress;
+
+    @FXML
+    private DatePicker patBirthdate;
+
+    @FXML
+    private DatePicker patDate;
+
+    @FXML
+    private ComboBox<?> patDep;
+
+    @FXML
+    private ComboBox<?> patDoctor;
+
+    @FXML
+    private TextField patEmail;
+
+    @FXML
+    private TextField patFirstName;
+
+    @FXML
+    private TextField patLastName;
+
+    @FXML
+    private ComboBox<?> patNurse;
+
+    @FXML
+    private TextField patPayment;
+
+    @FXML
+    private TextField patPhone;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_address;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_department;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_doctor;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_email;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_name;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_nurse;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_patientID;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_payment;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_phonenumber;
+
+    @FXML
+    private TableView<Patient> patients_tableView;
+
+    @FXML
+    private Button register_patient_btn;
+
+    @FXML
+    private AnchorPane register_patient_form;
+
 
 
 
@@ -528,6 +594,20 @@ public class NursePageController implements Initializable {
             Navigator.navigate(event, Navigator.NursePage);
         }
     }
+
+    @FXML
+    public void registerPatient(ActionEvent event) {
+
+        Date birthdate = Date.valueOf(this.patBirthdate.getValue());
+        Date date = Date.valueOf(this.patDate.getValue());
+
+        PatientDto patient = new PatientDto(this.patFirstName.getText(), this.patLastName.getText(), birthdate, this.patPhone.getText(), this.patEmail.getText(), this.patAddress.getText(), (String) this.patDep.getValue(), (String) this.patDoctor.getValue(), (String) this.patNurse.getValue(), date, this.patPayment.getText());
+        boolean patientCreated = PatientService.createPatient(patient);
+        if (patientCreated) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
+
+    }
     @FXML
     void registerDonor(ActionEvent event) {
         String donorAge = txtDonorAge.getText();
@@ -547,7 +627,10 @@ public class NursePageController implements Initializable {
 
 
 
-    //display data at the tables---------------------------------------------------------------------------------------
+
+
+
+//display data at the tables----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //display Operations
     public ObservableList<Operation> getOperations() {
@@ -696,26 +779,111 @@ public class NursePageController implements Initializable {
         other_table.setItems(getOthers());
     }
 
+
+//display Patient
+
+    public ObservableList<Patient> getPatients() {
+        ObservableList<Patient> listPatients = FXCollections.observableArrayList();
+        String query = "select * from patients";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                listPatients.add(patData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listPatients;
+    }
+
+    public void patientDisplayData() {
+        patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        patients_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        patients_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
+        patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
+        patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("nurse"));
+        patients_col_phonenumber.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        patients_col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        patients_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        patients_col_payment.setCellValueFactory(new PropertyValueFactory<>("payment"));
+        patients_tableView.setItems(getPatients());
+
+    }
+
+
+
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize tables
         operationDisplayData();
         birthDisplayData();
         deathDisplayData();
         otherDisplayData();
+        patientDisplayData();
+// Event Handler for navigating through TextFields with Enter--------------------------------------------------------------------------------------------------------------
 
-        // Initialize blood group ComboBox
+
+//Navigating with Enter through Operation TextFields
+        txtOperationID.setOnAction(event -> txtOperationDescription.requestFocus());
+        txtOperationDescription.setOnAction(event -> txtOperationPatient.requestFocus());
+        txtOperationPatient.setOnAction(event -> txtOperationDoctor.requestFocus());
+        txtOperationDoctor.setOnAction(event -> txtOperationDate.requestFocus());
+        txtOperationDate.setOnAction(event -> txtOperationTime.requestFocus());
+        txtOperationTime.setOnAction(event -> {
+            registerOperation(event);
+            event.consume();
+
+        });
+
+//Navigating with Enter through Births TextFields
+        txtBirthID.setOnAction(event -> txtBirthDescription.requestFocus());
+        txtBirthDescription.setOnAction(event -> txtBirthPatient.requestFocus());
+        txtBirthPatient.setOnAction(event -> txtBirthNewBorn.requestFocus());
+        txtBirthNewBorn.setOnAction(event -> txtBirthDate.requestFocus());
+        txtBirthDate.setOnAction(event -> txtBirthTime.requestFocus());
+        txtBirthTime.setOnAction(event -> {
+            registerBirth(event);
+            event.consume();
+
+        });
+
+//Navigating with Enter through Deaths TextFields
+        txtDeathID.setOnAction(event -> txtDeathDescription.requestFocus());
+        txtDeathDescription.setOnAction(event -> txtDeathPatient.requestFocus());
+        txtDeathPatient.setOnAction(event -> txtDeathDate.requestFocus());
+        txtDeathDate.setOnAction(event -> txtDeathTime.requestFocus());
+        txtDeathTime.setOnAction(event -> {
+            registerDeath(event);
+            event.consume();
+
+        });
+
+//Navigating with Enter through Other TextFields
+        txtOtherID.setOnAction(event -> txtOtherDescription.requestFocus());
+        txtOtherDescription.setOnAction(event -> txtOtherPatient.requestFocus());
+        txtOtherPatient.setOnAction(event -> txtOtherDate.requestFocus());
+        txtOtherDate.setOnAction(event -> txtOtherTime.requestFocus());
+        txtOtherTime.setOnAction(event -> {
+            registerOther(event);
+            event.consume();
+
+        });
+
+// Initialize blood group ComboBox
         ObservableList<String> bloodGroupOptions = FXCollections.observableArrayList(
                 "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"
         );
         chooseDonorBloodGroup.setItems(bloodGroupOptions);
 
-        // Initialize gender ComboBox
+// Initialize gender ComboBox
         ObservableList<String> genderOptions = FXCollections.observableArrayList(
                 "Male", "Female", "Other"
         );
         chooseDonorGender.setItems(genderOptions);
 
-        // Handle selection changes
+// Handle selection changes
         chooseDonorBloodGroup.setOnAction(event -> handleBloodGroupSelection());
         chooseDonorGender.setOnAction(event -> handleGenderSelection());
 
@@ -723,13 +891,13 @@ public class NursePageController implements Initializable {
         this.translate();
     }
 
-    // Method to handle blood group selection
+// Method to handle blood group selection
     private void handleBloodGroupSelection() {
         String selectedBloodGroup = chooseDonorBloodGroup.getValue();
 
     }
 
-    // Method to handle gender selection
+// Method to handle gender selection
     private void handleGenderSelection() {
         String selectedGender = chooseDonorGender.getValue();
 
@@ -775,7 +943,6 @@ public class NursePageController implements Initializable {
             this.report2Op.setText(rb.getString("Deaths"));
             this.report3Op.setText(rb.getString("Births"));
             this.report4Op.setText(rb.getString("Other"));
-            this.report5Op.setText(rb.getString("Add Report"));
             this.titulliReports.setText(rb.getString("Report Incident Case "));
             this.operations_col_operationID.setText(rb.getString("OperationID"));
             this.operations_col_description.setText(rb.getString("Description"));
@@ -799,7 +966,6 @@ public class NursePageController implements Initializable {
             this.others_col_patient.setText(rb.getString("Patient"));
             this.others_col_date.setText(rb.getString("Date"));
             this.others_col_time.setText(rb.getString("Time"));
-            this.reportCase_comboBox.setPromptText(rb.getString("Choose Report Case..."));
             this.SQDescriptionOp.setText(rb.getString("Description"));
             this.SQPatientOP.setText(rb.getString("Patient"));
             this.SQDoctorOp.setText(rb.getString("Doctor"));
@@ -824,6 +990,8 @@ public class NursePageController implements Initializable {
             this.SQDateOt.setText(rb.getString("Date"));
             this.SQTimeOt.setText(rb.getString("Time"));
             this.add_other_btn.setText(rb.getString("Add Other"));
+            this.add_death_btn.setText(rb.getString("Add Death"));
+            this.add_birth_btn.setText(rb.getString("Add Birth"));
         } catch (Exception e) {
             e.printStackTrace();
         }
