@@ -77,11 +77,11 @@
             </left>
             <center>
                 <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="886.0" visible="false">
+                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="886.0">
                         <children>
-                            <AnchorPane layoutX="324.0" layoutY="19.0" prefHeight="141.0" prefWidth="231.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <AnchorPane layoutX="96.0" layoutY="80.0" prefHeight="173.0" prefWidth="263.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
-                                    <ImageView fitHeight="122.0" fitWidth="263.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="150.0" fitWidth="264.0" layoutX="-1.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@../images/rec.jpg" />
                                         </image>
@@ -94,26 +94,26 @@
                                     </Label>
                                 </children>
                             </AnchorPane>
-                            <AnchorPane layoutX="43.0" layoutY="15.0" prefHeight="128.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <AnchorPane layoutX="433.0" layoutY="73.0" prefHeight="180.0" prefWidth="391.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
-                                    <ImageView fitHeight="127.0" fitWidth="218.0" layoutX="-2.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="155.0" fitWidth="268.0" layoutX="38.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@../images/patient.jpeg" />
                                         </image>
                                     </ImageView>
-                                    <Label fx:id="patients" alignment="CENTER" layoutY="43.0" prefHeight="20.0" prefWidth="58.0" text="%Patients">
+                                    <Label fx:id="patients" alignment="CENTER" layoutX="38.0" layoutY="46.0" prefHeight="20.0" prefWidth="58.0" text="%Patients">
                                         <font>
                                             <Font size="11.0" />
                                         </font>
                                     </Label>
-                                    <Label fx:id="patients_number" alignment="CENTER_RIGHT" layoutX="5.0" layoutY="23.0" prefHeight="20.0" prefWidth="18.0" text="0">
+                                    <Label fx:id="patients_number" alignment="CENTER_RIGHT" layoutX="38.0" layoutY="20.0" prefHeight="20.0" prefWidth="18.0" text="0">
                                         <font>
                                             <Font size="16.0" />
                                         </font>
                                     </Label>
                                 </children>
                             </AnchorPane>
-                            <AnchorPane layoutX="437.0" layoutY="323.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <AnchorPane layoutX="437.0" layoutY="326.0" prefHeight="219.0" prefWidth="389.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
                                     <AreaChart fx:id="dashboad_chart_PD" layoutY="39.333333333333336" prefHeight="183.0" prefWidth="404.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
                                         <xAxis>
@@ -327,7 +327,7 @@
                             </AnchorPane>
                         </children>
                     </AnchorPane>
-                    <AnchorPane fx:id="appointments_form" layoutY="14.0" prefHeight="560.0" prefWidth="886.0" style="-fx-background-color: #fff;">
+                    <AnchorPane fx:id="appointments_form" layoutY="14.0" prefHeight="560.0" prefWidth="886.0" style="-fx-background-color: #fff;" visible="false">
                         <children>
                             <AnchorPane fx:id="patient_table1" layoutX="-19.0" prefHeight="561.0" prefWidth="905.0" AnchorPane.bottomAnchor="-0.6666666666666288" AnchorPane.leftAnchor="-19.0" AnchorPane.rightAnchor="0.33333333333337123" AnchorPane.topAnchor="0.0">
                                 <children>
