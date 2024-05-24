@@ -8,8 +8,39 @@ import service.PasswordHasher;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ChangePwdRepository {
+    public static void addSaltAndHashToAdmins() {
+        String selectQuery = "SELECT id, salt, passwordHash FROM admin";
+        String updateQuery = "UPDATE admin SET salt = ?, passwordHash = ? WHERE id = ?";
+
+        try {
+            Connection connection = DatabaseUtil.getConnection();
+            PreparedStatement selectStatement = connection.prepareStatement(selectQuery);
+            PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+            ResultSet resultSet = selectStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String salt = resultSet.getString("salt");
+                String passwordHash = resultSet.getString("passwordHash");
+
+                if (salt == null || passwordHash == null) {
+                    salt = PasswordHasher.generateSalt();
+                    String password = "defaultPassword";
+                    passwordHash = PasswordHasher.generateSaltedHash(password, salt);
+
+                    updateStatement.setString(1, salt);
+                    updateStatement.setString(2, passwordHash);
+                    updateStatement.setInt(3, id);
+                    updateStatement.executeUpdate();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static UpdateUserPasswordDto getUserPasswordInfo(String email) {
         String query = "SELECT salt, passwordHash FROM admin WHERE email=?";

@@ -8,6 +8,7 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import repository.ChangePwdRepository;
 import service.ChartService;
 import service.CountStaffService;
 
@@ -56,6 +57,7 @@ public class AdminDashboardController implements Initializable {
         this.staff_count();
         ChartService.patientAreaChart(AreaChartPatients);
         this.pieChartEmployeesData();
+        ChangePwdRepository.addSaltAndHashToAdmins();
     }
 
     public void staff_count() {
