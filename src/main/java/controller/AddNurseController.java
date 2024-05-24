@@ -20,6 +20,7 @@ import model.filter.UserFilter;
 import repository.DepartmentRepository;
 import repository.Staff.NurseRepository;
 import service.CountStaffService;
+import service.DepartmentService;
 import service.Staff.NurseService;
 import service.Table;
 
@@ -133,7 +134,7 @@ public class AddNurseController implements Initializable {
         NurseDto staff = new NurseDto(this.nurseID.getText(), this.nurseFirstName.getText(), this.nurseLastName.getText(), birthdate, this.nursePhone.getText(), this.nurseEmail.getText(), this.nursePassword.getText(), this.nurseAddress.getText(), (String) this.nurseDep.getValue(), this.nurseUni.getText(), startDate, endDate, this.nurseBank.getText(), this.nurseAccount.getText(), this.nurseRoutingNr.getText());
         boolean staffCreated = NurseService.createNurse(staff);
         if (staffCreated) {
-            CountStaffService.updateDepTable(this.nurseDep.getValue());
+            DepartmentService.updateDepTable(this.nurseDep.getValue());
             Navigator.navigate(event, Navigator.AdminMainForm);
         }
     }
