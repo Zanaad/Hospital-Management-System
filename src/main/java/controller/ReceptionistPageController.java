@@ -383,7 +383,7 @@ public class ReceptionistPageController implements Initializable {
         this.dashboard_btn.setText(rb.getString("Dashboard"));
         this.patients_btn.setText(rb.getString("Patients"));
         this.appointments_btn.setText(rb.getString("Appointments"));
-        this.add_patient_btn.setText(rb.getString("Add New Patients"));
+        this.add_patient_btn.setText(rb.getString("Add New Patient"));
         this.register_patient_btn.setText(rb.getString("Add"));
         this.account_btn.setText(rb.getString("Account"));
         this.logout_btn.setText(rb.getString("Logout"));
