@@ -39,9 +39,7 @@ public class PatientRepository {
             pst.setString(9, patientData.getPnurse());
             pst.setDate(10, patientData.getPdate());
             pst.setString(11, patientData.getPpayment());
-
             pst.execute();
-            pst.close();
             return true;
 
         } catch (Exception e) {
