@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.AreaChart?>
-<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -128,21 +128,14 @@
                         </Label>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="43.0" layoutY="326.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                    <children>
-                        <BarChart fx:id="dashboad_chart_AD" layoutX="11.2" layoutY="12.0" prefHeight="250.4" prefWidth="400.0" title="Appointment's Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <xAxis>
-                                <CategoryAxis side="BOTTOM" />
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis side="LEFT" />
-                            </yAxis>
-                        </BarChart>
-                    </children>
+                <AnchorPane layoutX="43.0" layoutY="326.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;">
+               <children>
+                  <PieChart fx:id="PieChartEmp" layoutX="-110.0" layoutY="-130.0" prefHeight="500.0" prefWidth="500.0" title="Employees" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
                 </AnchorPane>
-                <AnchorPane layoutX="437.0" layoutY="323.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                <AnchorPane layoutX="437.0" layoutY="323.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #fff; -fx-background-radius: 5px;">
                     <children>
-                        <AreaChart fx:id="dashboad_chart_PD" layoutY="32.0" prefHeight="250.4" prefWidth="399.0" title="Patient's Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AreaChart fx:id="AreaChartPatients" layoutY="32.0" prefHeight="250.4" prefWidth="399.0" title="Patient's Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <xAxis>
                                 <CategoryAxis side="BOTTOM" />
                             </xAxis>

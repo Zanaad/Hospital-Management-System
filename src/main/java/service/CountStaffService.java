@@ -16,18 +16,8 @@ public class CountStaffService {
     public static final String countAppointments = "select count(appointment_id) from appointments";
 
     public static void countStaff(Label label, String query) {
-        int count = 0;
-        try {
-            Connection con = DatabaseUtil.getConnection();
-            PreparedStatement ps = con.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                count = rs.getInt(1);
-            }
-            label.setText(String.valueOf(count));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        int count = getCount(query);
+        label.setText(String.valueOf(count));
     }
 
     public static void updateDepTable(String depName) {
@@ -47,6 +37,21 @@ public class CountStaffService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static int getCount(String query) {
+        int count = 0;
+        try {
+            Connection con = DatabaseUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 
     public static int getCount(String query, String depName) {
