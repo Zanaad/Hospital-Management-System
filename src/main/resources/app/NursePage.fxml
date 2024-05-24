@@ -40,7 +40,7 @@
             </top>
             <left>
                 <AnchorPane prefHeight="560.0" prefWidth="214.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" BorderPane.alignment="CENTER">
-                    <Button fx:id="bedWards_btn" layoutX="15.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Bed Wards" textFill="WHITE">
+                    <Button fx:id="bedWards_btn" layoutX="15.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="187.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="%Bed Status" textFill="WHITE">
                         <graphic>
                             <FontAwesomeIcon fill="WHITE" glyphName="BED" size="1.5em" />
                         </graphic>
@@ -48,7 +48,7 @@
                             <Font name="Arial" size="13.0" />
                         </font>
                     </Button>
-                    <Button fx:id="patients_btn" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Patients" textFill="WHITE">
+                    <Button fx:id="patients_btn" layoutX="15.0" layoutY="214.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="%Patients" textFill="WHITE">
                         <graphic>
                             <FontAwesomeIcon fill="WHITE" glyphName="USER_MD" size="1.5em" />
                         </graphic>
@@ -56,7 +56,7 @@
                             <Font name="Arial" size="13.0" />
                         </font>
                     </Button>
-                    <Button fx:id="bloodBank_btn" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Blood Bank" textFill="WHITE">
+                    <Button fx:id="bloodBank_btn" layoutX="15.0" layoutY="258.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="%Blood Donation" textFill="WHITE">
                         <graphic>
                             <FontAwesomeIcon fill="WHITE" glyphName="AMBULANCE" size="1.5em" />
                         </graphic>
@@ -64,7 +64,7 @@
                             <Font name="Arial" size="13.0" />
                         </font>
                     </Button>
-                    <Button fx:id="dashboard_btn" layoutX="15.0" layoutY="126.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-alignment: center_left;" text="Dashboard" textFill="WHITE">
+                    <Button fx:id="dashboard_btn" layoutX="15.0" layoutY="126.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-alignment: center_left;" text="%Dashboard" textFill="WHITE">
                         <graphic>
                             <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.5em" />
                         </graphic>
@@ -72,7 +72,7 @@
                             <Font name="Arial" size="13.0" />
                         </font>
                     </Button>
-                    <Button fx:id="report_btn" layoutX="15.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Report" textFill="WHITE">
+                    <Button fx:id="report_btn" layoutX="15.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="150.0" style="-fx-alignment: center_left; -fx-background-color: transparent;" text="%Report" textFill="WHITE">
                         <graphic>
                             <FontAwesomeIcon fill="WHITE" glyphName="HOSPITAL_ALT" size="1.5em" text="" />
                         </graphic>
@@ -87,17 +87,22 @@
                             <Font name="Arial Bold" size="28.0" />
                         </font>
                     </Label>
+               <Button layoutX="70.0" layoutY="376.0" mnemonicParsing="false" onAction="#handleLanguage" prefHeight="34.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="EN|SQ" textFill="#f0f0f0fa">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Button>
                 </AnchorPane>
             </left>
             <center>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <AnchorPane fx:id="dashboard_form" prefHeight="558.0" prefWidth="886.0" visible="false">
+                <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <AnchorPane fx:id="dashboard_form" prefHeight="558.0" prefWidth="886.0">
                         <children>
                             <AnchorPane layoutX="43.0" layoutY="50.0" prefHeight="119.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
                                     <ImageView fitHeight="132.0" fitWidth="233.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../../resources/images" />
+                                            <Image url="@../../resources/images/patient.jpeg" />
                                         </image>
                                     </ImageView>
                                     <Label fx:id="dashboard_patients" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -105,7 +110,7 @@
                                             <Font size="16.0" />
                                         </font>
                                     </Label>
-                                    <Label alignment="CENTER" layoutX="2.0" layoutY="36.0" prefHeight="20.0" prefWidth="58.0" text="Patients">
+                                    <Label fx:id="id1" alignment="CENTER" layoutX="2.0" layoutY="36.0" prefHeight="20.0" prefWidth="83.0" text="%Patients">
                                         <font>
                                             <Font size="14.0" />
                                         </font>
@@ -124,7 +129,7 @@
                                  <Font size="16.0" />
                               </font>
                            </Label>
-                           <Label alignment="CENTER" layoutX="2.0" layoutY="36.0" prefHeight="20.0" prefWidth="101.0" text="Blood Donors">
+                           <Label fx:id="id2" alignment="CENTER" layoutX="2.0" layoutY="36.0" prefHeight="20.0" prefWidth="108.0" text="%Blood Donors">
                               <font>
                                  <Font size="14.0" />
                               </font>
@@ -135,7 +140,7 @@
                         <children>
                            <ImageView fitHeight="134.0" fitWidth="237.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../resources/images" />
+                                 <Image url="@../../resources/images/bedWards.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="dashboard_beds" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -143,7 +148,7 @@
                                  <Font size="16.0" />
                               </font>
                            </Label>
-                           <Label alignment="CENTER" layoutX="2.0" layoutY="36.0" prefHeight="20.0" prefWidth="90.0" text="Beds Available">
+                           <Label fx:id="id3" alignment="CENTER" layoutX="2.0" layoutY="36.0" prefHeight="20.0" prefWidth="109.0" text="%Beds Available">
                               <font>
                                  <Font size="14.0" />
                               </font>
@@ -152,9 +157,9 @@
                         </children>
                          
                      </AnchorPane>
-                            <AnchorPane layoutX="468.0" layoutY="232.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <AnchorPane layoutX="468.0" layoutY="277.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
-                                    <AreaChart fx:id="dashboad_chart_PD" layoutY="32.0" prefHeight="250.4" prefWidth="399.0" title="Patient's Data" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <AreaChart fx:id="dashboad_chart_PD" layoutY="32.0" prefHeight="250.4" prefWidth="399.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <xAxis>
                                             <CategoryAxis side="BOTTOM" />
                                         </xAxis>
@@ -164,9 +169,9 @@
                                     </AreaChart>
                                 </children>
                             </AnchorPane>
-                            <AnchorPane layoutX="43.0" layoutY="234.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <AnchorPane layoutX="43.0" layoutY="279.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
-                                    <BarChart fx:id="dashboad_chart_BD" layoutX="11.2" layoutY="12.0" prefHeight="250.4" prefWidth="400.0" title="Blood Donated" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <BarChart fx:id="dashboad_chart_BD" layoutX="11.2" layoutY="12.0" prefHeight="250.4" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <xAxis>
                                             <CategoryAxis side="BOTTOM" />
                                         </xAxis>
@@ -176,9 +181,19 @@
                                     </BarChart>
                                 </children>
                             </AnchorPane>
+                     <Label fx:id="chart1" layoutX="43.0" layoutY="241.0" text="%Blood Donation">
+                        <font>
+                           <Font size="24.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="chart2" layoutX="468.0" layoutY="241.0" text="%Patients Data">
+                        <font>
+                           <Font size="24.0" />
+                        </font>
+                     </Label>
                         </children>
                     </AnchorPane>
-               <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0">
+               <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0" visible="false">
                   <children>
                      <AnchorPane prefHeight="410.0" prefWidth="837.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="124.0">
                         <children>

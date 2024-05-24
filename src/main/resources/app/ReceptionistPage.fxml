@@ -60,7 +60,7 @@
                             style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Appointments"
                             textFill="WHITE">
                         <graphic>
-                          <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" size="1.5em" text=""/>
+                            <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" size="1.5em" text=""/>
                         </graphic>
                         <font>
                             <Font name="Arial" size="13.0"/>
@@ -81,21 +81,21 @@
                             onAction="#switchForm" prefHeight="40.0" prefWidth="150.0"
                             style="-fx-alignment: center_left; -fx-background-color: transparent;" text="Patients"
                             textFill="WHITE">
-                     <graphic>
-                       <FontAwesomeIcon fill="WHITE" glyphName="USER" size="1.5em"/>
-                    </graphic>
-                    <font>
-                        <Font name="Arial" size="13.0"/>
-                    </font>
-                </Button>
-                <FontAwesomeIcon fill="WHITE" glyphName="STETHOSCOPE" layoutX="32.0" layoutY="67.0" size="4em"
-                                 text=""/>
-                <Line endX="88.0" layoutX="113.0" layoutY="87.0" startX="-100.0" stroke="WHITE"/>
-                <Label layoutX="88.0" layoutY="34.0" text="HMS" textFill="WHITE">
-                    <font>
-                        <Font name="Arial Bold" size="28.0"/>
-                    </font>
-                </Label>
+                        <graphic>
+                            <FontAwesomeIcon fill="WHITE" glyphName="USER" size="1.5em"/>
+                        </graphic>
+                        <font>
+                            <Font name="Arial" size="13.0"/>
+                        </font>
+                    </Button>
+                    <FontAwesomeIcon fill="WHITE" glyphName="STETHOSCOPE" layoutX="32.0" layoutY="67.0" size="4em"
+                                     text=""/>
+                    <Line endX="88.0" layoutX="113.0" layoutY="87.0" startX="-100.0" stroke="WHITE"/>
+                    <Label layoutX="88.0" layoutY="34.0" text="HMS" textFill="WHITE">
+                        <font>
+                            <Font name="Arial Bold" size="28.0"/>
+                        </font>
+                    </Label>
                 </AnchorPane>
             </left>
             <center>

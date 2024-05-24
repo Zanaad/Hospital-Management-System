@@ -33,6 +33,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class NursePageController implements Initializable {
@@ -343,6 +344,26 @@ public class NursePageController implements Initializable {
     @FXML
     private TextField txtOperationID;
 
+    @FXML
+    private Label chart1;
+
+    @FXML
+    private Label chart2;
+
+    @FXML
+    private Label id1;
+
+    @FXML
+    private Label id2;
+
+    @FXML
+    private Label id3;
+
+    @FXML
+    private AnchorPane contentPane;
+
+
+
 
     Connection conn=null;
 
@@ -632,6 +653,9 @@ public class NursePageController implements Initializable {
         // Handle selection changes
         chooseDonorBloodGroup.setOnAction(event -> handleBloodGroupSelection());
         chooseDonorGender.setOnAction(event -> handleGenderSelection());
+
+        Navigator.loadContent(contentPane, "NursePage.fxml");
+        this.translate();
     }
 
     // Method to handle blood group selection
@@ -652,7 +676,38 @@ public class NursePageController implements Initializable {
     }
 
 
+    @FXML
+    public void handleLanguage() {
+        Locale defaultLocale = Locale.getDefault();
+        if (defaultLocale.getLanguage().equals("en")) {
+            Locale.setDefault(new Locale("sq"));
+        } else {
+            Locale.setDefault(Locale.ENGLISH);
+        }
+        this.translate();
+    }
 
+
+
+    public void translate() {
+        try {
+            Locale locale = Locale.getDefault();
+            ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
+            this.dashboard_btn.setText(rb.getString("Dashboard"));
+            this.report_btn.setText(rb.getString("Report"));
+            this.patients_btn.setText(rb.getString("Patients"));
+            this.bloodBank_btn.setText(rb.getString("Blood Donation"));
+            this.bedWards_btn.setText(rb.getString("Bed Status"));
+            this.chart1.setText(rb.getString("Blood Donation"));
+            this.chart2.setText(rb.getString("Patients Data"));
+            this.id1.setText(rb.getString("Patients"));
+            this.id2.setText(rb.getString("Blood Donors"));
+            this.id3.setText(rb.getString("Beds Available"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
