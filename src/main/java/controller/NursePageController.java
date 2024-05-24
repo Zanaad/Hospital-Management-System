@@ -676,7 +676,6 @@ public class NursePageController implements Initializable {
     }
 
 
-
     @FXML
     public void handleLanguage() {
         Locale defaultLocale = Locale.getDefault();
