@@ -9,13 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -362,6 +356,33 @@ public class NursePageController implements Initializable {
     @FXML
     private AnchorPane contentPane;
 
+    @FXML
+    private Label SQDescriptionOp;
+
+    @FXML
+    private Label SQDoctorOp;
+
+    @FXML
+    private Label SQPatientOP;
+
+    @FXML
+    private Tab report1op;
+
+    @FXML
+    private Tab report2Op;
+
+    @FXML
+    private Tab report3Op;
+
+    @FXML
+    private Tab report4Op;
+
+    @FXML
+    private Tab report5Op;
+
+
+    @FXML
+    private Label titulliReports;
 
 
 
@@ -703,6 +724,24 @@ public class NursePageController implements Initializable {
             this.id1.setText(rb.getString("Patients"));
             this.id2.setText(rb.getString("Blood Donors"));
             this.id3.setText(rb.getString("Beds Available"));
+            this.SQDescriptionOp.setText(rb.getString("Description"));
+            this.SQDoctorOp.setText(rb.getString("Doctor"));
+            this.SQPatientOP.setText(rb.getString("Patient"));
+            this.report1op.setText(rb.getString("Operations"));
+            this.report2Op.setText(rb.getString("Deaths"));
+            this.report3Op.setText(rb.getString("Births"));
+            this.report4Op.setText(rb.getString("Other"));
+            this.report5Op.setText(rb.getString("Add Report"));
+            this.titulliReports.setText(rb.getString("Report Incident Case "));
+            this.operations_col_operationID.setText(rb.getString("OperationID"));
+            this.operations_col_description.setText(rb.getString("Description"));
+            this.operations_col_patient.setText(rb.getString("Patient"));
+            this.operations_col_doctor.setText(rb.getString("Doctor"));
+            this.operations_col_date.setText(rb.getString("Date"));
+            this.operations_col_time.setText(rb.getString("Time"));
+
+
+
 
         } catch (Exception e) {
             e.printStackTrace();

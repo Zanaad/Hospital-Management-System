@@ -96,7 +96,7 @@
             </left>
             <center>
                 <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <AnchorPane fx:id="dashboard_form" prefHeight="558.0" prefWidth="886.0">
+                    <AnchorPane fx:id="dashboard_form" prefHeight="558.0" prefWidth="886.0" visible="false">
                         <children>
                             <AnchorPane layoutX="43.0" layoutY="50.0" prefHeight="119.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
@@ -193,24 +193,24 @@
                      </Label>
                         </children>
                     </AnchorPane>
-               <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0">
                   <children>
                      <AnchorPane prefHeight="410.0" prefWidth="837.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="124.0">
                         <children>
                            <TabPane layoutX="-5.0" layoutY="-16.0" prefHeight="446.0" prefWidth="839.0" tabClosingPolicy="UNAVAILABLE">
                              <tabs>
-                               <Tab text="Operations">
+                               <Tab fx:id="report1op" text="%Operations">
                                  <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="844.0">
                                           <children>
                                              <TableView fx:id="operation_table" layoutX="14.0" layoutY="24.0" prefHeight="386.0" prefWidth="821.0">
                                                <columns>
-                                                 <TableColumn fx:id="operations_col_operationID" prefWidth="90.4000072479248" text="OperationID" />
-                                                 <TableColumn fx:id="operations_col_description" prefWidth="125.59998321533203" text="Description" />
-                                                   <TableColumn fx:id="operations_col_patient" prefWidth="199.20005798339844" text="Patient" />
-                                                   <TableColumn fx:id="operations_col_doctor" prefWidth="209.59988403320312" text="Doctor" />
-                                                   <TableColumn fx:id="operations_col_date" prefWidth="102.39996337890625" text="Date" />
-                                                   <TableColumn fx:id="operations_col_time" prefWidth="95.19989013671875" text="Time" />
+                                                 <TableColumn fx:id="operations_col_operationID" prefWidth="90.4000072479248" text="%OperationID" />
+                                                 <TableColumn fx:id="operations_col_description" prefWidth="125.59998321533203" text="%Description" />
+                                                   <TableColumn fx:id="operations_col_patient" prefWidth="199.20005798339844" text="%Patient" />
+                                                   <TableColumn fx:id="operations_col_doctor" prefWidth="209.59988403320312" text="%Doctor" />
+                                                   <TableColumn fx:id="operations_col_date" prefWidth="102.39996337890625" text="%Date" />
+                                                   <TableColumn fx:id="operations_col_time" prefWidth="95.19989013671875" text="%Time" />
                                                </columns>
                                              </TableView>
                                           </children>
@@ -220,7 +220,7 @@
                                        <FontAwesomeIcon glyphName="ASTERISK" />
                                     </graphic>
                                </Tab>
-                               <Tab text="Deaths">
+                               <Tab id="1DeathsSQ" fx:id="report2Op" text="%Deaths">
                                  <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
@@ -240,7 +240,7 @@
                                        <FontAwesomeIcon glyphName="ASTERISK" />
                                     </graphic>
                                </Tab>
-                                 <Tab text="Births">
+                                 <Tab id="1DeathsSQ" fx:id="report3Op" text="%Births">
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
@@ -261,7 +261,7 @@
                                        <FontAwesomeIcon glyphName="ASTERISK" />
                                     </graphic>
                                  </Tab>
-                                 <Tab text="Other">
+                                 <Tab id="1OtherSQ" fx:id="report4Op" text="%Other">
                                    <content>
                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
@@ -281,20 +281,20 @@
                                         <FontAwesomeIcon glyphName="ASTERISK" />
                                       </graphic>
                                    </Tab>
-                                   <Tab text="Add Report">
+                                   <Tab id="1AddReportSQ" fx:id="report5Op" text="%Add Report">
                                      <content>
                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                             <children>
                                                <AnchorPane fx:id="add_reportOperation" layoutX="17.0" layoutY="80.0" prefHeight="325.0" prefWidth="807.0">
                                                   <children>
                                                      <TextField fx:id="txtOperationDescription" layoutX="69.0" layoutY="148.0" prefHeight="70.0" prefWidth="190.0" />
-                                                     <Label layoutX="69.0" layoutY="124.0" text="Description" />
-                                                     <Label layoutX="69.0" layoutY="233.0" prefHeight="18.0" prefWidth="70.0" text="Patient" />
+                                                     <Label fx:id="SQDescriptionOp" layoutX="69.0" layoutY="124.0" text="%Description" />
+                                                     <Label fx:id="SQPatientOP" layoutX="69.0" layoutY="233.0" prefHeight="18.0" prefWidth="70.0" text="%Patient" />
                                                      <TextField fx:id="txtOperationPatient" layoutX="69.0" layoutY="261.0" prefHeight="31.0" prefWidth="189.0" />
-                                                     <Label layoutX="359.0" layoutY="32.0" prefHeight="18.0" prefWidth="70.0" text="Doctor" />
+                                                     <Label fx:id="SQDoctorOp" layoutX="359.0" layoutY="32.0" prefHeight="18.0" prefWidth="70.0" text="%Doctor" />
                                                      <TextField fx:id="txtOperationDoctor" layoutX="359.0" layoutY="60.0" prefHeight="31.0" prefWidth="189.0" />
                                                      <DatePicker fx:id="txtOperationDate" layoutX="359.0" layoutY="126.0" prefHeight="34.0" prefWidth="210.0" />
-                                                     <Label layoutX="359.0" layoutY="102.0" text="Date" />
+                                                     <Label layoutX="359.0" layoutY="102.0" text="%Date" />
                                                      <Label layoutX="359.0" layoutY="181.0" prefHeight="18.0" prefWidth="70.0" text="Time" />
                                                      <TextField fx:id="txtOperationTime" layoutX="359.0" layoutY="209.0" prefHeight="31.0" prefWidth="189.0" />
                                                      <Button fx:id="addOperation_btn" layoutX="359.0" layoutY="256.0" mnemonicParsing="false" onAction="#registerOperation" prefHeight="34.0" prefWidth="142.0" text="Add Operation" />
@@ -349,7 +349,7 @@
                                                    <TextField fx:id="txtOtherID" layoutX="73.0" layoutY="59.0" prefHeight="38.0" prefWidth="190.0" />
                                                   </children>
                                                </AnchorPane>
-                                               <ComboBox fx:id="reportCase_comboBox" layoutX="79.0" layoutY="29.0" prefHeight="34.0" prefWidth="189.0" promptText="Choose Report Case..." />
+                                               <ComboBox fx:id="reportCase_comboBox" layoutX="84.0" layoutY="45.0" prefHeight="34.0" prefWidth="189.0" promptText="Choose Report Case..." />
                                             </children>
                                          </AnchorPane>
                                      </content>
@@ -361,7 +361,7 @@
                                </TabPane>
                             </children>
                          </AnchorPane>
-                         <Label layoutX="21.0" layoutY="34.0" prefHeight="66.0" prefWidth="260.0" text="Report Incident Case ">
+                         <Label fx:id="titulliReports" layoutX="21.0" layoutY="34.0" prefHeight="66.0" prefWidth="260.0" text="%Report Incident Case ">
                             <font>
                                <Font size="24.0" />
                             </font>
