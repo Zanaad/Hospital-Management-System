@@ -775,7 +775,6 @@ public class NursePageController implements Initializable {
             this.report2Op.setText(rb.getString("Deaths"));
             this.report3Op.setText(rb.getString("Births"));
             this.report4Op.setText(rb.getString("Other"));
-            this.report5Op.setText(rb.getString("Add Report"));
             this.titulliReports.setText(rb.getString("Report Incident Case "));
             this.operations_col_operationID.setText(rb.getString("OperationID"));
             this.operations_col_description.setText(rb.getString("Description"));
@@ -799,7 +798,6 @@ public class NursePageController implements Initializable {
             this.others_col_patient.setText(rb.getString("Patient"));
             this.others_col_date.setText(rb.getString("Date"));
             this.others_col_time.setText(rb.getString("Time"));
-            this.reportCase_comboBox.setPromptText(rb.getString("Choose Report Case..."));
             this.SQDescriptionOp.setText(rb.getString("Description"));
             this.SQPatientOP.setText(rb.getString("Patient"));
             this.SQDoctorOp.setText(rb.getString("Doctor"));
@@ -824,6 +822,8 @@ public class NursePageController implements Initializable {
             this.SQDateOt.setText(rb.getString("Date"));
             this.SQTimeOt.setText(rb.getString("Time"));
             this.add_other_btn.setText(rb.getString("Add Other"));
+            this.add_death_btn.setText(rb.getString("Add Death"));
+            this.add_birth_btn.setText(rb.getString("Add Birth"));
         } catch (Exception e) {
             e.printStackTrace();
         }
