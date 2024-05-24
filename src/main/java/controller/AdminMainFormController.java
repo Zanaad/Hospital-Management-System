@@ -62,6 +62,8 @@ public class AdminMainFormController implements Initializable {
             case "receptionist_btn":
                 Navigator.loadContent(contentPane, "AddRec.fxml");
                 break;
+            default:
+                Navigator.loadContent(contentPane, "AdminDashboard.fxml");
         }
     }
 

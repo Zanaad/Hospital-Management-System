@@ -1,11 +1,14 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import service.ChartService;
 import service.CountStaffService;
 
 import java.net.URL;
@@ -16,10 +19,10 @@ public class AdminDashboardController implements Initializable {
     private Label app_count;
 
     @FXML
-    private BarChart<?, ?> dashboad_chart_AD;
+    private AreaChart<String, Number> AreaChartPatients;
 
     @FXML
-    private AreaChart<?, ?> dashboad_chart_PD;
+    private PieChart PieChartEmp;
 
     @FXML
     private AnchorPane dashboard_form;
@@ -48,6 +51,13 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private Label rec_count;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.staff_count();
+        ChartService.patientAreaChart(AreaChartPatients);
+        this.pieChartEmployeesData();
+    }
+
     public void staff_count() {
         CountStaffService.countStaff(nurses_count, CountStaffService.countNurse);
         CountStaffService.countStaff(docs_count, CountStaffService.countDoctor);
@@ -57,9 +67,14 @@ public class AdminDashboardController implements Initializable {
         CountStaffService.countStaff(app_count, CountStaffService.countAppointments);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.staff_count();
-    }
+    private void pieChartEmployeesData() {
+        int nrDocs = CountStaffService.getCount(CountStaffService.countDoctor);
+        int nrNurses = CountStaffService.getCount(CountStaffService.countNurse);
+        int nrRecs = CountStaffService.getCount(CountStaffService.countReceptionist);
+        PieChartEmp.setPrefWidth(400);
+        PieChartEmp.setPrefHeight(400);
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(new PieChart.Data("Doctors", nrDocs), new PieChart.Data("Nurses", nrNurses), new PieChart.Data("Receptionists", nrRecs));
 
+        PieChartEmp.setData(pieChartData);
+    }
 }
