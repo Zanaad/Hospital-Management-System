@@ -5,6 +5,8 @@ import model.dto.StaffDto.CreateStaffDto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class StaffRepository {
     public static boolean createStaff(CreateStaffDto staffData, String query) {
@@ -35,5 +37,29 @@ public class StaffRepository {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public static String generateID(String prefix, String tablename) {
+        try {
+            Connection conn = DatabaseUtil.getConnection();
+            String query = "SELECT MAX(CAST(SUBSTRING(id, 5) AS UNSIGNED)) AS max_id FROM " + tablename;
+            Statement pst = conn.createStatement();
+            ResultSet result = pst.executeQuery(query);
+            int maxID = 0;
+            if (result.next()) {
+                maxID = result.getInt("max_id");
+            }
+            prefix += (maxID + 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return prefix;
+    }
+
+    public static String generatePassword(String firstName, String password) {
+        if (firstName != null && !firstName.isEmpty()) {
+            password += "-" + firstName;
+        }
+        return password;
     }
 }

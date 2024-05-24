@@ -125,6 +125,9 @@ public class AddDoctorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         doctorDisplayData();
         loadDepartmentNames();
+        docID.setDisable(true);
+        docID.setText(DoctorService.registerDoctorID());
+        docPassword.setDisable(true);
     }
 
     //Switch to the register form
@@ -143,8 +146,7 @@ public class AddDoctorController implements Initializable {
         Date birthdate = Date.valueOf(this.docBirthdate.getValue());
         Date startDate = Date.valueOf(this.docStart.getValue());
         Date endDate = Date.valueOf(this.docEnd.getValue());
-
-        DoctorDto staff = new DoctorDto(this.docID.getText(), this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), this.docPassword.getText(), this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
+        DoctorDto staff = new DoctorDto(null, this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), null, this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
         boolean staffCreated = DoctorService.createDoctor(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminMainForm);

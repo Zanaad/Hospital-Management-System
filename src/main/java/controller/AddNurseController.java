@@ -160,6 +160,9 @@ public class AddNurseController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nurseDisplayData();
         loadDepartmentNames();
+        this.nurseID.setDisable(true);
+        this.nurseID.setText(NurseService.registerNurseID());
+        this.nursePassword.setDisable(true);
     }
 
     private void loadDepartmentNames() {
