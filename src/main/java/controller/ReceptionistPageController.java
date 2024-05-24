@@ -25,6 +25,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ReceptionistPageController implements Initializable {
@@ -231,6 +232,24 @@ public class ReceptionistPageController implements Initializable {
     private Button addApp_btn;
 
     @FXML
+    private Label ad;
+
+    @FXML
+    private Label pd;
+
+
+    @FXML
+    private Label appointments;
+
+
+    @FXML
+    private Label patients;
+
+
+    @FXML
+    private AnchorPane contentPane;
+
+    @FXML
     public void registerPatient(ActionEvent event) {
 
         Date birthdate = Date.valueOf(this.patBirthdate.getValue());
@@ -342,5 +361,36 @@ public class ReceptionistPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientDisplayData();
         appointmentDisplayData();
+        Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
+        this.translate();
+    }
+
+    @FXML
+    public void handleLanguage() {
+        Locale defaultLocale = Locale.getDefault();
+        if (defaultLocale.getLanguage().equals("en")) {
+            Locale.setDefault(new Locale("sq"));
+        } else {
+            Locale.setDefault(Locale.ENGLISH);
+        }
+        this.translate();
+    }
+
+
+    public void translate() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
+        this.dashboard_btn.setText(rb.getString("Dashboard"));
+        this.patients_btn.setText(rb.getString("Patients"));
+        this.appointments_btn.setText(rb.getString("Appointments"));
+        this.add_patient_btn.setText(rb.getString("Add New Patients"));
+        this.register_patient_btn.setText(rb.getString("Add"));
+        this.account_btn.setText(rb.getString("Account"));
+        this.logout_btn.setText(rb.getString("Logout"));
+        this.ad.setText(rb.getString("Appointments Data"));
+        this.pd.setText(rb.getString("Patients Data"));
+        this.appointments.setText(rb.getString("Appointments"));
+        this.patients.setText(rb.getString("Patients"));
+
     }
 }
