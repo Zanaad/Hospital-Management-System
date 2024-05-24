@@ -357,13 +357,58 @@ public class NursePageController implements Initializable {
     private AnchorPane contentPane;
 
     @FXML
+    private Label SQDateBi;
+
+    @FXML
+    private Label SQDateDe;
+
+    @FXML
+    private Label SQDateOp;
+
+    @FXML
+    private Label SQDateOt;
+
+    @FXML
+    private Label SQDescriptionBi;
+
+    @FXML
+    private Label SQDescriptionDe;
+
+    @FXML
     private Label SQDescriptionOp;
+
+    @FXML
+    private Label SQDescriptionOt;
 
     @FXML
     private Label SQDoctorOp;
 
     @FXML
+    private Label SQNewbornBi;
+
+    @FXML
+    private Label SQPatientBi;
+
+    @FXML
+    private Label SQPatientDe;
+
+    @FXML
     private Label SQPatientOP;
+
+    @FXML
+    private Label SQPatientOt;
+
+    @FXML
+    private Label SQTimeBi;
+
+    @FXML
+    private Label SQTimeDe;
+
+    @FXML
+    private Label SQTimeOp;
+
+    @FXML
+    private Label SQTimeOt;
 
     @FXML
     private Tab report1op;
@@ -386,12 +431,6 @@ public class NursePageController implements Initializable {
 
     @FXML
     private Button Logout_btn;
-
-    @FXML
-    private Label SQDateOp;
-
-    @FXML
-    private Label SQTimeOp;
 
     @FXML
     private Label Project_title;
@@ -633,7 +672,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 Others otherData = new Others(
-                        result.getString("otherID"),
+                        result.getString("other_ID"),
                         result.getString("other_description"),
                         result.getString("other_patient"),
                         result.getDate("other_date"),
@@ -770,7 +809,21 @@ public class NursePageController implements Initializable {
             this.account_btn.setText(rb.getString("Account"));
             this.Project_title.setText(rb.getString("Hospital Management System"));
             this.addOperation_btn.setText(rb.getString("Add Operation"));
-
+            this.add_death_btn.setText(rb.getString("Add Death"));
+            this.SQDescriptionDe.setText(rb.getString("Description"));
+            this.SQPatientDe.setText(rb.getString("Patient"));
+            this.SQDateDe.setText(rb.getString("Date"));
+            this.SQTimeDe.setText(rb.getString("Time"));
+            this.SQDescriptionBi.setText(rb.getString("Description"));
+            this.SQPatientBi.setText(rb.getString("Patient"));
+            this.SQNewbornBi.setText(rb.getString("New Born's name"));
+            this.SQDateBi.setText(rb.getString("Date"));
+            this.SQTimeBi.setText(rb.getString("Time"));
+            this.SQDescriptionOt.setText(rb.getString("Description"));
+            this.SQPatientOt.setText(rb.getString("Patient"));
+            this.SQDateOt.setText(rb.getString("Date"));
+            this.SQTimeOt.setText(rb.getString("Time"));
+            this.add_other_btn.setText(rb.getString("Add Other"));
         } catch (Exception e) {
             e.printStackTrace();
         }
