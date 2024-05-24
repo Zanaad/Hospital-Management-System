@@ -308,9 +308,6 @@ public class ReceptionistPageController implements Initializable {
     private Label dep;
 
     @FXML
-    private Label app;
-
-    @FXML
     private Label doc;
     @FXML
     private Label nur;
@@ -437,6 +434,8 @@ public class ReceptionistPageController implements Initializable {
         appointmentDisplayData();
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
+
+
     }
 
     @FXML
