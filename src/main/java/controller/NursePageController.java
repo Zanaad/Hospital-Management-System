@@ -384,14 +384,19 @@ public class NursePageController implements Initializable {
     @FXML
     private Label titulliReports;
 
+    @FXML
+    private Button Logout_btn;
+
+    @FXML
+    private Label SQDateOp;
+
+    @FXML
+    private Label SQTimeOp;
+
+    @FXML
+    private Label Project_title;
 
 
-    Connection conn=null;
-
-
-    ResultSet rs=null;
-
-    PreparedStatement pst=null;
 
 
 
@@ -739,9 +744,32 @@ public class NursePageController implements Initializable {
             this.operations_col_doctor.setText(rb.getString("Doctor"));
             this.operations_col_date.setText(rb.getString("Date"));
             this.operations_col_time.setText(rb.getString("Time"));
-
-
-
+            this.deaths_col_deathID.setText(rb.getString("DeathID"));
+            this.deaths_col_description.setText(rb.getString("Description"));
+            this.deaths_col_patient.setText(rb.getString("Patient"));
+            this.deaths_col_date.setText(rb.getString("Date"));
+            this.deaths_col_time.setText(rb.getString("Time"));
+            this.births_col_birthID.setText(rb.getString("BirthID"));
+            this.births_col_description.setText(rb.getString("Description"));
+            this.births_col_patient.setText(rb.getString("Patient"));
+            this.births_col_newBorn.setText(rb.getString("New Born's name"));
+            this.births_col_date.setText(rb.getString("Date"));
+            this.births_col_time.setText(rb.getString("Time"));
+            this.others_col_otherID.setText(rb.getString("OtherID"));
+            this.others_col_description.setText(rb.getString("Description"));
+            this.others_col_patient.setText(rb.getString("Patient"));
+            this.others_col_date.setText(rb.getString("Date"));
+            this.others_col_time.setText(rb.getString("Time"));
+            this.reportCase_comboBox.setPromptText(rb.getString("Choose Report Case..."));
+            this.SQDescriptionOp.setText(rb.getString("Description"));
+            this.SQPatientOP.setText(rb.getString("Patient"));
+            this.SQDoctorOp.setText(rb.getString("Doctor"));
+            this.SQDateOp.setText(rb.getString("Date"));
+            this.SQTimeOp.setText(rb.getString("Time"));
+            this.Logout_btn.setText(rb.getString("LogOut"));
+            this.account_btn.setText(rb.getString("Account"));
+            this.Project_title.setText(rb.getString("Hospital Management System"));
+            this.addOperation_btn.setText(rb.getString("Add Operation"));
 
         } catch (Exception e) {
             e.printStackTrace();
