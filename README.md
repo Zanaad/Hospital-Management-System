@@ -15,10 +15,10 @@ Ky projekt u zhvillua në kuadër të lëndës "Komunikimi Njeri-Kompjuter" në 
 ## Specifikat
 
 - Përdoruesit e këtij sistemi jane infermierët,doktorët,recepsionistët dhe admini.
-- Admini
-- Doktori mund të regjistrojë termine,pacient,t'i menaxhojë të dhënat e pacientit dhe të përditësoj profilin e tij.
-- Recepsionisti
-- Infermieret
+1. Admini mund të regjistrojë doktorë, infermierë, recepsionistë, t'i menaxhojë të dhënat e tyre dhe të përditësojë llogarinë e tij.
+2. Doktori mund të regjistrojë termine,pacient,t'i menaxhojë të dhënat e pacientit dhe të përditësoj profilin e tij.
+3. Recepsionisti 
+4. Infermieret
 
 
 

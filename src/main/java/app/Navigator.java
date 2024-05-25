@@ -11,13 +11,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.io.IOException;
 
 public class Navigator {
     public final static String AdminMainForm = "AdminMainForm.fxml";
-    public final static String EditForm = "Edit.fxml";
     public final static String ReceptionistPage = "ReceptionistPage.fxml";
     public final static String NursePage = "NursePage.fxml";
     public final static String LoginPage = "Login.fxml";
@@ -40,12 +39,11 @@ public class Navigator {
         stage.show();
     }
 
+    //to navigate to a specific form
     public static void navigateToForm(ActionEvent event, String page, String formToDisplay) {
         try {
             FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page));
-            loader.setResources(bundle);
             Parent root = loader.load();
-
             NursePageController controller = loader.getController();
             controller.setFormToDisplay(formToDisplay);
             Node eventNode = (Node) event.getSource();
@@ -60,7 +58,6 @@ public class Navigator {
     public static void loadContent(AnchorPane contentPane, String fxmlFile) {
         try {
             FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(fxmlFile));
-            loader.setResources(bundle);
             Node content = loader.load();
             contentPane.getChildren().setAll(content);
         } catch (IOException e) {
@@ -69,9 +66,9 @@ public class Navigator {
     }
 
     public static void handleLanguage() {
-        Locale defaultLocale = Locale.getDefault();
-        if (defaultLocale.getLanguage().equals("en")) {
-            Locale.setDefault(new Locale("sq"));
+        Locale degaultLocale = Locale.getDefault();
+        if (degaultLocale.getLanguage().equals("en")) {
+            Locale.setDefault(Locale.of("sq"));
         } else {
             Locale.setDefault(Locale.ENGLISH);
         }
@@ -79,6 +76,8 @@ public class Navigator {
     }
 
     private static Pane loadPane(String form) {
+
+        ResourceBundle bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
         FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(form), bundle);
         try {
             return loader.load();
@@ -86,4 +85,5 @@ public class Navigator {
             return null;
         }
     }
+
 }
