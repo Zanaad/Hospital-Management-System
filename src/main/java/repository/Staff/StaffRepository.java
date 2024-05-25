@@ -56,10 +56,13 @@ public class StaffRepository {
 
     private static User getFromResultSet(ResultSet rs) {
         try {
+            String id = rs.getString("id");
+            String firstName = rs.getString("firstName");
+            String lastName = rs.getString("lastName");
             String email = rs.getString("email");
             String salt = rs.getString("salt");
             String hashPassword = rs.getString("hashPassword");
-            return new User(email, salt, hashPassword);
+            return new User(id, firstName, lastName, email, salt, hashPassword);
         } catch (Exception e) {
             return null;
         }

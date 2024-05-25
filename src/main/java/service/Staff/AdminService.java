@@ -1,5 +1,6 @@
 package service.Staff;
 
+import app.SessionManager;
 import model.User;
 import model.dto.ChangePasswordDto;
 import model.dto.LoginUserDto;
@@ -26,7 +27,15 @@ public class AdminService extends StaffService {
 
     public static boolean login(LoginUserDto loginData) {
         User user = AdminRepository.getAdminByEmail(loginData.getEmail());
-        return login(loginData, user);
+        boolean isLogin = login(loginData, user);
+        if (isLogin) {
+            SessionManager.setCurrentUser(user);
+        }
+        return isLogin;
+    }
+
+    public static void logout() {
+        SessionManager.clearSession();
     }
 }
 

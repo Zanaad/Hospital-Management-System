@@ -1,15 +1,32 @@
 package model;
 
-
 public class User {
+    private String id;
+    private String firstName;
+    private String lastName;
     private String email;
     private String salt;
-    private String hashPassword;
+    private String passwordHash;
 
-    public User(String email, String salt, String hashPassword) {
+    public User(String id, String firstName, String lastName, String email, String salt, String passwordHash) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.salt = salt;
-        this.hashPassword = hashPassword;
+        this.passwordHash = passwordHash;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getEmail() {
@@ -20,8 +37,7 @@ public class User {
         return salt;
     }
 
-    public String getHashPassword() {
-        return hashPassword;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 }
-
