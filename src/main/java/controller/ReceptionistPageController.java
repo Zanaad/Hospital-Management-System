@@ -16,6 +16,9 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
+import model.dto.StaffDto.DoctorDto;
+import model.filter.DoctorFilter;
+import model.filter.PatientFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.DoctorRepository;
 import repository.Staff.NurseRepository;
@@ -23,6 +26,7 @@ import service.ChartService;
 import service.CountStaffService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
+import service.Staff.DoctorService;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -181,13 +185,13 @@ public class ReceptionistPageController implements Initializable {
     private TextField appDesc;
 
     @FXML
-    private ComboBox<?> appDep;
+    private ComboBox<String> appDep;
 
     @FXML
-    private ComboBox<?> appDoc;
+    private ComboBox<String> appDoc;
 
     @FXML
-    private ComboBox<?> appNurse;
+    private ComboBox<String> appNurse;
 
     @FXML
     private TextField appPhone;
@@ -333,6 +337,11 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     private AreaChart<String, Number> dashboad_chart_AD;
+    @FXML
+    private TextField filterPatName;
+
+    @FXML
+    private TextField filterPatSubname;
 
 
     @FXML
@@ -584,22 +593,38 @@ public class ReceptionistPageController implements Initializable {
         CountStaffService.countStaff(app_number, CountStaffService.countPatients);
         CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
     }
-
     private void loadDepartmentNames() {
         List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
         patDep.setItems(observableList);
+        appDep.setItems(observableList);
     }
     private void loadDoctorNames() {
         List<String> doctorNames = DoctorRepository.getAllDoctorsNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(doctorNames);
         patDoctor.setItems(observableList);
+        appDoc.setItems(observableList);
     }
 
     private void loadNurseNames() {
         List<String> nurseNames = NurseRepository.getAllNursesNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(nurseNames);
         patNurse.setItems(observableList);
+        appNurse.setItems(observableList);
+    }
+
+    @FXML
+    void handlePatientFilter(ActionEvent event) {
+        String firstName = filterPatName.getText();
+        String lastName = filterPatSubname.getText();
+        PatientFilter filter = new PatientFilter(firstName, lastName);
+        List<Patient> filteredPatients= PatientService.filter(filter);
+        updatePatientTable(filteredPatients);
+    }
+
+    public void updatePatientTable(List<Patient> patients) {
+        ObservableList<Patient> listPatients = FXCollections.observableArrayList(patients);
+        patients_tableView.setItems(listPatients);
     }
 
 
