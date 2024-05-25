@@ -17,6 +17,7 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
+import repository.DepartmentRepository;
 import service.ChartService;
 import service.CountStaffService;
 import service.Rec.AppointmentService;
@@ -27,6 +28,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -138,7 +140,7 @@ public class ReceptionistPageController implements Initializable {
     private TextField patAddress;
 
     @FXML
-    private ComboBox<?> patDep;
+    private ComboBox<String> patDep;
 
     @FXML
     private ComboBox<?> patDoctor;
@@ -446,6 +448,7 @@ public class ReceptionistPageController implements Initializable {
         patientDisplayData();
         appointmentDisplayData();
         this.staff_count();
+        loadDepartmentNames();
        ChartService.patientAreaChart( dashboad_chart_PD);
        ChartService.appointmentAreaChart(dashboad_chart_AD);
         
@@ -574,4 +577,11 @@ public class ReceptionistPageController implements Initializable {
         CountStaffService.countStaff(app_number, CountStaffService.countPatients);
         CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
     }
+
+    private void loadDepartmentNames() {
+        List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
+        ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
+        patDep.setItems(observableList);
+    }
+
 }
