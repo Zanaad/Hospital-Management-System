@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
    <children>
-      <AnchorPane fx:id="login_admin" layoutX="-8.0" layoutY="12.0" prefHeight="381.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="login_admin" layoutX="-8.0" layoutY="12.0" prefHeight="380.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="379.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="381.0" fitWidth="284.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/try.png" />
+                  <Image url="@../images/picdoc.png" />
                </image>
             </ImageView>
             <FontAwesomeIcon fill="#188ba7" glyphName="STETHOSCOPE" layoutX="426.0" layoutY="92.0" size="5em" />
@@ -43,11 +43,11 @@
             </ComboBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="login_doctor" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="login_doctor" layoutX="10.0" layoutY="10.0" prefHeight="380.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="379.0" fitWidth="297.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/try.png" />
+                  <Image url="@../images/picdoc.png" />
                </image>
             </ImageView>
             <FontAwesomeIcon fill="#188ba7" glyphName="STETHOSCOPE" layoutX="429.0" layoutY="84.0" size="5em" />
@@ -71,11 +71,11 @@
             </ComboBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="login_nurse" layoutX="68.0" layoutY="95.0" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="login_nurse" layoutX="68.0" layoutY="95.0" prefHeight="380.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="379.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/try.png" />
+                  <Image url="@../images/picdoc.png" />
                </image>
             </ImageView>
             <FontAwesomeIcon fill="#188ba7" glyphName="STETHOSCOPE" layoutX="427.0" layoutY="73.0" size="5em" />
@@ -99,11 +99,11 @@
             </ComboBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="login_receptionist" layoutY="12.0" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="login_receptionist" layoutY="12.0" prefHeight="380.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="379.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/try.png" />
+                  <Image url="@../images/picdoc.png" />
                </image>
             </ImageView>
             <FontAwesomeIcon fill="#188ba7" glyphName="STETHOSCOPE" layoutX="435.0" layoutY="82.0" size="5em" />
