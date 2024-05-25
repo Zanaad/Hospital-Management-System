@@ -9,7 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import controller.EditController;
+import model.dto.StaffDto.StaffDto;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -18,7 +21,9 @@ import java.io.IOException;
 
 public class Navigator {
     public final static String AdminMainForm = "AdminMainForm.fxml";
-    public final static String EditForm = "Edit.fxml";
+    public final static String AddDoctor = "AddDoctor.fxml";
+    public final static String AddNurse = "AddNurse.fxml";
+    public final static String AddReceptionist = "AddReceptionist.fxml";
     public final static String ReceptionistPage = "ReceptionistPage.fxml";
     public final static String NursePage = "NursePage.fxml";
     public final static String LoginPage = "Login.fxml";
@@ -26,6 +31,7 @@ public class Navigator {
     public final static String Doctor_Shto = "DoctorRegjistro.fxml";
     public final static String Doctor_Menaxho = "DoctorMenaxho.fxml";
     public final static String Doctor_Profili = "DoctorProfili.fxml";
+    private static ResourceBundle bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
 
     public static void navigate(Event event, String form) {
         Node eventNode = (Node) event.getSource();
@@ -45,8 +51,6 @@ public class Navigator {
         try {
             FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page));
             Parent root = loader.load();
-
-
             NursePageController controller = loader.getController();
             controller.setFormToDisplay(formToDisplay);
             Node eventNode = (Node) event.getSource();
@@ -68,6 +72,15 @@ public class Navigator {
         }
     }
 
+    public static void handleLanguage() {
+        Locale degaultLocale = Locale.getDefault();
+        if (degaultLocale.getLanguage().equals("en")) {
+            Locale.setDefault(Locale.of("sq"));
+        } else {
+            Locale.setDefault(Locale.ENGLISH);
+        }
+        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
+    }
 
     private static Pane loadPane(String form) {
 
@@ -79,4 +92,5 @@ public class Navigator {
             return null;
         }
     }
+
 }

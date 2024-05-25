@@ -43,7 +43,7 @@ public class AdminRepository extends StaffRepository {
     }
 
     public static UpdateUserPasswordDto getUserPasswordInfo(String email) {
-        String query = "SELECT salt, passwordHash FROM admin WHERE email=?";
+        String query = "SELECT salt, hashPassword FROM admin WHERE email=?";
         try {
             Connection con = DatabaseUtil.getConnection();
             PreparedStatement pst = con.prepareStatement(query);
@@ -51,7 +51,7 @@ public class AdminRepository extends StaffRepository {
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 String salt = rs.getString("salt");
-                String passwordHash = rs.getString("passwordHash");
+                String passwordHash = rs.getString("hashPassword");
                 return new UpdateUserPasswordDto(email, passwordHash, salt);
             }
         } catch (Exception e) {
@@ -61,7 +61,7 @@ public class AdminRepository extends StaffRepository {
     }
 
     public static boolean changePwd(ChangePasswordDto ChangePasswordDto, String salt) {
-        String query = "UPDATE admin SET passwordHash=? WHERE email=?";
+        String query = "UPDATE admin SET hashPassword=? WHERE email=?";
         try {
             Connection con = DatabaseUtil.getConnection();
             PreparedStatement pst = con.prepareStatement(query);
