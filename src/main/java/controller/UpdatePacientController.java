@@ -1,5 +1,6 @@
 package controller;
 
+import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -130,11 +131,12 @@ public class UpdatePacientController {
         txtmosha.setText(String.valueOf(selectedPacient.getMosha()));
     }
 
-    @FXML
-    void handleUpdate(ActionEvent event) {
-        Pacient.updatePacient(selectedPacient,txtemri.getText(),txtmbiemri.getText(),txtgjinia.getText(),Integer.parseInt(txtmosha.getText()),txtditelindja.getText(),Integer.parseInt(txtTel.getText()),txtadresa.getText(),txtDataSh.getText(), txtDataL.getText(), txtDiagnoza.getText(),
-                txtTretmani.getText(), txtPershkrimi.getText(), Integer.parseInt(txtPagesa.getText()));
+    public void handleUpdate(javafx.scene.input.MouseEvent mouseEvent) {
+
+        Pacient.updatePacient(selectedPacient, txtemri.getText(), txtmbiemri.getText(), txtgjinia.getText(), Integer.parseInt(txtmosha.getText()), txtditelindja.getText(), Integer.parseInt(txtTel.getText()), txtadresa.getText(), txtDataSh.getText(), txtDataL.getText(), txtDiagnoza.getText(), txtTretmani.getText(), txtPershkrimi.getText(), Integer.parseInt(txtPagesa.getText()));
+        Navigator.navigate(mouseEvent, Navigator.Doctor_Menaxho);
     }
+
 
 
 

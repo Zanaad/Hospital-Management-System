@@ -21,22 +21,22 @@
                             <children>
                                 <Label fx:id="Welcomelbl" layoutX="742.0" layoutY="17.0" text="Welcome" textFill="#b7b6b6" />
                                 <Label fx:id="DoctorLbl" layoutX="844.0" layoutY="17.0" prefHeight="17.0" prefWidth="65.0" text="Doctor" textFill="#c3c1c1" />
-                                <Label fx:id="HospitalLbl" layoutX="15.0" layoutY="14.0" prefHeight="30.0" prefWidth="216.0" text="Hospital Management" textFill="#fbf7f7">
+                                <Label fx:id="HospitalLbl" layoutX="16.0" layoutY="11.0" prefHeight="30.0" prefWidth="216.0" text="Hospital Management" textFill="#fbf7f7">
                                     <font>
                                         <Font size="20.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="DashsboardLbl" layoutX="275.0" layoutY="12.0" prefHeight="27.0" prefWidth="227.0" text="Management Dashboard" textFill="#e2dddd">
+                                <Label fx:id="DashsboardLbl" layoutX="275.0" layoutY="11.0" prefHeight="27.0" prefWidth="227.0" text="Management Dashboard" textFill="#e2dddd">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
                                 </Label>
-                                <Button layoutX="1012.0" layoutY="11.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="74.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Logout" textFill="#efefef">
+                                <Button layoutX="1012.0" layoutY="10.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="74.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Logout" textFill="#efefef">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="931.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLanguage" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Translate" textFill="#e6e4e4" />
+                                <Button layoutX="931.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLanguage" prefHeight="29.0" prefWidth="74.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Translate" textFill="#e6e4e4" />
                             </children>
                         </AnchorPane>
                     </top>
@@ -172,4 +172,3 @@
         </AnchorPane>
     </children>
 </StackPane>
-
