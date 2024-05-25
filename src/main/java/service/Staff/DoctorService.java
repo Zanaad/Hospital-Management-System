@@ -5,9 +5,7 @@ import model.dto.LoginUserDto;
 import model.dto.StaffDto.CreateDoctorDto;
 import model.dto.StaffDto.DoctorDto;
 import model.filter.DoctorFilter;
-import model.filter.UserFilter;
 import repository.Staff.DoctorRepository;
-import service.Alerts;
 import service.PasswordHasher;
 
 import java.util.List;

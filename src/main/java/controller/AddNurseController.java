@@ -18,7 +18,7 @@ import model.dto.StaffDto.NurseDto;
 import model.filter.NurseFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.NurseRepository;
-import service.DepartmentService;
+import service.Staff.DepartmentService;
 import service.Staff.NurseService;
 import service.Table;
 

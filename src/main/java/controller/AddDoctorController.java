@@ -12,7 +12,7 @@ import model.dto.StaffDto.DoctorDto;
 import model.filter.DoctorFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.DoctorRepository;
-import service.DepartmentService;
+import service.Staff.DepartmentService;
 import service.Staff.DoctorService;
 import service.Table;
 

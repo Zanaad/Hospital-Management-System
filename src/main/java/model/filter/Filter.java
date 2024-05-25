@@ -1,10 +1,10 @@
 package model.filter;
 
-public abstract class UserFilter {
+public abstract class Filter {
     private String firstName;
     private String email;
 
-    public UserFilter(String firstName, String email) {
+    public Filter(String firstName, String email) {
         this.firstName = firstName;
         this.email = email;
     }

@@ -4,7 +4,7 @@ import model.User;
 import model.dto.LoginUserDto;
 import model.dto.StaffDto.CreateReceptionistDto;
 import model.dto.StaffDto.ReceptionistDto;
-import model.filter.UserFilter;
+import model.filter.Filter;
 import repository.Staff.ReceptionistRepository;
 import service.PasswordHasher;
 
@@ -21,7 +21,7 @@ public class ReceptionistService extends StaffService {
         return ReceptionistRepository.createReceptionist(createReceptionistDto);
     }
 
-    public static List<ReceptionistDto> filter(UserFilter filter) {
+    public static List<ReceptionistDto> filter(Filter filter) {
         return ReceptionistRepository.getByFilter(filter);
     }
 

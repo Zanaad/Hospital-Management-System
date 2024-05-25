@@ -14,10 +14,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.dto.DepartmentDto;
+import model.filter.DepFilter;
 import repository.Staff.DepartmentRepository;
-import service.DepartmentService;
+import service.Staff.DepartmentService;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddDepController implements Initializable {
@@ -88,5 +90,14 @@ public class AddDepController implements Initializable {
     }
 
     public void handleDepFilter(ActionEvent event) {
+        String depName = filterDepName.getText();
+        DepFilter filter = new DepFilter(null, null, depName);
+        List<DepartmentDto> filteredDeps = DepartmentService.filter(filter);
+        this.updateDepartmentTable(filteredDeps);
+    }
+
+    public void updateDepartmentTable(List<DepartmentDto> deps) {
+        ObservableList<DepartmentDto> listDeps = FXCollections.observableArrayList(deps);
+        department_table.setItems(listDeps);
     }
 }
