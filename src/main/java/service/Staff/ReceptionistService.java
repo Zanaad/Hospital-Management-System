@@ -1,14 +1,16 @@
 package service.Staff;
 
+import model.User;
+import model.dto.LoginUserDto;
 import model.dto.StaffDto.CreateReceptionistDto;
 import model.dto.StaffDto.ReceptionistDto;
-import model.filter.UserFilter;
+import model.filter.Filter;
 import repository.Staff.ReceptionistRepository;
 import service.PasswordHasher;
 
 import java.util.List;
 
-public class ReceptionistService {
+public class ReceptionistService extends StaffService {
     public static boolean createReceptionist(ReceptionistDto receptionistData) {
         String id = registerRecID();
         String password = ReceptionistRepository.generateRecPassword(receptionistData.getFirstName());
@@ -19,11 +21,16 @@ public class ReceptionistService {
         return ReceptionistRepository.createReceptionist(createReceptionistDto);
     }
 
-    public static List<ReceptionistDto> filter(UserFilter filter) {
+    public static List<ReceptionistDto> filter(Filter filter) {
         return ReceptionistRepository.getByFilter(filter);
     }
 
     public static String registerRecID() {
         return ReceptionistRepository.generateRecID();
+    }
+
+    public static boolean login(LoginUserDto loginData) {
+        User user = ReceptionistRepository.getRecByEmail(loginData.getEmail());
+        return login(loginData, user);
     }
 }

@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +16,11 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
+import repository.Staff.DepartmentRepository;
+import repository.Staff.DoctorRepository;
+import repository.Staff.NurseRepository;
+import service.ChartService;
+import service.CountStaffService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
 
@@ -25,6 +29,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -48,12 +53,6 @@ public class ReceptionistPageController implements Initializable {
     private AnchorPane dashboard_form;
 
     @FXML
-    private BarChart<?, ?> dashboad_chart_AD;
-
-    @FXML
-    private AreaChart<?, ?> dashboad_chart_PD;
-
-    @FXML
     private AnchorPane patients_form;
 
     @FXML
@@ -64,6 +63,10 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> patients_col_name;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_lastname;
+
 
     @FXML
     private TableColumn<?, ?> patients_col_department;
@@ -138,13 +141,13 @@ public class ReceptionistPageController implements Initializable {
     private TextField patAddress;
 
     @FXML
-    private ComboBox<?> patDep;
+    private ComboBox<String> patDep;
 
     @FXML
-    private ComboBox<?> patDoctor;
+    private ComboBox<String> patDoctor;
 
     @FXML
-    private ComboBox<?> patNurse;
+    private ComboBox<String> patNurse;
 
     @FXML
     private DatePicker patDate;
@@ -227,6 +230,7 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> app_col_hour;
+
 
     @FXML
     private Button addApp_btn;
@@ -319,6 +323,17 @@ public class ReceptionistPageController implements Initializable {
     private Label datte;
     @FXML
     private Label hourr;
+    @FXML
+    private Label app_number;
+    @FXML
+    private Label patients_number;
+
+    @FXML
+    private AreaChart<String, Number> dashboad_chart_PD;
+
+    @FXML
+    private AreaChart<String, Number> dashboad_chart_AD;
+
 
     @FXML
     public void registerPatient(ActionEvent event) {
@@ -371,7 +386,7 @@ public class ReceptionistPageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_lastName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
                 listPatients.add(patData);
             }
         } catch (Exception e) {
@@ -401,6 +416,7 @@ public class ReceptionistPageController implements Initializable {
     public void patientDisplayData() {
         patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("id"));
         patients_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        patients_col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         patients_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
         patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
         patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("nurse"));
@@ -432,7 +448,18 @@ public class ReceptionistPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientDisplayData();
         appointmentDisplayData();
+        this.staff_count();
+        loadDepartmentNames();
+        loadDoctorNames();
+        loadNurseNames();
+       ChartService.patientAreaChart( dashboad_chart_PD);
+       ChartService.appointmentAreaChart(dashboad_chart_AD);
+        
+        
         //Navigating with Enter through Patients TextFields
+       // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
+       // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
+       // add_patient_btn.setOnAction(event -> patFirstName.requestFocus());
         patFirstName.setOnAction(event -> patLastName.requestFocus());
         patLastName.setOnAction(event -> patBirthdate.requestFocus());
         patBirthdate.setOnAction(event -> patPhone.requestFocus());
@@ -443,18 +470,37 @@ public class ReceptionistPageController implements Initializable {
         patDoctor.setOnAction(event -> patNurse.requestFocus());
         patNurse.setOnAction(event -> patDate.requestFocus());
         patDate.setOnAction(event -> patPayment.requestFocus());
-        patPayment.setOnAction(event -> {
+        patPayment.setOnAction(event -> register_patient_btn.requestFocus());
+        register_patient_btn.setOnAction(event -> {
             registerPatient(event);
             event.consume();
 
         });
+        //Navigating with Enter through Appointments TextFields
+       /* appID.setOnAction(event -> appName.requestFocus());
+        appName.setOnAction(event ->appLastName.requestFocus());
+        appLastName.setOnAction(event -> appMale.requestFocus());
+        appMale.setOnAction(event -> appFemale.requestFocus());
+        appFemale.setOnAction(event -> appDesc.requestFocus());
+        appDesc.setOnAction(event ->  appDep.requestFocus());
+        appDep.setOnAction(event -> appDoc.requestFocus());
+        appDoc.setOnAction(event -> appNurse.requestFocus());
+        appNurse.setOnAction(event -> appPhone.requestFocus());
+        appPhone.setOnAction(event -> appAddress.requestFocus());
+        appAddress.setOnAction(event -> appDate.requestFocus());
+        appDate.setOnAction(event -> appHour.requestFocus());
+        appHour.setOnAction(event -> addApp_btn.requestFocus());
+        addApp_btn.setOnAction(event -> {
+            registerAppointment(event);
+            event.consume();
+
+        });
+
+        */
+
 
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
-
-
-
-
     }
 
     @FXML
@@ -529,13 +575,34 @@ public class ReceptionistPageController implements Initializable {
         this.datte.setText(rb.getString("Date"));
         this.hourr.setText(rb.getString("Hour"));
         this.addApp_btn.setText(rb.getString("Add"));
-
-
-
-
-
-
-
+        this.patients_col_lastname.setText(rb.getString("Subname"));
 
     }
+
+    public void staff_count() {
+
+        CountStaffService.countStaff(app_number, CountStaffService.countPatients);
+        CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
+    }
+
+    private void loadDepartmentNames() {
+        List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
+        ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
+        patDep.setItems(observableList);
+    }
+    private void loadDoctorNames() {
+        List<String> doctorNames = DoctorRepository.getAllDoctorsNames();
+        ObservableList<String> observableList = FXCollections.observableArrayList(doctorNames);
+        patDoctor.setItems(observableList);
+    }
+
+    private void loadNurseNames() {
+        List<String> nurseNames = NurseRepository.getAllNursesNames();
+        ObservableList<String> observableList = FXCollections.observableArrayList(nurseNames);
+        patNurse.setItems(observableList);
+    }
+
+
+
+
 }

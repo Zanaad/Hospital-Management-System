@@ -1,9 +1,10 @@
 package repository.Staff;
 
 import database.DatabaseUtil;
+import model.User;
 import model.dto.StaffDto.CreateReceptionistDto;
 import model.dto.StaffDto.ReceptionistDto;
-import model.filter.UserFilter;
+import model.filter.Filter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +22,12 @@ public class ReceptionistRepository extends StaffRepository {
         return createStaff(receptionistData, query);
     }
 
-    public static List<ReceptionistDto> getByFilter(UserFilter filter) {
+    public static User getRecByEmail(String email) {
+        return getStaffByEmail(email, "receptionists");
+    }
+
+
+    public static List<ReceptionistDto> getByFilter(Filter filter) {
         String filterQuery = "SELECT * FROM receptionists WHERE 1=1" + filter.buildQuery();
         return fetchReceptionists(filterQuery);
     }
@@ -55,7 +61,8 @@ public class ReceptionistRepository extends StaffRepository {
 
     public static String generateRecPassword(String firstName) {
         String id = generateRecID();
-        return generatePassword(id, firstName);
+        System.out.println(generatePassword(firstName, id));
+        return generatePassword(firstName, id);
     }
 }
 

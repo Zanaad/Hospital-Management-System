@@ -1,8 +1,11 @@
 package app;
 
+import controller.NursePageController;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -22,8 +25,6 @@ public class Navigator {
     public final static String Doctor_Shto = "DoctorRegjistro.fxml";
     public final static String Doctor_Menaxho = "DoctorMenaxho.fxml";
     public final static String Doctor_Profili = "DoctorProfili.fxml";
-    public static String AdminPage;
-
 
     public static void navigate(Event event, String form) {
         Node eventNode = (Node) event.getSource();
@@ -38,6 +39,24 @@ public class Navigator {
         stage.show();
     }
 
+    //to navigate to a specific form
+    public static void navigateToForm(ActionEvent event, String page, String formToDisplay) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page));
+            Parent root = loader.load();
+
+
+            NursePageController controller = loader.getController();
+            controller.setFormToDisplay(formToDisplay);
+            Node eventNode = (Node) event.getSource();
+            Stage stage = (Stage) eventNode.getScene().getWindow();
+            navigate(stage, page);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void loadContent(AnchorPane contentPane, String fxmlFile) {
         try {
             FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(fxmlFile));
@@ -47,6 +66,7 @@ public class Navigator {
             e.printStackTrace();
         }
     }
+
 
     private static Pane loadPane(String form) {
 

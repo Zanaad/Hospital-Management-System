@@ -1,6 +1,6 @@
 package model.filter;
 
-public class ReceptionistFilter extends UserFilter {
+public class ReceptionistFilter extends Filter {
     private String id;
 
     public ReceptionistFilter(String firstName, String email, String id) {

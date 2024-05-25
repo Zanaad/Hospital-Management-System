@@ -103,7 +103,7 @@
                                 <children>
                                     <ImageView fitHeight="132.0" fitWidth="233.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../../resources/images/patient.jpeg" />
+                                            <Image url="@../images/patient.jpeg" />
                                         </image>
                                     </ImageView>
                                     <Label fx:id="dashboard_patients" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -122,7 +122,7 @@
                         <children>
                            <ImageView fitHeight="139.0" fitWidth="234.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../resources/images/bloodDonator.jpg" />
+                                 <Image url="@../images/bloodDonator.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="dashboard_donors" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -141,7 +141,7 @@
                         <children>
                            <ImageView fitHeight="134.0" fitWidth="237.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
-                                 <Image url="@../../resources/images/bedWards.jpg" />
+                                 <Image url="@../images/bedWards.jpg" />
                               </image>
                            </ImageView>
                            <Label fx:id="dashboard_beds" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="14.0" prefHeight="20.0" prefWidth="18.0" text="0">
@@ -341,7 +341,7 @@
                          </Label>
                       </children>
                    </AnchorPane>
-                        <AnchorPane fx:id="patients_form" layoutX="324.0" layoutY="144.0" prefHeight="560.0" prefWidth="886.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="patients_form" layoutX="324.0" layoutY="144.0" prefHeight="560.0" prefWidth="886.0" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane fx:id="doctor_table" layoutX="178.0" layoutY="-66.0" prefHeight="560.0" prefWidth="886.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
@@ -444,23 +444,24 @@
                             </children>
 
                         </AnchorPane>
-                   <AnchorPane fx:id="bloodBank_form" prefHeight="561.0" prefWidth="885.0" visible="false">
+                   <AnchorPane fx:id="bloodBank_form" prefHeight="561.0" prefWidth="885.0">
                       <children>
                          <TabPane layoutX="38.4" layoutY="93.0" prefHeight="439.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="29.0">
                            <tabs>
-                             <Tab text="Blood Donors List">
+                             <Tab fx:id="titulli_DonorsList" text="%Blood Donors List">
                                <content>
                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                         <children>
                                            <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="407.0" prefWidth="816.0">
                                               <children>
-                                                 <TableView fx:id="blood_table" layoutX="14.0" layoutY="34.0" prefHeight="354.0" prefWidth="789.0">
+                                                 <TableView fx:id="blood_table" layoutX="30.0" layoutY="26.0" prefHeight="354.0" prefWidth="756.0">
                                                    <columns>
-                                                     <TableColumn fx:id="blood_col_donorID" prefWidth="110.4000301361084" text="DonorID" />
-                                                     <TableColumn fx:id="blood_col_bloodGroup" prefWidth="151.20001983642578" text="Blood Group" />
-                                                       <TableColumn fx:id="blood_col_age" prefWidth="148.0" text="Age" />
-                                                       <TableColumn fx:id="blood_col_gender" prefWidth="110.39996337890625" text="Gender" />
-                                                       <TableColumn fx:id="blood_col_lastDonationDate" prefWidth="180.00006103515625" text="Last Donation Date" />
+                                                   <TableColumn fx:id="blood_col_donor_id" prefWidth="75.0" text="ID" />
+                                                     <TableColumn fx:id="blood_col_donorPatient" prefWidth="110.4000301361084" text="%Patient" />
+                                                     <TableColumn fx:id="blood_col_bloodGroup" prefWidth="151.20001983642578" text="%Blood Group" />
+                                                       <TableColumn fx:id="blood_col_age" prefWidth="148.0" text="%Age" />
+                                                       <TableColumn fx:id="blood_col_gender" prefWidth="110.39996337890625" text="%Gender" />
+                                                       <TableColumn fx:id="blood_col_lastDonationDate" prefWidth="180.00006103515625" text="%Last Donation Date" />
                                                    </columns>
                                                  </TableView>
                                               </children>
@@ -472,19 +473,20 @@
                                       <FontAwesomeIcon glyphName="ASTERISK" />
                                    </graphic>
                               </Tab>
-                              <Tab text="Add Blood Donor">
+                              <Tab fx:id="titulli_AddDonors" text="%Add Blood Donor">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                          <children>
                                             <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="382.0" prefWidth="791.0">
                                                <children>
-                                                  <Label layoutX="44.0" layoutY="107.0" text="Age" />
-                                                  <TextField fx:id="txtDonorAge" layoutX="44.0" layoutY="125.0" prefHeight="39.0" prefWidth="232.0" />
-                                                  <ComboBox fx:id="chooseDonorGender" layoutX="44.0" layoutY="191.0" prefWidth="150.0" promptText="Gender..." />
-                                                  <Label layoutX="44.0" layoutY="32.0" text="Blood Group" />
-                                                  <DatePicker fx:id="txtDonorDate" layoutX="44.0" layoutY="257.0" prefHeight="39.0" prefWidth="231.0" promptText="Last Donation Date..." />
-                                                  <Button fx:id="add_donor_btn" layoutX="396.0" layoutY="257.0" mnemonicParsing="false" onAction="#registerDonor" prefHeight="38.0" prefWidth="97.0" text="Add Donor" />
-                                                  <ComboBox fx:id="chooseDonorBloodGroup" layoutX="44.0" layoutY="62.0" prefWidth="150.0" promptText="Blood Group..." />
+                                                  <Label fx:id="SQDonorAge" layoutX="46.0" layoutY="169.0" text="%Age" />
+                                                  <TextField fx:id="txtDonorAge" layoutX="46.0" layoutY="187.0" prefHeight="39.0" prefWidth="232.0" />
+                                                  <ComboBox fx:id="chooseDonorGender" layoutX="46.0" layoutY="253.0" prefWidth="150.0" promptText="%Gender..." />
+                                                  <DatePicker fx:id="txtDonorDate" layoutX="46.0" layoutY="319.0" prefHeight="39.0" prefWidth="231.0" promptText="%Last Donation Date..." />
+                                                  <Button fx:id="add_donor_btn" layoutX="396.0" layoutY="187.0" mnemonicParsing="false" onAction="#registerDonor" prefHeight="38.0" prefWidth="141.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="%Add Donor" />
+                                                  <ComboBox fx:id="chooseDonorBloodGroup" layoutX="46.0" layoutY="124.0" prefWidth="150.0" promptText="%Blood Group..." />
+                                             <Label fx:id="SQDonorPatient" layoutX="46.0" layoutY="39.0" text="%Patient" />
+                                             <TextField fx:id="txtDonorPatient" layoutX="46.0" layoutY="57.0" prefHeight="39.0" prefWidth="232.0" />
                                                </children>
                                             </AnchorPane>
                                          </children>
@@ -496,7 +498,7 @@
                                </Tab>
                              </tabs>
                            </TabPane>
-                           <Label layoutX="38.0" layoutY="21.0" prefHeight="66.0" prefWidth="260.0" text="Blood Bank">
+                           <Label fx:id="titulli_Donors" layoutX="38.0" layoutY="21.0" prefHeight="66.0" prefWidth="260.0" text="%Blood Bank">
                               <font>
                                  <Font size="24.0" />
                               </font>

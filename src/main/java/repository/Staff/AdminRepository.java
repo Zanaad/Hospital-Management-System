@@ -1,6 +1,7 @@
-package repository;
+package repository.Staff;
 
 import database.DatabaseUtil;
+import model.User;
 import model.dto.ChangePasswordDto;
 import model.dto.UpdateUserPasswordDto;
 import service.PasswordHasher;
@@ -8,12 +9,11 @@ import service.PasswordHasher;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class ChangePwdRepository {
+public class AdminRepository extends StaffRepository {
     public static void addSaltAndHashToAdmins() {
-        String selectQuery = "SELECT id, salt, passwordHash FROM admin";
-        String updateQuery = "UPDATE admin SET salt = ?, passwordHash = ? WHERE id = ?";
+        String selectQuery = "SELECT id, salt, hashPassword FROM admin";
+        String updateQuery = "UPDATE admin SET salt = ?, hashPassword = ? WHERE id = ?";
 
         try {
             Connection connection = DatabaseUtil.getConnection();
@@ -24,7 +24,7 @@ public class ChangePwdRepository {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String salt = resultSet.getString("salt");
-                String passwordHash = resultSet.getString("passwordHash");
+                String passwordHash = resultSet.getString("hashPassword");
 
                 if (salt == null || passwordHash == null) {
                     salt = PasswordHasher.generateSalt();
@@ -73,5 +73,27 @@ public class ChangePwdRepository {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static boolean updateAdminDetails(User user) {
+        String query = "UPDATE admin SET firstName=?, lastName=?, email=?, address=? WHERE id=?";
+        try {
+            Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, user.getFirstName());
+            pst.setString(2, user.getLastName());
+            pst.setString(3, user.getEmail());
+            pst.setString(4, user.getAddress());
+            pst.setString(5, user.getId());
+            int rowsUpdated = pst.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static User getAdminByEmail(String email) {
+        return getStaffByEmail(email, "admin");
     }
 }

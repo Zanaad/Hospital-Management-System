@@ -1,12 +1,13 @@
 package repository.Staff;
 
 import database.DatabaseUtil;
+import model.User;
 import model.dto.StaffDto.CreateStaffDto;
+import model.dto.StaffDto.CreateDoctorDto;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StaffRepository {
     public static boolean createStaff(CreateStaffDto staffData, String query) {
@@ -25,11 +26,22 @@ public class StaffRepository {
             pst.setString(9, staffData.getAddress());
             pst.setString(10, staffData.getDepartment());
             pst.setString(11, staffData.getUniversity());
-            pst.setDate(12, staffData.getStartDate());
-            pst.setDate(13, staffData.getEndDate());
-            pst.setString(14, staffData.getBankName());
-            pst.setString(15, staffData.getBankAccount());
-            pst.setString(16, staffData.getRoutingNumber());
+
+            if (staffData instanceof CreateDoctorDto) {
+                CreateDoctorDto doctorData = (CreateDoctorDto) staffData;
+                pst.setString(12, doctorData.getSpecialty());
+                pst.setDate(13, doctorData.getStartDate());
+                pst.setDate(14, doctorData.getEndDate());
+                pst.setString(15, doctorData.getBankName());
+                pst.setString(16, doctorData.getBankAccount());
+                pst.setString(17, doctorData.getRoutingNumber());
+            } else {
+                pst.setDate(12, staffData.getStartDate());
+                pst.setDate(13, staffData.getEndDate());
+                pst.setString(14, staffData.getBankName());
+                pst.setString(15, staffData.getBankAccount());
+                pst.setString(16, staffData.getRoutingNumber());
+            }
             pst.execute();
             return true;
         } catch (Exception e) {
@@ -39,10 +51,42 @@ public class StaffRepository {
         }
     }
 
-    public static String generateID(String prefix, String tablename) {
+    public static User getStaffByEmail(String email, String tableName) {
+        String query = "select * from " + tableName + " where email=?";
+        Connection conn = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return getFromResultSet(rs);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static User getFromResultSet(ResultSet rs) {
+        try {
+            String id = rs.getString("id");
+            String firstName = rs.getString("firstName");
+            String lastName = rs.getString("lastName");
+            String email = rs.getString("email");
+            String salt = rs.getString("salt");
+            String hashPassword = rs.getString("hashPassword");
+            String address = rs.getString("address");
+            return new User(id, firstName, lastName, email, salt, hashPassword, address);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static String generateID(String prefix, String tableName) {
         try {
             Connection conn = DatabaseUtil.getConnection();
-            String query = "SELECT MAX(CAST(SUBSTRING(id, 5) AS UNSIGNED)) AS max_id FROM " + tablename;
+            String query = "SELECT MAX(CAST(SUBSTRING(id, 5) AS UNSIGNED)) AS max_id FROM " + tableName;
             Statement pst = conn.createStatement();
             ResultSet result = pst.executeQuery(query);
             int maxID = 0;
@@ -61,5 +105,22 @@ public class StaffRepository {
             password += "-" + firstName;
         }
         return password;
+    }
+
+    public static List<String> getStaffNames(String query) {
+        List<String> nurses = new ArrayList<>();
+        try {
+            Connection connection = DatabaseUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                nurses.add(resultSet.getString("firstName"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return nurses;
     }
 }

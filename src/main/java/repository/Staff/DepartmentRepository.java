@@ -1,8 +1,9 @@
-package repository;
+package repository.Staff;
 
 import database.DatabaseUtil;
 import model.dto.CreateDepartmentDto;
 import model.dto.DepartmentDto;
+import model.filter.DepFilter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,6 +33,11 @@ public class DepartmentRepository {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public static List<DepartmentDto> getByFilter(DepFilter filter) {
+        String filterQuery = "SELECT * FROM departments WHERE 1=1" + filter.buildQuery();
+        return fetchDepartments(filterQuery);
     }
 
     public static List<DepartmentDto> getAllDepartments() {

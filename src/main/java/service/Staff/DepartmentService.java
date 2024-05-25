@@ -1,14 +1,14 @@
-package service;
+package service.Staff;
 
 import database.DatabaseUtil;
 import model.dto.CreateDepartmentDto;
 import model.dto.DepartmentDto;
-import repository.DepartmentRepository;
+import model.filter.DepFilter;
+import repository.Staff.DepartmentRepository;
+import service.CountStaffService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentService {
@@ -36,5 +36,9 @@ public class DepartmentService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static List<DepartmentDto> filter(DepFilter filter) {
+        return DepartmentRepository.getByFilter(filter);
     }
 }

@@ -16,11 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.NurseDto;
 import model.filter.NurseFilter;
-import model.filter.UserFilter;
-import repository.DepartmentRepository;
+import repository.Staff.DepartmentRepository;
 import repository.Staff.NurseRepository;
-import service.CountStaffService;
-import service.DepartmentService;
+import service.Staff.DepartmentService;
 import service.Staff.NurseService;
 import service.Table;
 

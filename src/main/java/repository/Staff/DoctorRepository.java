@@ -14,12 +14,16 @@ import java.util.List;
 
 public class DoctorRepository extends StaffRepository {
     private static final String query = """
-             INSERT INTO doctors(id, firstName, lastName, birthdate, phone, email, hashPassword, salt, address, department, university, contractStart, contractEnd, bankName, bankAccount, routingNumber)
-             VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             INSERT INTO doctors(id, firstName, lastName, birthdate, phone, email, hashPassword, salt, address, department, university, specialty, contractStart, contractEnd, bankName, bankAccount, routingNumber)
+             VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
     public static boolean createDoctor(CreateDoctorDto doctorData) {
         return createStaff(doctorData, query);
+    }
+
+    public static User getDoctorByEmail(String email) {
+        return getStaffByEmail(email, "doctors");
     }
 
     public static List<DoctorDto> getByFilter(DoctorFilter filter) {
@@ -40,7 +44,7 @@ public class DoctorRepository extends StaffRepository {
             ResultSet result = pst.executeQuery();
 
             while (result.next()) {
-                DoctorDto doctor = new DoctorDto(result.getString("id"), result.getString("firstName"), result.getString("lastName"), result.getDate("birthdate"), result.getString("phone"), result.getString("email"), result.getString("hashPassword"), result.getString("address"), result.getString("department"), result.getString("university"), result.getDate("contractStart"), result.getDate("contractEnd"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
+                DoctorDto doctor = new DoctorDto(result.getString("id"), result.getString("firstName"), result.getString("lastName"), result.getDate("birthdate"), result.getString("phone"), result.getString("email"), result.getString("hashPassword"), result.getString("address"), result.getString("department"), result.getString("university"), result.getString("specialty"), result.getDate("contractStart"), result.getDate("contractEnd"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
                 doctors.add(doctor);
             }
         } catch (Exception e) {
@@ -58,8 +62,12 @@ public class DoctorRepository extends StaffRepository {
     public static String generateDocPassword(String firstName) {
         String id = generateDoctorID();
         System.out.println(generatePassword(firstName, id));
-        return generatePassword(id, firstName);
+        return generatePassword(firstName, id);
     }
 
+    public static List<String> getAllDoctorsNames() {
+        String query = "SELECT firstName FROM doctors";
+        return getStaffNames(query);
+    }
 
 }
