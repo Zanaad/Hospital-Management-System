@@ -13,7 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.DoctorDto;
 import model.filter.DoctorFilter;
+import repository.Staff.DoctorRepository;
 import service.Staff.DoctorService;
+import service.Table;
 
 import java.util.List;
 
@@ -68,7 +70,7 @@ public class payments {
     private TextField patLastName;
 
     @FXML
-    private TableView<?> patent_payments_table;
+    private TableView<pay> patent_payments_table;
 
     @FXML
     private TableColumn<?, ?> patient_col_ID;
@@ -100,21 +102,29 @@ public class payments {
     @FXML
     private Button update_btn;
 
-    @Override
+//    @Override
+//    public ObservableList<pay> getDoctors() {
+//        return FXCollections.observableArrayList(DoctorRepository.getAllDoctors());
+//    }
+//
+//    public void PaymentDisplayData() {
+//        Table.staffDisplayData(patient_col_ID, patient_col_name, patient_col_surname, patient_col_phone,first_col_date,end_col_date, doctor_col_patient , patient_col_pay);
+//        payments_table.setItems(getDoctors());
+//    }
+
     @FXML
     void filter_payments_btn (ActionEvent event) {
-        String firstName = filterDocName.getText();
-        String email = filterDocEmail.getText();
-        String specialty = filterDocSpecialty.getText();
-        DoctorFilter filter = new DoctorFilter(firstName, email, specialty);
-        List<DoctorDto> filteredDoctors = DoctorService.filter(filter);
-        updateDoctorTable(filteredDoctors);
+        String firstName = filterPatName.getText();
+        String name = filterDoc.getText();
+        patent_payments_table filter = new patent_payments_table (firstName, name);
+        List<pay> filteredPayments = DoctorService.filter(filter);
+        updatePayentsTable(filteredPayments);
     }
 
 
-    public void updateDoctorTable(List<DoctorDto> doctors) {
-        ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList(doctors);
-        doctors_table.setItems(listDoctors);
+    public void updatePayentsTable(List<pay> payments) {
+        ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList(payemts);
+        payments_table.setItems(listDoctors);
     }
 
 }
