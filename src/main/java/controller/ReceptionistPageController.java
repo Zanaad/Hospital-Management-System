@@ -327,7 +327,9 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     private AreaChart<String, Number> dashboad_chart_PD;
-    private AreaChart<String, Number> dashboad_chart_AD;
+
+    @FXML
+    private BarChart<String, Number> dashboad_chart_AD;
 
 
     @FXML
@@ -444,9 +446,8 @@ public class ReceptionistPageController implements Initializable {
         patientDisplayData();
         appointmentDisplayData();
         this.staff_count();
-       // ChartService.patientAreaChart( );
-       ChartService.patientAreaChart((AreaChart<String, Number>) dashboad_chart_PD);
-        
+       ChartService.patientAreaChart( dashboad_chart_PD);
+       ChartService.appointmentAreaChart(dashboad_chart_AD);
         
         
         //Navigating with Enter through Patients TextFields
