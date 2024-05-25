@@ -1,6 +1,7 @@
 package controller;
 
 import app.Navigator;
+import app.SessionManager;
 import database.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -624,6 +625,11 @@ public class ReceptionistPageController implements Initializable {
     public void updatePatientTable(List<Patient> patients) {
         ObservableList<Patient> listPatients = FXCollections.observableArrayList(patients);
         patients_tableView.setItems(listPatients);
+    }
+
+    public void logout(ActionEvent event) {
+        SessionManager.clearSession();
+        Navigator.navigate(event, Navigator.LoginPage);
     }
 
 
