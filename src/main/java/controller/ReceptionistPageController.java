@@ -438,9 +438,6 @@ public class ReceptionistPageController implements Initializable {
     User loggedReceptionist;
 
 
-
-
-
     @FXML
     public void registerPatient(ActionEvent event) {
         Date birthdate = Date.valueOf(this.patBirthdate.getValue());
@@ -691,14 +688,12 @@ public class ReceptionistPageController implements Initializable {
         this.infoAddress.setText(rb.getString("Address"));
         this.upEmail.setText(rb.getString("Email"));
         this.upAddress.setText(rb.getString("Address"));
-        this.upFirstName.setText(rb.getString("Address"));
-        this.upLastName.setText(rb.getString("Address"));
+        this.upFirstName.setText(rb.getString("First Name"));
+        this.upLastName.setText(rb.getString("Last Name"));
         this.chConfPwd.setText(rb.getString("Confirm Password"));
         this.chEmail.setText(rb.getString("Email"));
         this.chCPwd.setText(rb.getString("Current Password"));
         this.cNewPwd.setText(rb.getString("New Password"));
-
-
 
     }
 
@@ -809,7 +804,6 @@ public class ReceptionistPageController implements Initializable {
             updateAddress.setText(loggedReceptionist.getAddress());
         }
     }
-
 
 
 }
