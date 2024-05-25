@@ -474,6 +474,13 @@ public class NursePageController implements Initializable {
     @FXML
     private Label titulli_Donors;
 
+    private String formToDisplay;
+
+    public void setFormToDisplay(String formToDisplay) {
+        this.formToDisplay = formToDisplay;
+    }
+
+
 
     //change the forms depending on what the user chooses-----------------------------------------------------------
 
@@ -524,8 +531,10 @@ public class NursePageController implements Initializable {
 
         OperationDto operation = new OperationDto (this.txtOperationID.getText(), this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
         boolean operationCreated = operationService.createOperation(operation);
-        if (operationCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
+        if (operationCreated)
+        {
+            // Navigate to report_form
+            Navigator.navigateToForm(event, Navigator.NursePage, "report_form");
         }
     }
 
@@ -536,9 +545,11 @@ public class NursePageController implements Initializable {
 
         BirthsDto birth = new BirthsDto (this.txtBirthID.getText(), this.txtBirthDescription.getText(), this.txtBirthPatient.getText(),this.txtBirthNewBorn.getText(), birthDate, this.txtBirthTime.getText());
         boolean birthCreated = birthService.createBirth(birth);
-        if (birthCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
-        }
+        if (birthCreated)
+            {
+                // Navigate to bloodBank_form
+                Navigator.navigateToForm(event, Navigator.NursePage, "report_form");
+            }
     }
 
 
@@ -549,7 +560,7 @@ public class NursePageController implements Initializable {
         DeathsDto deaths = new DeathsDto(this.txtDeathID.getText(), this.txtDeathDescription.getText(), this.txtDeathPatient.getText(), deathDate, this.txtDeathTime.getText());
         boolean deathCreated = deathService.createDeath(deaths);
         if (deathCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
+            Navigator.navigateToForm(event,Navigator.NursePage,"report_form");
         }
     }
 
@@ -560,8 +571,9 @@ public class NursePageController implements Initializable {
 
         OthersDto others = new OthersDto(this.txtOtherID.getText(), this.txtOtherDescription.getText(), this.txtOtherPatient.getText(), otherdate, this.txtOtherTime.getText());
         boolean otherCreated = otherService.createOther(others);
-        if (otherCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
+        {
+            // Navigate to report_form
+            Navigator.navigateToForm(event, Navigator.NursePage, "report_form");
         }
     }
 
@@ -574,7 +586,8 @@ public class NursePageController implements Initializable {
         PatientDto patient = new PatientDto(this.patFirstName.getText(), this.patLastName.getText(), birthdate, this.patPhone.getText(), this.patEmail.getText(), this.patAddress.getText(), (String) this.patDep.getValue(), (String) this.patDoctor.getValue(), (String) this.patNurse.getValue(), date, this.patPayment.getText());
         boolean patientCreated = PatientService.createPatient(patient);
         if (patientCreated) {
-            Navigator.navigate(event, Navigator.NursePage);
+            // Navigate to patients_form
+            Navigator.navigateToForm(event, Navigator.NursePage, "patients_form");
         }
 
     }
@@ -590,7 +603,8 @@ public class NursePageController implements Initializable {
         boolean donorCreated = donorService.createDonor(donor);
         if (donorCreated)
         {
-            Navigator.navigate(event, Navigator.NursePage);
+            // Navigate to bloodBank_form
+            Navigator.navigateToForm(event, Navigator.NursePage, "bloodBank_form");
         }
     }
 

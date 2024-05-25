@@ -1,8 +1,11 @@
 package app;
 
+import controller.NursePageController;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -46,6 +49,23 @@ public class Navigator {
         }
     }
 
+//to navigate to a specific form
+    public static void navigateToForm(ActionEvent event, String page, String formToDisplay) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page));
+            Parent root = loader.load();
+
+
+            NursePageController controller = loader.getController();
+            controller.setFormToDisplay(formToDisplay);
+            Node eventNode = (Node) event.getSource();
+            Stage stage = (Stage) eventNode.getScene().getWindow();
+            navigate(stage, page);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private static Pane loadPane(String form) {
 
         ResourceBundle bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
