@@ -3,15 +3,13 @@ package model.dto.ReportDto;
 import java.sql.Date;
 
 public class OperationDto {
-    private String id;
     private String description;
     private String patient;
     private String doctor;
     private Date date;
     private String time;
 
-    public OperationDto(String id, String description, String patient, String doctor, Date date, String time) {
-        this.id = id;
+    public OperationDto(String description, String patient, String doctor, Date date, String time) {
         this.description = description;
         this.patient = patient;
         this.doctor = doctor;
@@ -20,13 +18,6 @@ public class OperationDto {
     }
 
     // Getters and Setters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return description;
@@ -69,8 +60,6 @@ public class OperationDto {
     }
 
 
-    public String getID() {
-        return id;
-    }
+
 }
 

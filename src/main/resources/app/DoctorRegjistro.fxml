@@ -18,20 +18,25 @@
                     <top>
                         <AnchorPane prefHeight="51.0" prefWidth="1100.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" BorderPane.alignment="CENTER">
                             <children>
-                                <Label layoutX="23.0" layoutY="11.0" text="Hospital Management" textFill="#fffefe">
+                                <Label fx:id="HospitalLbl" layoutX="23.0" layoutY="11.0" text="Hospital Management" textFill="#fffefe">
                                     <font>
                                         <Font size="20.0" />
                                     </font></Label>
-                                <Button layoutX="1013.0" layoutY="13.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Logout" textFill="#fffbfb">
+                                <Button layoutX="1015.0" layoutY="10.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Logout" textFill="#fffbfb">
                                     <font>
                                         <Font size="15.0" />
                                     </font></Button>
-                                <Label layoutX="775.0" layoutY="17.0" text="Welcome" textFill="#c9c9c9" />
-                                <Label layoutX="834.0" layoutY="17.0" text="Doc" textFill="#c0c0c0" />
-                                <Label layoutX="264.0" layoutY="12.0" text="Regjistro pacient dashboard" textFill="#e2dddd">
+                                <Label fx:id="WelcomeLbl" layoutX="740.0" layoutY="17.0" text="Welcome" textFill="#c9c9c9" />
+                                <Label fx:id="DoctorLbl" layoutX="823.0" layoutY="17.0" text="Doctor" textFill="#c0c0c0" />
+                                <Label fx:id="DashboardLbl" layoutX="264.0" layoutY="12.0" text="Register Dashboard" textFill="#e2dddd">
                                     <font>
                                         <Font size="18.0" />
                                     </font></Label>
+                                <Button layoutX="926.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLanguage" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Translate" textFill="#fffbfb">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Button>
                             </children>
                         </AnchorPane>
                     </top>
@@ -67,6 +72,53 @@
                                 <Label layoutX="26.0" layoutY="128.0" text="Username:" textFill="WHITE" />
                                 <Label layoutX="115.0" layoutY="96.0" text="1" textFill="WHITE" />
                                 <Label layoutX="115.0" layoutY="128.0" text="Doctor" textFill="WHITE" />
+                                <AnchorPane prefHeight="554.0" prefWidth="237.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
+                                    <children>
+                                        <Label layoutX="25.0" layoutY="123.0" text="Doctor id:" textFill="#fffefe" />
+                                        <Line endX="127.00001525878906" layoutX="101.0" layoutY="174.0" startX="-87.00000762939453" stroke="#fffdfd" />
+                                        <Label fx:id="FeaturesLbl" layoutX="10.0" layoutY="201.0" text="Features" textFill="#fff9f9">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="AppBtn" layoutX="10.0" layoutY="238.0" mnemonicParsing="false" onMouseClicked="#handleClickApp" prefHeight="39.0" prefWidth="222.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Appointments" textFill="#fffefe">
+                                            <font>
+                                                <Font size="17.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="RegisterBtn" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Register Pacient" textFill="#fffdfd">
+                                            <font>
+                                                <Font size="17.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="ManageBtn" layoutX="10.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#handleMenaxho" prefHeight="37.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Manage Pacient" textFill="WHITE">
+                                            <font>
+                                                <Font size="17.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="EditBtn" layoutX="9.0" layoutY="471.0" mnemonicParsing="false" onMouseClicked="#handleProfili" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Edit Profile" textFill="WHITE">
+                                            <font>
+                                                <Font size="17.0" />
+                                            </font>
+                                        </Button>
+                                        <Label fx:id="SettingsLbl" layoutX="11.0" layoutY="433.0" text="Change settings:" textFill="#fffafa">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="25.0" layoutY="148.0" text="Username:" textFill="#fffdfd" />
+                                        <Label layoutX="85.0" layoutY="119.0" text="1" textFill="WHITE">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="89.0" layoutY="148.0" text="Doctor" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="13.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
                             </children>
                         </AnchorPane>
                     </left>
@@ -75,16 +127,16 @@
                             <children>
                                 <AnchorPane layoutX="14.0" layoutY="26.0" prefHeight="496.0" prefWidth="821.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-background-radius: 10;">
                                     <children>
-                                        <Label layoutX="31.0" layoutY="114.0" text="ID:" />
-                                        <Label layoutX="25.0" layoutY="166.0" text="Emri:" />
-                                        <Label layoutX="21.0" layoutY="226.0" text="Mbiemri:" />
-                                        <Label layoutX="22.0" layoutY="289.0" text="Gjinia:" />
-                                        <Label layoutX="19.0" layoutY="346.0" text="Mosha:" />
-                                        <Label layoutX="290.0" layoutY="114.0" text="Ditelindja:" />
-                                        <Label layoutX="306.0" layoutY="166.0" text="NR.Tel" />
-                                        <Label layoutX="297.0" layoutY="226.0" text="Adresa:" />
-                                        <Label layoutX="265.0" layoutY="289.0" text="Data e shtrirjes:" />
-                                        <Label layoutX="272.0" layoutY="346.0" text="Data e lirimit:" />
+                                        <Label layoutX="31.0" layoutY="114.0" text="ID" />
+                                        <Label fx:id="NameLbl" layoutX="25.0" layoutY="166.0" text="Name" />
+                                        <Label fx:id="LastNameLbl" layoutX="10.0" layoutY="226.0" text="Last Name" />
+                                        <Label fx:id="GenderLbl" layoutX="22.0" layoutY="289.0" text="Gender" />
+                                        <Label fx:id="AgeLbl" layoutX="19.0" layoutY="346.0" text="Age" />
+                                        <Label fx:id="BirthdatLbl" layoutX="290.0" layoutY="114.0" text="Birthday" />
+                                        <Label fx:id="TelLbl" layoutX="279.0" layoutY="166.0" text="Tel Number" />
+                                        <Label fx:id="AddressLbl" layoutX="297.0" layoutY="226.0" text="Address" />
+                                        <Label fx:id="ChargeLbl" layoutX="265.0" layoutY="289.0" text="Charge Day" />
+                                        <Label fx:id="DischargeLbl" layoutX="254.0" layoutY="346.0" text="Discharge Day" />
                                         <TextField fx:id="txtPID" layoutX="83.0" layoutY="110.0" />
                                         <TextField fx:id="txtemri" layoutX="83.0" layoutY="162.0" />
                                         <TextField fx:id="txtmbiemri" layoutX="83.0" layoutY="222.0" />
@@ -95,19 +147,19 @@
                                         <TextField fx:id="txtadresa" layoutX="354.0" layoutY="222.0" />
                                         <TextField fx:id="txtDataSh" layoutX="354.0" layoutY="285.0" />
                                         <TextField fx:id="txtDataL" layoutX="354.0" layoutY="342.0" />
-                                        <Button layoutX="601.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleRegjistroPacient" prefHeight="43.0" prefWidth="177.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);" text="Regjistro" textFill="#0824a3">
+                                        <Button fx:id="RegisterPacientBtn" layoutX="601.0" layoutY="438.0" mnemonicParsing="false" onAction="#handleRegjistroPacient" prefHeight="43.0" prefWidth="177.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);" text="Register" textFill="#0824a3">
                                             <font>
                                                 <Font size="18.0" />
                                             </font></Button>
-                                        <Label layoutX="583.0" layoutY="114.0" text="Diagnoza" />
-                                        <Label layoutX="584.0" layoutY="166.0" text="Tretmani" />
-                                        <Label layoutX="557.0" layoutY="239.0" text="Pershkrim" />
-                                        <Label layoutX="589.0" layoutY="346.0" text="Pagesa" />
+                                        <Label fx:id="DiagnoseLbl" layoutX="583.0" layoutY="114.0" text="Diagnose" />
+                                        <Label fx:id="TretmantLbl" layoutX="584.0" layoutY="166.0" text="Tretmant" />
+                                        <Label fx:id="DescriptionLbl" layoutX="557.0" layoutY="239.0" text="Description" />
+                                        <Label fx:id="PaymentLbl" layoutX="589.0" layoutY="346.0" text="Payment" />
                                         <TextField fx:id="txtDiagnoza" layoutX="645.0" layoutY="110.0" />
                                         <TextField fx:id="txtTretmani" layoutX="645.0" layoutY="162.0" />
                                         <TextArea fx:id="txtPershkrimi" layoutX="646.0" layoutY="210.0" prefHeight="91.0" prefWidth="167.0" />
                                         <TextField fx:id="txtPagesa" layoutX="645.0" layoutY="342.0" />
-                                        <Label layoutX="31.0" layoutY="32.0" text="Regjistroni pacientin" textFill="#807d7d">
+                                        <Label fx:id="RegisterLbl" layoutX="31.0" layoutY="32.0" text="Register Pacient" textFill="#807d7d">
                                             <font>
                                                 <Font size="19.0" />
                                             </font>

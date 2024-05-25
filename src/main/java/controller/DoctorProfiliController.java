@@ -3,6 +3,7 @@ package controller;
 import app.Navigator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -11,9 +12,74 @@ import model.dto.DoktorDto;
 import repository.Doc.Doktor;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class DoctorProfiliController implements Initializable {
+    @FXML
+    private Label AddressLbl;
+    @FXML
+    private Label AddressLbl1;
+
+
+    @FXML
+    private Button AppBtn;
+
+    @FXML
+    private Label DoctorLbl;
+
+    @FXML
+    private Button EditBtn;
+
+    @FXML
+    private Label EditProfileLbl;
+
+    @FXML
+    private Label FeaturesLbl;
+
+    @FXML
+    private Label Hospitalbl;
+
+    @FXML
+    private Label LastNameLbl;
+
+    @FXML
+    private Label LastNameLbl1;
+
+
+    @FXML
+    private Button ManageBtn;
+
+    @FXML
+    private Label NameLbl;
+    @FXML
+    private Label NameLbl1;
+
+    @FXML
+    private Label ProfileLbl;
+
+    @FXML
+    private Button RegisterBtn;
+
+    @FXML
+    private Label SettingsLbl;
+
+    @FXML
+    private Label SpecialismLbl;
+
+    @FXML
+    private Label SpecialismLbl1;
+
+    @FXML
+    private Label TelLbl;
+    @FXML
+    private Label TelLbl1;
+
+    @FXML
+    private Button UpdateBtn;
+
+    @FXML
+    private Label WelcomeLbl;
 
     @FXML
     private Label labelAdresa;
@@ -50,6 +116,7 @@ public class DoctorProfiliController implements Initializable {
 
     @FXML
     private TextField txtSpecializimi;
+
 
     @FXML
     void handleClickApp(MouseEvent event) {
@@ -103,5 +170,49 @@ public class DoctorProfiliController implements Initializable {
             labelNrTel.setText(String.valueOf(doctor.getNrTel()));
             labelSpecializimi.setText(doctor.getSpecializimi());
         }
+    }
+
+
+
+    //translate
+
+    @FXML
+    public void handleLanguage() {
+        Locale defaultLocale = Locale.getDefault();
+        if (defaultLocale.getLanguage().equals("en")) {
+            Locale.setDefault(new Locale("sq"));
+        } else {
+            Locale.setDefault(Locale.ENGLISH);
+        }
+        this.translate();
+    }
+
+    public void  translate(){
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
+
+        this.EditBtn.setText(rb.getString("Edit Profile"));
+        this.ManageBtn.setText(rb.getString("Manage Pacient"));
+        this.RegisterBtn.setText(rb.getString("Register Pacient"));
+        this.AppBtn.setText(rb.getString("Appointments"));
+
+        this.DoctorLbl.setText(rb.getString("Doctor"));
+        this.FeaturesLbl.setText(rb.getString("Features"));
+        this.SettingsLbl.setText(rb.getString("Change Settings"));
+        this.WelcomeLbl.setText(rb.getString("Welcome"));
+        this.AddressLbl.setText(rb.getString("Address"));
+        this.AddressLbl1.setText(rb.getString("Address"));
+        this.EditProfileLbl.setText(rb.getString("Edit Profile"));
+        this.Hospitalbl.setText(rb.getString("Hospital Management"));
+        this.LastNameLbl.setText(rb.getString("Last Name"));
+        this.LastNameLbl1.setText(rb.getString("Last Name"));
+        this.TelLbl.setText(rb.getString("Tel Number"));
+        this.TelLbl1.setText(rb.getString("Tel Number"));
+        this.ProfileLbl.setText(rb.getString("Profile"));
+        this.NameLbl.setText(rb.getString("Name"));
+        this.NameLbl1.setText(rb.getString("Name"));
+        this.SpecialismLbl.setText(rb.getString("Specialism"));
+        this.SpecialismLbl1.setText(rb.getString("Specialism"));
+        this.UpdateBtn.setText(rb.getString("Update"));
     }
 }

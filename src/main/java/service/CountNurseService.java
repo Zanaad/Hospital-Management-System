@@ -7,13 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class CountStaffService {
-    public static final String countNurse = "select count(id) from nurses";
-    public static final String countDoctor = "select count(id) from doctors";
-    public static final String countReceptionist = "select count(id) from receptionists";
-    public static final String countDepartment = "select count(department_id) from departments";
-    public static final String countPatients = "select count(patient_id) from patients";
-    public static final String countAppointments = "select count(appointment_id) from appointments";
+public class CountNurseService {
+    public static final String countDonors = "select count(donor_id) from donors";
+
 
     public static int getCount(String query, String depName) {
         int count = 0;
@@ -37,10 +33,9 @@ public class CountStaffService {
         return getCount(query, null);
     }
 
-    public static void countStaff(Label label, String query) {
+    public static void count(Label label, String query) {
         int count = getCount(query);
         label.setText(String.valueOf(count));
     }
-
 
 }
