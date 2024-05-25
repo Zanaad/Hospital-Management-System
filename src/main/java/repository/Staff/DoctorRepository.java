@@ -70,4 +70,13 @@ public class DoctorRepository extends StaffRepository {
         return getStaffNames(query);
     }
 
+    public static boolean deleteDoctor(String id) {
+        String query = "DELETE FROM doctors WHERE id = ?";
+        return deleteStaff(query, id);
+    }
+
+    public static boolean updateDoctor(DoctorDto doctor) {
+        String query = "UPDATE doctors SET firstName = ?, lastName = ?, department = ?, phone = ?, email = ?, university = ?, address = ?, specialty = ? WHERE id = ?";
+        return updateStaff(doctor, query);
+    }
 }

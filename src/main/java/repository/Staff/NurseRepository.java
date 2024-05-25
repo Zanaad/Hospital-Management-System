@@ -70,4 +70,14 @@ public class NurseRepository extends StaffRepository {
         return getStaffNames(query);
     }
 
+    public static boolean deleteNurse(String id) {
+        String query = "DELETE FROM nurses WHERE id = ?";
+        return deleteStaff(query, id);
+    }
+
+    public static boolean updateNurse(NurseDto nurse) {
+        String query = "UPDATE nurses SET firstName = ?, lastName = ?, department = ?, phone = ?, email = ?, university = ?, address = ?, bankName = ? WHERE id = ?";
+        return updateStaff(nurse, query);
+    }
+
 }

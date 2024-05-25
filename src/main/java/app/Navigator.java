@@ -18,6 +18,7 @@ import java.io.IOException;
 
 public class Navigator {
     public final static String AdminMainForm = "AdminMainForm.fxml";
+    public final static String EditForm = "Edit.fxml";
     public final static String ReceptionistPage = "ReceptionistPage.fxml";
     public final static String NursePage = "NursePage.fxml";
     public final static String LoginPage = "Login.fxml";

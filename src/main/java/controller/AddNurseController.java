@@ -15,12 +15,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.NurseDto;
+import model.dto.StaffDto.StaffDto;
 import model.filter.NurseFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.NurseRepository;
 import service.Staff.DepartmentService;
 import service.Staff.NurseService;
-import service.Table;
+import service.TableService;
 
 import java.net.URL;
 import java.sql.Date;
@@ -88,7 +89,7 @@ public class AddNurseController implements Initializable {
     private TableColumn<?, ?> nurse_col_ID;
 
     @FXML
-    private TableColumn<?, ?> nurse_col_action;
+    private TableColumn<StaffDto, Void> nurse_col_action;
 
     @FXML
     private TableColumn<?, ?> nurse_col_address;
@@ -150,7 +151,7 @@ public class AddNurseController implements Initializable {
     }
 
     public void nurseDisplayData() {
-        Table.staffDisplayData(nurse_col_ID, nurse_col_name, nurse_col_surname, nurse_col_department, nurse_col_phone, nurse_col_email, nurse_col_university, nurse_col_address);
+        TableService.staffDisplayData(nurses_table, nurse_col_ID, nurse_col_name, nurse_col_surname, nurse_col_department, nurse_col_phone, nurse_col_email, nurse_col_university, nurse_col_address, nurse_col_action);
         nurses_table.setItems(getNurses());
     }
 

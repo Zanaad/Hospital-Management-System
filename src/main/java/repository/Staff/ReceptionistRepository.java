@@ -3,6 +3,7 @@ package repository.Staff;
 import database.DatabaseUtil;
 import model.User;
 import model.dto.StaffDto.CreateReceptionistDto;
+import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
 import model.filter.Filter;
 
@@ -63,6 +64,16 @@ public class ReceptionistRepository extends StaffRepository {
         String id = generateRecID();
         System.out.println(generatePassword(firstName, id));
         return generatePassword(firstName, id);
+    }
+
+    public static boolean deleteRec(String id) {
+        String query = "DELETE FROM receptionists WHERE id = ?";
+        return deleteStaff(query, id);
+    }
+
+    public static boolean updateRec(ReceptionistDto rec) {
+        String query = "UPDATE receptionists SET firstName = ?, lastName = ?, department = ?, phone = ?, email = ?, university = ?, address = ?, bankName = ? WHERE id = ?";
+        return updateStaff(rec, query);
     }
 }
 

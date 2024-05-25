@@ -35,7 +35,7 @@
                                                 <TableColumn fx:id="doctors_col_department" prefWidth="75.0" text="Department" />
                                                 <TableColumn fx:id="doctors_col_phone" prefWidth="114.0" text="Phone Number" />
                                                 <TableColumn fx:id="doctors_col_email" prefWidth="100.0" text="Email " />
-                                    <TableColumn fx:id="doctors_col_uni" prefWidth="75.0" text="Column X" />
+                                    <TableColumn fx:id="doctors_col_uni" prefWidth="75.0" text="University" />
                                                 <TableColumn fx:id="doctors_col_specialty" prefWidth="110.0" text="Speciality" />
                                                 <TableColumn fx:id="doctors_col_address" prefWidth="109.0" text="Address" />
                                                 <TableColumn fx:id="doctors_col_action" prefWidth="100.0" text="Action" />
