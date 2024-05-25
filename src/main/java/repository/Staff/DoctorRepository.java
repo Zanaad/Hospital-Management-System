@@ -65,4 +65,23 @@ public class DoctorRepository extends StaffRepository {
         return generatePassword(firstName, id);
     }
 
+    public static List<String> getAllDoctorsNames() {
+        List<String> doctors = new ArrayList<>();
+        String query = "SELECT firstName FROM doctors";
+
+        try {
+            Connection connection = DatabaseUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                doctors.add(resultSet.getString("firstName"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return doctors;
+    }
+
 }

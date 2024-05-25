@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +16,9 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
+import model.dto.StaffDto.DoctorDto;
+import repository.Staff.DepartmentRepository;
+import repository.Staff.DoctorRepository;
 import service.ChartService;
 import service.CountStaffService;
 import service.Rec.AppointmentService;
@@ -142,7 +144,7 @@ public class ReceptionistPageController implements Initializable {
     private ComboBox<String> patDep;
 
     @FXML
-    private ComboBox<?> patDoctor;
+    private ComboBox<String> patDoctor;
 
     @FXML
     private ComboBox<?> patNurse;
@@ -447,7 +449,8 @@ public class ReceptionistPageController implements Initializable {
         patientDisplayData();
         appointmentDisplayData();
         this.staff_count();
-       // loadDepartmentNames();
+        loadDepartmentNames();
+        loadDoctorNames();
        ChartService.patientAreaChart( dashboad_chart_PD);
        ChartService.appointmentAreaChart(dashboad_chart_AD);
         
@@ -576,6 +579,18 @@ public class ReceptionistPageController implements Initializable {
         CountStaffService.countStaff(app_number, CountStaffService.countPatients);
         CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
     }
+
+    private void loadDepartmentNames() {
+        List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
+        ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
+        patDep.setItems(observableList);
+    }
+    private void loadDoctorNames() {
+        List<String> doctorNames = DoctorRepository.getAllDoctorsNames();
+        ObservableList<String> observableList = FXCollections.observableArrayList(doctorNames);
+        patDoctor.setItems(observableList);
+    }
+
 
 
 
