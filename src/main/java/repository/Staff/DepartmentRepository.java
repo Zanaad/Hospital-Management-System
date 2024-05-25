@@ -1,4 +1,4 @@
-package repository;
+package repository.Staff;
 
 import database.DatabaseUtil;
 import model.dto.CreateDepartmentDto;

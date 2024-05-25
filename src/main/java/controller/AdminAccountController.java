@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import service.Alerts;
 import model.dto.ChangePasswordDto;
-import service.ChangePwdService;
+import service.Staff.AdminService;
 
 import java.net.URL;
 import java.util.Locale;
@@ -83,7 +83,7 @@ public class AdminAccountController implements Initializable {
             Alerts.errorMessage("Passwords do not match.");
         } else {
             ChangePasswordDto change = new ChangePasswordDto(this.ChangePwdEmail.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
-            boolean changed = ChangePwdService.changePassword(change);
+            boolean changed = AdminService.changePassword(change);
             if (changed) {
                 Alerts.successMessage("Password was successfully changed.");
             } else {

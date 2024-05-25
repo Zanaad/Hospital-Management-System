@@ -1,7 +1,6 @@
 package controller;
 
 import app.Navigator;
-import database.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,13 +14,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.dto.DepartmentDto;
-import repository.DepartmentRepository;
+import repository.Staff.DepartmentRepository;
 import service.DepartmentService;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class AddDepController implements Initializable {

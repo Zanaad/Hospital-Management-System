@@ -329,7 +329,7 @@ public class ReceptionistPageController implements Initializable {
     private AreaChart<String, Number> dashboad_chart_PD;
 
     @FXML
-    private BarChart<String, Number> dashboad_chart_AD;
+    private AreaChart<String, Number> dashboad_chart_AD;
 
 
     @FXML
@@ -383,7 +383,7 @@ public class ReceptionistPageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_lastName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                Patient patData = new Patient(result.getInt("patient_id"), result.getString("patient_firstName"), result.getString("patient_lastName"), result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
                 listPatients.add(patData);
             }
         } catch (Exception e) {
@@ -401,7 +401,7 @@ public class ReceptionistPageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Appointment appointmentData = new Appointment(result.getString("appointment_id"), result.getString("appointment_firstName"),result.getString("appointment_department"), result.getString("appointment_doctor"), result.getString("appointment_nurse"), result.getString("appointment_phone"), result.getString("appointment_address"), result.getDate("appointment_date"), result.getString("appointment_hour"));
+                Appointment appointmentData = new Appointment(result.getString("appointment_id"), result.getString("appointment_firstName"), result.getString("appointment_department"), result.getString("appointment_doctor"), result.getString("appointment_nurse"), result.getString("appointment_phone"), result.getString("appointment_address"), result.getDate("appointment_date"), result.getString("appointment_hour"));
                 listAppointments.add(appointmentData);
             }
         } catch (Exception e) {
@@ -446,14 +446,14 @@ public class ReceptionistPageController implements Initializable {
         patientDisplayData();
         appointmentDisplayData();
         this.staff_count();
-       ChartService.patientAreaChart( dashboad_chart_PD);
-       ChartService.appointmentAreaChart(dashboad_chart_AD);
-        
-        
+        ChartService.patientAreaChart(dashboad_chart_PD);
+        ChartService.appointmentAreaChart(dashboad_chart_AD);
+
+
         //Navigating with Enter through Patients TextFields
-       // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
-       // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
-       // add_patient_btn.setOnAction(event -> patFirstName.requestFocus());
+        // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
+        // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
+        // add_patient_btn.setOnAction(event -> patFirstName.requestFocus());
         patFirstName.setOnAction(event -> patLastName.requestFocus());
         patLastName.setOnAction(event -> patBirthdate.requestFocus());
         patBirthdate.setOnAction(event -> patPhone.requestFocus());
@@ -472,12 +472,12 @@ public class ReceptionistPageController implements Initializable {
         });
         //Navigating with Enter through Appointments TextFields
         appID.setOnAction(event -> appName.requestFocus());
-        appName.setOnAction(event ->appLastName.requestFocus());
+        appName.setOnAction(event -> appLastName.requestFocus());
         appLastName.setOnAction(event -> appMale.requestFocus());
         appMale.setOnAction(event -> appFemale.requestFocus());
         appFemale.setOnAction(event -> appDesc.requestFocus());
-        appDesc.setOnAction(event ->  appDep.requestFocus());
-        appDep.setOnAction(event ->appDoc.requestFocus());
+        appDesc.setOnAction(event -> appDep.requestFocus());
+        appDep.setOnAction(event -> appDoc.requestFocus());
         appDoc.setOnAction(event -> appNurse.requestFocus());
         appNurse.setOnAction(event -> appPhone.requestFocus());
         appPhone.setOnAction(event -> appAddress.requestFocus());
@@ -508,7 +508,7 @@ public class ReceptionistPageController implements Initializable {
     public void translate() {
         Locale locale = Locale.getDefault();
         ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
-     //   this.Projectitle.setText(rb.getString("Hospital Management System"));
+        //   this.Projectitle.setText(rb.getString("Hospital Management System"));
         this.dashboard_btn.setText(rb.getString("Dashboard"));
         this.patients_btn.setText(rb.getString("Patients"));
         this.appointments_btn.setText(rb.getString("Appointments"));
@@ -570,7 +570,6 @@ public class ReceptionistPageController implements Initializable {
     }
 
     public void staff_count() {
-
         CountStaffService.countStaff(app_number, CountStaffService.countPatients);
         CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
     }

@@ -23,7 +23,6 @@ public class DoctorRepository extends StaffRepository {
     }
 
     public static User getDoctorByEmail(String email) {
-
         return getStaffByEmail(email, "doctors");
     }
 
@@ -65,6 +64,5 @@ public class DoctorRepository extends StaffRepository {
         System.out.println(generatePassword(firstName, id));
         return generatePassword(firstName, id);
     }
-
 
 }

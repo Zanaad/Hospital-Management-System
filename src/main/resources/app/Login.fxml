@@ -17,7 +17,7 @@
    <children>
       <AnchorPane fx:id="login_admin" layoutX="-8.0" layoutY="12.0" prefHeight="380.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="381.0" fitWidth="284.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="381.0" fitWidth="284.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/picdoc.png" />
                </image>
@@ -73,7 +73,7 @@
       </AnchorPane>
       <AnchorPane fx:id="login_nurse" layoutX="68.0" layoutY="95.0" prefHeight="380.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="379.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="379.0" fitWidth="297.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/picdoc.png" />
                </image>
@@ -101,7 +101,7 @@
       </AnchorPane>
       <AnchorPane fx:id="login_receptionist" layoutY="12.0" prefHeight="380.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="379.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="379.0" fitWidth="297.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/picdoc.png" />
                </image>

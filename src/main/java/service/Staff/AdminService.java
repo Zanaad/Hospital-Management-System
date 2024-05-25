@@ -1,13 +1,17 @@
-package service;
+package service.Staff;
 
+import model.User;
 import model.dto.ChangePasswordDto;
+import model.dto.LoginUserDto;
 import model.dto.UpdateUserPasswordDto;
-import repository.ChangePwdRepository;
+import repository.Staff.AdminRepository;
+import service.Alerts;
+import service.PasswordHasher;
 
-public class ChangePwdService {
+public class AdminService extends StaffService {
 
     public static boolean changePassword(ChangePasswordDto user) {
-        UpdateUserPasswordDto userPasswordInfo = ChangePwdRepository.getUserPasswordInfo(user.getEmail());
+        UpdateUserPasswordDto userPasswordInfo = AdminRepository.getUserPasswordInfo(user.getEmail());
         if (userPasswordInfo == null) {
             return false;
         }
@@ -17,7 +21,12 @@ public class ChangePwdService {
             Alerts.errorMessage("Credentials are not correct");
             return false;
         }
-        return ChangePwdRepository.changePwd(user, salt);
+        return AdminRepository.changePwd(user, salt);
+    }
+
+    public static boolean login(LoginUserDto loginData) {
+        User user = AdminRepository.getAdminByEmail(loginData.getEmail());
+        return login(loginData, user);
     }
 }
 
