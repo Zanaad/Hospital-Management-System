@@ -102,15 +102,15 @@ public class payments {
     @FXML
     private Button update_btn;
 
-//    @Override
-//    public ObservableList<pay> getDoctors() {
-//        return FXCollections.observableArrayList(DoctorRepository.getAllDoctors());
-//    }
-//
-//    public void PaymentDisplayData() {
-//        Table.staffDisplayData(patient_col_ID, patient_col_name, patient_col_surname, patient_col_phone,first_col_date,end_col_date, doctor_col_patient , patient_col_pay);
-//        payments_table.setItems(getDoctors());
-//    }
+    @Override
+    public ObservableList<pay> getDoctors() {
+        return FXCollections.observableArrayList(DoctorRepository.getAllDoctors());
+    }
+
+    public void PaymentDisplayData() {
+        Table.staffDisplayData(patient_col_ID, patient_col_name, patient_col_surname, patient_col_phone,first_col_date,end_col_date, doctor_col_patient , patient_col_pay);
+        payments_table.setItems(getDoctors());
+    }
 
     @FXML
     void filter_payments_btn (ActionEvent event) {
