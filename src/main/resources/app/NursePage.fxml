@@ -4,7 +4,6 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.chart.AreaChart?>
-<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -97,9 +96,9 @@
             </left>
             <center>
                 <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <AnchorPane fx:id="dashboard_form" prefHeight="558.0" prefWidth="886.0" visible="false">
+                    <AnchorPane fx:id="dashboard_form" prefHeight="558.0" prefWidth="886.0">
                         <children>
-                            <AnchorPane layoutX="43.0" layoutY="50.0" prefHeight="119.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <AnchorPane layoutX="42.0" layoutY="72.0" prefHeight="119.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
                                     <ImageView fitHeight="132.0" fitWidth="233.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
@@ -118,7 +117,7 @@
                                     </Label>
                                 </children>
                             </AnchorPane>
-                     <AnchorPane layoutX="320.0" layoutY="50.0" prefHeight="119.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                     <AnchorPane layoutX="319.0" layoutY="72.0" prefHeight="119.0" prefWidth="214.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                         <children>
                            <ImageView fitHeight="139.0" fitWidth="234.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -137,7 +136,7 @@
                            </Label>
                         </children>
                      </AnchorPane>
-                     <AnchorPane layoutX="602.0" layoutY="50.0" prefHeight="135.0" prefWidth="242.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                     <AnchorPane layoutX="601.0" layoutY="72.0" prefHeight="135.0" prefWidth="242.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                         <children>
                            <ImageView fitHeight="134.0" fitWidth="237.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -158,9 +157,9 @@
                         </children>
                          
                      </AnchorPane>
-                            <AnchorPane layoutX="468.0" layoutY="277.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <AnchorPane layoutX="468.0" layoutY="277.0" prefHeight="222.0" prefWidth="376.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-border-color: linear-gradient(to bottom right, #188ba7, #306090);">
                                 <children>
-                                    <AreaChart fx:id="dashboad_chart_PD" layoutY="32.0" prefHeight="250.4" prefWidth="399.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <AreaChart fx:id="dashboad_chart_PD" layoutX="15.2" layoutY="26.4" prefHeight="187.0" prefWidth="347.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="26.0">
                                         <xAxis>
                                             <CategoryAxis side="BOTTOM" />
                                         </xAxis>
@@ -168,30 +167,30 @@
                                             <NumberAxis side="LEFT" />
                                         </yAxis>
                                     </AreaChart>
+                           <Label fx:id="chart2" layoutX="121.0" layoutY="14.0" text="%Patients Data">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
                                 </children>
                             </AnchorPane>
-                            <AnchorPane layoutX="43.0" layoutY="279.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
-                                <children>
-                                    <BarChart fx:id="dashboad_chart_BD" layoutX="11.2" layoutY="12.0" prefHeight="250.4" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                        <xAxis>
-                                            <CategoryAxis side="BOTTOM" />
-                                        </xAxis>
-                                        <yAxis>
-                                            <NumberAxis side="LEFT" />
-                                        </yAxis>
-                                    </BarChart>
-                                </children>
+                            <AnchorPane layoutX="43.0" layoutY="279.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-border-color: linear-gradient(to bottom right, #188ba7, #306090);">
+                        <children>
+                           <AreaChart fx:id="dashboad_chart_BD" layoutX="19.0" layoutY="22.0" prefHeight="198.0" prefWidth="331.0">
+                             <xAxis>
+                               <CategoryAxis side="BOTTOM" />
+                             </xAxis>
+                             <yAxis>
+                               <NumberAxis side="LEFT" />
+                             </yAxis>
+                           </AreaChart>
+                           <Label fx:id="chart1" layoutX="105.0" layoutY="7.0" prefHeight="30.0" prefWidth="159.0" text="%Blood Donation">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                        </children>
                             </AnchorPane>
-                     <Label fx:id="chart1" layoutX="43.0" layoutY="241.0" text="%Blood Donation">
-                        <font>
-                           <Font size="24.0" />
-                        </font>
-                     </Label>
-                     <Label fx:id="chart2" layoutX="468.0" layoutY="241.0" text="%Patients Data">
-                        <font>
-                           <Font size="24.0" />
-                        </font>
-                     </Label>
                         </children>
                     </AnchorPane>
                <AnchorPane fx:id="report_form" prefHeight="200.0" prefWidth="200.0" visible="false">
@@ -204,7 +203,7 @@
                                  <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="844.0">
                                           <children>
-                                             <TableView fx:id="operation_table" layoutX="14.0" layoutY="24.0" prefHeight="186.0" prefWidth="822.0">
+                                             <TableView fx:id="operation_table" layoutX="14.0" layoutY="24.0" prefHeight="186.0" prefWidth="815.0">
                                                <columns>
                                                  <TableColumn fx:id="operations_col_operationID" prefWidth="90.4000072479248" text="%OperationID" />
                                                  <TableColumn fx:id="operations_col_description" prefWidth="125.59998321533203" text="%Description" />
@@ -214,18 +213,16 @@
                                                    <TableColumn fx:id="operations_col_time" prefWidth="95.19989013671875" text="%Time" />
                                                </columns>
                                              </TableView>
-                                             <TextField fx:id="txtOperationID" layoutX="44.0" layoutY="241.0" prefHeight="35.0" prefWidth="229.0" />
-                                             <TextField fx:id="txtOperationDescription" layoutX="44.0" layoutY="302.0" prefHeight="36.0" prefWidth="227.0" />
-                                             <TextField fx:id="txtOperationPatient" layoutX="46.0" layoutY="359.0" prefHeight="39.0" prefWidth="222.0" />
-                                             <TextField fx:id="txtOperationDoctor" layoutX="388.0" layoutY="243.0" prefHeight="34.0" prefWidth="215.0" />
-                                             <TextField fx:id="txtOperationTime" layoutX="389.0" layoutY="359.0" prefHeight="36.0" prefWidth="214.0" />
-                                             <DatePicker fx:id="txtOperationDate" layoutX="389.0" layoutY="302.0" prefHeight="34.0" prefWidth="214.0" />
-                                             <Label layoutX="44.0" layoutY="224.0" text="ID" />
-                                             <Label fx:id="SQDescriptionOp" layoutX="44.0" layoutY="281.0" text="%Description" />
-                                             <Label fx:id="SQPatientOP" layoutX="46.0" layoutY="342.0" text="%Patient" />
-                                             <Label fx:id="SQDoctorOp" layoutX="390.0" layoutY="224.0" text="%Doctor" />
-                                             <Label fx:id="SQDateOp" layoutX="390.0" layoutY="281.0" text="%Date" />
-                                             <Label fx:id="SQTimeOp" layoutX="390.0" layoutY="342.0" text="%Time" />
+                                             <TextField fx:id="txtOperationDescription" layoutX="45.0" layoutY="243.0" prefHeight="36.0" prefWidth="227.0" />
+                                             <TextField fx:id="txtOperationPatient" layoutX="47.0" layoutY="300.0" prefHeight="39.0" prefWidth="222.0" />
+                                             <TextField fx:id="txtOperationDoctor" layoutX="49.0" layoutY="368.0" prefHeight="43.0" prefWidth="218.0" />
+                                             <TextField fx:id="txtOperationTime" layoutX="384.0" layoutY="300.0" prefHeight="36.0" prefWidth="214.0" />
+                                             <DatePicker fx:id="txtOperationDate" layoutX="384.0" layoutY="243.0" prefHeight="34.0" prefWidth="214.0" />
+                                             <Label fx:id="SQDescriptionOp" layoutX="45.0" layoutY="222.0" text="%Description" />
+                                             <Label fx:id="SQPatientOP" layoutX="47.0" layoutY="283.0" text="%Patient" />
+                                             <Label fx:id="SQDoctorOp" layoutX="47.0" layoutY="350.0" text="%Doctor" />
+                                             <Label fx:id="SQDateOp" layoutX="385.0" layoutY="222.0" text="%Date" />
+                                             <Label fx:id="SQTimeOp" layoutX="385.0" layoutY="283.0" text="%Time" />
                                              <Button fx:id="addOperation_btn" layoutX="675.0" layoutY="302.0" mnemonicParsing="false" onAction="#registerOperation" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="%Add Operation" textFill="#f4efef" />
                                           </children>
                                        </AnchorPane>
@@ -247,17 +244,15 @@
                                                    <TableColumn fx:id="deaths_col_time" prefWidth="147.99997558593748" text="%Time" />
                                                </columns>
                                              </TableView>
-                                             <TextField fx:id="txtDeathID" layoutX="50.0" layoutY="238.0" prefHeight="36.0" prefWidth="187.0" />
-                                             <TextField fx:id="txtDeathDescription" layoutX="51.0" layoutY="305.0" prefHeight="34.0" prefWidth="186.0" />
-                                             <TextField fx:id="txtDeathTime" layoutX="314.0" layoutY="305.0" prefHeight="34.0" prefWidth="195.0" />
-                                             <TextField fx:id="txtDeathPatient" layoutX="51.0" layoutY="368.0" prefHeight="34.0" prefWidth="186.0" />
-                                             <DatePicker fx:id="txtDeathDate" layoutX="315.0" layoutY="239.0" prefHeight="34.0" prefWidth="194.0" />
+                                             <TextField fx:id="txtDeathDescription" layoutX="45.0" layoutY="247.0" prefHeight="34.0" prefWidth="186.0" />
+                                             <TextField fx:id="txtDeathTime" layoutX="314.0" layoutY="247.0" prefHeight="34.0" prefWidth="195.0" />
+                                             <TextField fx:id="txtDeathPatient" layoutX="45.0" layoutY="310.0" prefHeight="34.0" prefWidth="186.0" />
+                                             <DatePicker fx:id="txtDeathDate" layoutX="45.0" layoutY="375.0" prefHeight="34.0" prefWidth="194.0" />
                                              <Button fx:id="add_death_btn" layoutX="675.0" layoutY="302.0" mnemonicParsing="false" onAction="#registerDeath" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="%Add Death" />
-                                             <Label layoutX="50.0" layoutY="221.0" text="ID" />
-                                             <Label fx:id="SQDescriptionDe" layoutX="50.0" layoutY="286.0" text="%Description" />
-                                             <Label fx:id="SQPatientDe" layoutX="51.0" layoutY="347.0" text="%Patient" />
-                                             <Label fx:id="SQDateDe" layoutX="315.0" layoutY="221.0" text="%Date" />
-                                             <Label fx:id="SQTimeDe" layoutX="315.0" layoutY="286.0" text="%Time" />
+                                             <Label fx:id="SQDescriptionDe" layoutX="44.0" layoutY="228.0" text="%Description" />
+                                             <Label fx:id="SQPatientDe" layoutX="45.0" layoutY="289.0" text="%Patient" />
+                                             <Label fx:id="SQDateDe" layoutX="45.0" layoutY="357.0" text="%Date" />
+                                             <Label fx:id="SQTimeDe" layoutX="315.0" layoutY="228.0" text="%Time" />
                                           </children>
                                        </AnchorPane>
                                  </content>
@@ -279,18 +274,16 @@
                                                    <TableColumn fx:id="births_col_time" prefWidth="121.59991455078125" text="%Time" />
                                                </columns>
                                              </TableView>
-                                             <TextField fx:id="txtBirthID" layoutX="47.0" layoutY="242.0" prefHeight="35.0" prefWidth="181.0" />
-                                             <TextField fx:id="txtBirthDescription" layoutX="49.0" layoutY="308.0" prefHeight="34.0" prefWidth="178.0" />
-                                             <TextField fx:id="txtBirthPatient" layoutX="50.0" layoutY="372.0" prefHeight="34.0" prefWidth="177.0" />
-                                             <TextField fx:id="txtBirthNewBorn" layoutX="299.0" layoutY="242.0" prefHeight="34.0" prefWidth="185.0" />
-                                             <TextField fx:id="txtBirthTime" layoutX="299.0" layoutY="372.0" prefHeight="34.0" prefWidth="188.0" />
-                                             <DatePicker fx:id="txtBirthDate" layoutX="299.0" layoutY="307.0" prefHeight="35.0" prefWidth="185.0" />
-                                             <Label layoutX="49.0" layoutY="225.0" text="ID" />
-                                             <Label fx:id="SQDescriptionBi" layoutX="49.0" layoutY="290.0" text="%Description" />
-                                             <Label fx:id="SQPatientBi" layoutX="49.0" layoutY="355.0" text="%Patient" />
-                                             <Label fx:id="SQNewbornBi" layoutX="299.0" layoutY="225.0" text="%New Born's name" />
-                                             <Label fx:id="SQDateBi" layoutX="299.0" layoutY="290.0" text="%Date" />
-                                             <Label fx:id="SQTimeBi" layoutX="299.0" layoutY="355.0" text="%Time" />
+                                             <TextField fx:id="txtBirthDescription" layoutX="49.0" layoutY="246.0" prefHeight="34.0" prefWidth="178.0" />
+                                             <TextField fx:id="txtBirthPatient" layoutX="50.0" layoutY="310.0" prefHeight="34.0" prefWidth="177.0" />
+                                             <TextField fx:id="txtBirthNewBorn" layoutX="50.0" layoutY="372.0" prefHeight="34.0" prefWidth="185.0" />
+                                             <TextField fx:id="txtBirthTime" layoutX="300.0" layoutY="310.0" prefHeight="34.0" prefWidth="188.0" />
+                                             <DatePicker fx:id="txtBirthDate" layoutX="300.0" layoutY="245.0" prefHeight="35.0" prefWidth="185.0" />
+                                             <Label fx:id="SQDescriptionBi" layoutX="49.0" layoutY="228.0" text="%Description" />
+                                             <Label fx:id="SQPatientBi" layoutX="49.0" layoutY="293.0" text="%Patient" />
+                                             <Label fx:id="SQNewbornBi" layoutX="50.0" layoutY="355.0" text="%New Born's name" />
+                                             <Label fx:id="SQDateBi" layoutX="300.0" layoutY="228.0" text="%Date" />
+                                             <Label fx:id="SQTimeBi" layoutX="300.0" layoutY="293.0" text="%Time" />
                                              <Button fx:id="add_birth_btn" layoutX="675.0" layoutY="302.0" mnemonicParsing="false" onAction="#registerBirth" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Add Birth" textFill="#faf7f7" />
                                           </children>
                                        </AnchorPane>
@@ -312,16 +305,14 @@
                                                    <TableColumn fx:id="others_col_time" prefWidth="126.39984130859375" text="%Time" />
                                                </columns>
                                              </TableView>
-                                             <TextField fx:id="txtOtherID" layoutX="41.0" layoutY="239.0" prefHeight="34.0" prefWidth="206.0" />
-                                             <TextField fx:id="txtOtherDescription" layoutX="43.0" layoutY="304.0" prefHeight="35.0" prefWidth="204.0" />
-                                             <TextField fx:id="txtOtherPatient" layoutX="44.0" layoutY="368.0" prefHeight="35.0" prefWidth="200.0" />
-                                             <TextField fx:id="txtOtherTime" layoutX="330.0" layoutY="304.0" prefHeight="34.0" prefWidth="195.0" />
-                                             <DatePicker fx:id="txtOtherDate" layoutX="329.0" layoutY="238.0" prefHeight="35.0" prefWidth="197.0" />
-                                             <Label layoutX="43.0" layoutY="222.0" text="ID" />
-                                             <Label fx:id="SQDescriptionOt" layoutX="43.0" layoutY="287.0" text="%Description" />
-                                             <Label fx:id="SQPatientOt" layoutX="43.0" layoutY="351.0" text="%Patient" />
-                                             <Label fx:id="SQDateOt" layoutX="329.0" layoutY="222.0" text="%Date" />
-                                             <Label fx:id="SQTimeOt" layoutX="329.0" layoutY="287.0" text="%Time" />
+                                             <TextField fx:id="txtOtherDescription" layoutX="44.0" layoutY="245.0" prefHeight="35.0" prefWidth="198.0" />
+                                             <TextField fx:id="txtOtherPatient" layoutX="44.0" layoutY="309.0" prefHeight="35.0" prefWidth="200.0" />
+                                             <TextField fx:id="txtOtherTime" layoutX="310.0" layoutY="246.0" prefHeight="34.0" prefWidth="195.0" />
+                                             <DatePicker fx:id="txtOtherDate" layoutX="44.0" layoutY="368.0" prefHeight="35.0" prefWidth="198.0" />
+                                             <Label fx:id="SQDescriptionOt" layoutX="41.0" layoutY="229.0" text="%Description" />
+                                             <Label fx:id="SQPatientOt" layoutX="43.0" layoutY="292.0" text="%Patient" />
+                                             <Label fx:id="SQDateOt" layoutX="44.0" layoutY="352.0" text="%Date" />
+                                             <Label fx:id="SQTimeOt" layoutX="309.0" layoutY="229.0" text="%Time" />
                                              <Button fx:id="add_other_btn" layoutX="666.0" layoutY="292.0" mnemonicParsing="false" onAction="#registerOther" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="%Add Other" textFill="#fcfafa" />
                                           </children>
                                        </AnchorPane>
@@ -444,7 +435,7 @@
                             </children>
 
                         </AnchorPane>
-                   <AnchorPane fx:id="bloodBank_form" prefHeight="561.0" prefWidth="885.0">
+                   <AnchorPane fx:id="bloodBank_form" prefHeight="561.0" prefWidth="885.0" visible="false">
                       <children>
                          <TabPane layoutX="38.4" layoutY="93.0" prefHeight="439.0" prefWidth="818.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="29.0">
                            <tabs>

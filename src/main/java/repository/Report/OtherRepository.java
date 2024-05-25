@@ -12,21 +12,20 @@ public class OtherRepository extends ReportRepository {
     public static boolean createOther(createOthersDto otherData) {
         Connection conn = DatabaseUtil.getConnection();
         String query = """
-                INSERT INTO others(other_ID,
+                INSERT INTO others(
                                          other_description,
                                          other_patient,
                                          other_date,
                                          other_time)
-                value(?,?,?,?,?)
+                value(?,?,?,?)
                 """;
 
         try {
             PreparedStatement pst = conn.prepareStatement(query);
-            pst.setString(1,otherData.getId());
-            pst.setString(2,otherData.getDescription());
-            pst.setString(3,otherData.getPatient());
-            pst.setDate(4,otherData.getDate());
-            pst.setString(5,otherData.getTime());
+            pst.setString(1,otherData.getDescription());
+            pst.setString(2,otherData.getPatient());
+            pst.setDate(3,otherData.getDate());
+            pst.setString(4,otherData.getTime());
 
 
             pst.execute();

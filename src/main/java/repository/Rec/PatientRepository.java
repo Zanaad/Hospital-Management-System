@@ -1,12 +1,19 @@
 package repository.Rec;
 
 import database.DatabaseUtil;
+import model.Patient;
 import model.dto.CreateDepartmentDto;
 import model.dto.RecDto.CreatePatientDto;
+import model.dto.StaffDto.DoctorDto;
+import model.filter.DoctorFilter;
+import model.filter.PatientFilter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class PatientRepository {
@@ -46,6 +53,37 @@ public class PatientRepository {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public static List<Patient> getByFilter(PatientFilter filter) {
+        String filterQuery = "SELECT * FROM patients WHERE 1=1" + filter.buildQuery();
+        return fetchPatient(filterQuery);
+    }
+
+    public static List<Patient> fetchPatient(String query) {
+        List<Patient> patients = new ArrayList<>();
+        try {
+            Connection conn = DatabaseUtil.getConnection();
+            PreparedStatement pst = conn.prepareStatement(query);
+            ResultSet result = pst.executeQuery();
+
+            while (result.next()) {
+                Patient patient = new Patient(result.getInt("patient_id"),
+                        result.getString("patient_firstName"),
+                        result.getString("patient_lastName"),
+                        result.getString("patient_department"),
+                        result.getString("patient_doctor"),
+                        result.getString("patient_nurse"),
+                        result.getString("patient_phone"),
+                        result.getString("patient_email"),
+                        result.getString("patient_address"),
+                        result.getString("patient_payment"));
+                patients.add(patient);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return patients;
     }
 
 }

@@ -12,23 +12,22 @@ public class OperationRepository extends ReportRepository {
     public static boolean createOperation(createOperationDto operationData) {
         Connection conn = DatabaseUtil.getConnection();
         String query = """
-                INSERT INTO operations(operationID,
+                INSERT INTO operations(
                                          opDescription,
                                          opPatient,
                                          opDoctor,
                                          opDate,
                                          opTime)
-                value(?,?,?,?,?,?)
+                value(?,?,?,?,?)
                 """;
 
         try {
             PreparedStatement pst = conn.prepareStatement(query);
-            pst.setString(1, operationData.getId());
-            pst.setString(2, operationData.getDescription());
-            pst.setString(3, operationData.getPatient());
-            pst.setString(4, operationData.getDoctor());
-            pst.setDate(5, operationData.getDate());
-            pst.setString(6, operationData.getTime());
+            pst.setString(1, operationData.getDescription());
+            pst.setString(2, operationData.getPatient());
+            pst.setString(3, operationData.getDoctor());
+            pst.setDate(4, operationData.getDate());
+            pst.setString(5, operationData.getTime());
 
 
             pst.execute();
