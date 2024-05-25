@@ -1,7 +1,6 @@
 package model;
 
-public class Patient
-{
+public class Patient {
     private int id;
     private String firstName;
     private String lastName;
@@ -13,16 +12,16 @@ public class Patient
     private String address;
     private String payment;
 
-    public Patient(int id,String firstName, String lastName, String department, String doctor, String nurse, String phone, String email, String adress, String payment) {
+    public Patient(int id, String firstName, String lastName, String department, String doctor, String nurse, String phone, String email, String address, String payment) {
         this.id = id;
-        this.lastName=lastName;
         this.firstName = firstName;
+        this.lastName = lastName;
         this.department = department;
         this.doctor = doctor;
         this.nurse = nurse;
         this.phone = phone;
         this.email = email;
-        this.address = adress;
+        this.address = address;
         this.payment = payment;
     }
 
@@ -30,10 +29,12 @@ public class Patient
         return id;
     }
 
-    public String getLastName(){return lastName;}
-
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getDepartment() {

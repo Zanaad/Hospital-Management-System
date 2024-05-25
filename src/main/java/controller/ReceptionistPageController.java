@@ -394,7 +394,7 @@ public class ReceptionistPageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_lastName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                Patient patData = new Patient(result.getInt("patient_id"), result.getString("patient_firstName"), result.getString("patient_lastName"), result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
                 listPatients.add(patData);
             }
         } catch (Exception e) {
@@ -412,7 +412,7 @@ public class ReceptionistPageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Appointment appointmentData = new Appointment(result.getString("appointment_id"), result.getString("appointment_firstName"),result.getString("appointment_department"), result.getString("appointment_doctor"), result.getString("appointment_nurse"), result.getString("appointment_phone"), result.getString("appointment_address"), result.getDate("appointment_date"), result.getString("appointment_hour"));
+                Appointment appointmentData = new Appointment(result.getString("appointment_id"), result.getString("appointment_firstName"), result.getString("appointment_department"), result.getString("appointment_doctor"), result.getString("appointment_nurse"), result.getString("appointment_phone"), result.getString("appointment_address"), result.getDate("appointment_date"), result.getString("appointment_hour"));
                 listAppointments.add(appointmentData);
             }
         } catch (Exception e) {
@@ -433,7 +433,6 @@ public class ReceptionistPageController implements Initializable {
         patients_col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
         patients_col_payment.setCellValueFactory(new PropertyValueFactory<>("payment"));
         patients_tableView.setItems(getPatients());
-
     }
 
 
@@ -460,14 +459,14 @@ public class ReceptionistPageController implements Initializable {
         loadDepartmentNames();
         loadDoctorNames();
         loadNurseNames();
-       ChartService.patientAreaChart( dashboad_chart_PD);
-       ChartService.appointmentAreaChart(dashboad_chart_AD);
-        
-        
+        ChartService.patientAreaChart(dashboad_chart_PD);
+        ChartService.appointmentAreaChart(dashboad_chart_AD);
+
+
         //Navigating with Enter through Patients TextFields
-       // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
-       // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
-       // add_patient_btn.setOnAction(event -> patFirstName.requestFocus());
+        // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
+        // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
+        // add_patient_btn.setOnAction(event -> patFirstName.requestFocus());
         patFirstName.setOnAction(event -> patLastName.requestFocus());
         patLastName.setOnAction(event -> patBirthdate.requestFocus());
         patBirthdate.setOnAction(event -> patPhone.requestFocus());
@@ -506,7 +505,6 @@ public class ReceptionistPageController implements Initializable {
 
         */
 
-
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
     }
@@ -526,7 +524,7 @@ public class ReceptionistPageController implements Initializable {
     public void translate() {
         Locale locale = Locale.getDefault();
         ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
-     //   this.Projectitle.setText(rb.getString("Hospital Management System"));
+        //   this.Projectitle.setText(rb.getString("Hospital Management System"));
         this.dashboard_btn.setText(rb.getString("Dashboard"));
         this.patients_btn.setText(rb.getString("Patients"));
         this.appointments_btn.setText(rb.getString("Appointments"));
@@ -592,12 +590,14 @@ public class ReceptionistPageController implements Initializable {
         CountStaffService.countStaff(app_number, CountStaffService.countPatients);
         CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
     }
+
     private void loadDepartmentNames() {
         List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
         patDep.setItems(observableList);
         appDep.setItems(observableList);
     }
+
     private void loadDoctorNames() {
         List<String> doctorNames = DoctorRepository.getAllDoctorsNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(doctorNames);
@@ -617,7 +617,7 @@ public class ReceptionistPageController implements Initializable {
         String firstName = filterPatName.getText();
         String lastName = filterPatSubname.getText();
         PatientFilter filter = new PatientFilter(firstName, lastName);
-        List<Patient> filteredPatients= PatientService.filter(filter);
+        List<Patient> filteredPatients = PatientService.filter(filter);
         updatePatientTable(filteredPatients);
     }
 
@@ -625,8 +625,6 @@ public class ReceptionistPageController implements Initializable {
         ObservableList<Patient> listPatients = FXCollections.observableArrayList(patients);
         patients_tableView.setItems(listPatients);
     }
-
-
 
 
 }

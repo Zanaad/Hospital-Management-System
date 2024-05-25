@@ -12,16 +12,15 @@ import repository.Staff.DoctorRepository;
 import java.util.List;
 
 
-public class PatientService
-{
+public class PatientService {
     public static boolean createPatient(PatientDto patientData) {
 
         CreatePatientDto createPatientDto = new CreatePatientDto(
-                patientData.getPFirstName(),
-                patientData.getPLastName(),
-                patientData.getPBirthdate(),
+                patientData.getPfirstName(),
+                patientData.getPlastName(),
+                patientData.getPbirthdate(),
                 patientData.getPphone(),
-                patientData.getPEmail(),
+                patientData.getPemail(),
                 patientData.getPaddress(),
                 patientData.getPdepartment(),
                 patientData.getPdoctor(),

@@ -35,11 +35,11 @@ public class PatientRepository {
                 """;
         try {
             PreparedStatement pst = conn.prepareStatement(query);
-            pst.setString(1, patientData.getPFirstName());
-            pst.setString(2, patientData.getPLastName());
-            pst.setDate(3, patientData.getPBirthdate());
+            pst.setString(1, patientData.getPfirstName());
+            pst.setString(2, patientData.getPlastName());
+            pst.setDate(3, patientData.getPbirthdate());
             pst.setString(4, patientData.getPphone());
-            pst.setString(5, patientData.getPEmail());
+            pst.setString(5, patientData.getPemail());
             pst.setString(6, patientData.getPaddress());
             pst.setString(7, patientData.getPdepartment());
             pst.setString(8, patientData.getPdoctor());
@@ -66,7 +66,6 @@ public class PatientRepository {
             Connection conn = DatabaseUtil.getConnection();
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet result = pst.executeQuery();
-
             while (result.next()) {
                 Patient patient = new Patient(result.getInt("patient_id"),
                         result.getString("patient_firstName"),
