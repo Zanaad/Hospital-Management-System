@@ -14,6 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Appointment;
 import model.Patient;
+import model.User;
+import model.dto.ChangePasswordDto;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
@@ -23,10 +25,12 @@ import model.filter.PatientFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.DoctorRepository;
 import repository.Staff.NurseRepository;
+import service.Alerts;
 import service.ChartService;
 import service.CountStaffService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
+import service.Staff.AdminService;
 import service.Staff.DoctorService;
 
 import java.net.URL;
@@ -344,6 +348,98 @@ public class ReceptionistPageController implements Initializable {
     @FXML
     private TextField filterPatSubname;
 
+    @FXML
+    private TextField ChangePwdEmail;
+
+    @FXML
+    private AnchorPane account_form;
+
+    @FXML
+    private Label cNewPwd;
+
+    @FXML
+    private Label chCPwd;
+
+    @FXML
+    private Label chConfPwd;
+
+    @FXML
+    private Label chEmail;
+
+    @FXML
+    private Button changePasswordbtn;
+
+    @FXML
+    private PasswordField confirmNewPassword;
+
+    @FXML
+    private PasswordField currentPassword;
+
+    @FXML
+    private Label infoAddress;
+
+    @FXML
+    private Label infoEmail;
+
+    @FXML
+    private Label infoFirstName;
+
+    @FXML
+    private Label infoLastName;
+
+    @FXML
+    private Label lblAddress;
+
+    @FXML
+    private Label lblEmail;
+
+    @FXML
+    private Label lblFirstName;
+
+    @FXML
+    private Label lblID;
+
+    @FXML
+    private Label lblLastName;
+
+    @FXML
+    private PasswordField newPassword;
+
+    @FXML
+    private Label upAddress;
+
+    @FXML
+    private Label upEmail;
+
+    @FXML
+    private Label upFirstName;
+
+    @FXML
+    private Label upLastName;
+
+    @FXML
+    private TextField updateAddress;
+
+    @FXML
+    private TextField updateEmail;
+
+    @FXML
+    private TextField updateFirstName;
+
+    @FXML
+    private TextField updateID;
+
+    @FXML
+    private TextField updateLastName;
+
+    @FXML
+    private Label yourInfo;
+
+    User loggedReceptionist;
+
+
+
+
 
     @FXML
     public void registerPatient(ActionEvent event) {
@@ -373,7 +469,7 @@ public class ReceptionistPageController implements Initializable {
     void switchForm(ActionEvent event) {
         if (event.getSource() == dashboard_btn) showForm(dashboard_form);
         else if (event.getSource() == patients_btn) showForm(patients_form);
-        else if (event.getSource() == account_btn) showForm(profile_form);
+        else if (event.getSource() == account_btn) showForm(account_form);
         else if (event.getSource() == add_patient_btn) showForm(register_patient_form);
         else if (event.getSource() == appointments_btn) showForm(appointments_form);
     }
@@ -381,7 +477,7 @@ public class ReceptionistPageController implements Initializable {
     private void showForm(AnchorPane form) {
         dashboard_form.setVisible(form == dashboard_form);
         patients_form.setVisible(form == patients_form);
-        profile_form.setVisible(form == profile_form);
+        account_form.setVisible(form == account_form);
         register_patient_form.setVisible(form == register_patient_form);
         appointments_form.setVisible(form == appointments_form);
 
@@ -508,6 +604,7 @@ public class ReceptionistPageController implements Initializable {
 
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
+        setRecInfo();
     }
 
     @FXML
@@ -583,6 +680,20 @@ public class ReceptionistPageController implements Initializable {
         this.hourr.setText(rb.getString("Hour"));
         this.addApp_btn.setText(rb.getString("Add"));
         this.patients_col_lastname.setText(rb.getString("Subname"));
+        this.infoFirstName.setText(rb.getString("First Name"));
+        this.infoLastName.setText(rb.getString("Last Name"));
+        this.infoEmail.setText(rb.getString("Email"));
+        this.infoAddress.setText(rb.getString("Address"));
+        this.upEmail.setText(rb.getString("Email"));
+        this.upAddress.setText(rb.getString("Address"));
+        this.upFirstName.setText(rb.getString("Address"));
+        this.upLastName.setText(rb.getString("Address"));
+        this.chConfPwd.setText(rb.getString("Confirm Password"));
+        this.chEmail.setText(rb.getString("Email"));
+        this.chCPwd.setText(rb.getString("Current Password"));
+        this.cNewPwd.setText(rb.getString("New Password"));
+
+
 
     }
 
@@ -631,6 +742,69 @@ public class ReceptionistPageController implements Initializable {
         SessionManager.clearSession();
         Navigator.navigate(event, Navigator.LoginPage);
     }
+
+    @FXML
+    void changePassword(ActionEvent event) {
+        String currentPassword = this.currentPassword.getText();
+        String newPassword = this.newPassword.getText();
+        String confirmNewPassword = this.confirmNewPassword.getText();
+        if (currentPassword.isBlank() || ChangePwdEmail.getText().isEmpty() || newPassword.isBlank() || confirmNewPassword.isEmpty())
+            Alerts.errorMessage("Please fill all the fields before proceeding.");
+        else if (!newPassword.equals(confirmNewPassword)) {
+            Alerts.errorMessage("Passwords do not match.");
+        } else {
+            ChangePasswordDto change = new ChangePasswordDto(this.ChangePwdEmail.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
+            boolean changed = AdminService.changePassword(change);
+            if (changed) {
+                Alerts.successMessage("Password was successfully changed.");
+            } else {
+                Alerts.errorMessage("Password was not changed");
+            }
+        }
+    }
+
+
+    public void updateAccount(ActionEvent event) {
+        String firstName = updateFirstName.getText();
+        String lastName = updateLastName.getText();
+        String email = updateEmail.getText();
+        String address = updateAddress.getText();
+
+        if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || address.isBlank()) {
+            Alerts.errorMessage("Please fill all the fields before proceeding.");
+        } else {
+            loggedReceptionist.setFirstName(firstName);
+            loggedReceptionist.setLastName(lastName);
+            loggedReceptionist.setEmail(email);
+            loggedReceptionist.setAddress(address);
+
+            boolean updated = AdminService.updateAdminDetails(loggedReceptionist);
+            if (updated) {
+                Alerts.successMessage("Account details were successfully updated.");
+                setRecInfo(); // Refresh the displayed info
+            } else {
+                Alerts.errorMessage("Failed to update account details.");
+            }
+        }
+    }
+
+    public void setRecInfo() {
+        loggedReceptionist = SessionManager.getCurrentUser();
+        if (loggedReceptionist != null) {
+            lblID.setText(loggedReceptionist.getId());
+            lblFirstName.setText(loggedReceptionist.getFirstName());
+            lblLastName.setText(loggedReceptionist.getLastName());
+            lblEmail.setText(loggedReceptionist.getEmail());
+            lblAddress.setText(loggedReceptionist.getAddress());
+
+            updateID.setText(loggedReceptionist.getId());
+            updateFirstName.setText(loggedReceptionist.getFirstName());
+            updateLastName.setText(loggedReceptionist.getLastName());
+            updateEmail.setText(loggedReceptionist.getEmail());
+            updateAddress.setText(loggedReceptionist.getAddress());
+        }
+    }
+
 
 
 }
