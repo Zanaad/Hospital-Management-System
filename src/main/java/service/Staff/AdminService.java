@@ -37,5 +37,9 @@ public class AdminService extends StaffService {
     public static void logout() {
         SessionManager.clearSession();
     }
+
+    public static boolean updateAdminDetails(User user) {
+        return AdminRepository.updateAdminDetails(user);
+    }
 }
 
