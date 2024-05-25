@@ -17,7 +17,6 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
-import repository.DepartmentRepository;
 import service.ChartService;
 import service.CountStaffService;
 import service.Rec.AppointmentService;
@@ -331,7 +330,7 @@ public class ReceptionistPageController implements Initializable {
     private AreaChart<String, Number> dashboad_chart_PD;
 
     @FXML
-    private BarChart<String, Number> dashboad_chart_AD;
+    private AreaChart<String, Number> dashboad_chart_AD;
 
 
     @FXML
@@ -448,7 +447,7 @@ public class ReceptionistPageController implements Initializable {
         patientDisplayData();
         appointmentDisplayData();
         this.staff_count();
-        loadDepartmentNames();
+       // loadDepartmentNames();
        ChartService.patientAreaChart( dashboad_chart_PD);
        ChartService.appointmentAreaChart(dashboad_chart_AD);
         
@@ -578,10 +577,6 @@ public class ReceptionistPageController implements Initializable {
         CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
     }
 
-    private void loadDepartmentNames() {
-        List<String> departmentNames = DepartmentRepository.getAllDepartmentNames();
-        ObservableList<String> observableList = FXCollections.observableArrayList(departmentNames);
-        patDep.setItems(observableList);
-    }
+
 
 }
