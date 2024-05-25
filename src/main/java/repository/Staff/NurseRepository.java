@@ -64,4 +64,24 @@ public class NurseRepository extends StaffRepository {
         System.out.println(generatePassword(firstName, id));
         return generatePassword(firstName, id);
     }
+
+    public static List<String> getAllNursesNames() {
+        List<String> nurses = new ArrayList<>();
+        String query = "SELECT firstName FROM nurses";
+
+        try {
+            Connection connection = DatabaseUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                nurses.add(resultSet.getString("firstName"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return nurses;
+    }
+
 }

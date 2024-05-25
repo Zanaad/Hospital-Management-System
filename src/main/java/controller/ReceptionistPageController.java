@@ -16,9 +16,9 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
-import model.dto.StaffDto.DoctorDto;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.DoctorRepository;
+import repository.Staff.NurseRepository;
 import service.ChartService;
 import service.CountStaffService;
 import service.Rec.AppointmentService;
@@ -147,7 +147,7 @@ public class ReceptionistPageController implements Initializable {
     private ComboBox<String> patDoctor;
 
     @FXML
-    private ComboBox<?> patNurse;
+    private ComboBox<String> patNurse;
 
     @FXML
     private DatePicker patDate;
@@ -451,6 +451,7 @@ public class ReceptionistPageController implements Initializable {
         this.staff_count();
         loadDepartmentNames();
         loadDoctorNames();
+        loadNurseNames();
        ChartService.patientAreaChart( dashboad_chart_PD);
        ChartService.appointmentAreaChart(dashboad_chart_AD);
         
@@ -589,6 +590,12 @@ public class ReceptionistPageController implements Initializable {
         List<String> doctorNames = DoctorRepository.getAllDoctorsNames();
         ObservableList<String> observableList = FXCollections.observableArrayList(doctorNames);
         patDoctor.setItems(observableList);
+    }
+
+    private void loadNurseNames() {
+        List<String> nurseNames = NurseRepository.getAllNursesNames();
+        ObservableList<String> observableList = FXCollections.observableArrayList(nurseNames);
+        patNurse.setItems(observableList);
     }
 
 
