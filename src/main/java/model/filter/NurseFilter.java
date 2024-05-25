@@ -1,6 +1,6 @@
 package model.filter;
 
-public class NurseFilter extends UserFilter {
+public class NurseFilter extends Filter {
     private String department;
 
     public NurseFilter(String firstName, String email, String department) {

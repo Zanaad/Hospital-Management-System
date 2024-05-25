@@ -5,10 +5,7 @@ import model.dto.LoginUserDto;
 import model.dto.StaffDto.CreateNurseDto;
 import model.dto.StaffDto.NurseDto;
 import model.filter.NurseFilter;
-import model.filter.UserFilter;
 import repository.Staff.NurseRepository;
-import repository.Staff.StaffRepository;
-import service.Alerts;
 import service.PasswordHasher;
 
 import java.util.List;

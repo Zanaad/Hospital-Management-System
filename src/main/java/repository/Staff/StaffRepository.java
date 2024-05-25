@@ -6,6 +6,8 @@ import model.dto.StaffDto.CreateStaffDto;
 import model.dto.StaffDto.CreateDoctorDto;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StaffRepository {
     public static boolean createStaff(CreateStaffDto staffData, String query) {
@@ -103,5 +105,22 @@ public class StaffRepository {
             password += "-" + firstName;
         }
         return password;
+    }
+
+    public static List<String> getStaffNames(String query) {
+        List<String> nurses = new ArrayList<>();
+        try {
+            Connection connection = DatabaseUtil.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                nurses.add(resultSet.getString("firstName"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return nurses;
     }
 }

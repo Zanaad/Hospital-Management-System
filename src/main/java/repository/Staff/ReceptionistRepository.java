@@ -4,7 +4,7 @@ import database.DatabaseUtil;
 import model.User;
 import model.dto.StaffDto.CreateReceptionistDto;
 import model.dto.StaffDto.ReceptionistDto;
-import model.filter.UserFilter;
+import model.filter.Filter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +27,7 @@ public class ReceptionistRepository extends StaffRepository {
     }
 
 
-    public static List<ReceptionistDto> getByFilter(UserFilter filter) {
+    public static List<ReceptionistDto> getByFilter(Filter filter) {
         String filterQuery = "SELECT * FROM receptionists WHERE 1=1" + filter.buildQuery();
         return fetchReceptionists(filterQuery);
     }
