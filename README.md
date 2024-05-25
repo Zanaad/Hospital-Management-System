@@ -15,10 +15,10 @@ Ky projekt u zhvillua në kuadër të lëndës "Komunikimi Njeri-Kompjuter" në 
 ## Specifikat
 
 - Përdoruesit e këtij sistemi jane infermierët,doktorët,recepsionistët dhe admini.
-1. Admini mund të regjistrojë doktorë, infermierë, recepsionistë, t'i menaxhojë të dhënat e tyre dhe të përditësojë llogarinë e tij.
-2. Doktori mund të regjistrojë termine,pacient,t'i menaxhojë të dhënat e pacientit dhe të përditësoj profilin e tij.
-3. Recepsionisti 
-4. Infermieret
+- Admini menaxhon te gjithe stafin e ordinances
+- Doktori mund të regjistrojë termine,pacient,t'i menaxhojë të dhënat e pacientit dhe të përditësoj profilin e tij.
+- Recepsionisti shton dhe menaxhon takimet
+- Infermieret
 
 
 
@@ -28,9 +28,6 @@ Ky projekt u zhvillua në kuadër të lëndës "Komunikimi Njeri-Kompjuter" në 
 - Marrja e librarive të vecanta 
 - Konfigurimi i lidhjes me databazë në DatabaseUtil.java
 - Startimi i aplikacionit në Main 
-
-
-## Interface
 
 
 

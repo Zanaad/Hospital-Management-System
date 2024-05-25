@@ -19,8 +19,6 @@ import model.dto.ChangePasswordDto;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
-import model.dto.StaffDto.DoctorDto;
-import model.filter.DoctorFilter;
 import model.filter.PatientFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.DoctorRepository;
@@ -31,9 +29,7 @@ import service.CountStaffService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
 //import service.Rec.ReceptionistService;
-import service.Rec.ReceptionistServicee;
 import service.Staff.AdminService;
-import service.Staff.DoctorService;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -608,7 +604,7 @@ public class ReceptionistPageController implements Initializable {
 
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
-        setRecInfo();
+
     }
 
     @FXML
@@ -745,70 +741,6 @@ public class ReceptionistPageController implements Initializable {
         Navigator.navigate(event, Navigator.LoginPage);
     }
 
-    @FXML
-    void changePassword(ActionEvent event) {
-        String currentPassword = this.currentPassword.getText();
-        String newPassword = this.newPassword.getText();
-        String confirmNewPassword = this.confirmNewPassword.getText();
-        if (currentPassword.isBlank() || ChangePwdEmail.getText().isEmpty() || newPassword.isBlank() || confirmNewPassword.isEmpty())
-            Alerts.errorMessage("Please fill all the fields before proceeding.");
-        else if (!newPassword.equals(confirmNewPassword)) {
-            Alerts.errorMessage("Passwords do not match.");
-        } else {
-            ChangePasswordDto change = new ChangePasswordDto(this.ChangePwdEmail.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
-            boolean changed = AdminService.changePassword(change);
-            if (changed) {
-                Alerts.successMessage("Password was successfully changed.");
-            } else {
-                Alerts.errorMessage("Password was not changed");
-            }
-        }
-    }
-
-
-    public void updateAccount(ActionEvent event) {
-        String firstName = updateFirstName.getText();
-        String lastName = updateLastName.getText();
-        String email = updateEmail.getText();
-        String address = updateAddress.getText();
-
-        if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || address.isBlank()) {
-            Alerts.errorMessage("Please fill all the fields before proceeding.");
-        } else {
-            loggedReceptionist.setFirstName(firstName);
-            loggedReceptionist.setLastName(lastName);
-            loggedReceptionist.setEmail(email);
-            loggedReceptionist.setAddress(address);
-
-
-            boolean updated = ReceptionistServicee.updateReceptionistDetails(loggedReceptionist);
-            if (updated) {
-                Alerts.successMessage("Account details were successfully updated.");
-                setRecInfo(); // Refresh the displayed info
-            } else {
-                Alerts.errorMessage("Failed to update account details.");
-            }
-
-
-        }
-    }
-
-    public void setRecInfo() {
-        loggedReceptionist = SessionManager.getCurrentUser();
-        if (loggedReceptionist != null) {
-            lblID.setText(loggedReceptionist.getId());
-            lblFirstName.setText(loggedReceptionist.getFirstName());
-            lblLastName.setText(loggedReceptionist.getLastName());
-            lblEmail.setText(loggedReceptionist.getEmail());
-            lblAddress.setText(loggedReceptionist.getAddress());
-
-            updateID.setText(loggedReceptionist.getId());
-            updateFirstName.setText(loggedReceptionist.getFirstName());
-            updateLastName.setText(loggedReceptionist.getLastName());
-            updateEmail.setText(loggedReceptionist.getEmail());
-            updateAddress.setText(loggedReceptionist.getAddress());
-        }
-    }
 
 
 }
