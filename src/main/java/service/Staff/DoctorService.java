@@ -31,6 +31,7 @@ public class DoctorService extends StaffService {
                 doctorData.getAddress(),
                 doctorData.getDepartment(),
                 doctorData.getUniversity(),
+                doctorData.getSpecialty(),
                 doctorData.getStartDate(),
                 doctorData.getEndDate(),
                 doctorData.getBankName(),

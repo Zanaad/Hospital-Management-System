@@ -83,6 +83,9 @@ public class AddDoctorController implements Initializable {
     private TableColumn<?, ?> doctors_col_surname;
 
     @FXML
+    private TableColumn<?, ?> doctors_col_uni;
+
+    @FXML
     private TableColumn<?, ?> doctors_col_address;
 
     @FXML
@@ -144,7 +147,7 @@ public class AddDoctorController implements Initializable {
         Date birthdate = Date.valueOf(this.docBirthdate.getValue());
         Date startDate = Date.valueOf(this.docStart.getValue());
         Date endDate = Date.valueOf(this.docEnd.getValue());
-        DoctorDto staff = new DoctorDto(null, this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), null, this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
+        DoctorDto staff = new DoctorDto(null, this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), null, this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), this.docSpecialty.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
         boolean staffCreated = DoctorService.createDoctor(staff);
         if (staffCreated) {
             Navigator.navigate(event, Navigator.AdminMainForm);
@@ -158,7 +161,7 @@ public class AddDoctorController implements Initializable {
     }
 
     public void doctorDisplayData() {
-        Table.staffDisplayData(doctors_col_ID, doctors_col_name, doctors_col_surname, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_specialty, doctors_col_address);
+        Table.doctorDisplayData(doctors_col_ID, doctors_col_name, doctors_col_surname, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_specialty, doctors_col_address);
         doctors_table.setItems(getDoctors());
     }
 

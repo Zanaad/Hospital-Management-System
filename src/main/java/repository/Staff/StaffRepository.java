@@ -3,6 +3,7 @@ package repository.Staff;
 import database.DatabaseUtil;
 import model.User;
 import model.dto.StaffDto.CreateStaffDto;
+import model.dto.StaffDto.CreateDoctorDto;
 
 import java.sql.*;
 
@@ -23,11 +24,22 @@ public class StaffRepository {
             pst.setString(9, staffData.getAddress());
             pst.setString(10, staffData.getDepartment());
             pst.setString(11, staffData.getUniversity());
-            pst.setDate(12, staffData.getStartDate());
-            pst.setDate(13, staffData.getEndDate());
-            pst.setString(14, staffData.getBankName());
-            pst.setString(15, staffData.getBankAccount());
-            pst.setString(16, staffData.getRoutingNumber());
+
+            if (staffData instanceof CreateDoctorDto) {
+                CreateDoctorDto doctorData = (CreateDoctorDto) staffData;
+                pst.setString(12, doctorData.getSpecialty());
+                pst.setDate(13, doctorData.getStartDate());
+                pst.setDate(14, doctorData.getEndDate());
+                pst.setString(15, doctorData.getBankName());
+                pst.setString(16, doctorData.getBankAccount());
+                pst.setString(17, doctorData.getRoutingNumber());
+            } else {
+                pst.setDate(12, staffData.getStartDate());
+                pst.setDate(13, staffData.getEndDate());
+                pst.setString(14, staffData.getBankName());
+                pst.setString(15, staffData.getBankAccount());
+                pst.setString(16, staffData.getRoutingNumber());
+            }
             pst.execute();
             return true;
         } catch (Exception e) {
@@ -56,10 +68,14 @@ public class StaffRepository {
 
     private static User getFromResultSet(ResultSet rs) {
         try {
+            String id = rs.getString("id");
+            String firstName = rs.getString("firstName");
+            String lastName = rs.getString("lastName");
             String email = rs.getString("email");
             String salt = rs.getString("salt");
             String hashPassword = rs.getString("hashPassword");
-            return new User(email, salt, hashPassword);
+            String address = rs.getString("address");
+            return new User(id, firstName, lastName, email, salt, hashPassword, address);
         } catch (Exception e) {
             return null;
         }

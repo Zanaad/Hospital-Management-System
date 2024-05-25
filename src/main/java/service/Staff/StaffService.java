@@ -14,7 +14,7 @@ public class StaffService {
         }
         String password = loginData.getPassword();
         String salt = user.getSalt();
-        String passwordHash = user.getHashPassword();
+        String passwordHash = user.getPasswordHash();
         return PasswordHasher.compareSaltedHash(password, salt, passwordHash);
     }
 }

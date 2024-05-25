@@ -1,5 +1,6 @@
 package controller;
 
+import app.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,8 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import service.Alerts;
+import model.User;
 import model.dto.ChangePasswordDto;
+import service.Alerts;
 import service.Staff.AdminService;
 
 import java.net.URL;
@@ -20,6 +22,9 @@ public class AdminAccountController implements Initializable {
 
     @FXML
     private TextField ChangePwdEmail;
+
+    @FXML
+    private AnchorPane account_form;
 
     @FXML
     private Label cNewPwd;
@@ -55,10 +60,22 @@ public class AdminAccountController implements Initializable {
     private Label infoLastName;
 
     @FXML
-    private PasswordField newPassword;
+    private Label lblAddress;
 
     @FXML
-    private AnchorPane profile_form;
+    private Label lblEmail;
+
+    @FXML
+    private Label lblFirstName;
+
+    @FXML
+    private Label lblID;
+
+    @FXML
+    private Label lblLastName;
+
+    @FXML
+    private PasswordField newPassword;
 
     @FXML
     private Label upAddress;
@@ -71,6 +88,26 @@ public class AdminAccountController implements Initializable {
 
     @FXML
     private Label upLastName;
+
+    @FXML
+    private TextField updateAddress;
+
+    @FXML
+    private TextField updateEmail;
+
+    @FXML
+    private TextField updateFirstName;
+
+    @FXML
+    private TextField updateID;
+
+    @FXML
+    private TextField updateLastName;
+
+    @FXML
+    private Label yourInfo;
+
+    User loggedAdmin;
 
     @FXML
     void changePassword(ActionEvent event) {
@@ -111,6 +148,50 @@ public class AdminAccountController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setAdminInfo();
         translate();
+    }
+
+    public void updateAccount(ActionEvent event) {
+        String firstName = updateFirstName.getText();
+        String lastName = updateLastName.getText();
+        String email = updateEmail.getText();
+        String address = updateAddress.getText();
+
+        if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || address.isBlank()) {
+            Alerts.errorMessage("Please fill all the fields before proceeding.");
+        } else {
+            loggedAdmin.setFirstName(firstName);
+            loggedAdmin.setLastName(lastName);
+            loggedAdmin.setEmail(email);
+            loggedAdmin.setAddress(address);
+
+            boolean updated = AdminService.updateAdminDetails(loggedAdmin);
+            if (updated) {
+                Alerts.successMessage("Account details were successfully updated.");
+                setAdminInfo(); // Refresh the displayed info
+            } else {
+                Alerts.errorMessage("Failed to update account details.");
+            }
+        }
+    }
+
+    public void setAdminInfo() {
+        loggedAdmin = SessionManager.getCurrentUser();
+        if (loggedAdmin != null) {
+            lblID.setText(loggedAdmin.getId());
+            lblFirstName.setText(loggedAdmin.getFirstName());
+            lblLastName.setText(loggedAdmin.getLastName());
+            lblEmail.setText(loggedAdmin.getEmail());
+            lblAddress.setText(loggedAdmin.getAddress());
+
+            updateID.setText(loggedAdmin.getId());
+            updateFirstName.setText(loggedAdmin.getFirstName());
+            updateLastName.setText(loggedAdmin.getLastName());
+            updateEmail.setText(loggedAdmin.getEmail());
+            updateAddress.setText(loggedAdmin.getAddress());
+        } else {
+            Alerts.errorMessage("Failed to load admin details.");
+        }
     }
 }

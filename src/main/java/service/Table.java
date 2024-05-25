@@ -3,7 +3,6 @@ package service;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-
 public class Table {
     public static void staffDisplayData(TableColumn<?, ?> colID, TableColumn<?, ?> colName, TableColumn<?, ?> colSurname, TableColumn<?, ?> colDepartment, TableColumn<?, ?> colPhone, TableColumn<?, ?> colEmail, TableColumn<?, ?> colUniversity, TableColumn<?, ?> colAddress) {
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -14,5 +13,10 @@ public class Table {
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colUniversity.setCellValueFactory(new PropertyValueFactory<>("university"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+    }
+
+    public static void doctorDisplayData(TableColumn<?, ?> colID, TableColumn<?, ?> colName, TableColumn<?, ?> colSurname, TableColumn<?, ?> colDepartment, TableColumn<?, ?> colPhone, TableColumn<?, ?> colEmail, TableColumn<?, ?> colUniversity, TableColumn<?, ?> colSpecialty, TableColumn<?, ?> colAddress) {
+        staffDisplayData(colID, colName, colSurname, colDepartment, colPhone, colEmail, colUniversity, colAddress);
+        colSpecialty.setCellValueFactory(new PropertyValueFactory<>("specialty"));
     }
 }

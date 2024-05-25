@@ -1,6 +1,7 @@
 package controller;
 
 import app.Navigator;
+import app.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,8 +63,6 @@ public class AdminMainFormController implements Initializable {
             case "receptionist_btn":
                 Navigator.loadContent(contentPane, "AddRec.fxml");
                 break;
-            default:
-                Navigator.loadContent(contentPane, "AdminDashboard.fxml");
         }
     }
 
@@ -94,5 +93,10 @@ public class AdminMainFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Navigator.loadContent(contentPane, "AdminDashboard.fxml");
         this.translate();
+    }
+
+    public void logout(ActionEvent event) {
+        SessionManager.clearSession();
+        Navigator.navigate(event, Navigator.LoginPage);
     }
 }
