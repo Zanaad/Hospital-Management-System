@@ -11,23 +11,22 @@ public class BirthRepository extends ReportRepository {
     public static boolean createBirth(createBirthDto birthData) {
         Connection conn = DatabaseUtil.getConnection();
         String query = """
-                INSERT INTO births(birthID,
+                INSERT INTO births(
                                          birth_description,
                                          birth_patient,
                                          birth_newborn,
                                          birth_date,
                                          birth_time)
-                value(?,?,?,?,?,?)
+                value(?,?,?,?,?)
                 """;
 
         try {
             PreparedStatement pst = conn.prepareStatement(query);
-            pst.setString(1,birthData.getId());
-            pst.setString(2,birthData.getDescription());
-            pst.setString(3,birthData.getPatient());
-            pst.setString(4,birthData.getNewBorn());
-            pst.setDate(5,birthData.getDate());
-            pst.setString(6,birthData.getTime());
+            pst.setString(1,birthData.getDescription());
+            pst.setString(2,birthData.getPatient());
+            pst.setString(3,birthData.getNewBorn());
+            pst.setDate(4,birthData.getDate());
+            pst.setString(5,birthData.getTime());
 
 
             pst.execute();

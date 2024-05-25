@@ -17,16 +17,16 @@
             <children>
                 <BorderPane layoutX="100.0" layoutY="34.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <top>
-                        <AnchorPane prefHeight="51.0" prefWidth="1100.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="39.0" prefWidth="1100.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" BorderPane.alignment="CENTER">
                             <children>
-                                <Label layoutX="775.0" layoutY="17.0" text="Welcome" textFill="#b7b6b6" />
-                                <Label layoutX="834.0" layoutY="17.0" text="Doc" textFill="#c3c1c1" />
-                                <Label layoutX="24.0" layoutY="11.0" prefHeight="29.0" prefWidth="197.0" text="Hospital Management" textFill="#fbf7f7">
+                                <Label fx:id="Welcomelbl" layoutX="742.0" layoutY="17.0" text="Welcome" textFill="#b7b6b6" />
+                                <Label fx:id="DoctorLbl" layoutX="844.0" layoutY="17.0" prefHeight="17.0" prefWidth="65.0" text="Doctor" textFill="#c3c1c1" />
+                                <Label fx:id="HospitalLbl" layoutX="15.0" layoutY="14.0" prefHeight="30.0" prefWidth="216.0" text="Hospital Management" textFill="#fbf7f7">
                                     <font>
                                         <Font size="20.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="275.0" layoutY="12.0" prefHeight="27.0" prefWidth="185.0" text="Menaxho dashboard" textFill="#e2dddd">
+                                <Label fx:id="DashsboardLbl" layoutX="275.0" layoutY="12.0" prefHeight="27.0" prefWidth="227.0" text="Management Dashboard" textFill="#e2dddd">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
@@ -36,6 +36,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Button>
+                                <Button layoutX="931.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleLanguage" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Translate" textFill="#e6e4e4" />
                             </children>
                         </AnchorPane>
                     </top>
@@ -77,34 +78,81 @@
                                         <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
+                                <AnchorPane layoutY="7.0" prefHeight="554.0" prefWidth="237.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
+                                    <children>
+                                        <Label layoutX="25.0" layoutY="123.0" text="Doctor id:" textFill="#fffefe" />
+                                        <Line endX="127.00001525878906" layoutX="101.0" layoutY="174.0" startX="-87.00000762939453" stroke="#fffdfd" />
+                                        <Label fx:id="FeaturesLbl" layoutX="10.0" layoutY="201.0" text="Features" textFill="#fff9f9">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="AppBtn" layoutX="10.0" layoutY="238.0" mnemonicParsing="false" onMouseClicked="#handleClickApp" prefHeight="39.0" prefWidth="222.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Appointment" textFill="#fffefe">
+                                            <font>
+                                                <Font size="17.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="RegisterBtn" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#handleRegjistro" prefHeight="37.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Register Pacient" textFill="#fffdfd">
+                                            <font>
+                                                <Font size="17.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="ManageBtn" layoutX="10.0" layoutY="351.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Manage Pacient" textFill="WHITE">
+                                            <font>
+                                                <Font size="17.0" />
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="EditBtn" layoutX="9.0" layoutY="471.0" mnemonicParsing="false" onMouseClicked="#handleProfili" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Edit Profile" textFill="WHITE">
+                                            <font>
+                                                <Font size="17.0" />
+                                            </font>
+                                        </Button>
+                                        <Label fx:id="SettingsLbl" layoutX="11.0" layoutY="433.0" text="Change settings:" textFill="#fffafa">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="25.0" layoutY="148.0" text="Username:" textFill="#fffdfd" />
+                                        <Label layoutX="85.0" layoutY="119.0" text="1" textFill="WHITE">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="89.0" layoutY="148.0" text="Doctor" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="13.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
                             </children>
                         </AnchorPane>
                     </left>
                     <center>
                         <AnchorPane prefHeight="551.0" prefWidth="863.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Label layoutX="21.0" layoutY="14.0" text="Menaxho Detajet e Pacientit" textFill="#5c5c5c">
+                                <Label fx:id="ManageLbl" layoutX="21.0" layoutY="14.0" text="Manage Pacient" textFill="#5c5c5c">
                                     <font>
                                         <Font size="24.0" />
                                     </font></Label>
                                 <AnchorPane layoutX="3.0" layoutY="88.0" prefHeight="475.0" prefWidth="856.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                     <children>
-                                        <TableView fx:id="table1" layoutX="3.0" layoutY="24.0" prefHeight="432.0" prefWidth="855.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                                        <TableView fx:id="table1" layoutX="2.0" layoutY="24.0" prefHeight="439.0" prefWidth="856.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                             <columns>
-                                                <TableColumn fx:id="PIDColumn" prefWidth="24.000014781951904" text="PID" />
-                                                <TableColumn fx:id="EmriColumn" prefWidth="40.66665458679199" text="Emri" />
-                                                <TableColumn fx:id="MbiemriColumn" prefWidth="54.000038146972656" text="Mbiemri" />
-                                                <TableColumn fx:id="GjiniaColumn" prefWidth="43.33331298828125" text="Gjinia" />
-                                                <TableColumn fx:id="MoshaColumn" prefWidth="51.333251953125" text="Mosha" />
-                                                <TableColumn fx:id="DitelindjaColumn" prefWidth="62.00001525878906" text="Ditelindja" />
-                                                <TableColumn fx:id="NRTelColumn" prefWidth="48.0" text="NR.Tel" />
-                                                <TableColumn fx:id="AdresaColumn" prefWidth="49.33331298828125" text="Adresa" />
-                                                <TableColumn fx:id="DataShColumn" prefWidth="93.33331298828125" text="Data e shtrirjes" />
-                                                <TableColumn fx:id="DatalColumn" prefWidth="80.00003051757812" text="Data e lirimit" />
-                                                <TableColumn fx:id="DiagnozaColumn" prefWidth="64.6666259765625" text="Diagnoza" />
-                                                <TableColumn fx:id="TretmaniColumn" prefWidth="39.33331298828125" text="Tretmani" />
-                                                <TableColumn fx:id="PershkrimiColumn" prefWidth="46.0" text="Pershkrimi" />
-                                                <TableColumn fx:id="PagesaColumn" prefWidth="58.0" text="Pagesa" />
+                                                <TableColumn fx:id="PIDColumn" prefWidth="30.000077724456787" text="PID" />
+                                                <TableColumn fx:id="EmriColumn" prefWidth="36.666622161865234" text="Name" />
+                                                <TableColumn fx:id="MbiemriColumn" prefWidth="54.000038146972656" text="Last Name" />
+                                                <TableColumn fx:id="GjiniaColumn" prefWidth="43.33331298828125" text="Gender" />
+                                                <TableColumn fx:id="MoshaColumn" prefWidth="51.333251953125" text="Age" />
+                                                <TableColumn fx:id="DitelindjaColumn" prefWidth="62.00001525878906" text="Birthday" />
+                                                <TableColumn fx:id="NRTelColumn" prefWidth="48.0" text="Tel Number" />
+                                                <TableColumn fx:id="AdresaColumn" prefWidth="49.33331298828125" text="Address" />
+                                                <TableColumn fx:id="DataShColumn" prefWidth="93.33331298828125" text="Charge Day" />
+                                                <TableColumn fx:id="DatalColumn" prefWidth="80.00003051757812" text="Discharge Day" />
+                                                <TableColumn fx:id="DiagnozaColumn" prefWidth="64.6666259765625" text="Diagnose" />
+                                                <TableColumn fx:id="TretmaniColumn" prefWidth="39.33331298828125" text="Tretmant" />
+                                                <TableColumn fx:id="PershkrimiColumn" prefWidth="46.0" text="Description" />
+                                                <TableColumn fx:id="PagesaColumn" prefWidth="58.0" text="Payment" />
                                                 <TableColumn fx:id="EditColumn" prefWidth="94.666748046875" text="Edit" />
 
                                             </columns>

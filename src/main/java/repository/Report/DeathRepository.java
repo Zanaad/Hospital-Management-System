@@ -12,21 +12,20 @@ public class DeathRepository extends ReportRepository {
     public static boolean createDeath(createDeathsDto deathData) {
         Connection conn = DatabaseUtil.getConnection();
         String query = """
-                INSERT INTO deaths(deathID,
+                INSERT INTO deaths(
                                          death_description,
                                          death_patient,
                                          death_date,
                                          death_time)
-                value(?,?,?,?,?)
+                value(?,?,?,?)
                 """;
 
         try {
             PreparedStatement pst = conn.prepareStatement(query);
-            pst.setString(1,deathData.getId());
-            pst.setString(2,deathData.getDescription());
-            pst.setString(3,deathData.getPatient());
-            pst.setDate(4,deathData.getDate());
-            pst.setString(5, deathData.getTime());
+            pst.setString(1,deathData.getDescription());
+            pst.setString(2,deathData.getPatient());
+            pst.setDate(3,deathData.getDate());
+            pst.setString(4, deathData.getTime());
 
 
             pst.execute();

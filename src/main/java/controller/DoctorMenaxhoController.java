@@ -25,6 +25,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class DoctorMenaxhoController implements Initializable {
@@ -82,6 +83,44 @@ public class DoctorMenaxhoController implements Initializable {
     @FXML
     private TextField txtSearch;
 
+    @FXML
+    private Button AppBtn;
+
+    @FXML
+    private Label DashsboardLbl;
+
+
+
+    @FXML
+    private Label DoctorLbl;
+
+    @FXML
+    private Button EditBtn;
+
+
+    @FXML
+    private Label HospitalLbl;
+
+    @FXML
+    private Button ManageBtn;
+
+    @FXML
+    private Label ManageLbl;
+
+
+    @FXML
+    private Label FeaturesLbl;
+
+    @FXML
+    private Button RegisterBtn;
+
+    @FXML
+    private Label SettingsLbl;
+
+
+    @FXML
+    private Label Welcomelbl;
+
 
 
 
@@ -98,11 +137,6 @@ public class DoctorMenaxhoController implements Initializable {
 
     }
 
-    @FXML
-    void handleLab(MouseEvent event) {
-
-    }
-
 
 
     @FXML
@@ -115,6 +149,49 @@ public class DoctorMenaxhoController implements Initializable {
     void handleRegjistro(MouseEvent event) {
 
         Navigator.navigate(event, Navigator.Doctor_Shto);
+
+    }
+
+    @FXML
+    public void handleLanguage() {
+        Locale defaultLocale = Locale.getDefault();
+        if (defaultLocale.getLanguage().equals("en")) {
+            Locale.setDefault(new Locale("sq"));
+        } else {
+            Locale.setDefault(Locale.ENGLISH);
+        }
+        this.translate();
+
+    }
+
+    public void  translate(){
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
+        this.AdresaColumn.setText(rb.getString("Address"));
+        this.EmriColumn.setText(rb.getString("Name"));
+        this.MbiemriColumn.setText(rb.getString("Last Name"));
+        this.MoshaColumn.setText(rb.getString("Age"));
+        this.GjiniaColumn.setText(rb.getString("Gender"));
+        this.DitelindjaColumn.setText(rb.getString("Birthday"));
+        this.DatalColumn.setText(rb.getString("Discharge Day"));
+        this.DiagnozaColumn.setText(rb.getString("Diagnose"));
+        this.TretmaniColumn.setText(rb.getString("Tretmant"));
+        this.DataShColumn.setText(rb.getString("Charge Day"));
+        this.NRTelColumn.setText(rb.getString("Tel Number"));
+        this.PershkrimiColumn.setText(rb.getString("Description"));
+        this.PagesaColumn.setText(rb.getString("Payment"));
+        this.EditColumn.setText(rb.getString("Edit"));
+        this.EditBtn.setText(rb.getString("Edit Profile"));
+        this.ManageBtn.setText(rb.getString("Manage Pacient"));
+        this.RegisterBtn.setText(rb.getString("Register Pacient"));
+        this.AppBtn.setText(rb.getString("Appointments"));
+        this.Welcomelbl.setText(rb.getString("Welcome"));
+        this.DoctorLbl.setText(rb.getString("Doctor"));
+        this.FeaturesLbl.setText(rb.getString("Features"));
+        this.SettingsLbl.setText(rb.getString("Change Settings"));
+        this.ManageLbl.setText(rb.getString("Manage Pacient"));
+        this.DashsboardLbl.setText(rb.getString("Management Dashboard"));
+        this.HospitalLbl.setText(rb.getString("Hospital Management"));
 
     }
 
@@ -223,3 +300,4 @@ public class DoctorMenaxhoController implements Initializable {
 
 
 }
+

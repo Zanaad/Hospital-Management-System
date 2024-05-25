@@ -1,6 +1,7 @@
 package controller;
 
 import app.Navigator;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.dto.TakimetDto;
 import repository.Doc.Takimet;
@@ -8,12 +9,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class DoctorAppController implements Initializable {
@@ -40,9 +38,6 @@ public class DoctorAppController implements Initializable {
     private TableColumn<TakimetDto, Integer> MoshaColumn;
 
     @FXML
-    private Button btnShtotakim;
-
-    @FXML
     private TableView<TakimetDto> table;
 
     @FXML
@@ -66,7 +61,74 @@ public class DoctorAppController implements Initializable {
     @FXML
     private TextField txtMosha;
 
+
+
+
+    @FXML
+    private Label AddappLbl;
+
+    @FXML
+    private Label AddressLbl;
+
+    @FXML
+    private Label Agelbl;
+
+    @FXML
+    private Button AppointmentsBtn;
+
+
+    @FXML
+    private Label DateLbl;
+
+    @FXML
+    private Label DoctorLabel;
+
+    @FXML
+    private Button EditBtn;
+
+
+
+    @FXML
+    private Label Featureslabel;
+
+    @FXML
+    private Label GenderLbl;
+
+
+
+    @FXML
+    private Label Lastnamelbl;
+
+    @FXML
+    private Button ManageBtn;
+
+
+
+
+    @FXML
+    private Label NameLabel;
+
+    @FXML
+    private Button RegisterBtn;
+
+    @FXML
+    private Label applabel;
+
+    @FXML
+    private Button btnShtotakim;
+
+    @FXML
+    private Label hospitallabel;
+
+    @FXML
+    private Label settingsLabel;
+
+
+    @FXML
+    private Label welcomeLabel;
+
     ObservableList<TakimetDto> listM;
+
 
     @FXML
     void handleShtotakim(ActionEvent event) {
@@ -109,4 +171,54 @@ public class DoctorAppController implements Initializable {
     void handleRegjistro(MouseEvent event) {
         Navigator.navigate(event, Navigator.Doctor_Shto);
     }
+
+
+    //perkthimi
+    @FXML
+    public void handleLanguage() {
+        Locale defaultLocale = Locale.getDefault();
+        if (defaultLocale.getLanguage().equals("en")) {
+            Locale.setDefault(new Locale("sq"));
+        } else {
+            Locale.setDefault(Locale.ENGLISH);
+        }
+        this.translate();
+
+    }
+
+    public void  translate(){
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
+        this.welcomeLabel.setText(rb.getString("Welcome"));
+        this.DataColumn.setText(rb.getString("Date"));
+        this.IDColumn.setText(rb.getString("Appointment ID"));
+        this.AdresaColumn.setText(rb.getString("Address"));
+        this.EmriColumn.setText(rb.getString("Name"));
+        this.MbiemriColumn.setText(rb.getString("Last Name"));
+        this.MoshaColumn.setText(rb.getString("Age"));
+        this.GjiniaColumn.setText(rb.getString("Gender"));
+        this.hospitallabel.setText(rb.getString("Hospital Management"));
+        this.applabel.setText(rb.getString("Appointments"));
+        this.DoctorLabel.setText(rb.getString("Doctor"));
+        this.Featureslabel.setText(rb.getString("Features"));
+        this.settingsLabel.setText(rb.getString("Change Settings"));
+        this.AddappLbl.setText(rb.getString("Add Appointment"));
+        this.NameLabel.setText(rb.getString("First Name"));
+        this.Lastnamelbl.setText(rb.getString("Last Name"));
+        this.Agelbl.setText(rb.getString("Age"));
+        this.GenderLbl.setText(rb.getString("Gender"));
+        this.AddressLbl.setText(rb.getString("Address"));
+        this.DateLbl.setText(rb.getString("Date"));
+        this.btnShtotakim.setText(rb.getString("Add Appointment"));
+        this.EditBtn.setText(rb.getString("Edit Profile"));
+        this.ManageBtn.setText(rb.getString("Manage Pacient"));
+        this.RegisterBtn.setText(rb.getString("Register Pacient"));
+        this.AppointmentsBtn.setText(rb.getString("Appointments"));
+
+    }
+
+
+
+
+
 }

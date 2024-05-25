@@ -9,12 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.DoctorDto;
+import model.dto.StaffDto.StaffDto;
 import model.filter.DoctorFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.DoctorRepository;
 import service.Staff.DepartmentService;
 import service.Staff.DoctorService;
-import service.Table;
+import service.TableService;
 
 import java.net.URL;
 import java.sql.Date;
@@ -102,6 +103,8 @@ public class AddDoctorController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> doctors_col_specialty;
+    @FXML
+    private TableColumn<StaffDto, Void> doctors_col_action;
 
     @FXML
     private AnchorPane doctors_form;
@@ -161,7 +164,7 @@ public class AddDoctorController implements Initializable {
     }
 
     public void doctorDisplayData() {
-        Table.doctorDisplayData(doctors_col_ID, doctors_col_name, doctors_col_surname, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_specialty, doctors_col_address);
+        TableService.doctorDisplayData(doctors_table, doctors_col_ID, doctors_col_name, doctors_col_surname, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_specialty, doctors_col_address, doctors_col_action);
         doctors_table.setItems(getDoctors());
     }
 

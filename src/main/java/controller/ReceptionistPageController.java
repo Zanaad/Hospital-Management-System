@@ -346,7 +346,6 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     public void registerPatient(ActionEvent event) {
-
         Date birthdate = Date.valueOf(this.patBirthdate.getValue());
         Date date = Date.valueOf(this.patDate.getValue());
 

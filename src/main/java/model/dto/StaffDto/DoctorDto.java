@@ -9,7 +9,12 @@ public class DoctorDto extends StaffDto {
         super(id, firstName, lastName, birthdate, phone, email, password, address, department, university, startDate, endDate, bankName, bankAccount, routingNumber);
         this.specialty = specialty;
     }
+
     public String getSpecialty() {
         return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
     }
 }

@@ -15,11 +15,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.dto.StaffDto.ReceptionistDto;
+import model.dto.StaffDto.StaffDto;
 import model.filter.ReceptionistFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.ReceptionistRepository;
 import service.Staff.ReceptionistService;
-import service.Table;
+import service.TableService;
 
 import java.net.URL;
 import java.sql.Date;
@@ -109,7 +110,7 @@ public class AddRecController implements Initializable {
     private TableColumn<?, ?> rec_col_uni;
 
     @FXML
-    private TableColumn<?, ?> receptionist_col_action;
+    private TableColumn<StaffDto, Void> receptionist_col_action;
 
     @FXML
     private AnchorPane receptionist_form;
@@ -150,7 +151,7 @@ public class AddRecController implements Initializable {
     }
 
     public void recDisplayData() {
-        Table.staffDisplayData(rec_col_ID, rec_col_name, rec_col_surname, rec_col_department, rec_col_phone, rec_col_email, rec_col_uni, rec_col_address);
+        TableService.staffDisplayData(receptionist_table, rec_col_ID, rec_col_name, rec_col_surname, rec_col_department, rec_col_phone, rec_col_email, rec_col_uni, rec_col_address, receptionist_col_action);
         receptionist_table.setItems(getReceptionists());
     }
 

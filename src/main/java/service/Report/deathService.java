@@ -7,9 +7,7 @@ import repository.Report.DeathRepository;
 public class deathService {
     public static boolean createDeath(DeathsDto deathData) {
 
-
         createDeathsDto createDeathDto = new createDeathsDto(
-                deathData.getID(),
                 deathData.getDescription(),
                 deathData.getPatient(),
                 deathData.getDate(),

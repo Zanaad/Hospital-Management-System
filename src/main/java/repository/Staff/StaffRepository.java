@@ -4,6 +4,9 @@ import database.DatabaseUtil;
 import model.User;
 import model.dto.StaffDto.CreateStaffDto;
 import model.dto.StaffDto.CreateDoctorDto;
+import model.dto.StaffDto.DoctorDto;
+import model.dto.StaffDto.StaffDto;
+import service.CountStaffService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -108,19 +111,53 @@ public class StaffRepository {
     }
 
     public static List<String> getStaffNames(String query) {
-        List<String> nurses = new ArrayList<>();
+        List<String> staff = new ArrayList<>();
         try {
             Connection connection = DatabaseUtil.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                nurses.add(resultSet.getString("firstName"));
+                staff.add(resultSet.getString("firstName"));
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return nurses;
+        return staff;
     }
+
+    public static boolean deleteStaff(String query, String id) {
+        try {
+            Connection conn = DatabaseUtil.getConnection();
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setString(1, id);
+            int rowsAffected = pst.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean updateStaff(StaffDto staff, String query) {
+        try {
+            Connection connection = DatabaseUtil.getConnection();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, staff.getFirstName());
+            statement.setString(2, staff.getLastName());
+            statement.setString(3, staff.getDepartment());
+            statement.setString(4, staff.getPhone());
+            statement.setString(5, staff.getEmail());
+            statement.setString(6, staff.getUniversity());
+            statement.setString(7, staff.getAddress());
+            statement.setString(8, staff.getRoutingNumber()); //me ndreq qitu
+            statement.setString(9, staff.getId());
+            int rowsUpdated = statement.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

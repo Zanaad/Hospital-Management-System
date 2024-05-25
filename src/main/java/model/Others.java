@@ -3,13 +3,13 @@ package model;
 import java.sql.Date;
 
 public class Others {
-    private String otherID;
+    private int otherID;
     private String description;
     private String patient;
     private Date date;
     private String time;
 
-    public Others(String otherID, String description, String patient, Date date, String time) {
+    public Others(int otherID, String description, String patient, Date date, String time) {
         this.otherID = otherID;
         this.description = description;
         this.patient = patient;
@@ -17,7 +17,7 @@ public class Others {
         this.time = time;
     }
 
-    public String getOtherID() {
+    public int getOtherID() {
         return otherID;
     }
 
