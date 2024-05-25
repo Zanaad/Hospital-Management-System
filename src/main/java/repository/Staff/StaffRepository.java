@@ -1,12 +1,10 @@
 package repository.Staff;
 
 import database.DatabaseUtil;
+import model.User;
 import model.dto.StaffDto.CreateStaffDto;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class StaffRepository {
     public static boolean createStaff(CreateStaffDto staffData, String query) {
@@ -39,10 +37,38 @@ public class StaffRepository {
         }
     }
 
-    public static String generateID(String prefix, String tablename) {
+    public static User getStaffByEmail(String email, String tableName) {
+        String query = "select * from " + tableName + " where email=?";
+        Connection conn = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return getFromResultSet(rs);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static User getFromResultSet(ResultSet rs) {
+        try {
+            String email = rs.getString("email");
+            String salt = rs.getString("salt");
+            String hashPassword = rs.getString("hashPassword");
+            return new User(email, salt, hashPassword);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static String generateID(String prefix, String tableName) {
         try {
             Connection conn = DatabaseUtil.getConnection();
-            String query = "SELECT MAX(CAST(SUBSTRING(id, 5) AS UNSIGNED)) AS max_id FROM " + tablename;
+            String query = "SELECT MAX(CAST(SUBSTRING(id, 5) AS UNSIGNED)) AS max_id FROM " + tableName;
             Statement pst = conn.createStatement();
             ResultSet result = pst.executeQuery(query);
             int maxID = 0;

@@ -1,6 +1,7 @@
 package repository.Staff;
 
 import database.DatabaseUtil;
+import model.User;
 import model.dto.StaffDto.CreateReceptionistDto;
 import model.dto.StaffDto.ReceptionistDto;
 import model.filter.UserFilter;
@@ -19,6 +20,10 @@ public class ReceptionistRepository extends StaffRepository {
 
     public static boolean createReceptionist(CreateReceptionistDto receptionistData) {
         return createStaff(receptionistData, query);
+    }
+
+    public static User getRecByEmail(String email) {
+        return getStaffByEmail(email, "receptionists");
     }
 
     public static List<ReceptionistDto> getByFilter(UserFilter filter) {

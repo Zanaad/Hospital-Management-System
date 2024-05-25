@@ -1,6 +1,7 @@
 package repository.Staff;
 
 import database.DatabaseUtil;
+import model.User;
 import model.dto.StaffDto.CreateNurseDto;
 import model.dto.StaffDto.NurseDto;
 import model.filter.NurseFilter;
@@ -19,6 +20,10 @@ public class NurseRepository extends StaffRepository {
 
     public static boolean createNurse(CreateNurseDto nurseData) {
         return createStaff(nurseData, query);
+    }
+
+    public static User getNurseByEmail(String email) {
+        return getStaffByEmail(email, "nurses");
     }
 
     public static List<NurseDto> getByFilter(NurseFilter filter) {
