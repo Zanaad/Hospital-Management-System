@@ -19,6 +19,7 @@ import model.dto.StaffDto.StaffDto;
 import model.filter.NurseFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.NurseRepository;
+import service.Alerts;
 import service.Staff.DepartmentService;
 import service.Staff.NurseService;
 import service.TableService;
@@ -119,22 +120,40 @@ public class AddNurseController implements Initializable {
     private TableView<NurseDto> nurses_table;
 
     @FXML
-    private Button register_nurse_btn;
-
-    @FXML
     private AnchorPane register_nurse_form;
 
     @FXML
     void registerNurse(ActionEvent event) {
-        Date birthdate = Date.valueOf(this.nurseBirthdate.getValue());
-        Date startDate = Date.valueOf(this.nurseStart.getValue());
-        Date endDate = Date.valueOf(this.nurseEnd.getValue());
+        Date birthdate = null;
+        Date startDate = null;
+        Date endDate = null;
 
+        if (this.nurseBirthdate.getValue() != null) {
+            birthdate = Date.valueOf(this.nurseBirthdate.getValue());
+        }
+        if (this.nurseStart.getValue() != null) {
+            startDate = Date.valueOf(this.nurseStart.getValue());
+        }
+
+        if (this.nurseEnd.getValue() != null) {
+            endDate = Date.valueOf(this.nurseEnd.getValue());
+        }
+        if (NurseService.isEmailInUse(this.nurseEmail.getText())) {
+            Alerts.errorMessage("Email is already in use. Please use a different email.");
+            return;
+        }
+        if (this.nurseEmail.getText().isEmpty()) {
+            Alerts.errorMessage("Please enter a valid email address.");
+            return;
+        }
         NurseDto staff = new NurseDto(this.nurseID.getText(), this.nurseFirstName.getText(), this.nurseLastName.getText(), birthdate, this.nursePhone.getText(), this.nurseEmail.getText(), this.nursePassword.getText(), this.nurseAddress.getText(), (String) this.nurseDep.getValue(), this.nurseUni.getText(), startDate, endDate, this.nurseBank.getText(), this.nurseAccount.getText(), this.nurseRoutingNr.getText());
         boolean staffCreated = NurseService.createNurse(staff);
         if (staffCreated) {
+            Alerts.successMessage("Nurse registered successfully!");
             DepartmentService.updateDepTable(this.nurseDep.getValue());
             Navigator.navigate(event, Navigator.AdminMainForm);
+        } else {
+            Alerts.errorMessage("Something went wrong! Please try again.");
         }
     }
 

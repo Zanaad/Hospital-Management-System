@@ -19,6 +19,8 @@ import model.dto.StaffDto.StaffDto;
 import model.filter.ReceptionistFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.ReceptionistRepository;
+import service.Alerts;
+import service.Staff.NurseService;
 import service.Staff.ReceptionistService;
 import service.TableService;
 
@@ -28,7 +30,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AddRecController implements Initializable {
-
 
     @FXML
     private Button add_receptionist_btn;
@@ -126,14 +127,35 @@ public class AddRecController implements Initializable {
 
     @FXML
     void registerReceptionist(ActionEvent event) {
-        Date birthdate = Date.valueOf(this.recBirthdate.getValue());
-        Date startDate = Date.valueOf(this.recStart.getValue());
-        Date endDate = Date.valueOf(this.recEnd.getValue());
+        Date birthdate = null;
+        Date startDate = null;
+        Date endDate = null;
 
+        if (this.recBirthdate.getValue() != null) {
+            birthdate = Date.valueOf(this.recBirthdate.getValue());
+        }
+        if (this.recStart.getValue() != null) {
+            startDate = Date.valueOf(this.recStart.getValue());
+        }
+
+        if (this.recEnd.getValue() != null) {
+            endDate = Date.valueOf(this.recEnd.getValue());
+        }
+        if (ReceptionistService.isEmailInUse(this.recEmail.getText())) {
+            Alerts.errorMessage("Email is already in use. Please use a different email.");
+            return;
+        }
+        if (this.recEmail.getText().isEmpty()) {
+            Alerts.errorMessage("Please enter a valid email address.");
+            return;
+        }
         ReceptionistDto staff = new ReceptionistDto(this.recID.getText(), this.recFirstName.getText(), this.recLastName.getText(), birthdate, this.recPhone.getText(), this.recEmail.getText(), this.recPassword.getText(), this.recAddress.getText(), (String) this.recDep.getValue(), this.recUni.getText(), startDate, endDate, this.recBank.getText(), this.recAccount.getText(), this.recRoutingNr.getText());
         boolean staffCreated = ReceptionistService.createReceptionist(staff);
         if (staffCreated) {
+            Alerts.successMessage("Receptionist registered successfully!");
             Navigator.navigate(event, Navigator.AdminMainForm);
+        } else {
+            Alerts.errorMessage("Something went wrong! Please try again.");
         }
 
     }

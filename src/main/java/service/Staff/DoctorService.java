@@ -51,4 +51,9 @@ public class DoctorService extends StaffService {
     public static String registerDoctorID() {
         return DoctorRepository.generateDoctorID();
     }
+
+    public static boolean isEmailInUse(String email) {
+        User user = DoctorRepository.getDoctorByEmail(email);
+        return user != null;
+    }
 }

@@ -54,8 +54,6 @@ public class DoctorMenaxhoController implements Initializable {
     private TableColumn<PacientDto, String> MbiemriColumn;
 
 
-
-
     @FXML
     private TableColumn<PacientDto, Integer> MoshaColumn;
 
@@ -75,7 +73,7 @@ public class DoctorMenaxhoController implements Initializable {
     private TableColumn<PacientDto, String> TretmaniColumn;
 
     @FXML
-    private TableColumn<PacientDto,String> EditColumn;
+    private TableColumn<PacientDto, String> EditColumn;
 
     @FXML
     private TableView<PacientDto> table1;
@@ -88,7 +86,6 @@ public class DoctorMenaxhoController implements Initializable {
 
     @FXML
     private Label DashsboardLbl;
-
 
 
     @FXML
@@ -122,12 +119,7 @@ public class DoctorMenaxhoController implements Initializable {
     private Label Welcomelbl;
 
 
-
-
     ObservableList<PacientDto> listF = FXCollections.observableArrayList();
-
-
-
 
 
     @FXML
@@ -136,7 +128,6 @@ public class DoctorMenaxhoController implements Initializable {
         Navigator.navigate(event, Navigator.Doctor_App);
 
     }
-
 
 
     @FXML
@@ -164,7 +155,7 @@ public class DoctorMenaxhoController implements Initializable {
 
     }
 
-    public void  translate(){
+    public void translate() {
         Locale locale = Locale.getDefault();
         ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
         this.AdresaColumn.setText(rb.getString("Address"));
@@ -194,9 +185,6 @@ public class DoctorMenaxhoController implements Initializable {
         this.HospitalLbl.setText(rb.getString("Hospital Management"));
 
     }
-
-
-
 
 
     public void refreshTable() {
@@ -232,10 +220,7 @@ public class DoctorMenaxhoController implements Initializable {
                 }
 
                 String searchKeyword = newValue.toLowerCase();
-                return pacient.getEmri().toLowerCase().contains(searchKeyword) ||
-                        pacient.getMbiemri().toLowerCase().contains(searchKeyword) ||
-                        pacient.getAdresa().toLowerCase().contains(searchKeyword) ||
-                        pacient.getDiagnoza().toLowerCase().contains(searchKeyword);
+                return pacient.getEmri().toLowerCase().contains(searchKeyword) || pacient.getMbiemri().toLowerCase().contains(searchKeyword) || pacient.getAdresa().toLowerCase().contains(searchKeyword) || pacient.getDiagnoza().toLowerCase().contains(searchKeyword);
             });
 
             SortedList<PacientDto> sortedData = new SortedList<>(filteredData);
@@ -294,9 +279,6 @@ public class DoctorMenaxhoController implements Initializable {
             }
         });
     }
-
-
-
 
 
 }
