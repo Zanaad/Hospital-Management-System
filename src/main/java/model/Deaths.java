@@ -3,13 +3,13 @@ package model;
 import java.sql.Date;
 
 public class Deaths {
-    private String deathID;
+    private int deathID;
     private String description;
     private String patient;
     private Date date;
     private String time;
 
-    public Deaths(String deathID, String description, String patient, Date date, String time) {
+    public Deaths(int deathID, String description, String patient, Date date, String time) {
         this.deathID = deathID;
         this.description = description;
         this.patient = patient;
@@ -17,7 +17,7 @@ public class Deaths {
         this.time = time;
     }
 
-    public String getDeathID() {
+    public int getDeathID() {
         return deathID;
     }
 

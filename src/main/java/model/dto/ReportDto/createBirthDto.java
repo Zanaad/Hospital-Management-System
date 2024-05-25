@@ -6,8 +6,8 @@ public class createBirthDto extends createReportDto {
 
     private String newBorn;
 
-    public createBirthDto(String id, String description, String patient, String newBorn, Date date, String time) {
-        super(id, description, patient, date, time);
+    public createBirthDto(String description, String patient, String newBorn, Date date, String time) {
+        super(description, patient, date, time);
         this.newBorn = newBorn;
     }
 

@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import model.*;
 import model.dto.RecDto.PatientDto;
 import model.dto.ReportDto.*;
+import service.CountNurseService;
+import service.CountStaffService;
 import service.Rec.PatientService;
 import service.Report.*;
 
@@ -529,12 +531,12 @@ public class NursePageController implements Initializable {
     void registerOperation(ActionEvent event) {
         Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
 
-        OperationDto operation = new OperationDto (this.txtOperationID.getText(), this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
+        OperationDto operation = new OperationDto (this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
         boolean operationCreated = operationService.createOperation(operation);
         if (operationCreated)
         {
             // Navigate to report_form
-            Navigator.navigateToForm(event, Navigator.NursePage, "report_form");
+            Navigator.navigate(event, Navigator.NursePage);
         }
     }
 
@@ -543,13 +545,13 @@ public class NursePageController implements Initializable {
     void registerBirth(ActionEvent event) {
         Date birthDate = Date.valueOf(this.txtBirthDate.getValue());
 
-        BirthsDto birth = new BirthsDto (this.txtBirthID.getText(), this.txtBirthDescription.getText(), this.txtBirthPatient.getText(),this.txtBirthNewBorn.getText(), birthDate, this.txtBirthTime.getText());
+        BirthsDto birth = new BirthsDto (this.txtBirthDescription.getText(),this.txtBirthPatient.getText(),this.txtBirthNewBorn.getText(), birthDate, this.txtBirthTime.getText());
         boolean birthCreated = birthService.createBirth(birth);
         if (birthCreated)
-            {
-                // Navigate to bloodBank_form
-                Navigator.navigateToForm(event, Navigator.NursePage, "report_form");
-            }
+        {
+            // Navigate to report_form
+            Navigator.navigate(event, Navigator.NursePage);
+        }
     }
 
 
@@ -557,10 +559,10 @@ public class NursePageController implements Initializable {
     void registerDeath(ActionEvent event) {
         Date deathDate = Date.valueOf(this.txtDeathDate.getValue());
 
-        DeathsDto deaths = new DeathsDto(this.txtDeathID.getText(), this.txtDeathDescription.getText(), this.txtDeathPatient.getText(), deathDate, this.txtDeathTime.getText());
+        DeathsDto deaths = new DeathsDto(this.txtDeathDescription.getText(), this.txtDeathPatient.getText(), deathDate, this.txtDeathTime.getText());
         boolean deathCreated = deathService.createDeath(deaths);
         if (deathCreated) {
-            Navigator.navigateToForm(event,Navigator.NursePage,"report_form");
+            Navigator.navigate(event,Navigator.NursePage);
         }
     }
 
@@ -569,11 +571,11 @@ public class NursePageController implements Initializable {
     void registerOther(ActionEvent event) {
         Date otherdate = Date.valueOf(this.txtOtherDate.getValue());
 
-        OthersDto others = new OthersDto(this.txtOtherID.getText(), this.txtOtherDescription.getText(), this.txtOtherPatient.getText(), otherdate, this.txtOtherTime.getText());
+        OthersDto others = new OthersDto(this.txtOtherDescription.getText(), this.txtOtherPatient.getText(), otherdate, this.txtOtherTime.getText());
         boolean otherCreated = otherService.createOther(others);
         {
             // Navigate to report_form
-            Navigator.navigateToForm(event, Navigator.NursePage, "report_form");
+            Navigator.navigate(event, Navigator.NursePage);
         }
     }
 
@@ -587,7 +589,7 @@ public class NursePageController implements Initializable {
         boolean patientCreated = PatientService.createPatient(patient);
         if (patientCreated) {
             // Navigate to patients_form
-            Navigator.navigateToForm(event, Navigator.NursePage, "patients_form");
+            Navigator.navigate(event, Navigator.NursePage);
         }
 
     }
@@ -604,7 +606,7 @@ public class NursePageController implements Initializable {
         if (donorCreated)
         {
             // Navigate to bloodBank_form
-            Navigator.navigateToForm(event, Navigator.NursePage, "bloodBank_form");
+            Navigator.navigate(event, Navigator.NursePage);
         }
     }
 
@@ -626,7 +628,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 Operation operationData = new Operation(
-                        result.getString("operationID"),
+                        result.getInt("operationID"),
                         result.getString("opDescription"),
                         result.getString("opPatient"),
                         result.getString("opDoctor"),
@@ -665,7 +667,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 Births birthData = new Births(
-                        result.getString("birthID"),
+                        result.getInt("birthID"),
                         result.getString("birth_description"),
                         result.getString("birth_patient"),
                         result.getString("birth_newborn"),
@@ -701,7 +703,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 Deaths deathData = new Deaths(
-                        result.getString("deathID"),
+                        result.getInt("deathID"),
                         result.getString("death_description"),
                         result.getString("death_patient"),
                         result.getDate("death_date"),
@@ -738,7 +740,7 @@ public class NursePageController implements Initializable {
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 Others otherData = new Others(
-                        result.getString("other_ID"),
+                        result.getInt("other_ID"),
                         result.getString("other_description"),
                         result.getString("other_patient"),
                         result.getDate("other_date"),
@@ -831,7 +833,10 @@ public class NursePageController implements Initializable {
         blood_table.setItems(getDonors());
     }
 
-
+    public void nurse_dashboard_numbersCount() {
+        CountStaffService.countStaff(dashboard_patients, CountStaffService.countPatients);
+        CountNurseService.count(dashboard_donors, CountNurseService.countDonors);
+    }
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -849,12 +854,15 @@ public class NursePageController implements Initializable {
         otherDisplayData();
         patientDisplayData();
         donorDisplayData();
+        this.nurse_dashboard_numbersCount();
+        //charts
+
 
 // Event Handler for navigating through TextFields with Enter--------------------------------------------------------------------------------------------------------------
 
 
 //Navigating with Enter through Operation TextFields
-        txtOperationID.setOnAction(event -> txtOperationDescription.requestFocus());
+
         txtOperationDescription.setOnAction(event -> txtOperationPatient.requestFocus());
         txtOperationPatient.setOnAction(event -> txtOperationDoctor.requestFocus());
         txtOperationDoctor.setOnAction(event -> txtOperationDate.requestFocus());
@@ -866,7 +874,7 @@ public class NursePageController implements Initializable {
         });
 
 //Navigating with Enter through Births TextFields
-        txtBirthID.setOnAction(event -> txtBirthDescription.requestFocus());
+
         txtBirthDescription.setOnAction(event -> txtBirthPatient.requestFocus());
         txtBirthPatient.setOnAction(event -> txtBirthNewBorn.requestFocus());
         txtBirthNewBorn.setOnAction(event -> txtBirthDate.requestFocus());
@@ -878,7 +886,7 @@ public class NursePageController implements Initializable {
         });
 
 //Navigating with Enter through Deaths TextFields
-        txtDeathID.setOnAction(event -> txtDeathDescription.requestFocus());
+
         txtDeathDescription.setOnAction(event -> txtDeathPatient.requestFocus());
         txtDeathPatient.setOnAction(event -> txtDeathDate.requestFocus());
         txtDeathDate.setOnAction(event -> txtDeathTime.requestFocus());
@@ -889,7 +897,7 @@ public class NursePageController implements Initializable {
         });
 
 //Navigating with Enter through Other TextFields
-        txtOtherID.setOnAction(event -> txtOtherDescription.requestFocus());
+
         txtOtherDescription.setOnAction(event -> txtOtherPatient.requestFocus());
         txtOtherPatient.setOnAction(event -> txtOtherDate.requestFocus());
         txtOtherDate.setOnAction(event -> txtOtherTime.requestFocus());
