@@ -550,6 +550,11 @@ public class ReceptionistPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        dashboard_form.setVisible(true);
+        patients_form.setVisible(false);
+        account_form.setVisible(false);
+        register_patient_form.setVisible(false);
+        appointments_form.setVisible(false);
         patientDisplayData();
         appointmentDisplayData();
         this.staff_count();
