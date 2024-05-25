@@ -22,8 +22,6 @@ public class Navigator {
     public final static String Doctor_Shto = "DoctorRegjistro.fxml";
     public final static String Doctor_Menaxho = "DoctorMenaxho.fxml";
     public final static String Doctor_Profili = "DoctorProfili.fxml";
-    public static String AdminPage;
-
 
     public static void navigate(Event event, String form) {
         Node eventNode = (Node) event.getSource();

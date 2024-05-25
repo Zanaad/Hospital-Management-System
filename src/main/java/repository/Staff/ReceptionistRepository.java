@@ -21,13 +21,11 @@ public class ReceptionistRepository extends StaffRepository {
     public static boolean createReceptionist(CreateReceptionistDto receptionistData) {
         return createStaff(receptionistData, query);
     }
-    public static User getRecByEmail(String email) {
-        return getStaffByEmail(email, "receptionists");
-    }
 
     public static User getRecByEmail(String email) {
         return getStaffByEmail(email, "receptionists");
     }
+
 
     public static List<ReceptionistDto> getByFilter(UserFilter filter) {
         String filterQuery = "SELECT * FROM receptionists WHERE 1=1" + filter.buildQuery();
