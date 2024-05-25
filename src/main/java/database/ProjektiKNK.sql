@@ -206,3 +206,41 @@ FROM patients
 GROUP BY DATE (patient_date)
 ORDER BY DATE (patient_date) ASC;
 
+
+//table doktors
+
+create table pacienti(
+PID integer,
+emri nvarchar(25),
+mbiemri nvarchar(25),
+gjinia nvarchar(25),
+mosha integer,
+ditelindja nvarchar(30),
+nrtel integer,
+adresa nvarchar(24),
+dataeshtrirjes nvarchar(20),
+dataelirimit nvarchar(20),
+diagnoza  nvarchar(25),
+tretmani nvarchar(25),
+pershkrimi nvarchar(20),
+pagesa integer
+);
+
+create table doktori(
+ID integer,
+emri nvarchar(25),
+mbiemri nvarchar(25),
+adresa nvarchar(25),
+nrtel integer,
+specializimi nvarchar(24)
+);
+
+create table takimet(
+ID integer,
+emri nvarchar(25),
+mbiemri nvarchar(25),
+gjinia nvarchar(25),
+mosha integer,
+adresa nvarchar(24),
+datae nvarchar(20)
+);
