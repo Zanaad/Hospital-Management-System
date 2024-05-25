@@ -76,7 +76,7 @@
             </left>
             <center>
                 <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="897.0">
+                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="897.0" visible="false">
                         <children>
                             <AnchorPane layoutX="96.0" layoutY="80.0" prefHeight="173.0" prefWidth="263.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
@@ -194,7 +194,7 @@
                         </children>
 
                     </AnchorPane>
-               <AnchorPane fx:id="account_form" layoutX="10.0" layoutY="10.0" prefHeight="560.0" prefWidth="886.0" visible="false">
+               <AnchorPane fx:id="account_form" layoutX="10.0" layoutY="10.0" prefHeight="560.0" prefWidth="886.0">
                   <children>
                      <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="527.0" prefWidth="274.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0">
                         <children>

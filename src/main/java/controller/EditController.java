@@ -3,6 +3,7 @@ package controller;
 import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -18,6 +19,9 @@ import repository.Staff.DoctorRepository;
 import repository.Staff.NurseRepository;
 import repository.Staff.ReceptionistRepository;
 import service.Alerts;
+import javafx.stage.Stage;
+
+import java.sql.Date;
 
 public class EditController {
 
@@ -92,10 +96,16 @@ public class EditController {
         firstName.setText(staff.getFirstName());
         lastName.setText(staff.getLastName());
         department.setValue(staff.getDepartment());
+        birthdate.setValue(staff.getBirthdate().toLocalDate());
         phone.setText(staff.getPhone());
         email.setText(staff.getEmail());
         university.setText(staff.getUniversity());
         address.setText(staff.getAddress());
+        contractStart.setValue(staff.getStartDate().toLocalDate());
+        contractEnd.setValue(staff.getEndDate().toLocalDate());
+        bank.setText(staff.getBankName());
+        account.setText(staff.getBankAccount());
+        routingNr.setText(staff.getRoutingNumber());
         if (staff instanceof DoctorDto) {
             specialty.setText(((DoctorDto) staff).getSpecialty());
             specialty.setVisible(true);
@@ -108,14 +118,23 @@ public class EditController {
     private void handleUpdate(ActionEvent event) {
         staff.setFirstName(firstName.getText());
         staff.setLastName(lastName.getText());
-        staff.setDepartment((String) department.getValue());
+        staff.setDepartment(department.getValue());
+        staff.setBirthdate(Date.valueOf(birthdate.getValue()));
         staff.setPhone(phone.getText());
         staff.setEmail(email.getText());
         staff.setUniversity(university.getText());
         staff.setAddress(address.getText());
+        staff.setDepartment(department.getValue());
+        staff.setUniversity(university.getText());
+        staff.setStartDate(Date.valueOf(contractStart.getValue()));
+        staff.setEndDate(Date.valueOf(contractEnd.getValue()));
+        staff.setBankName(bank.getText());
+        staff.setBankAccount(account.getText());
+        staff.setRoutingNumber(routingNr.getText());
         if (staff instanceof DoctorDto) {
             ((DoctorDto) staff).setSpecialty(specialty.getText());
         }
+
 
         boolean success = false;
         if (staff instanceof DoctorDto) {
@@ -125,7 +144,6 @@ public class EditController {
         } else if (staff instanceof ReceptionistDto) {
             success = ReceptionistRepository.updateRec((ReceptionistDto) staff);
         }
-
         if (success) {
             Alerts.successMessage("Update successful");
             Navigator.navigate(event, Navigator.AdminMainForm);
@@ -136,12 +154,18 @@ public class EditController {
 
     @FXML
     void handleCancel(ActionEvent event) {
+        closeEditForm(event);
         Navigator.navigate(event, Navigator.AdminMainForm);
     }
 
     @FXML
     void handleClear(ActionEvent event) {
 
+    }
+
+    private void closeEditForm(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
 }
