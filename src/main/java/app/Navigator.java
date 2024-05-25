@@ -18,8 +18,10 @@ public class Navigator {
     public final static String ReceptionistPage = "ReceptionistPage.fxml";
     public final static String NursePage = "NursePage.fxml";
     public final static String LoginPage = "Login.fxml";
-    public static String AdminPage;
-
+    public final static String Doctor_App = "DoctorApp.fxml";
+    public final static String Doctor_Shto = "DoctorRegjistro.fxml";
+    public final static String Doctor_Menaxho = "DoctorMenaxho.fxml";
+    public final static String Doctor_Profili = "DoctorProfili.fxml";
 
     public static void navigate(Event event, String form) {
         Node eventNode = (Node) event.getSource();

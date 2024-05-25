@@ -17,7 +17,6 @@ public class ChangePwdService {
             Alerts.errorMessage("Credentials are not correct");
             return false;
         }
-
         return ChangePwdRepository.changePwd(user, salt);
     }
 }

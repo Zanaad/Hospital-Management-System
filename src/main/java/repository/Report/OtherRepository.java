@@ -12,7 +12,7 @@ public class OtherRepository extends ReportRepository {
     public static boolean createOther(createOthersDto otherData) {
         Connection conn = DatabaseUtil.getConnection();
         String query = """
-                INSERT INTO deaths(otherID,
+                INSERT INTO others(other_ID,
                                          other_description,
                                          other_patient,
                                          other_date,

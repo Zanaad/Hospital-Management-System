@@ -18,4 +18,23 @@ public class DepartmentService {
         CreateDepartmentDto createDepartmentDto = new CreateDepartmentDto(depData.getId(), depData.getDepartmentName(), depData.getDepartmentDescription(), nrDoctors, nrNurses);
         return DepartmentRepository.createDepartment(createDepartmentDto);
     }
+
+    public static void updateDepTable(String depName) {
+        String countDocs = "select count(id) from doctors where department=?";
+        String countNurses = "select count(id) from nurses where department=?";
+        int nrDoctors = CountStaffService.getCount(countDocs, depName);
+        int nrNurses = CountStaffService.getCount(countNurses, depName);
+
+        String query = "UPDATE departments SET nrDoctors=?, nrNurses=? WHERE department_name=?";
+        try {
+            Connection con = DatabaseUtil.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, nrDoctors);
+            ps.setInt(2, nrNurses);
+            ps.setString(3, depName);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

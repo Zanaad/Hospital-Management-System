@@ -123,7 +123,7 @@ create table appointments
 );
 
 create table operations (
-    operationID              int primary key auto_increment,
+    operationID              nvarchar(100) primary key not null,
     opDescription            nvarchar(100),
     opPatient                nvarchar(100),
     opDoctor                 nvarchar(100),
@@ -132,7 +132,7 @@ create table operations (
 );
 
 create table births (
-    birthID                 int primary key auto_increment,
+    birthID                 nvarchar(100) primary key not null,
     birth_description       nvarchar(100),
     birth_patient           nvarchar(100),
     birth_newborn           nvarchar(100),
@@ -141,7 +141,7 @@ create table births (
 );
 
 create table deaths (
-    deathID                 int primary key auto_increment,
+    deathID                 nvarchar(100) primary key not null,
     death_description       nvarchar(100),
     death_patient           nvarchar(100),
     death_date              date,
@@ -149,7 +149,7 @@ create table deaths (
 );
 
 create table others (
-    other_ID                int primary key auto_increment,
+    other_ID                nvarchar(100) primary key not null,
     other_description       nvarchar(100),
     other_patient           nvarchar(100),
     other_date              date,
@@ -180,8 +180,9 @@ select *
 from births;
 select *
 from deaths;
-select *
+select * 
 from others;
 select *
 from donors;
+drop table others;
 drop database hospitalmanagementsystem;

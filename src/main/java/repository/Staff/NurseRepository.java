@@ -1,10 +1,10 @@
 package repository.Staff;
 
 import database.DatabaseUtil;
+import model.User;
 import model.dto.StaffDto.CreateNurseDto;
 import model.dto.StaffDto.NurseDto;
 import model.filter.NurseFilter;
-import model.filter.UserFilter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +21,9 @@ public class NurseRepository extends StaffRepository {
     public static boolean createNurse(CreateNurseDto nurseData) {
         return createStaff(nurseData, query);
     }
-
+    public static User getNurseByEmail(String email) {
+        return getStaffByEmail(email, "nurses");
+    }
     public static List<NurseDto> getByFilter(NurseFilter filter) {
         String filterQuery = "SELECT * FROM nurses WHERE 1=1" + filter.buildQuery();
         return fetchNurses(filterQuery);
@@ -47,5 +49,16 @@ public class NurseRepository extends StaffRepository {
             e.printStackTrace();
         }
         return nurses;
+    }
+
+    public static String generateNurseID() {
+        String prefix = "NID-";
+        String tableName = "nurses";
+        return generateID(prefix, tableName);
+    }
+
+    public static String generateNursePassword(String firstName) {
+        String id = generateNurseID();
+        return generatePassword(id, firstName);
     }
 }

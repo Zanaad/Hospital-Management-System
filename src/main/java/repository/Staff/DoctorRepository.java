@@ -1,10 +1,10 @@
 package repository.Staff;
 
 import database.DatabaseUtil;
+import model.User;
 import model.dto.StaffDto.CreateDoctorDto;
 import model.dto.StaffDto.DoctorDto;
 import model.filter.DoctorFilter;
-import model.filter.UserFilter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +20,11 @@ public class DoctorRepository extends StaffRepository {
 
     public static boolean createDoctor(CreateDoctorDto doctorData) {
         return createStaff(doctorData, query);
+    }
+
+    public static User getDoctorByEmail(String email) {
+
+        return getStaffByEmail(email, "doctors");
     }
 
     public static List<DoctorDto> getByFilter(DoctorFilter filter) {
@@ -48,4 +53,18 @@ public class DoctorRepository extends StaffRepository {
         }
         return doctors;
     }
+
+    public static String generateDoctorID() {
+        String prefix = "DID-";
+        String tableName = "doctors";
+        return generateID(prefix, tableName);
+    }
+
+    public static String generateDocPassword(String firstName) {
+        String id = generateDoctorID();
+        System.out.println(generatePassword(firstName, id));
+        return generatePassword(id, firstName);
+    }
+
+
 }

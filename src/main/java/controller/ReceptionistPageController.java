@@ -17,6 +17,8 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
+import service.ChartService;
+import service.CountStaffService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
 
@@ -25,6 +27,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ReceptionistPageController implements Initializable {
@@ -47,12 +50,6 @@ public class ReceptionistPageController implements Initializable {
     private AnchorPane dashboard_form;
 
     @FXML
-    private BarChart<?, ?> dashboad_chart_AD;
-
-    @FXML
-    private AreaChart<?, ?> dashboad_chart_PD;
-
-    @FXML
     private AnchorPane patients_form;
 
     @FXML
@@ -63,6 +60,10 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> patients_col_name;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_lastname;
+
 
     @FXML
     private TableColumn<?, ?> patients_col_department;
@@ -227,8 +228,109 @@ public class ReceptionistPageController implements Initializable {
     @FXML
     private TableColumn<?, ?> app_col_hour;
 
+
     @FXML
     private Button addApp_btn;
+
+    @FXML
+    private Label ad;
+
+    @FXML
+    private Label pd;
+
+
+    @FXML
+    private Label appointments;
+
+
+    @FXML
+    private Label patients;
+
+
+    @FXML
+    private AnchorPane contentPane;
+    @FXML
+    private Label personalinformation;
+    @FXML
+    private Label firstname;
+
+    @FXML
+    private Label lastname;
+
+    @FXML
+    private Label birthdate;
+
+    @FXML
+    private Label phone;
+
+    @FXML
+    private Label email;
+
+    @FXML
+    private Label address;
+
+    @FXML
+    private Label patientapp;
+    @FXML
+    private Label department;
+
+    @FXML
+    private Label doctor;
+
+    @FXML
+    private Label nurse;
+
+    @FXML
+    private Label datee;
+
+    @FXML
+    private Label payment;
+
+    @FXML
+    private Label Projectitle;
+
+    @FXML
+    private Label appo;
+
+    @FXML
+    private Label fn;
+
+    @FXML
+    private Label ln;
+
+    @FXML
+    private Label ge;
+
+
+    @FXML
+    private Label de;
+
+    @FXML
+    private Label dep;
+
+    @FXML
+    private Label doc;
+    @FXML
+    private Label nur;
+    @FXML
+    private Label phnum;
+    @FXML
+    private Label aadd;
+    @FXML
+    private Label datte;
+    @FXML
+    private Label hourr;
+    @FXML
+    private Label app_number;
+    @FXML
+    private Label patients_number;
+
+    @FXML
+    private AreaChart<String, Number> dashboad_chart_PD;
+
+    @FXML
+    private BarChart<String, Number> dashboad_chart_AD;
+
 
     @FXML
     public void registerPatient(ActionEvent event) {
@@ -281,7 +383,7 @@ public class ReceptionistPageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_lastName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
                 listPatients.add(patData);
             }
         } catch (Exception e) {
@@ -311,6 +413,7 @@ public class ReceptionistPageController implements Initializable {
     public void patientDisplayData() {
         patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("id"));
         patients_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        patients_col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         patients_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
         patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
         patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("nurse"));
@@ -342,5 +445,133 @@ public class ReceptionistPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientDisplayData();
         appointmentDisplayData();
+        this.staff_count();
+       ChartService.patientAreaChart( dashboad_chart_PD);
+       ChartService.appointmentAreaChart(dashboad_chart_AD);
+        
+        
+        //Navigating with Enter through Patients TextFields
+       // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
+       // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
+       // add_patient_btn.setOnAction(event -> patFirstName.requestFocus());
+        patFirstName.setOnAction(event -> patLastName.requestFocus());
+        patLastName.setOnAction(event -> patBirthdate.requestFocus());
+        patBirthdate.setOnAction(event -> patPhone.requestFocus());
+        patPhone.setOnAction(event -> patEmail.requestFocus());
+        patEmail.setOnAction(event -> patAddress.requestFocus());
+        patAddress.setOnAction(event -> patDep.requestFocus());
+        patDep.setOnAction(event -> patDoctor.requestFocus());
+        patDoctor.setOnAction(event -> patNurse.requestFocus());
+        patNurse.setOnAction(event -> patDate.requestFocus());
+        patDate.setOnAction(event -> patPayment.requestFocus());
+        patPayment.setOnAction(event -> register_patient_btn.requestFocus());
+        register_patient_btn.setOnAction(event -> {
+            registerPatient(event);
+            event.consume();
+
+        });
+        //Navigating with Enter through Appointments TextFields
+        appID.setOnAction(event -> appName.requestFocus());
+        appName.setOnAction(event ->appLastName.requestFocus());
+        appLastName.setOnAction(event -> appMale.requestFocus());
+        appMale.setOnAction(event -> appFemale.requestFocus());
+        appFemale.setOnAction(event -> appDesc.requestFocus());
+        appDesc.setOnAction(event ->  appDep.requestFocus());
+        appDep.setOnAction(event ->appDoc.requestFocus());
+        appDoc.setOnAction(event -> appNurse.requestFocus());
+        appNurse.setOnAction(event -> appPhone.requestFocus());
+        appPhone.setOnAction(event -> appAddress.requestFocus());
+        appAddress.setOnAction(event -> appDate.requestFocus());
+        appDate.setOnAction(event -> appHour.requestFocus());
+        appHour.setOnAction(event -> addApp_btn.requestFocus());
+        addApp_btn.setOnAction(event -> {
+            registerPatient(event);
+            event.consume();
+
+        });
+        Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
+        this.translate();
+    }
+
+    @FXML
+    public void handleLanguage() {
+        Locale defaultLocale = Locale.getDefault();
+        if (defaultLocale.getLanguage().equals("en")) {
+            Locale.setDefault(new Locale("sq"));
+        } else {
+            Locale.setDefault(Locale.ENGLISH);
+        }
+        this.translate();
+    }
+
+
+    public void translate() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
+     //   this.Projectitle.setText(rb.getString("Hospital Management System"));
+        this.dashboard_btn.setText(rb.getString("Dashboard"));
+        this.patients_btn.setText(rb.getString("Patients"));
+        this.appointments_btn.setText(rb.getString("Appointments"));
+        this.add_patient_btn.setText(rb.getString("Add New Patient"));
+        this.register_patient_btn.setText(rb.getString("Add"));
+        this.account_btn.setText(rb.getString("Account"));
+        this.logout_btn.setText(rb.getString("Logout"));
+        this.ad.setText(rb.getString("Appointments Data"));
+        this.pd.setText(rb.getString("Patients Data"));
+        this.appointments.setText(rb.getString("Appointments"));
+        this.patients.setText(rb.getString("Patients"));
+        this.patients_col_patientID.setText(rb.getString("Patient ID"));
+        this.patients_col_name.setText(rb.getString("Name"));
+        this.patients_col_department.setText(rb.getString("Department"));
+        this.patients_col_doctor.setText(rb.getString("Doctor"));
+        this.patients_col_nurse.setText(rb.getString("Nurse"));
+        this.patients_col_phonenumber.setText(rb.getString("Phone Number"));
+        this.patients_col_email.setText(rb.getString("Email"));
+        this.patients_col_address.setText(rb.getString("Address"));
+        this.patients_col_payment.setText(rb.getString("Payment"));
+        this.personalinformation.setText(rb.getString("Personal Information"));
+        this.firstname.setText(rb.getString("First Name"));
+        this.lastname.setText(rb.getString("Last Name"));
+        this.birthdate.setText(rb.getString("Birthdate"));
+        this.phone.setText(rb.getString("Phone"));
+        this.address.setText(rb.getString("Address"));
+        this.patientapp.setText(rb.getString("Patient Appointment"));
+        this.department.setText(rb.getString("Department"));
+        this.doctor.setText(rb.getString("Doctor"));
+        this.nurse.setText(rb.getString("Nurse"));
+        this.datee.setText(rb.getString("Date"));
+        this.payment.setText(rb.getString("Payment"));
+        this.app_col_appID.setText(rb.getString("Appointment ID"));
+        this.app_col_name.setText(rb.getString("First Name"));
+        this.app_col_department.setText(rb.getString("Department"));
+        this.app_col_doctor.setText(rb.getString("Doctor"));
+        this.app_col_nurse.setText(rb.getString("Nurse"));
+        this.app_col_phone.setText(rb.getString("Phone Number"));
+        this.app_col_address.setText(rb.getString("Address"));
+        this.app_col_date.setText(rb.getString("Date"));
+        this.app_col_hour.setText(rb.getString("Hour"));
+        this.appo.setText(rb.getString("Appointment ID"));
+        this.fn.setText(rb.getString("First Name"));
+        this.ln.setText(rb.getString("Last Name"));
+        this.ge.setText(rb.getString("Gender"));
+        this.appMale.setText(rb.getString("Male"));
+        this.appFemale.setText(rb.getString("Female"));
+        this.de.setText(rb.getString("Description"));
+        this.dep.setText(rb.getString("Department"));
+        this.doc.setText(rb.getString("Doctor"));
+        this.nur.setText(rb.getString("Nurse"));
+        this.phnum.setText(rb.getString("Phone Number"));
+        this.aadd.setText(rb.getString("Address"));
+        this.datte.setText(rb.getString("Date"));
+        this.hourr.setText(rb.getString("Hour"));
+        this.addApp_btn.setText(rb.getString("Add"));
+        this.patients_col_lastname.setText(rb.getString("Subname"));
+
+    }
+
+    public void staff_count() {
+
+        CountStaffService.countStaff(app_number, CountStaffService.countPatients);
+        CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
     }
 }

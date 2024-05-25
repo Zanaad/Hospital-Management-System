@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DoctorAppController">
+    <children>
+        <AnchorPane prefHeight="41.0" prefWidth="1100.0">
+            <children>
+                <BorderPane layoutX="100.0" layoutY="34.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <top>
+                        <AnchorPane prefHeight="39.0" prefWidth="848.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" BorderPane.alignment="CENTER">
+                            <children>
+                                <Button layoutX="1002.0" layoutY="7.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="93.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Logout" textFill="#efefef">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font></Button>
+                                <Label layoutX="776.0" layoutY="11.0" text="Welcome" textFill="#f2eeee">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font></Label>
+                                <Label layoutX="837.0" layoutY="11.0" text="Doc" textFill="#e2dddd">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font></Label>
+                                <Label layoutX="315.0" layoutY="4.0" prefHeight="27.0" prefWidth="88.0" text="Takimet" textFill="#e2dddd">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font></Label>
+                                <Label layoutX="35.0" layoutY="5.0" prefHeight="29.0" prefWidth="197.0" text="Hospital Management" textFill="#fbf7f7">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font></Label>
+                            </children>
+                        </AnchorPane>
+                    </top>
+                    <left>
+                        <AnchorPane prefHeight="549.0" prefWidth="237.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" BorderPane.alignment="CENTER">
+                            <children>
+                                <Label layoutX="25.0" layoutY="123.0" text="Doctor id:" textFill="#fffefe" />
+                                <Line endX="127.00001525878906" layoutX="101.0" layoutY="174.0" startX="-87.00000762939453" stroke="#fffdfd" />
+                                <Label layoutX="10.0" layoutY="201.0" text="Features" textFill="#fff9f9">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font></Label>
+                                <Button layoutX="10.0" layoutY="238.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="222.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Takimet" textFill="#fffefe">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font></Button>
+                                <Button layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#handleRegjistro" prefHeight="37.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Regjistro pacient" textFill="#fffdfd">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font></Button>
+                                <Button layoutX="10.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#handleMenaxho" prefHeight="37.0" prefWidth="221.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Menaxho Pacient" textFill="WHITE">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font></Button>
+                                <Button layoutX="9.0" layoutY="471.0" mnemonicParsing="false" onMouseClicked="#handleProfili" prefHeight="37.0" prefWidth="217.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Ndrysho profilin" textFill="WHITE">
+                                    <font>
+                                        <Font size="17.0" />
+                                    </font></Button>
+                                <Label layoutX="11.0" layoutY="433.0" text="Change settings:" textFill="#fffafa">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font></Label>
+                                <Label layoutX="25.0" layoutY="148.0" text="Username:" textFill="#fffdfd" />
+                                <Label layoutX="85.0" layoutY="119.0" text="1" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="89.0" layoutY="148.0" text="Doctor" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                    </left>
+                    <center>
+                        <AnchorPane opacity="0.83" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane layoutX="21.0" layoutY="22.0" prefHeight="276.0" prefWidth="827.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-background-radius: 10;">
+                                    <children>
+                                        <TableView fx:id="table" layoutX="61.0" layoutY="16.0" prefHeight="244.0" prefWidth="705.0">
+                                            <columns>
+                                                <TableColumn fx:id="IDColumn" prefWidth="118.00000381469727" text="Appointment ID:" />
+                                                <TableColumn fx:id="EmriColumn" minWidth="8.0" prefWidth="111.99998474121094" text="Emri" />
+                                                <TableColumn fx:id="MbiemriColumn" prefWidth="94.66659545898438" text="Mbiemri" />
+                                                <TableColumn fx:id="GjiniaColumn" prefWidth="82.0" text="Gjinia" />
+                                                <TableColumn fx:id="MoshaColumn" minWidth="8.0" prefWidth="88.00003051757812" text="Mosha" />
+                                                <TableColumn fx:id="AdresaColumn" minWidth="0.0" prefWidth="112.0" text="Adresa" />
+                                                <TableColumn fx:id="DataColumn" minWidth="0.0" prefWidth="96.6666259765625" text="Data" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane layoutX="21.0" layoutY="316.0" prefHeight="219.0" prefWidth="827.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                                    <children>
+                                        <Label layoutX="28.0" layoutY="62.0" text="ID:" />
+                                        <Label layoutX="22.0" layoutY="113.0" text="Emri:" />
+                                        <Label layoutX="301.0" layoutY="113.0" text="Mbiemri:" />
+                                        <Label layoutX="308.0" layoutY="165.0" text="Gjinia:" />
+                                        <Label layoutX="23.0" layoutY="165.0" text="Mosha:" />
+                                        <TextField fx:id="txtID" layoutX="76.0" layoutY="58.0" />
+                                        <TextField fx:id="txtEmri" layoutX="76.0" layoutY="109.0" />
+                                        <TextField fx:id="txtMbiemri" layoutX="366.0" layoutY="109.0" />
+                                        <TextField fx:id="txtGjinia" layoutX="366.0" layoutY="161.0" />
+                                        <TextField fx:id="txtMosha" layoutX="76.0" layoutY="161.0" />
+                                        <TextField fx:id="txtAdresa" layoutX="366.0" layoutY="58.0" />
+                                        <Label layoutX="305.0" layoutY="62.0" text="Adresa:" />
+                                        <Label layoutX="564.0" layoutY="62.0" text="Data" />
+                                        <Button fx:id="btnShtotakim" layoutX="615.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleShtotakim" prefHeight="41.0" prefWidth="151.0" style="-fx-background-color: #FFFFFF; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);" text="Shto takim" textFill="#807e7e">
+                                            <font>
+                                                <Font size="17.0" />
+                                            </font></Button>
+                                        <TextField fx:id="txtData" layoutX="618.0" layoutY="58.0" />
+                                        <Label layoutX="21.0" layoutY="17.0" text="Shto Takimin" textFill="#6e6c6c">
+                                            <font>
+                                                <Font size="19.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                            <cursor>
+                                <Cursor fx:constant="DEFAULT" />
+                            </cursor>
+                        </AnchorPane>
+                    </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>
+

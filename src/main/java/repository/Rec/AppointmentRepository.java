@@ -4,6 +4,7 @@ import database.DatabaseUtil;
 import model.dto.CreateDepartmentDto;
 import model.dto.RecDto.CreateAppointmentDto;
 import model.dto.RecDto.CreatePatientDto;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Date;
@@ -24,8 +25,8 @@ public class AppointmentRepository {
                                           appointment_address,
                                           appointment_date,
                                           appointment_hour 
-               
-               
+                               
+                               
                 )
                 value(?,?,?,?,?,?,?,?,?,?,?)
                 """;
@@ -42,9 +43,7 @@ public class AppointmentRepository {
             pst.setString(9, appointmentData.getPaddress());
             pst.setDate(10, appointmentData.getPdate());
             pst.setString(11, appointmentData.getPhour());
-
             pst.execute();
-            pst.close();
             return true;
 
         } catch (Exception e) {
