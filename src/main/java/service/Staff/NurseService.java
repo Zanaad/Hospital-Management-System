@@ -1,11 +1,15 @@
 package service.Staff;
 
 import model.User;
+import model.dto.ChangePasswordDto;
 import model.dto.LoginUserDto;
 import model.dto.StaffDto.CreateNurseDto;
 import model.dto.StaffDto.NurseDto;
+import model.dto.UpdateUserPasswordDto;
 import model.filter.NurseFilter;
+import repository.Staff.AdminRepository;
 import repository.Staff.NurseRepository;
+import service.Alerts;
 import service.PasswordHasher;
 
 import java.util.List;
@@ -30,10 +34,31 @@ public class NurseService extends StaffService {
         return NurseRepository.generateNurseID();
     }
 
+
     public static boolean login(LoginUserDto loginData) {
         User user = NurseRepository.getNurseByEmail(loginData.getEmail());
         return login(loginData, user);
     }
+
+    public static boolean changePassword(ChangePasswordDto user) {
+        UpdateUserPasswordDto userPasswordInfo = NurseRepository.getUserPasswordInfo(user.getEmail());
+        if (userPasswordInfo == null) {
+            return false;
+        }
+        String storedPasswordHash = userPasswordInfo.getPasswordHash();
+        String salt = userPasswordInfo.getSalt();
+        if (!PasswordHasher.compareSaltedHash(user.getCurrentPassword(), salt, storedPasswordHash)) {
+            Alerts.errorMessage("Credentials are not correct");
+            return false;
+        }
+        return NurseRepository.changePwd(user, salt);
+    }
+
+    public static boolean updateNurseDetails(User user) {
+        return NurseRepository.updateNurseDetails(user);
+    }
+
+
 
 
 }
