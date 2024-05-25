@@ -17,6 +17,8 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
+import service.ChartService;
+import service.CountStaffService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
 
@@ -48,12 +50,6 @@ public class ReceptionistPageController implements Initializable {
     private AnchorPane dashboard_form;
 
     @FXML
-    private BarChart<?, ?> dashboad_chart_AD;
-
-    @FXML
-    private AreaChart<?, ?> dashboad_chart_PD;
-
-    @FXML
     private AnchorPane patients_form;
 
     @FXML
@@ -64,6 +60,10 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> patients_col_name;
+
+    @FXML
+    private TableColumn<?, ?> patients_col_lastname;
+
 
     @FXML
     private TableColumn<?, ?> patients_col_department;
@@ -228,6 +228,7 @@ public class ReceptionistPageController implements Initializable {
     @FXML
     private TableColumn<?, ?> app_col_hour;
 
+
     @FXML
     private Button addApp_btn;
 
@@ -319,6 +320,15 @@ public class ReceptionistPageController implements Initializable {
     private Label datte;
     @FXML
     private Label hourr;
+    @FXML
+    private Label app_number;
+    @FXML
+    private Label patients_number;
+
+    @FXML
+    private AreaChart<String, Number> dashboad_chart_PD;
+    private AreaChart<String, Number> dashboad_chart_AD;
+
 
     @FXML
     public void registerPatient(ActionEvent event) {
@@ -371,7 +381,7 @@ public class ReceptionistPageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_lastName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
                 listPatients.add(patData);
             }
         } catch (Exception e) {
@@ -401,6 +411,7 @@ public class ReceptionistPageController implements Initializable {
     public void patientDisplayData() {
         patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("id"));
         patients_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        patients_col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         patients_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
         patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
         patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("nurse"));
@@ -432,6 +443,12 @@ public class ReceptionistPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientDisplayData();
         appointmentDisplayData();
+        this.staff_count();
+       // ChartService.patientAreaChart( );
+       ChartService.patientAreaChart((AreaChart<String, Number>) dashboad_chart_PD);
+        
+        
+        
         //Navigating with Enter through Patients TextFields
        // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
        // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
@@ -473,10 +490,6 @@ public class ReceptionistPageController implements Initializable {
         });
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
-
-
-
-
     }
 
     @FXML
@@ -551,13 +564,13 @@ public class ReceptionistPageController implements Initializable {
         this.datte.setText(rb.getString("Date"));
         this.hourr.setText(rb.getString("Hour"));
         this.addApp_btn.setText(rb.getString("Add"));
+        this.patients_col_lastname.setText(rb.getString("Subname"));
 
+    }
 
+    public void staff_count() {
 
-
-
-
-
-
+        CountStaffService.countStaff(app_number, CountStaffService.countPatients);
+        CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
     }
 }
