@@ -3,14 +3,13 @@ package controller;
 import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.dto.LoginUserDto;
 import service.Alerts;
+import service.Staff.AdminService;
 import service.Staff.DoctorService;
 import service.Staff.NurseService;
 import service.Staff.ReceptionistService;
@@ -27,18 +26,6 @@ public class LoginController {
     private PasswordField login_adminPwd;
 
     @FXML
-    private CheckBox login_checkBox;
-
-    @FXML
-    private CheckBox login_checkBox1;
-
-    @FXML
-    private CheckBox login_checkBox2;
-
-    @FXML
-    private CheckBox login_checkBox3;
-
-    @FXML
     private TextField login_docEmail;
 
     @FXML
@@ -46,18 +33,6 @@ public class LoginController {
 
     @FXML
     private AnchorPane login_doctor;
-
-    @FXML
-    private Button login_loginBtn;
-
-    @FXML
-    private Button login_loginBtn1;
-
-    @FXML
-    private Button login_loginBtn2;
-
-    @FXML
-    private Button login_loginBtn3;
 
     @FXML
     private AnchorPane login_nurse;
@@ -76,19 +51,6 @@ public class LoginController {
 
     @FXML
     private AnchorPane login_receptionist;
-
-    @FXML
-    private TextField login_showPassword;
-
-    @FXML
-    private TextField login_showPassword1;
-
-    @FXML
-    private TextField login_showPassword2;
-
-    @FXML
-    private TextField login_showPassword3;
-
     @FXML
     private ComboBox<?> login_user;
 
@@ -102,15 +64,12 @@ public class LoginController {
     private ComboBox<?> login_user3;
 
     @FXML
-    private AnchorPane main_form;
-
-    @FXML
-    void loginAccount(ActionEvent event) {
-
-    }
-
-    @FXML
     void loginAdmin(ActionEvent event) {
+        LoginUserDto loginData = new LoginUserDto(this.login_adminEmail.getText(), this.login_adminPwd.getText());
+        boolean isLogin = AdminService.login(loginData);
+        if (isLogin) {
+            Navigator.navigate(event, Navigator.AdminMainForm);
+        }
 
     }
 
@@ -120,8 +79,6 @@ public class LoginController {
         boolean isLogin = DoctorService.login(loginData);
         if (isLogin) {
             Navigator.navigate(event, Navigator.Doctor_App);
-        } else {
-            Alerts.errorMessage("Error");
         }
     }
 
@@ -131,8 +88,7 @@ public class LoginController {
         boolean isLogin = NurseService.login(loginData);
         if (isLogin) {
             Navigator.navigate(event, Navigator.NursePage);
-        }
-        else{
+        } else {
             Alerts.errorMessage("error");
         }
     }
