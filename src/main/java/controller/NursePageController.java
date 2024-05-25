@@ -821,6 +821,13 @@ public class NursePageController implements Initializable {
 
 
     public void initialize(URL location, ResourceBundle resources) {
+
+        //forms first state - dashboard appearing first
+        dashboard_form.setVisible(true);
+        patients_form.setVisible(false);
+        report_form.setVisible(false);
+        bedWards_form.setVisible(false);
+        bloodBank_form.setVisible(false);
         // Initialize tables
         operationDisplayData();
         birthDisplayData();
@@ -828,6 +835,7 @@ public class NursePageController implements Initializable {
         otherDisplayData();
         patientDisplayData();
         donorDisplayData();
+
 // Event Handler for navigating through TextFields with Enter--------------------------------------------------------------------------------------------------------------
 
 
