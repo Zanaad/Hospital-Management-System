@@ -17,6 +17,7 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
+import service.CountStaffService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
 
@@ -324,6 +325,11 @@ public class ReceptionistPageController implements Initializable {
     private Label datte;
     @FXML
     private Label hourr;
+    @FXML
+    private Label app_number;
+    @FXML
+    private Label patients_number;
+
 
 
     @FXML
@@ -439,6 +445,7 @@ public class ReceptionistPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientDisplayData();
         appointmentDisplayData();
+        this.staff_count();
         //Navigating with Enter through Patients TextFields
        // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
        // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
@@ -556,12 +563,11 @@ public class ReceptionistPageController implements Initializable {
         this.addApp_btn.setText(rb.getString("Add"));
         this.patients_col_lastname.setText(rb.getString("Subname"));
 
+    }
 
+    public void staff_count() {
 
-
-
-
-
-
+        CountStaffService.countStaff(app_number, CountStaffService.countPatients);
+        CountStaffService.countStaff(patients_number, CountStaffService.countAppointments);
     }
 }
