@@ -1,8 +1,6 @@
 package service;
 
-import app.Navigator;
 import controller.EditController;
-import controller.UpdatePacientController;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.dto.StaffDto.DoctorDto;
 import model.dto.StaffDto.NurseDto;
@@ -77,7 +74,6 @@ public class TableService {
 
                                 stage.show();
 
-                                // Refresh table view after editing
                                 tableView.refresh();
                             } catch (Exception e) {
                                 e.printStackTrace();
