@@ -17,6 +17,7 @@ import model.Patient;
 import model.dto.RecDto.AppointmentDto;
 import model.dto.RecDto.PatientDto;
 
+import service.ChartService;
 import service.CountStaffService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
@@ -47,12 +48,6 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     private AnchorPane dashboard_form;
-
-    @FXML
-    private BarChart<?, ?> dashboad_chart_AD;
-
-    @FXML
-    private AreaChart<?, ?> dashboad_chart_PD;
 
     @FXML
     private AnchorPane patients_form;
@@ -330,6 +325,8 @@ public class ReceptionistPageController implements Initializable {
     @FXML
     private Label patients_number;
 
+    @FXML
+    private AreaChart<String, Number> dashboad_chart_PD;
 
 
     @FXML
@@ -446,6 +443,11 @@ public class ReceptionistPageController implements Initializable {
         patientDisplayData();
         appointmentDisplayData();
         this.staff_count();
+       // ChartService.patientAreaChart( );
+       ChartService.patientAreaChart((AreaChart<String, Number>) dashboad_chart_PD);
+        
+        
+        
         //Navigating with Enter through Patients TextFields
        // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
        // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());

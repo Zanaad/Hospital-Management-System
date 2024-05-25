@@ -113,7 +113,7 @@
                                     </Label>
                                 </children>
                             </AnchorPane>
-                            <AnchorPane layoutX="437.0" layoutY="326.0" prefHeight="219.0" prefWidth="389.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <AnchorPane fx:id="AreaChartPatients" layoutX="437.0" layoutY="326.0" prefHeight="219.0" prefWidth="389.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
                                     <AreaChart fx:id="dashboad_chart_PD" layoutY="39.333333333333336" prefHeight="183.0" prefWidth="404.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
                                         <xAxis>
@@ -130,7 +130,7 @@
                            </Label>
                                 </children>
                             </AnchorPane>
-                            <AnchorPane layoutX="43.0" layoutY="326.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
+                            <AnchorPane fx:id="appointmentsdata" layoutX="43.0" layoutY="326.0" prefHeight="219.0" prefWidth="370.0" style="-fx-background-color: #fff; -fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
                                     <BarChart fx:id="dashboad_chart_AD" layoutX="11.2" layoutY="35.333333333333336" prefHeight="184.0" prefWidth="370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                                         <xAxis>
