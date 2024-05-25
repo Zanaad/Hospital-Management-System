@@ -286,7 +286,7 @@
                                  <Font name="Arial" size="13.0" />
                               </font>
                            </Button>
-                           <TextField fx:id="updateEmail" layoutX="169.0" layoutY="140.0" prefHeight="25.0" prefWidth="307.0" />
+                           <TextField fx:id="updateEmail" layoutX="169.0" layoutY="141.0" prefHeight="25.0" prefWidth="307.0" />
                            <TextField fx:id="updateAddress" layoutX="168.0" layoutY="176.0" prefHeight="25.0" prefWidth="307.0" />
                            <Label fx:id="upAddress" layoutX="78.0" layoutY="178.0" prefHeight="21.0" prefWidth="83.0" text="Address">
                               <font>
