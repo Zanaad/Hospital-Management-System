@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -24,7 +23,6 @@ import service.CountNurseService;
 import service.CountStaffService;
 import service.Rec.PatientService;
 import service.Report.*;
-import service.Staff.AdminService;
 import service.Staff.NurseService;
 
 import java.net.URL;
@@ -141,7 +139,7 @@ public class NursePageController implements Initializable {
     private TableColumn<?, ?> bed_col_type;
 
     @FXML
-    private TableView<?> bed_table;
+    private TableView<Beds> bed_table;
 
     @FXML
     private TableView<Births> birth_table;
@@ -529,6 +527,12 @@ public class NursePageController implements Initializable {
     @FXML
     private Label SQpersonal;
 
+    @FXML
+    private TextField bedNumber;
+
+    @FXML
+    private TextField bedPatient;
+
 
 
 //Account FXMLs
@@ -767,6 +771,22 @@ private TextField ChangePwdEmail;
         }
     }
 
+    @FXML
+    void registerBed(ActionEvent event) {
+
+        bedDto beds = new bedDto(this.bedPatient.getText(),
+                this.bedNumber.getText());
+        boolean bedCreated = bedService.createBed(beds);
+        if (bedCreated)
+        {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
+
+    }
+
+
+
+
 
 
 
@@ -919,6 +939,36 @@ private TextField ChangePwdEmail;
         others_col_time.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         other_table.setItems(getOthers());
+    }
+
+    public ObservableList<Beds> getBeds() {
+        ObservableList<Beds> listBeds = FXCollections.observableArrayList();
+        String query = "SELECT * FROM beds";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                Beds bedData = new Beds(
+                        result.getInt("bed_ID"),
+                        result.getString("bed_patient"),
+                        result.getString("bed_number")
+
+                );
+                listBeds.add(bedData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listBeds;
+    }
+    public void bedDisplayData(){
+        bed_col_bedID.setCellValueFactory(new PropertyValueFactory<>("bedID"));
+        bed_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
+        bed_col_bedNumber.setCellValueFactory(new PropertyValueFactory<>("bed"));
+
+
+        bed_table.setItems(getBeds());
     }
 
 
@@ -1079,6 +1129,7 @@ private TextField ChangePwdEmail;
         otherDisplayData();
         patientDisplayData();
         donorDisplayData();
+        bedDisplayData();
         this.nurse_dashboard_numbersCount();
         //charts
         ChartService.donorsAreaChart(dashboad_chart_BD);
