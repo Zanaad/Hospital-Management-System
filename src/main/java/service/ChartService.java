@@ -2,7 +2,6 @@ package service;
 
 import database.DatabaseUtil;
 import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 
 import java.sql.Connection;

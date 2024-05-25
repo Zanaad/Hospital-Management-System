@@ -66,22 +66,8 @@ public class NurseRepository extends StaffRepository {
     }
 
     public static List<String> getAllNursesNames() {
-        List<String> nurses = new ArrayList<>();
         String query = "SELECT firstName FROM nurses";
-
-        try {
-            Connection connection = DatabaseUtil.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                nurses.add(resultSet.getString("firstName"));
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return nurses;
+        return getStaffNames(query);
     }
 
 }
