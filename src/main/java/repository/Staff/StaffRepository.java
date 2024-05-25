@@ -62,7 +62,8 @@ public class StaffRepository {
             String email = rs.getString("email");
             String salt = rs.getString("salt");
             String hashPassword = rs.getString("hashPassword");
-            return new User(id, firstName, lastName, email, salt, hashPassword);
+            String address = rs.getString("address");
+            return new User(id, firstName, lastName, email, salt, hashPassword, address);
         } catch (Exception e) {
             return null;
         }
