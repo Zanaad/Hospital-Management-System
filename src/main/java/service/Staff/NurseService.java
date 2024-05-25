@@ -58,7 +58,9 @@ public class NurseService extends StaffService {
         return NurseRepository.updateNurseDetails(user);
     }
 
-
-
+    public static boolean isEmailInUse(String email) {
+        User user = NurseRepository.getNurseByEmail(email);
+        return user != null;
+    }
 
 }

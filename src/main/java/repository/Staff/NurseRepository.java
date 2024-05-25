@@ -73,6 +73,7 @@ public class NurseRepository extends StaffRepository {
         }
         return false;
     }
+
     public static String generateNurseID() {
         String prefix = "NID-";
         String tableName = "nurses";
@@ -133,4 +134,6 @@ public class NurseRepository extends StaffRepository {
         }
         return false;
     }
+
+
 }

@@ -13,6 +13,7 @@ import model.dto.StaffDto.StaffDto;
 import model.filter.DoctorFilter;
 import repository.Staff.DepartmentRepository;
 import repository.Staff.DoctorRepository;
+import service.Alerts;
 import service.Staff.DepartmentService;
 import service.Staff.DoctorService;
 import service.TableService;
@@ -147,14 +148,36 @@ public class AddDoctorController implements Initializable {
     //Method for registering doctors
     @FXML
     void registerDoctor(ActionEvent event) {
-        Date birthdate = Date.valueOf(this.docBirthdate.getValue());
-        Date startDate = Date.valueOf(this.docStart.getValue());
-        Date endDate = Date.valueOf(this.docEnd.getValue());
+        Date birthdate = null;
+        Date startDate = null;
+        Date endDate = null;
+
+        if (this.docBirthdate.getValue() != null) {
+            birthdate = Date.valueOf(this.docBirthdate.getValue());
+        }
+        if (this.docStart.getValue() != null) {
+            startDate = Date.valueOf(this.docStart.getValue());
+        }
+
+        if (this.docEnd.getValue() != null) {
+            endDate = Date.valueOf(this.docEnd.getValue());
+        }
+        if (DoctorService.isEmailInUse(this.docEmail.getText())) {
+            Alerts.errorMessage("Email is already in use. Please use a different email.");
+            return;
+        }
+        if (this.docEmail.getText().isEmpty()) {
+            Alerts.errorMessage("Please enter a valid email address.");
+            return;
+        }
         DoctorDto staff = new DoctorDto(null, this.docFirstName.getText(), this.docLastName.getText(), birthdate, this.docPhone.getText(), this.docEmail.getText(), null, this.docAddress.getText(), (String) this.docDep.getValue(), this.docUni.getText(), this.docSpecialty.getText(), startDate, endDate, this.docBank.getText(), this.docAccount.getText(), this.docRoutingNr.getText());
         boolean staffCreated = DoctorService.createDoctor(staff);
         if (staffCreated) {
+            Alerts.successMessage("Doctor registered successfully!");
             Navigator.navigate(event, Navigator.AdminMainForm);
             DepartmentService.updateDepTable(this.docDep.getValue());
+        } else {
+            Alerts.errorMessage("Something went wrong! Please try again.");
         }
     }
 

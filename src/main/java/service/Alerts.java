@@ -1,9 +1,6 @@
 package service;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-
-import java.util.Optional;
 
 public class Alerts {
     private static Alert alert;

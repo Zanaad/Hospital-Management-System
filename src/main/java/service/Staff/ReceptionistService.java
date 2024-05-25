@@ -5,6 +5,7 @@ import model.dto.LoginUserDto;
 import model.dto.StaffDto.CreateReceptionistDto;
 import model.dto.StaffDto.ReceptionistDto;
 import model.filter.Filter;
+import repository.Staff.NurseRepository;
 import repository.Staff.ReceptionistRepository;
 import service.PasswordHasher;
 
@@ -32,5 +33,10 @@ public class ReceptionistService extends StaffService {
     public static boolean login(LoginUserDto loginData) {
         User user = ReceptionistRepository.getRecByEmail(loginData.getEmail());
         return login(loginData, user);
+    }
+
+    public static boolean isEmailInUse(String email) {
+        User user = ReceptionistRepository.getRecByEmail(email);
+        return user != null;
     }
 }

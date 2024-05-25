@@ -3,7 +3,6 @@ package controller;
 import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.dto.LoginUserDto;
@@ -13,8 +12,6 @@ import service.Staff.DoctorService;
 import service.Staff.NurseService;
 import service.Staff.ReceptionistService;
 
-
-import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
