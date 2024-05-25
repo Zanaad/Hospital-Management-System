@@ -477,13 +477,13 @@ public class ReceptionistPageController implements Initializable {
 
         });
         //Navigating with Enter through Appointments TextFields
-        appID.setOnAction(event -> appName.requestFocus());
+       /* appID.setOnAction(event -> appName.requestFocus());
         appName.setOnAction(event ->appLastName.requestFocus());
         appLastName.setOnAction(event -> appMale.requestFocus());
         appMale.setOnAction(event -> appFemale.requestFocus());
         appFemale.setOnAction(event -> appDesc.requestFocus());
         appDesc.setOnAction(event ->  appDep.requestFocus());
-        appDep.setOnAction(event ->appDoc.requestFocus());
+        appDep.setOnAction(event -> appDoc.requestFocus());
         appDoc.setOnAction(event -> appNurse.requestFocus());
         appNurse.setOnAction(event -> appPhone.requestFocus());
         appPhone.setOnAction(event -> appAddress.requestFocus());
@@ -491,10 +491,14 @@ public class ReceptionistPageController implements Initializable {
         appDate.setOnAction(event -> appHour.requestFocus());
         appHour.setOnAction(event -> addApp_btn.requestFocus());
         addApp_btn.setOnAction(event -> {
-            registerPatient(event);
+            registerAppointment(event);
             event.consume();
 
         });
+
+        */
+
+
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
     }
