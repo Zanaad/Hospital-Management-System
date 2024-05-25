@@ -83,6 +83,9 @@ public class AddDoctorController implements Initializable {
     private TableColumn<?, ?> doctors_col_surname;
 
     @FXML
+    private TableColumn<?, ?> doctors_col_uni;
+
+    @FXML
     private TableColumn<?, ?> doctors_col_address;
 
     @FXML
@@ -158,7 +161,7 @@ public class AddDoctorController implements Initializable {
     }
 
     public void doctorDisplayData() {
-        Table.staffDisplayData(doctors_col_ID, doctors_col_name, doctors_col_surname, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_specialty, doctors_col_address);
+        Table.doctorDisplayData(doctors_col_ID, doctors_col_name, doctors_col_surname, doctors_col_department, doctors_col_phone, doctors_col_email, doctors_col_uni, doctors_col_specialty, doctors_col_address);
         doctors_table.setItems(getDoctors());
     }
 
