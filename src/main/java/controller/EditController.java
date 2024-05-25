@@ -4,13 +4,9 @@ import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import model.dto.StaffDto.DoctorDto;
 import model.dto.StaffDto.NurseDto;
 import model.dto.StaffDto.ReceptionistDto;
@@ -50,18 +46,6 @@ public class EditController {
     private ComboBox<String> department;
 
     @FXML
-    private AnchorPane editDoctor;
-
-    @FXML
-    private Button editDoctor_cancelBtn;
-
-    @FXML
-    private Button editDoctor_updateBtn;
-
-    @FXML
-    private Button editDoctor_updateBtn1;
-
-    @FXML
     private TextField email;
 
     @FXML
@@ -69,9 +53,6 @@ public class EditController {
 
     @FXML
     private TextField lastName;
-
-    @FXML
-    private PasswordField password;
 
     @FXML
     private TextField phone;
@@ -156,11 +137,6 @@ public class EditController {
     void handleCancel(ActionEvent event) {
         closeEditForm(event);
         Navigator.navigate(event, Navigator.AdminMainForm);
-    }
-
-    @FXML
-    void handleClear(ActionEvent event) {
-
     }
 
     private void closeEditForm(ActionEvent event) {

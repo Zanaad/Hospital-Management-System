@@ -3,9 +3,8 @@ package controller;
 import app.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import model.dto.LoginUserDto;
 import service.Alerts;
@@ -13,6 +12,11 @@ import service.Staff.AdminService;
 import service.Staff.DoctorService;
 import service.Staff.NurseService;
 import service.Staff.ReceptionistService;
+
+
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class LoginController {
 
@@ -35,6 +39,18 @@ public class LoginController {
     private AnchorPane login_doctor;
 
     @FXML
+    private Button login_loginBtn;
+
+    @FXML
+    private Button login_loginBtn1;
+
+    @FXML
+    private Button login_loginBtn2;
+
+    @FXML
+    private Button login_loginBtn3;
+
+    @FXML
     private AnchorPane login_nurse;
 
     @FXML
@@ -51,6 +67,7 @@ public class LoginController {
 
     @FXML
     private AnchorPane login_receptionist;
+
     @FXML
     private ComboBox<?> login_user;
 
@@ -59,9 +76,19 @@ public class LoginController {
 
     @FXML
     private ComboBox<?> login_user2;
+    @FXML
+    private Label lblLoginAdmin;
+    @FXML
+    private Label lblLoginDoctor;
+    @FXML
+    private Label lblLoginNurse;
+    @FXML
+    private Label lblLoginReceptionist;
 
     @FXML
     private ComboBox<?> login_user3;
+
+    private ResourceBundle bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
 
     @FXML
     void loginAdmin(ActionEvent event) {
@@ -103,11 +130,6 @@ public class LoginController {
     }
 
     @FXML
-    void loginShowPassword(ActionEvent event) {
-
-    }
-
-    @FXML
     void switchAdminLogin(ActionEvent event) {
         switchComboBoxSelection(login_user);
     }
@@ -146,4 +168,52 @@ public class LoginController {
             showForm(login_receptionist);
         }
     }
+
+    @FXML
+    private void handleLangAdmin(ActionEvent event) {
+        switchLanguage();
+    }
+
+    @FXML
+    private void handleLangDoc(ActionEvent event) {
+        switchLanguage();
+    }
+
+    @FXML
+    private void handleLangNurse(ActionEvent event) {
+        switchLanguage();
+    }
+
+    @FXML
+    private void handleLangRec(ActionEvent event) {
+        switchLanguage();
+    }
+
+    private void switchLanguage() {
+        Locale currentLocale = bundle.getLocale();
+        Locale newLocale = currentLocale.equals(new Locale("sq")) ? Locale.ENGLISH : new Locale("sq");
+        bundle = ResourceBundle.getBundle("translations.content", newLocale);
+        setTexts();
+    }
+
+    private void setTexts() {
+        lblLoginAdmin.setText(bundle.getString("lblLoginAdmin"));
+        lblLoginDoctor.setText(bundle.getString("lblLoginDoctor"));
+        lblLoginNurse.setText(bundle.getString("lblLoginNurse"));
+        lblLoginReceptionist.setText(bundle.getString("lblLoginReceptionist"));
+        login_adminEmail.setPromptText(bundle.getString("txtEmail"));
+        login_adminPwd.setPromptText(bundle.getString("pwdPassword"));
+        login_docEmail.setPromptText(bundle.getString("txtEmail"));
+        login_docPassword.setPromptText(bundle.getString("pwdPassword"));
+        login_nurseEmail.setPromptText(bundle.getString("txtEmail"));
+        login_nursePwd.setPromptText(bundle.getString("pwdPassword"));
+        login_recEmail.setPromptText(bundle.getString("txtEmail"));
+        login_recPwd.setPromptText(bundle.getString("pwdPassword"));
+        login_loginBtn.setText(bundle.getString("btnLogin"));
+        login_loginBtn1.setText(bundle.getString("btnLogin"));
+        login_loginBtn2.setText(bundle.getString("btnLogin"));
+        login_loginBtn3.setText(bundle.getString("btnLogin"));
+    }
+
 }
+
