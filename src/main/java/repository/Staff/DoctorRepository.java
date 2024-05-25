@@ -63,7 +63,7 @@ public class DoctorRepository extends StaffRepository {
     public static String generateDocPassword(String firstName) {
         String id = generateDoctorID();
         System.out.println(generatePassword(firstName, id));
-        return generatePassword(id, firstName);
+        return generatePassword(firstName, id);
     }
 
 

@@ -517,12 +517,11 @@ public class NursePageController implements Initializable {
     //database tools--------------------------------------------------------------------------------------------------
 
 
-
     @FXML
     void registerOperation(ActionEvent event) {
         Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
 
-        OperationDto operation = new OperationDto (this.txtOperationID.getText(), this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
+        OperationDto operation = new OperationDto(this.txtOperationID.getText(), this.txtOperationDescription.getText(), this.txtOperationPatient.getText(), this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
         boolean operationCreated = operationService.createOperation(operation);
         if (operationCreated) {
             Navigator.navigate(event, Navigator.NursePage);
@@ -534,7 +533,7 @@ public class NursePageController implements Initializable {
     void registerBirth(ActionEvent event) {
         Date birthDate = Date.valueOf(this.txtBirthDate.getValue());
 
-        BirthsDto birth = new BirthsDto (this.txtBirthID.getText(), this.txtBirthDescription.getText(), this.txtBirthPatient.getText(),this.txtBirthNewBorn.getText(), birthDate, this.txtBirthTime.getText());
+        BirthsDto birth = new BirthsDto(this.txtBirthID.getText(), this.txtBirthDescription.getText(), this.txtBirthPatient.getText(), this.txtBirthNewBorn.getText(), birthDate, this.txtBirthTime.getText());
         boolean birthCreated = birthService.createBirth(birth);
         if (birthCreated) {
             Navigator.navigate(event, Navigator.NursePage);
@@ -578,31 +577,22 @@ public class NursePageController implements Initializable {
         }
 
     }
+
     @FXML
     void registerDonor(ActionEvent event) {
         Date donationDate = Date.valueOf(this.txtDonorDate.getValue());
 
-        DonorDto donor = new DonorDto(this.txtDonorPatient.getText(),
-                (String) this.chooseDonorBloodGroup.getValue(),
-                Integer.parseInt(this.txtDonorAge.getText()),
-                (String) this.chooseDonorGender.getValue(),
-                donationDate);
+        DonorDto donor = new DonorDto(this.txtDonorPatient.getText(), (String) this.chooseDonorBloodGroup.getValue(), Integer.parseInt(this.txtDonorAge.getText()), (String) this.chooseDonorGender.getValue(), donationDate);
         boolean donorCreated = donorService.createDonor(donor);
-        if (donorCreated)
-        {
+        if (donorCreated) {
             Navigator.navigate(event, Navigator.NursePage);
         }
     }
 
 
-
-
-
-
-
 //display data at the tables----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//display Operations
+    //display Operations
     public ObservableList<Operation> getOperations() {
         ObservableList<Operation> listOperation = FXCollections.observableArrayList();
         String query = "SELECT * FROM operations";
@@ -611,14 +601,7 @@ public class NursePageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Operation operationData = new Operation(
-                        result.getString("operationID"),
-                        result.getString("opDescription"),
-                        result.getString("opPatient"),
-                        result.getString("opDoctor"),
-                        result.getDate("opDate"),
-                        result.getString("opTime")
-                );
+                Operation operationData = new Operation(result.getString("operationID"), result.getString("opDescription"), result.getString("opPatient"), result.getString("opDoctor"), result.getDate("opDate"), result.getString("opTime"));
                 listOperation.add(operationData);
             }
 
@@ -640,8 +623,7 @@ public class NursePageController implements Initializable {
     }
 
 
-
-//display Births
+    //display Births
     public ObservableList<Births> getBirths() {
         ObservableList<Births> listBirths = FXCollections.observableArrayList();
         String query = "SELECT * FROM births";
@@ -650,14 +632,7 @@ public class NursePageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Births birthData = new Births(
-                        result.getString("birthID"),
-                        result.getString("birth_description"),
-                        result.getString("birth_patient"),
-                        result.getString("birth_newborn"),
-                        result.getDate("birth_date"),
-                        result.getString("birth_time")
-                );
+                Births birthData = new Births(result.getString("birthID"), result.getString("birth_description"), result.getString("birth_patient"), result.getString("birth_newborn"), result.getDate("birth_date"), result.getString("birth_time"));
                 listBirths.add(birthData);
             }
 
@@ -666,6 +641,7 @@ public class NursePageController implements Initializable {
         }
         return listBirths;
     }
+
     public void birthDisplayData() {
         births_col_birthID.setCellValueFactory(new PropertyValueFactory<>("birthID"));
         births_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -677,7 +653,7 @@ public class NursePageController implements Initializable {
         birth_table.setItems(getBirths());
     }
 
-//display Deaths
+    //display Deaths
     public ObservableList<Deaths> getDeaths() {
         ObservableList<Deaths> listDeaths = FXCollections.observableArrayList();
         String query = "SELECT * FROM deaths";
@@ -686,13 +662,7 @@ public class NursePageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Deaths deathData = new Deaths(
-                        result.getString("deathID"),
-                        result.getString("death_description"),
-                        result.getString("death_patient"),
-                        result.getDate("death_date"),
-                        result.getString("death_time")
-                );
+                Deaths deathData = new Deaths(result.getString("deathID"), result.getString("death_description"), result.getString("death_patient"), result.getDate("death_date"), result.getString("death_time"));
                 listDeaths.add(deathData);
             }
 
@@ -714,7 +684,7 @@ public class NursePageController implements Initializable {
     }
 
 
-//display Others
+    //display Others
     public ObservableList<Others> getOthers() {
         ObservableList<Others> listOthers = FXCollections.observableArrayList();
         String query = "SELECT * FROM others";
@@ -723,13 +693,7 @@ public class NursePageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Others otherData = new Others(
-                        result.getString("other_ID"),
-                        result.getString("other_description"),
-                        result.getString("other_patient"),
-                        result.getDate("other_date"),
-                        result.getString("other_time")
-                );
+                Others otherData = new Others(result.getString("other_ID"), result.getString("other_description"), result.getString("other_patient"), result.getDate("other_date"), result.getString("other_time"));
                 listOthers.add(otherData);
             }
         } catch (Exception e) {
@@ -738,7 +702,7 @@ public class NursePageController implements Initializable {
         return listOthers;
     }
 
-    public void otherDisplayData(){
+    public void otherDisplayData() {
         others_col_otherID.setCellValueFactory(new PropertyValueFactory<>("otherID"));
         others_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         others_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
@@ -749,7 +713,7 @@ public class NursePageController implements Initializable {
     }
 
 
-//display Patient
+    //display Patient
     public ObservableList<Patient> getPatients() {
         ObservableList<Patient> listPatients = FXCollections.observableArrayList();
         String query = "select * from patients";
@@ -758,7 +722,7 @@ public class NursePageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_lastName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                Patient patData = new Patient(result.getInt("patient_id"), result.getString("patient_firstName"), result.getString("patient_lastName"), result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
                 listPatients.add(patData);
             }
         } catch (Exception e) {
@@ -766,6 +730,7 @@ public class NursePageController implements Initializable {
         }
         return listPatients;
     }
+
     public void patientDisplayData() {
         patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("id"));
         patients_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -790,14 +755,7 @@ public class NursePageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                BloodDonors donorData = new BloodDonors(
-                        result.getInt("donor_ID"),
-                        result.getString("donor_patient"),
-                        result.getString("donor_bloodGroup"),
-                        result.getInt("donor_age"),
-                        result.getString("donor_gender"),
-                        result.getDate("donor_lastDonation")
-                );
+                BloodDonors donorData = new BloodDonors(result.getInt("donor_ID"), result.getString("donor_patient"), result.getString("donor_bloodGroup"), result.getInt("donor_age"), result.getString("donor_gender"), result.getDate("donor_lastDonation"));
                 listDonors.add(donorData);
             }
 
@@ -806,7 +764,8 @@ public class NursePageController implements Initializable {
         }
         return listDonors;
     }
-    public void donorDisplayData(){
+
+    public void donorDisplayData() {
         blood_col_donor_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         blood_col_donorPatient.setCellValueFactory(new PropertyValueFactory<>("patient"));
         blood_col_bloodGroup.setCellValueFactory(new PropertyValueFactory<>("bloodGroup"));
@@ -816,8 +775,6 @@ public class NursePageController implements Initializable {
 
         blood_table.setItems(getDonors());
     }
-
-
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -878,15 +835,11 @@ public class NursePageController implements Initializable {
         });
 
 // Initialize blood group ComboBox
-        ObservableList<String> bloodGroupOptions = FXCollections.observableArrayList(
-                "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"
-        );
+        ObservableList<String> bloodGroupOptions = FXCollections.observableArrayList("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-");
         chooseDonorBloodGroup.setItems(bloodGroupOptions);
 
 // Initialize gender ComboBox
-        ObservableList<String> genderOptions = FXCollections.observableArrayList(
-                "Male", "Female", "Other"
-        );
+        ObservableList<String> genderOptions = FXCollections.observableArrayList("Male", "Female", "Other");
         chooseDonorGender.setItems(genderOptions);
 
 // Handle selection changes
@@ -897,17 +850,18 @@ public class NursePageController implements Initializable {
         this.translate();
     }
 
-// Method to handle blood group selection
+    // Method to handle blood group selection
     private void handleBloodGroupSelection() {
         String selectedBloodGroup = chooseDonorBloodGroup.getValue();
 
     }
 
-// Method to handle gender selection
+    // Method to handle gender selection
     private void handleGenderSelection() {
         String selectedGender = chooseDonorGender.getValue();
 
     }
+
     @FXML
     void handleRegjistro(MouseEvent event) {
 
@@ -925,7 +879,6 @@ public class NursePageController implements Initializable {
         }
         this.translate();
     }
-
 
 
     public void translate() {
