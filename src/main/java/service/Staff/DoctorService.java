@@ -12,7 +12,7 @@ import service.PasswordHasher;
 
 import java.util.List;
 
-public class DoctorService {
+public class DoctorService extends StaffService {
     public static boolean createDoctor(DoctorDto doctorData) {
         String id = registerDoctorID();
         String password = DoctorRepository.generateDocPassword(doctorData.getFirstName());
@@ -38,6 +38,11 @@ public class DoctorService {
                 doctorData.getRoutingNumber()
         );
         return DoctorRepository.createDoctor(createDoctorDto);
+    }
+
+    public static boolean login(LoginUserDto loginData) {
+        User user = DoctorRepository.getDoctorByEmail(loginData.getEmail());
+        return login(loginData, user);
     }
 
     public static List<DoctorDto> filter(DoctorFilter filter) {

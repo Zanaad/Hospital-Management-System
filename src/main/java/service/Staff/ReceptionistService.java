@@ -1,5 +1,7 @@
 package service.Staff;
 
+import model.User;
+import model.dto.LoginUserDto;
 import model.dto.StaffDto.CreateReceptionistDto;
 import model.dto.StaffDto.ReceptionistDto;
 import model.filter.UserFilter;
@@ -8,7 +10,7 @@ import service.PasswordHasher;
 
 import java.util.List;
 
-public class ReceptionistService {
+public class ReceptionistService extends StaffService {
     public static boolean createReceptionist(ReceptionistDto receptionistData) {
         String id = registerRecID();
         String password = ReceptionistRepository.generateRecPassword(receptionistData.getFirstName());
@@ -25,5 +27,10 @@ public class ReceptionistService {
 
     public static String registerRecID() {
         return ReceptionistRepository.generateRecID();
+    }
+
+    public static boolean login(LoginUserDto loginData) {
+        User user = ReceptionistRepository.getRecByEmail(loginData.getEmail());
+        return login(loginData, user);
     }
 }
