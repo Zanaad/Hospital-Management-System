@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import model.*;
 import model.dto.RecDto.PatientDto;
 import model.dto.ReportDto.*;
+import service.ChartService;
 import service.CountNurseService;
 import service.CountStaffService;
 import service.Rec.PatientService;
@@ -198,10 +199,10 @@ public class NursePageController implements Initializable {
     private AnchorPane contentPane;
 
     @FXML
-    private BarChart<?, ?> dashboad_chart_BD;
+    private AreaChart<String,Number> dashboad_chart_BD;
 
     @FXML
-    private AreaChart<?, ?> dashboad_chart_PD;
+    private AreaChart<String,Number> dashboad_chart_PD;
 
     @FXML
     private Label dashboard_beds;
@@ -856,7 +857,8 @@ public class NursePageController implements Initializable {
         donorDisplayData();
         this.nurse_dashboard_numbersCount();
         //charts
-
+        ChartService.donorsAreaChart(dashboad_chart_BD);
+        ChartService.patientAreaChart(dashboad_chart_PD);
 
 // Event Handler for navigating through TextFields with Enter--------------------------------------------------------------------------------------------------------------
 
