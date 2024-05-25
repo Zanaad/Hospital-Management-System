@@ -46,5 +46,16 @@ public class ReceptionistRepository extends StaffRepository {
         }
         return receptionists;
     }
+
+    public static String generateRecID() {
+        String prefix = "RID-";
+        String tableName = "receptionists";
+        return generateID(prefix, tableName);
+    }
+
+    public static String generateRecPassword(String firstName) {
+        String id = generateRecID();
+        return generatePassword(id, firstName);
+    }
 }
 

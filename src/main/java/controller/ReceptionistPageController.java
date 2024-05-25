@@ -248,6 +248,77 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     private AnchorPane contentPane;
+    @FXML
+    private Label personalinformation;
+    @FXML
+    private Label firstname;
+
+    @FXML
+    private Label lastname;
+
+    @FXML
+    private Label birthdate;
+
+    @FXML
+    private Label phone;
+
+    @FXML
+    private Label email;
+
+    @FXML
+    private Label address;
+
+    @FXML
+    private Label patientapp;
+    @FXML
+    private Label department;
+
+    @FXML
+    private Label doctor;
+
+    @FXML
+    private Label nurse;
+
+    @FXML
+    private Label datee;
+
+    @FXML
+    private Label payment;
+
+    @FXML
+    private Label Projectitle;
+
+    @FXML
+    private Label appo;
+
+    @FXML
+    private Label fn;
+
+    @FXML
+    private Label ln;
+
+    @FXML
+    private Label ge;
+
+
+    @FXML
+    private Label de;
+
+    @FXML
+    private Label dep;
+
+    @FXML
+    private Label doc;
+    @FXML
+    private Label nur;
+    @FXML
+    private Label phnum;
+    @FXML
+    private Label aadd;
+    @FXML
+    private Label datte;
+    @FXML
+    private Label hourr;
 
     @FXML
     public void registerPatient(ActionEvent event) {
@@ -361,8 +432,51 @@ public class ReceptionistPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         patientDisplayData();
         appointmentDisplayData();
+        //Navigating with Enter through Patients TextFields
+       // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
+       // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
+       // add_patient_btn.setOnAction(event -> patFirstName.requestFocus());
+        patFirstName.setOnAction(event -> patLastName.requestFocus());
+        patLastName.setOnAction(event -> patBirthdate.requestFocus());
+        patBirthdate.setOnAction(event -> patPhone.requestFocus());
+        patPhone.setOnAction(event -> patEmail.requestFocus());
+        patEmail.setOnAction(event -> patAddress.requestFocus());
+        patAddress.setOnAction(event -> patDep.requestFocus());
+        patDep.setOnAction(event -> patDoctor.requestFocus());
+        patDoctor.setOnAction(event -> patNurse.requestFocus());
+        patNurse.setOnAction(event -> patDate.requestFocus());
+        patDate.setOnAction(event -> patPayment.requestFocus());
+        patPayment.setOnAction(event -> register_patient_btn.requestFocus());
+        register_patient_btn.setOnAction(event -> {
+            registerPatient(event);
+            event.consume();
+
+        });
+        //Navigating with Enter through Appointments TextFields
+        appID.setOnAction(event -> appName.requestFocus());
+        appName.setOnAction(event ->appLastName.requestFocus());
+        appLastName.setOnAction(event -> appMale.requestFocus());
+        appMale.setOnAction(event -> appFemale.requestFocus());
+        appFemale.setOnAction(event -> appDesc.requestFocus());
+        appDesc.setOnAction(event ->  appDep.requestFocus());
+        appDep.setOnAction(event ->appDoc.requestFocus());
+        appDoc.setOnAction(event -> appNurse.requestFocus());
+        appNurse.setOnAction(event -> appPhone.requestFocus());
+        appPhone.setOnAction(event -> appAddress.requestFocus());
+        appAddress.setOnAction(event -> appDate.requestFocus());
+        appDate.setOnAction(event -> appHour.requestFocus());
+        appHour.setOnAction(event -> addApp_btn.requestFocus());
+        addApp_btn.setOnAction(event -> {
+            registerPatient(event);
+            event.consume();
+
+        });
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
+
+
+
+
     }
 
     @FXML
@@ -380,6 +494,7 @@ public class ReceptionistPageController implements Initializable {
     public void translate() {
         Locale locale = Locale.getDefault();
         ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
+     //   this.Projectitle.setText(rb.getString("Hospital Management System"));
         this.dashboard_btn.setText(rb.getString("Dashboard"));
         this.patients_btn.setText(rb.getString("Patients"));
         this.appointments_btn.setText(rb.getString("Appointments"));
@@ -391,6 +506,58 @@ public class ReceptionistPageController implements Initializable {
         this.pd.setText(rb.getString("Patients Data"));
         this.appointments.setText(rb.getString("Appointments"));
         this.patients.setText(rb.getString("Patients"));
+        this.patients_col_patientID.setText(rb.getString("Patient ID"));
+        this.patients_col_name.setText(rb.getString("Name"));
+        this.patients_col_department.setText(rb.getString("Department"));
+        this.patients_col_doctor.setText(rb.getString("Doctor"));
+        this.patients_col_nurse.setText(rb.getString("Nurse"));
+        this.patients_col_phonenumber.setText(rb.getString("Phone Number"));
+        this.patients_col_email.setText(rb.getString("Email"));
+        this.patients_col_address.setText(rb.getString("Address"));
+        this.patients_col_payment.setText(rb.getString("Payment"));
+        this.personalinformation.setText(rb.getString("Personal Information"));
+        this.firstname.setText(rb.getString("First Name"));
+        this.lastname.setText(rb.getString("Last Name"));
+        this.birthdate.setText(rb.getString("Birthdate"));
+        this.phone.setText(rb.getString("Phone"));
+        this.address.setText(rb.getString("Address"));
+        this.patientapp.setText(rb.getString("Patient Appointment"));
+        this.department.setText(rb.getString("Department"));
+        this.doctor.setText(rb.getString("Doctor"));
+        this.nurse.setText(rb.getString("Nurse"));
+        this.datee.setText(rb.getString("Date"));
+        this.payment.setText(rb.getString("Payment"));
+        this.app_col_appID.setText(rb.getString("Appointment ID"));
+        this.app_col_name.setText(rb.getString("First Name"));
+        this.app_col_department.setText(rb.getString("Department"));
+        this.app_col_doctor.setText(rb.getString("Doctor"));
+        this.app_col_nurse.setText(rb.getString("Nurse"));
+        this.app_col_phone.setText(rb.getString("Phone Number"));
+        this.app_col_address.setText(rb.getString("Address"));
+        this.app_col_date.setText(rb.getString("Date"));
+        this.app_col_hour.setText(rb.getString("Hour"));
+        this.appo.setText(rb.getString("Appointment ID"));
+        this.fn.setText(rb.getString("First Name"));
+        this.ln.setText(rb.getString("Last Name"));
+        this.ge.setText(rb.getString("Gender"));
+        this.appMale.setText(rb.getString("Male"));
+        this.appFemale.setText(rb.getString("Female"));
+        this.de.setText(rb.getString("Description"));
+        this.dep.setText(rb.getString("Department"));
+        this.doc.setText(rb.getString("Doctor"));
+        this.nur.setText(rb.getString("Nurse"));
+        this.phnum.setText(rb.getString("Phone Number"));
+        this.aadd.setText(rb.getString("Address"));
+        this.datte.setText(rb.getString("Date"));
+        this.hourr.setText(rb.getString("Hour"));
+        this.addApp_btn.setText(rb.getString("Add"));
+
+
+
+
+
+
+
 
     }
 }

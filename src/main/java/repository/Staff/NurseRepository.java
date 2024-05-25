@@ -4,7 +4,6 @@ import database.DatabaseUtil;
 import model.dto.StaffDto.CreateNurseDto;
 import model.dto.StaffDto.NurseDto;
 import model.filter.NurseFilter;
-import model.filter.UserFilter;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,5 +46,16 @@ public class NurseRepository extends StaffRepository {
             e.printStackTrace();
         }
         return nurses;
+    }
+
+    public static String generateNurseID() {
+        String prefix = "NID-";
+        String tableName = "nurses";
+        return generateID(prefix, tableName);
+    }
+
+    public static String generateNursePassword(String firstName) {
+        String id = generateNurseID();
+        return generatePassword(id, firstName);
     }
 }

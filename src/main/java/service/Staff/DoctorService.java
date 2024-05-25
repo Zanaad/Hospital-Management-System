@@ -1,22 +1,26 @@
 package service.Staff;
 
+import model.User;
+import model.dto.LoginUserDto;
 import model.dto.StaffDto.CreateDoctorDto;
 import model.dto.StaffDto.DoctorDto;
 import model.filter.DoctorFilter;
 import model.filter.UserFilter;
 import repository.Staff.DoctorRepository;
+import service.Alerts;
 import service.PasswordHasher;
 
 import java.util.List;
 
 public class DoctorService {
     public static boolean createDoctor(DoctorDto doctorData) {
-        String password = doctorData.getPassword();
+        String id = registerDoctorID();
+        String password = DoctorRepository.generateDocPassword(doctorData.getFirstName());
         String salt = PasswordHasher.generateSalt();
         String passwordHash = PasswordHasher.generateSaltedHash(password, salt);
 
         CreateDoctorDto createDoctorDto = new CreateDoctorDto(
-                doctorData.getId(),
+                id,
                 doctorData.getFirstName(),
                 doctorData.getLastName(),
                 doctorData.getBirthdate(),
@@ -38,5 +42,9 @@ public class DoctorService {
 
     public static List<DoctorDto> filter(DoctorFilter filter) {
         return DoctorRepository.getByFilter(filter);
+    }
+
+    public static String registerDoctorID() {
+        return DoctorRepository.generateDoctorID();
     }
 }

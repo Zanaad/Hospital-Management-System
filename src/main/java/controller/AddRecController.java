@@ -159,6 +159,9 @@ public class AddRecController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         recDisplayData();
         loadDepartmentNames();
+        recID.setDisable(true);
+        recID.setText(ReceptionistService.registerRecID());
+        recPassword.setDisable(true);
     }
 
     private void loadDepartmentNames() {
