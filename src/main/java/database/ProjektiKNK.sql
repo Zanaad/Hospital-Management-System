@@ -21,6 +21,7 @@ values ("Zana", "Ademi", "zana@gmail.com"),
        ("Yllka", "Kastrati", "yllka@gmail.com");
 select *
 from admin;
+drop table admin;
 create table doctors
 (
     id            nvarchar(100) primary key,
@@ -78,6 +79,7 @@ create table nurses
     bankAccount   nvarchar(100),
     routingNumber nvarchar(100)
 );
+insert into nurses(firstName,lastName,email) values ("Dara","Tabaku","dara@gmail.com");
 create table departments
 (
     department_id          nvarchar(100) primary key,
@@ -163,12 +165,21 @@ create table others
 create table donors
 (
     donor_ID           int primary key auto_increment,
+    donor_patient      nvarchar(100),
     donor_bloodGroup   nvarchar(100),
     donor_age          nvarchar(100),
     donor_gender       nvarchar(100),
     donor_lastDonation date
 );
 
+create table beds
+(
+    bed_ID           int primary key auto_increment,
+    bed_patient      nvarchar(100),
+    bed_number   nvarchar(100)
+);
+select * from beds;
+drop table donors;
 select *
 from doctors;
 select *
@@ -189,6 +200,7 @@ select *
 from others;
 select *
 from donors;
+
 SELECT DATE (patient_date) AS patient_date, COUNT (patient_id) AS patient_count
 FROM patients
 GROUP BY DATE (patient_date)
