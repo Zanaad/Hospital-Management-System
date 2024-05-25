@@ -75,6 +75,24 @@ public class AdminRepository extends StaffRepository {
         return false;
     }
 
+    public static boolean updateAdminDetails(User user) {
+        String query = "UPDATE admin SET firstName=?, lastName=?, email=?, address=? WHERE id=?";
+        try {
+            Connection con = DatabaseUtil.getConnection();
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, user.getFirstName());
+            pst.setString(2, user.getLastName());
+            pst.setString(3, user.getEmail());
+            pst.setString(4, user.getAddress());
+            pst.setString(5, user.getId());
+            int rowsUpdated = pst.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static User getAdminByEmail(String email) {
         return getStaffByEmail(email, "admin");
     }
