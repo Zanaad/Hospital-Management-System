@@ -327,6 +327,7 @@ public class ReceptionistPageController implements Initializable {
 
     @FXML
     private AreaChart<String, Number> dashboad_chart_PD;
+    private AreaChart<String, Number> dashboad_chart_AD;
 
 
     @FXML
