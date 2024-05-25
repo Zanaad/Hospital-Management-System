@@ -29,6 +29,73 @@ import java.util.ResourceBundle;
 
 public class NursePageController implements Initializable {
 
+
+    @FXML
+    private Button Logout_btn;
+
+    @FXML
+    private Label Project_title;
+
+    @FXML
+    private Label SQDateBi;
+
+    @FXML
+    private Label SQDateDe;
+
+    @FXML
+    private Label SQDateOp;
+
+    @FXML
+    private Label SQDateOt;
+
+    @FXML
+    private Label SQDescriptionBi;
+
+    @FXML
+    private Label SQDescriptionDe;
+
+    @FXML
+    private Label SQDescriptionOp;
+
+    @FXML
+    private Label SQDescriptionOt;
+
+    @FXML
+    private Label SQDoctorOp;
+
+    @FXML
+    private Label SQDonorAge;
+
+    @FXML
+    private Label SQDonorPatient;
+
+    @FXML
+    private Label SQNewbornBi;
+
+    @FXML
+    private Label SQPatientBi;
+
+    @FXML
+    private Label SQPatientDe;
+
+    @FXML
+    private Label SQPatientOP;
+
+    @FXML
+    private Label SQPatientOt;
+
+    @FXML
+    private Label SQTimeBi;
+
+    @FXML
+    private Label SQTimeDe;
+
+    @FXML
+    private Label SQTimeOp;
+
+    @FXML
+    private Label SQTimeOt;
+
     @FXML
     private Button account_btn;
 
@@ -42,22 +109,10 @@ public class NursePageController implements Initializable {
     private Button add_death_btn;
 
     @FXML
+    private Button add_donor_btn;
+
+    @FXML
     private Button add_other_btn;
-
-    @FXML
-    private Button add_patient_btn;
-
-    @FXML
-    private AnchorPane add_reportBirth;
-
-    @FXML
-    private AnchorPane add_reportDeath;
-
-    @FXML
-    private AnchorPane add_reportOperation;
-
-    @FXML
-    private AnchorPane add_reportOther;
 
     @FXML
     private Button bedWards_btn;
@@ -76,6 +131,9 @@ public class NursePageController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> bed_col_type;
+
+    @FXML
+    private TableView<?> bed_table;
 
     @FXML
     private TableView<Births> birth_table;
@@ -111,7 +169,7 @@ public class NursePageController implements Initializable {
     private TableColumn<?, ?> blood_col_bloodGroup;
 
     @FXML
-    private TableColumn<?, ?> blood_col_donorID;
+    private TableColumn<?, ?> blood_col_donorPatient;
 
     @FXML
     private TableColumn<?, ?> blood_col_gender;
@@ -120,10 +178,22 @@ public class NursePageController implements Initializable {
     private TableColumn<?, ?> blood_col_lastDonationDate;
 
     @FXML
-    private TableView<Operation> operation_table;
+    private TableView<BloodDonors> blood_table;
 
     @FXML
-    private TableView<Deaths> death_table;
+    private Label chart1;
+
+    @FXML
+    private Label chart2;
+
+    @FXML
+    private ComboBox<String> chooseDonorBloodGroup;
+
+    @FXML
+    private ComboBox<String> chooseDonorGender;
+
+    @FXML
+    private AnchorPane contentPane;
 
     @FXML
     private BarChart<?, ?> dashboad_chart_BD;
@@ -150,6 +220,9 @@ public class NursePageController implements Initializable {
     private Label date_time;
 
     @FXML
+    private TableView<Deaths> death_table;
+
+    @FXML
     private TableColumn<?, ?> deaths_col_date;
 
     @FXML
@@ -168,10 +241,19 @@ public class NursePageController implements Initializable {
     private AnchorPane doctor_table;
 
     @FXML
-    private TableView<?> doctors_tableView;
+    private Label id1;
+
+    @FXML
+    private Label id2;
+
+    @FXML
+    private Label id3;
 
     @FXML
     private AnchorPane main_form;
+
+    @FXML
+    private TableView<Operation> operation_table;
 
     @FXML
     private TableColumn<?, ?> operations_col_date;
@@ -210,229 +292,6 @@ public class NursePageController implements Initializable {
     private TableColumn<?, ?> others_col_time;
 
     @FXML
-    private TableColumn<?, ?> patient_col_action;
-
-    @FXML
-    private TableColumn<?, ?> patient_col_address;
-
-    @FXML
-    private TableColumn<?, ?> patient_col_department;
-
-    @FXML
-    private TableColumn<?, ?> patient_col_email;
-
-    @FXML
-    private TableColumn<?, ?> patient_col_name;
-
-    @FXML
-    private TableColumn<?, ?> patient_col_patientID;
-
-    @FXML
-    private TableColumn<?, ?> patient_col_phone;
-
-    @FXML
-    private TableColumn<?, ?> patient_col_specialization;
-
-    @FXML
-    private TableColumn<?, ?> patient_col_status;
-
-    @FXML
-    private Button patients_btn;
-
-    @FXML
-    private AnchorPane patients_form;
-
-    @FXML
-    private ComboBox<?> reportCase_comboBox;
-
-    @FXML
-    private Button report_btn;
-
-    @FXML
-    private AnchorPane report_form;
-
-    @FXML
-    private DatePicker txtBirthDate;
-
-    @FXML
-    private TextField txtBirthDescription;
-
-    @FXML
-    private TextField txtBirthNewBorn;
-
-    @FXML
-    private TextField txtBirthPatient;
-
-    @FXML
-    private TextField txtBirthTime;
-
-    @FXML
-    private DatePicker txtDeathDate;
-
-    @FXML
-    private TextField txtDeathDescription;
-
-    @FXML
-    private TextField txtDeathPatient;
-
-    @FXML
-    private TextField txtDeathTime;
-
-    @FXML
-    private DatePicker txtOperationDate;
-
-    @FXML
-    private TextField txtOperationDescription;
-
-    @FXML
-    private TextField txtOperationDoctor;
-
-    @FXML
-    private TextField txtOperationPatient;
-
-    @FXML
-    private TextField txtOperationTime;
-
-    @FXML
-    private DatePicker txtOtherDate;
-
-    @FXML
-    private TextField txtOtherID;
-
-    @FXML
-    private TextField txtOtherDescription;
-
-    @FXML
-    private TextField txtOtherPatient;
-
-    @FXML
-    private TextField txtOtherTime;
-
-    @FXML
-    private TextField txtDonorAge;
-
-    @FXML
-    private TextField txtDonorBlood;
-
-    @FXML
-    private DatePicker txtDonorDate;
-
-    @FXML
-    private Button add_donor_btn;
-
-    @FXML
-    private ComboBox<String> chooseDonorBloodGroup;
-
-    @FXML
-    private ComboBox<String> chooseDonorGender;
-
-    @FXML
-    private TextField txtDeathID;
-
-    @FXML
-    private TextField txtBirthID;
-
-    @FXML
-    private TextField txtOperationID;
-
-    @FXML
-    private Label chart1;
-
-    @FXML
-    private Label chart2;
-
-    @FXML
-    private Label id1;
-
-    @FXML
-    private Label id2;
-
-    @FXML
-    private Label id3;
-
-    @FXML
-    private AnchorPane contentPane;
-
-    @FXML
-    private Label SQDateBi;
-
-    @FXML
-    private Label SQDateDe;
-
-    @FXML
-    private Label SQDateOp;
-
-    @FXML
-    private Label SQDateOt;
-
-    @FXML
-    private Label SQDescriptionBi;
-
-    @FXML
-    private Label SQDescriptionDe;
-
-    @FXML
-    private Label SQDescriptionOp;
-
-    @FXML
-    private Label SQDescriptionOt;
-
-    @FXML
-    private Label SQDoctorOp;
-
-    @FXML
-    private Label SQNewbornBi;
-
-    @FXML
-    private Label SQPatientBi;
-
-    @FXML
-    private Label SQPatientDe;
-
-    @FXML
-    private Label SQPatientOP;
-
-    @FXML
-    private Label SQPatientOt;
-
-    @FXML
-    private Label SQTimeBi;
-
-    @FXML
-    private Label SQTimeDe;
-
-    @FXML
-    private Label SQTimeOp;
-
-    @FXML
-    private Label SQTimeOt;
-
-    @FXML
-    private Tab report1op;
-
-    @FXML
-    private Tab report2Op;
-
-    @FXML
-    private Tab report3Op;
-
-    @FXML
-    private Tab report4Op;
-
-    @FXML
-    private Tab report5Op;
-
-
-    @FXML
-    private Label titulliReports;
-
-    @FXML
-    private Button Logout_btn;
-
-    @FXML
-    private Label Project_title;
-
-    @FXML
     private TextField patAddress;
 
     @FXML
@@ -466,6 +325,9 @@ public class NursePageController implements Initializable {
     private TextField patPhone;
 
     @FXML
+    private Button patients_btn;
+
+    @FXML
     private TableColumn<?, ?> patients_col_address;
 
     @FXML
@@ -493,6 +355,9 @@ public class NursePageController implements Initializable {
     private TableColumn<?, ?> patients_col_phonenumber;
 
     @FXML
+    private AnchorPane patients_form;
+
+    @FXML
     private TableView<Patient> patients_tableView;
 
     @FXML
@@ -501,8 +366,113 @@ public class NursePageController implements Initializable {
     @FXML
     private AnchorPane register_patient_form;
 
+    @FXML
+    private Tab report1op;
 
+    @FXML
+    private Tab report2Op;
 
+    @FXML
+    private Tab report3Op;
+
+    @FXML
+    private Tab report4Op;
+
+    @FXML
+    private Button report_btn;
+
+    @FXML
+    private AnchorPane report_form;
+
+    @FXML
+    private Label titulliReports;
+
+    @FXML
+    private DatePicker txtBirthDate;
+
+    @FXML
+    private TextField txtBirthDescription;
+
+    @FXML
+    private TextField txtBirthID;
+
+    @FXML
+    private TextField txtBirthNewBorn;
+
+    @FXML
+    private TextField txtBirthPatient;
+
+    @FXML
+    private TextField txtBirthTime;
+
+    @FXML
+    private DatePicker txtDeathDate;
+
+    @FXML
+    private TextField txtDeathDescription;
+
+    @FXML
+    private TextField txtDeathID;
+
+    @FXML
+    private TextField txtDeathPatient;
+
+    @FXML
+    private TextField txtDeathTime;
+
+    @FXML
+    private TextField txtDonorAge;
+
+    @FXML
+    private DatePicker txtDonorDate;
+
+    @FXML
+    private TextField txtDonorPatient;
+
+    @FXML
+    private DatePicker txtOperationDate;
+
+    @FXML
+    private TextField txtOperationDescription;
+
+    @FXML
+    private TextField txtOperationDoctor;
+
+    @FXML
+    private TextField txtOperationID;
+
+    @FXML
+    private TextField txtOperationPatient;
+
+    @FXML
+    private TextField txtOperationTime;
+
+    @FXML
+    private DatePicker txtOtherDate;
+
+    @FXML
+    private TextField txtOtherDescription;
+
+    @FXML
+    private TextField txtOtherID;
+
+    @FXML
+    private TextField txtOtherPatient;
+
+    @FXML
+    private TextField txtOtherTime;
+
+    @FXML
+    private TableColumn<?, ?> blood_col_donor_id;
+
+    @FXML
+    private Tab titulli_AddDonors;
+
+    @FXML
+    private Tab titulli_DonorsList;
+
+    @FXML
+    private Label titulli_Donors;
 
 
     //change the forms depending on what the user chooses-----------------------------------------------------------
@@ -610,20 +580,20 @@ public class NursePageController implements Initializable {
     }
     @FXML
     void registerDonor(ActionEvent event) {
-        String donorAge = txtDonorAge.getText();
-        String bloodGroup = chooseDonorBloodGroup.getValue();
-        String gender = chooseDonorGender.getValue();
-        Date lastDonationDate = Date.valueOf(txtDonorDate.getValue());
+        Date donationDate = Date.valueOf(this.txtDonorDate.getValue());
 
-
-        DonorDto donor = new DonorDto(bloodGroup, donorAge, gender, lastDonationDate);
-
+        DonorDto donor = new DonorDto(this.txtDonorPatient.getText(),
+                (String) this.chooseDonorBloodGroup.getValue(),
+                Integer.parseInt(this.txtDonorAge.getText()),
+                (String) this.chooseDonorGender.getValue(),
+                donationDate);
         boolean donorCreated = donorService.createDonor(donor);
-
-        if (donorCreated) {
+        if (donorCreated)
+        {
             Navigator.navigate(event, Navigator.NursePage);
         }
     }
+
 
 
 
@@ -745,7 +715,6 @@ public class NursePageController implements Initializable {
 
 
 //display Others
-
     public ObservableList<Others> getOthers() {
         ObservableList<Others> listOthers = FXCollections.observableArrayList();
         String query = "SELECT * FROM others";
@@ -781,7 +750,6 @@ public class NursePageController implements Initializable {
 
 
 //display Patient
-
     public ObservableList<Patient> getPatients() {
         ObservableList<Patient> listPatients = FXCollections.observableArrayList();
         String query = "select * from patients";
@@ -798,7 +766,6 @@ public class NursePageController implements Initializable {
         }
         return listPatients;
     }
-
     public void patientDisplayData() {
         patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("id"));
         patients_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -813,6 +780,44 @@ public class NursePageController implements Initializable {
 
     }
 
+//display Donors
+
+    public ObservableList<BloodDonors> getDonors() {
+        ObservableList<BloodDonors> listDonors = FXCollections.observableArrayList();
+        String query = "SELECT * FROM donors";
+        Connection con = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement prepare = con.prepareStatement(query);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                BloodDonors donorData = new BloodDonors(
+                        result.getInt("donor_ID"),
+                        result.getString("donor_patient"),
+                        result.getString("donor_bloodGroup"),
+                        result.getInt("donor_age"),
+                        result.getString("donor_gender"),
+                        result.getDate("donor_lastDonation")
+                );
+                listDonors.add(donorData);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listDonors;
+    }
+    public void donorDisplayData(){
+        blood_col_donor_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        blood_col_donorPatient.setCellValueFactory(new PropertyValueFactory<>("patient"));
+        blood_col_bloodGroup.setCellValueFactory(new PropertyValueFactory<>("bloodGroup"));
+        blood_col_age.setCellValueFactory(new PropertyValueFactory<>("age"));
+        blood_col_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        blood_col_lastDonationDate.setCellValueFactory(new PropertyValueFactory<>("lastDonationDate"));
+
+        blood_table.setItems(getDonors());
+    }
+
+
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -822,6 +827,7 @@ public class NursePageController implements Initializable {
         deathDisplayData();
         otherDisplayData();
         patientDisplayData();
+        donorDisplayData();
 // Event Handler for navigating through TextFields with Enter--------------------------------------------------------------------------------------------------------------
 
 
@@ -992,6 +998,18 @@ public class NursePageController implements Initializable {
             this.add_other_btn.setText(rb.getString("Add Other"));
             this.add_death_btn.setText(rb.getString("Add Death"));
             this.add_birth_btn.setText(rb.getString("Add Birth"));
+            this.titulli_DonorsList.setText(rb.getString("Blood Donors List"));
+            this.titulli_AddDonors.setText(rb.getString("Add Blood Donor"));
+            this.SQDonorAge.setText(rb.getString("Age"));
+            this.chooseDonorGender.setPromptText(rb.getString("Gender..."));
+            this.txtDonorDate.setPromptText(rb.getString("Last Donation Date..."));
+            this.add_donor_btn.setText(rb.getString("Add Donor"));
+            this.chooseDonorBloodGroup.setPromptText(rb.getString("Blood Group..."));
+            this.titulli_Donors.setText(rb.getString("Blood Bank"));
+            this.blood_col_bloodGroup.setText(rb.getString("Blood Group"));
+            this.blood_col_lastDonationDate.setText("Last Donation Date");
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
