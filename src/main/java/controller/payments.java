@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +11,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import model.dto.StaffDto.DoctorDto;
+import model.filter.DoctorFilter;
+import service.Staff.DoctorService;
+
+import java.util.List;
 
 public class payments {
 
@@ -26,18 +33,6 @@ public class payments {
 
     @FXML
     private TextField docBank;
-
-    @FXML
-    private ComboBox<?> docDep;
-
-    @FXML
-    private DatePicker docEnd;
-
-    @FXML
-    private TextField docRoutingNr;
-
-    @FXML
-    private TextField docSpecialty;
 
     @FXML
     private DatePicker docStart;
@@ -105,19 +100,22 @@ public class payments {
     @FXML
     private Button update_btn;
 
+    @Override
     @FXML
-    void handleDoctorFilter(ActionEvent event) {
-
+    void filter_payments_btn (ActionEvent event) {
+        String firstName = filterDocName.getText();
+        String email = filterDocEmail.getText();
+        String specialty = filterDocSpecialty.getText();
+        DoctorFilter filter = new DoctorFilter(firstName, email, specialty);
+        List<DoctorDto> filteredDoctors = DoctorService.filter(filter);
+        updateDoctorTable(filteredDoctors);
     }
 
-    @FXML
-    void registerDoctor(ActionEvent event) {
 
-    }
-
-    @FXML
-    void switchForm(ActionEvent event) {
-
+    public void updateDoctorTable(List<DoctorDto> doctors) {
+        ObservableList<DoctorDto> listDoctors = FXCollections.observableArrayList(doctors);
+        doctors_table.setItems(listDoctors);
     }
 
 }
+
