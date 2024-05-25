@@ -4,123 +4,128 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main_form" prefHeight="537.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
-
-    <AnchorPane fx:id="login_admin" layoutX="48.0" layoutY="75.0" prefHeight="550.0" prefWidth="330.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
-        <FontAwesomeIcon fill="#188ba7" glyphName="USER" layoutX="141.0" layoutY="91.0" size="5em" />
-        <Label layoutX="102.0" layoutY="100.0" text="Login Account" textFill="#188ba7">
-            <font>
-                <Font name="Tahoma" size="20.0" />
-            </font>
-        </Label>
-        <Label layoutX="141.0" layoutY="126.0" text="Admin" />
-        <TextField fx:id="login_adminEmail" layoutX="39.0" layoutY="177.0" onAction="#loginAccount" prefHeight="30.0" prefWidth="250.0" promptText="Email" />
-        <PasswordField fx:id="login_adminPwd" layoutX="39.0" layoutY="213.0" onAction="#loginAccount" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
-        <TextField fx:id="login_showPassword" layoutX="39.0" layoutY="213.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" visible="false" />
-        <CheckBox fx:id="login_checkBox" layoutX="39.0" layoutY="249.0" mnemonicParsing="false" onAction="#loginShowPassword" text="Show Password" />
-        <Button fx:id="login_loginBtn" layoutX="40.0" layoutY="275.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="40.0" prefWidth="250.0" text="Login" />
-        <FontAwesomeIcon fill="#188ba7" glyphName="HOSPITAL_ALT" layoutX="136.0" layoutY="435.0" size="6em" />
-        <ComboBox fx:id="login_user" layoutX="90.0" layoutY="465.0" onAction="#switchAdminLogin" prefHeight="30.0" prefWidth="150.0" promptText="Select User">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Admin" />
-                    <String fx:value="Doctor" />
-                    <String fx:value="Nurse" />
-                    <String fx:value="Receptionist" />
-                </FXCollections>
-            </items>
-        </ComboBox>
-
-    </AnchorPane>
-    <AnchorPane fx:id="login_doctor" layoutX="29.0" layoutY="42.0" prefHeight="592.4" prefWidth="359.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
-        <FontAwesomeIcon fill="#188ba7" glyphName="USER" layoutX="124.0" layoutY="90.0" size="5em" />
-        <Label layoutX="86.0" layoutY="99.0" text="Login Account" textFill="#188ba7">
-            <font>
-                <Font name="Tahoma" size="20.0" />
-            </font>
-        </Label>
-        <Label layoutX="130.0" layoutY="125.0" text="Doctor" />
-        <TextField fx:id="login_docEmail" layoutX="39.0" layoutY="177.0" onAction="#loginAccount" prefHeight="30.0" prefWidth="250.0" promptText="Email" />
-        <PasswordField fx:id="login_docPassword" layoutX="39.0" layoutY="213.0" onAction="#loginAccount" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
-        <TextField fx:id="login_showPassword1" layoutX="39.0" layoutY="213.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" visible="false" />
-        <CheckBox fx:id="login_checkBox1" layoutX="39.0" layoutY="249.0" mnemonicParsing="false" onAction="#loginShowPassword" text="Show Password" />
-        <Button fx:id="login_loginBtn1" layoutX="40.0" layoutY="275.0" mnemonicParsing="false" onAction="#loginDoctor" prefHeight="40.0" prefWidth="250.0" text="Login" />
-        <FontAwesomeIcon fill="#188ba7" glyphName="HOSPITAL_ALT" layoutX="136.0" layoutY="435.0" size="6em" />
-        <ComboBox fx:id="login_user1" layoutX="90.0" layoutY="465.0" onAction="#switchDocLogin" prefHeight="30.0" prefWidth="150.0" promptText="Select User">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Admin" />
-                    <String fx:value="Doctor" />
-                    <String fx:value="Nurse" />
-                    <String fx:value="Receptionist" />
-                </FXCollections>
-            </items>
-        </ComboBox>
-
-    </AnchorPane>
-    <AnchorPane fx:id="login_nurse" layoutX="58.0" layoutY="85.0" prefHeight="635.4" prefWidth="388.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
-        <FontAwesomeIcon fill="#188ba7" glyphName="USER" layoutX="141.0" layoutY="91.0" size="5em" />
-        <Label layoutX="102.0" layoutY="100.0" text="Login Account" textFill="#188ba7">
-            <font>
-                <Font name="Tahoma" size="20.0" />
-            </font>
-        </Label>
-        <Label layoutX="130.0" layoutY="125.0" text="Nurse" />
-        <TextField fx:id="login_nurseEmail" layoutX="39.0" layoutY="177.0" onAction="#loginAccount" prefHeight="30.0" prefWidth="250.0" promptText="Email" />
-        <PasswordField fx:id="login_nursePwd" layoutX="39.0" layoutY="213.0" onAction="#loginAccount" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
-        <TextField fx:id="login_showPassword2" layoutX="39.0" layoutY="213.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" visible="false" />
-        <CheckBox fx:id="login_checkBox2" layoutX="39.0" layoutY="249.0" mnemonicParsing="false" onAction="#loginShowPassword" text="Show Password" />
-        <Button fx:id="login_loginBtn2" layoutX="40.0" layoutY="275.0" mnemonicParsing="false" onAction="#loginNurse" prefHeight="40.0" prefWidth="250.0" text="Login" />
-        <FontAwesomeIcon fill="#188ba7" glyphName="HOSPITAL_ALT" layoutX="136.0" layoutY="435.0" size="6em" />
-        <ComboBox fx:id="login_user2" layoutX="90.0" layoutY="465.0" onAction="#switchNurseLogin" prefHeight="30.0" prefWidth="150.0" promptText="Select User">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Admin" />
-                    <String fx:value="Doctor" />
-                    <String fx:value="Nurse" />
-                    <String fx:value="Receptionist" />
-                </FXCollections>
-            </items>
-        </ComboBox>
-
-    </AnchorPane>
-    <AnchorPane fx:id="login_receptionist" layoutX="58.0" layoutY="85.0" prefHeight="635.4" prefWidth="388.4" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
-        <FontAwesomeIcon fill="#188ba7" glyphName="USER" layoutX="141.0" layoutY="91.0" size="5em" />
-        <Label layoutX="102.0" layoutY="100.0" text="Login Account" textFill="#188ba7">
-            <font>
-                <Font name="Tahoma" size="20.0" />
-            </font>
-        </Label>
-        <Label layoutX="130.0" layoutY="125.0" text="Receptionist" />
-        <TextField fx:id="login_recEmail" layoutX="39.0" layoutY="177.0" onAction="#loginAccount" prefHeight="30.0" prefWidth="250.0" promptText="Email" />
-        <PasswordField fx:id="login_recPwd" layoutX="39.0" layoutY="213.0" onAction="#loginAccount" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
-        <TextField fx:id="login_showPassword3" layoutX="39.0" layoutY="213.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" visible="false" />
-        <CheckBox fx:id="login_checkBox3" layoutX="39.0" layoutY="249.0" mnemonicParsing="false" onAction="#loginShowPassword" text="Show Password" />
-        <Button fx:id="login_loginBtn3" layoutX="40.0" layoutY="275.0" mnemonicParsing="false" onAction="#loginRec" prefHeight="40.0" prefWidth="250.0" text="Login" />
-        <FontAwesomeIcon fill="#188ba7" glyphName="HOSPITAL_ALT" layoutX="136.0" layoutY="435.0" size="6em" />
-        <ComboBox fx:id="login_user3" layoutX="90.0" layoutY="465.0" onAction="#switchRecLogin" prefHeight="30.0" prefWidth="150.0" promptText="Select User">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Admin" />
-                    <String fx:value="Doctor" />
-                    <String fx:value="Nurse" />
-                    <String fx:value="Receptionist" />
-                </FXCollections>
-            </items>
-        </ComboBox>
-
-    </AnchorPane>
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="381.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <AnchorPane fx:id="login_admin" layoutX="-8.0" layoutY="12.0" prefHeight="381.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="379.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/try.png" />
+               </image>
+            </ImageView>
+            <FontAwesomeIcon fill="#188ba7" glyphName="STETHOSCOPE" layoutX="426.0" layoutY="92.0" size="5em" />
+            <Label layoutX="395.0" layoutY="102.0" text="Login Admin" textFill="#188ba7">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="login_adminEmail" layoutX="334.0" layoutY="153.0" prefHeight="30.0" prefWidth="250.0" promptText="Email" />
+            <PasswordField fx:id="login_adminPwd" layoutX="334.0" layoutY="189.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+            <Button fx:id="login_loginBtn" layoutX="335.0" layoutY="251.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #188ba7;" text="Login" textFill="WHITE" />
+            <ComboBox fx:id="login_user" layoutX="384.0" layoutY="326.0" onAction="#switchAdminLogin" prefHeight="30.0" prefWidth="150.0" promptText="Select User">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Admin" />
+                     <String fx:value="Doctor" />
+                     <String fx:value="Nurse" />
+                     <String fx:value="Receptionist" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="login_doctor" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="379.0" fitWidth="297.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/try.png" />
+               </image>
+            </ImageView>
+            <FontAwesomeIcon fill="#188ba7" glyphName="STETHOSCOPE" layoutX="429.0" layoutY="84.0" size="5em" />
+            <Label layoutX="397.0" layoutY="94.0" text="Login Doctor" textFill="#188ba7">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="login_docEmail" layoutX="334.0" layoutY="141.0" prefHeight="30.0" prefWidth="250.0" promptText="Email" />
+            <PasswordField fx:id="login_docPassword" layoutX="334.0" layoutY="177.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+            <Button fx:id="login_loginBtn1" layoutX="335.0" layoutY="239.0" mnemonicParsing="false" onAction="#loginDoctor" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #188ba7;" text="Login" textFill="WHITE" />
+            <ComboBox fx:id="login_user1" layoutX="391.0" layoutY="303.0" onAction="#switchDocLogin" prefHeight="30.0" prefWidth="150.0" promptText="Select User">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Admin" />
+                     <String fx:value="Doctor" />
+                     <String fx:value="Nurse" />
+                     <String fx:value="Receptionist" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="login_nurse" layoutX="68.0" layoutY="95.0" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="379.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/try.png" />
+               </image>
+            </ImageView>
+            <FontAwesomeIcon fill="#188ba7" glyphName="STETHOSCOPE" layoutX="427.0" layoutY="73.0" size="5em" />
+            <Label layoutX="398.0" layoutY="83.0" text="Login Nurse" textFill="#188ba7">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="login_nurseEmail" layoutX="333.0" layoutY="145.0" prefHeight="30.0" prefWidth="250.0" promptText="Email" />
+            <PasswordField fx:id="login_nursePwd" layoutX="333.0" layoutY="181.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+            <Button fx:id="login_loginBtn2" layoutX="334.0" layoutY="243.0" mnemonicParsing="false" onAction="#loginNurse" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #188ba7;" text="Login" textFill="WHITE" />
+            <ComboBox fx:id="login_user2" layoutX="381.0" layoutY="315.0" onAction="#switchNurseLogin" prefHeight="30.0" prefWidth="150.0" promptText="Select User">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Admin" />
+                     <String fx:value="Doctor" />
+                     <String fx:value="Nurse" />
+                     <String fx:value="Receptionist" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="login_receptionist" layoutY="12.0" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="379.0" fitWidth="297.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/try.png" />
+               </image>
+            </ImageView>
+            <FontAwesomeIcon fill="#188ba7" glyphName="STETHOSCOPE" layoutX="435.0" layoutY="82.0" size="5em" />
+            <Label layoutX="379.0" layoutY="92.0" text="Login Receptionist" textFill="#188ba7">
+               <font>
+                  <Font name="Tahoma" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="login_recEmail" layoutX="334.0" layoutY="151.0" prefHeight="30.0" prefWidth="250.0" promptText="Email" />
+            <PasswordField fx:id="login_recPwd" layoutX="334.0" layoutY="187.0" prefHeight="30.0" prefWidth="250.0" promptText="Password" />
+            <Button fx:id="login_loginBtn3" layoutX="335.0" layoutY="249.0" mnemonicParsing="false" onAction="#loginRec" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #188ba7;" text="Login" textFill="WHITE" />
+            <ComboBox fx:id="login_user3" layoutX="385.0" layoutY="316.0" onAction="#switchRecLogin" prefHeight="30.0" prefWidth="150.0" promptText="Select User">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Admin" />
+                     <String fx:value="Doctor" />
+                     <String fx:value="Nurse" />
+                     <String fx:value="Receptionist" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
