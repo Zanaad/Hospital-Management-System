@@ -433,6 +433,9 @@ public class ReceptionistPageController implements Initializable {
         patientDisplayData();
         appointmentDisplayData();
         //Navigating with Enter through Patients TextFields
+       // dashboard_btn.setOnAction(event -> patients_btn.requestFocus());
+       // patients_btn.setOnAction(event -> add_patient_btn.requestFocus());
+       // add_patient_btn.setOnAction(event -> patFirstName.requestFocus());
         patFirstName.setOnAction(event -> patLastName.requestFocus());
         patLastName.setOnAction(event -> patBirthdate.requestFocus());
         patBirthdate.setOnAction(event -> patPhone.requestFocus());
@@ -443,12 +446,31 @@ public class ReceptionistPageController implements Initializable {
         patDoctor.setOnAction(event -> patNurse.requestFocus());
         patNurse.setOnAction(event -> patDate.requestFocus());
         patDate.setOnAction(event -> patPayment.requestFocus());
-        patPayment.setOnAction(event -> {
+        patPayment.setOnAction(event -> register_patient_btn.requestFocus());
+        register_patient_btn.setOnAction(event -> {
             registerPatient(event);
             event.consume();
 
         });
+        //Navigating with Enter through Appointments TextFields
+        appID.setOnAction(event -> appName.requestFocus());
+        appName.setOnAction(event ->appLastName.requestFocus());
+        appLastName.setOnAction(event -> appMale.requestFocus());
+        appMale.setOnAction(event -> appFemale.requestFocus());
+        appFemale.setOnAction(event -> appDesc.requestFocus());
+        appDesc.setOnAction(event ->  appDep.requestFocus());
+        appDep.setOnAction(event ->appDoc.requestFocus());
+        appDoc.setOnAction(event -> appNurse.requestFocus());
+        appNurse.setOnAction(event -> appPhone.requestFocus());
+        appPhone.setOnAction(event -> appAddress.requestFocus());
+        appAddress.setOnAction(event -> appDate.requestFocus());
+        appDate.setOnAction(event -> appHour.requestFocus());
+        appHour.setOnAction(event -> addApp_btn.requestFocus());
+        addApp_btn.setOnAction(event -> {
+            registerPatient(event);
+            event.consume();
 
+        });
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
 
