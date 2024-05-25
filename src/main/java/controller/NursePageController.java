@@ -1,6 +1,7 @@
 package controller;
 
 import app.Navigator;
+import app.SessionManager;
 import database.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,13 +15,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.*;
+import model.dto.ChangePasswordDto;
 import model.dto.RecDto.PatientDto;
 import model.dto.ReportDto.*;
+import service.Alerts;
 import service.ChartService;
 import service.CountNurseService;
 import service.CountStaffService;
 import service.Rec.PatientService;
 import service.Report.*;
+import service.Staff.AdminService;
+import service.Staff.NurseService;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -477,6 +482,144 @@ public class NursePageController implements Initializable {
     @FXML
     private Label titulli_Donors;
 
+
+    @FXML
+    private Tab SQAddPatient;
+
+    @FXML
+    private Label SQBirthDate;
+
+    @FXML
+    private Tab SQPatient;
+
+    @FXML
+    private Label SQPatientAddress;
+
+    @FXML
+    private Label SQPatientAppointment;
+
+    @FXML
+    private Label SQPatientDate;
+
+
+    @FXML
+    private Label SQPatientDepartment;
+
+    @FXML
+    private Label SQPatientDoctor;
+
+    @FXML
+    private Label SQPatientEmail;
+
+    @FXML
+    private Label SQPatientLastName;
+
+    @FXML
+    private Label SQPatientName;
+
+    @FXML
+    private Label SQPatientNurse;
+
+    @FXML
+    private Label SQPatientPayment;
+
+    @FXML
+    private Label SQPatientPhone;
+
+    @FXML
+    private Label SQpersonal;
+
+
+
+//Account FXMLs
+@FXML
+private TextField ChangePwdEmail;
+
+    @FXML
+    private AnchorPane account_form;
+
+    @FXML
+    private Label cNewPwd;
+
+    @FXML
+    private Label chCPwd;
+
+    @FXML
+    private Label chConfPwd;
+
+    @FXML
+    private Label chEmail;
+
+    @FXML
+    private Button changePasswordbtn;
+
+    @FXML
+    private PasswordField confirmNewPassword;
+
+    @FXML
+    private PasswordField currentPassword;
+
+    @FXML
+    private Label infoAddress;
+
+    @FXML
+    private Label infoEmail;
+
+    @FXML
+    private Label infoFirstName;
+
+    @FXML
+    private Label infoLastName;
+
+    @FXML
+    private Label lblAddress;
+
+    @FXML
+    private Label lblEmail;
+
+    @FXML
+    private Label lblFirstName;
+
+    @FXML
+    private Label lblID;
+
+    @FXML
+    private Label lblLastName;
+
+    @FXML
+    private PasswordField newPassword;
+
+    @FXML
+    private Label upAddress;
+
+    @FXML
+    private Label upEmail;
+
+    @FXML
+    private Label upFirstName;
+
+    @FXML
+    private Label upLastName;
+
+    @FXML
+    private TextField updateAddress;
+
+    @FXML
+    private TextField updateEmail;
+
+    @FXML
+    private TextField updateFirstName;
+
+    @FXML
+    private TextField updateID;
+
+    @FXML
+    private TextField updateLastName;
+
+    @FXML
+    private Label yourInfo;
+
+    User loggedNurse;
     private String formToDisplay;
 
     public void setFormToDisplay(String formToDisplay) {
@@ -496,31 +639,44 @@ public class NursePageController implements Initializable {
             report_form.setVisible(false);
             bedWards_form.setVisible(false);
             bloodBank_form.setVisible(false);
+            account_form.setVisible(false);
         } else if (event.getSource() == patients_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(true);
             report_form.setVisible(false);
             bedWards_form.setVisible(false);
             bloodBank_form.setVisible(false);
+            account_form.setVisible(false);
         } else if (event.getSource() == report_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(false);
             report_form.setVisible(true);
             bedWards_form.setVisible(false);
             bloodBank_form.setVisible(false);
+            account_form.setVisible(false);
         } else if (event.getSource() == bedWards_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(false);
             report_form.setVisible(false);
             bedWards_form.setVisible(true);
             bloodBank_form.setVisible(false);
+            account_form.setVisible(false);
         } else if (event.getSource() == bloodBank_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(false);
             report_form.setVisible(false);
             bedWards_form.setVisible(false);
             bloodBank_form.setVisible(true);
+            account_form.setVisible(false);
+        }else if (event.getSource() == account_btn){
+            dashboard_form.setVisible(false);
+            patients_form.setVisible(false);
+            report_form.setVisible(false);
+            bedWards_form.setVisible(false);
+            bloodBank_form.setVisible(false);
+            account_form.setVisible(true);
         }
+
     }
 
 
@@ -840,6 +996,73 @@ public class NursePageController implements Initializable {
     }
 
 
+    public void setNurseInfo() {
+        loggedNurse = SessionManager.getCurrentUser();
+        if (loggedNurse != null) {
+            lblID.setText(loggedNurse.getId());
+            lblFirstName.setText(loggedNurse.getFirstName());
+            lblLastName.setText(loggedNurse.getLastName());
+            lblEmail.setText(loggedNurse.getEmail());
+            lblAddress.setText(loggedNurse.getAddress());
+
+            updateID.setText(loggedNurse.getId());
+            updateFirstName.setText(loggedNurse.getFirstName());
+            updateLastName.setText(loggedNurse.getLastName());
+            updateEmail.setText(loggedNurse.getEmail());
+            updateAddress.setText(loggedNurse.getAddress());
+        } else {
+
+        }
+    }
+
+    @FXML
+    void updateAccount(ActionEvent event) {
+
+        String firstName = updateFirstName.getText();
+        String lastName = updateLastName.getText();
+        String email = updateEmail.getText();
+        String address = updateAddress.getText();
+
+        if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || address.isBlank()) {
+            Alerts.errorMessage("Please fill all the fields before proceeding.");
+        } else {
+            loggedNurse.setFirstName(firstName);
+            loggedNurse.setLastName(lastName);
+            loggedNurse.setEmail(email);
+            loggedNurse.setAddress(address);
+
+            boolean updated = NurseService.updateNurseDetails(loggedNurse);
+            if (updated) {
+                Alerts.successMessage("Account details were successfully updated.");
+                setNurseInfo(); // Refresh the displayed info
+            } else {
+                Alerts.errorMessage("Failed to update account details.");
+            }
+        }
+    }
+
+
+    @FXML
+    void changePassword(ActionEvent event) {
+
+        String currentPassword = this.currentPassword.getText();
+        String newPassword = this.newPassword.getText();
+        String confirmNewPassword = this.confirmNewPassword.getText();
+        if (currentPassword.isBlank() || ChangePwdEmail.getText().isEmpty() || newPassword.isBlank() || confirmNewPassword.isEmpty())
+            Alerts.errorMessage("Please fill all the fields before proceeding.");
+        else if (!newPassword.equals(confirmNewPassword)) {
+            Alerts.errorMessage("Passwords do not match.");
+        } else {
+            ChangePasswordDto change = new ChangePasswordDto(this.ChangePwdEmail.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
+            boolean changed = NurseService.changePassword(change);
+            if (changed) {
+                Alerts.successMessage("Password was successfully changed.");
+            } else {
+                Alerts.errorMessage("Password was not changed");
+            }
+        }
+    }
+
     public void initialize(URL location, ResourceBundle resources) {
 
         //forms first state - dashboard appearing first
@@ -848,6 +1071,7 @@ public class NursePageController implements Initializable {
         report_form.setVisible(false);
         bedWards_form.setVisible(false);
         bloodBank_form.setVisible(false);
+        account_form.setVisible(false);
         // Initialize tables
         operationDisplayData();
         birthDisplayData();
@@ -859,6 +1083,8 @@ public class NursePageController implements Initializable {
         //charts
         ChartService.donorsAreaChart(dashboad_chart_BD);
         ChartService.patientAreaChart(dashboad_chart_PD);
+        //Account
+        setNurseInfo();
 
 // Event Handler for navigating through TextFields with Enter--------------------------------------------------------------------------------------------------------------
 
@@ -964,6 +1190,7 @@ public class NursePageController implements Initializable {
         try {
             Locale locale = Locale.getDefault();
             ResourceBundle rb = ResourceBundle.getBundle("translations.content", locale);
+            //dashboard
             this.dashboard_btn.setText(rb.getString("Dashboard"));
             this.report_btn.setText(rb.getString("Report"));
             this.patients_btn.setText(rb.getString("Patients"));
@@ -974,73 +1201,95 @@ public class NursePageController implements Initializable {
             this.id1.setText(rb.getString("Patients"));
             this.id2.setText(rb.getString("Blood Donors"));
             this.id3.setText(rb.getString("Beds Available"));
-            this.SQDescriptionOp.setText(rb.getString("Description"));
-            this.SQDoctorOp.setText(rb.getString("Doctor"));
-            this.SQPatientOP.setText(rb.getString("Patient"));
+
+            //Patients
+            this.patients_col_patientID.setText(rb.getString("Patient ID"));
+            this.patients_col_name.setText(rb.getString("Name"));
+            this.patients_col_department.setText(rb.getString("Department"));
+            this.patients_col_doctor.setText(rb.getString("Doctor"));
+            this.patients_col_nurse.setText(rb.getString("Nurse"));
+            this.patients_col_phonenumber.setText(rb.getString("Phone Number"));
+            this.patients_col_email.setText(rb.getString("Email"));
+            this.patients_col_address.setText(rb.getString("Address"));
+            this.patients_col_payment.setText(rb.getString("Payment"));
+            this.SQAddPatient.setText(rb.getString("Add Patient"));
+            this.SQPatientDoctor.setText(rb.getString("Doctor:"));
+            this.SQPatientNurse.setText(rb.getString("Nurse:"));
+            this.SQPatientPayment.setText(rb.getString("Payment:"));
+            this.SQPatientAddress.setText(rb.getString("Address"));
+            this.SQPatientEmail.setText(rb.getString("Email"));
+            this.SQBirthDate.setText(rb.getString("Birthdate"));
+            this.SQPatientPhone.setText(rb.getString("Phone"));
+            this.register_patient_btn.setText(rb.getString("Add"));
+
+            //Reports
+            this.titulliReports.setText(rb.getString("Report Incident Case "));
             this.report1op.setText(rb.getString("Operations"));
             this.report2Op.setText(rb.getString("Deaths"));
             this.report3Op.setText(rb.getString("Births"));
             this.report4Op.setText(rb.getString("Other"));
-            this.titulliReports.setText(rb.getString("Report Incident Case "));
+            this.others_col_otherID.setText(rb.getString("OtherID"));
+            this.others_col_description.setText(rb.getString("Description"));
+            this.others_col_patient.setText(rb.getString("Patient"));
+            this.others_col_date.setText(rb.getString("Date"));
+            this.others_col_time.setText(rb.getString("Time"));
+            this.SQDescriptionOt.setText(rb.getString("Description"));
+            this.SQPatientOt.setText(rb.getString("Patient"));
+            this.SQDateOt.setText(rb.getString("Date"));
+            this.SQTimeOt.setText(rb.getString("Time"));
             this.operations_col_operationID.setText(rb.getString("OperationID"));
             this.operations_col_description.setText(rb.getString("Description"));
             this.operations_col_patient.setText(rb.getString("Patient"));
             this.operations_col_doctor.setText(rb.getString("Doctor"));
             this.operations_col_date.setText(rb.getString("Date"));
             this.operations_col_time.setText(rb.getString("Time"));
+            this.SQDescriptionOp.setText(rb.getString("Description"));
+            this.SQPatientOP.setText(rb.getString("Patient"));
+            this.SQDoctorOp.setText(rb.getString("Doctor"));
+            this.SQDateOp.setText(rb.getString("Date"));
+            this.SQTimeOp.setText(rb.getString("Time"));
+            this.addOperation_btn.setText(rb.getString("Add Operation"));
+            this.add_other_btn.setText(rb.getString("Add Other"));
             this.deaths_col_deathID.setText(rb.getString("DeathID"));
             this.deaths_col_description.setText(rb.getString("Description"));
             this.deaths_col_patient.setText(rb.getString("Patient"));
             this.deaths_col_date.setText(rb.getString("Date"));
             this.deaths_col_time.setText(rb.getString("Time"));
+            this.add_death_btn.setText(rb.getString("Add Death"));
+            this.SQDescriptionDe.setText(rb.getString("Description"));
+            this.SQPatientDe.setText(rb.getString("Patient"));
+            this.SQDateDe.setText(rb.getString("Date"));
+            this.SQTimeDe.setText(rb.getString("Time"));
             this.births_col_birthID.setText(rb.getString("BirthID"));
             this.births_col_description.setText(rb.getString("Description"));
             this.births_col_patient.setText(rb.getString("Patient"));
             this.births_col_newBorn.setText(rb.getString("New Born's name"));
             this.births_col_date.setText(rb.getString("Date"));
             this.births_col_time.setText(rb.getString("Time"));
-            this.others_col_otherID.setText(rb.getString("OtherID"));
-            this.others_col_description.setText(rb.getString("Description"));
-            this.others_col_patient.setText(rb.getString("Patient"));
-            this.others_col_date.setText(rb.getString("Date"));
-            this.others_col_time.setText(rb.getString("Time"));
-            this.SQDescriptionOp.setText(rb.getString("Description"));
-            this.SQPatientOP.setText(rb.getString("Patient"));
-            this.SQDoctorOp.setText(rb.getString("Doctor"));
-            this.SQDateOp.setText(rb.getString("Date"));
-            this.SQTimeOp.setText(rb.getString("Time"));
-            this.Logout_btn.setText(rb.getString("LogOut"));
-            this.account_btn.setText(rb.getString("Account"));
-            this.Project_title.setText(rb.getString("Hospital Management System"));
-            this.addOperation_btn.setText(rb.getString("Add Operation"));
-            this.add_death_btn.setText(rb.getString("Add Death"));
-            this.SQDescriptionDe.setText(rb.getString("Description"));
-            this.SQPatientDe.setText(rb.getString("Patient"));
-            this.SQDateDe.setText(rb.getString("Date"));
-            this.SQTimeDe.setText(rb.getString("Time"));
             this.SQDescriptionBi.setText(rb.getString("Description"));
             this.SQPatientBi.setText(rb.getString("Patient"));
             this.SQNewbornBi.setText(rb.getString("New Born's name"));
             this.SQDateBi.setText(rb.getString("Date"));
             this.SQTimeBi.setText(rb.getString("Time"));
-            this.SQDescriptionOt.setText(rb.getString("Description"));
-            this.SQPatientOt.setText(rb.getString("Patient"));
-            this.SQDateOt.setText(rb.getString("Date"));
-            this.SQTimeOt.setText(rb.getString("Time"));
-            this.add_other_btn.setText(rb.getString("Add Other"));
-            this.add_death_btn.setText(rb.getString("Add Death"));
             this.add_birth_btn.setText(rb.getString("Add Birth"));
+            this.add_other_btn.setText(rb.getString("Add Other"));
+
+
+            //Blood Donors
+            this.titulli_Donors.setText(rb.getString("Blood Bank"));
             this.titulli_DonorsList.setText(rb.getString("Blood Donors List"));
             this.titulli_AddDonors.setText(rb.getString("Add Blood Donor"));
+            this.SQDonorPatient.setText(rb.getString("Patient"));
+            //this.chooseDonorBloodGroup.setPromptText(rb.getString("Blood Group..."));
             this.SQDonorAge.setText(rb.getString("Age"));
-            this.chooseDonorGender.setPromptText(rb.getString("Gender..."));
-            this.txtDonorDate.setPromptText(rb.getString("Last Donation Date..."));
+            //this.chooseDonorGender.setPromptText(rb.getString("Gender..."));
+            //this.txtDonorDate.setPromptText(rb.getString("Last Donation Date..."));
             this.add_donor_btn.setText(rb.getString("Add Donor"));
-            this.chooseDonorBloodGroup.setPromptText(rb.getString("Blood Group..."));
-            this.titulli_Donors.setText(rb.getString("Blood Bank"));
+            this.blood_col_donorPatient.setText(rb.getString("Patient"));
             this.blood_col_bloodGroup.setText(rb.getString("Blood Group"));
+            this.blood_col_age.setText(rb.getString("Age"));
+            this.blood_col_gender.setText(rb.getString("Gender"));
             this.blood_col_lastDonationDate.setText("Last Donation Date");
-
 
         } catch (Exception e) {
             e.printStackTrace();
