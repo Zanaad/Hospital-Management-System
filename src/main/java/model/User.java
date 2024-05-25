@@ -2,32 +2,26 @@ package model;
 
 
 public class User {
-
     private String email;
-    private String password;
-    private String role;
+    private String salt;
+    private String hashPassword;
 
-    public User(String email,String password, String role) {
-
+    public User(String email, String salt, String hashPassword) {
         this.email = email;
-        this.password = password;
-        this.role = role;
+        this.salt = salt;
+        this.hashPassword = hashPassword;
     }
-
 
     public String getEmail() {
         return email;
     }
 
-
-    public String getPassword() {
-
-        return password;
+    public String getSalt() {
+        return salt;
     }
 
-
-    public String getRole() {
-        return role;
+    public String getHashPassword() {
+        return hashPassword;
     }
 }
 

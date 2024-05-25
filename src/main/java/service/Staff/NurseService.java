@@ -1,15 +1,19 @@
 package service.Staff;
 
+import model.User;
+import model.dto.LoginUserDto;
 import model.dto.StaffDto.CreateNurseDto;
 import model.dto.StaffDto.NurseDto;
 import model.filter.NurseFilter;
 import model.filter.UserFilter;
 import repository.Staff.NurseRepository;
+import repository.Staff.StaffRepository;
+import service.Alerts;
 import service.PasswordHasher;
 
 import java.util.List;
 
-public class NurseService {
+public class NurseService extends StaffService {
 
     public static boolean createNurse(NurseDto nurseData) {
         String id = registerNurseID();
@@ -28,4 +32,11 @@ public class NurseService {
     public static String registerNurseID() {
         return NurseRepository.generateNurseID();
     }
+
+    public static boolean login(LoginUserDto loginData) {
+        User user = NurseRepository.getNurseByEmail(loginData.getEmail());
+        return login(loginData, user);
+    }
+
+
 }

@@ -1,8 +1,4 @@
 package model.dto;
-
-
-
-
 public class DoktorDto {
     int ID, NrTel;
     String emri, mbiemri, adresa, specializimi;

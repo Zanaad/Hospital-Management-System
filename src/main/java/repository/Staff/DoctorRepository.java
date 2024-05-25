@@ -22,6 +22,10 @@ public class DoctorRepository extends StaffRepository {
         return createStaff(doctorData, query);
     }
 
+    public static User getDoctorByEmail(String email) {
+        return getStaffByEmail(email, "doctors");
+    }
+
     public static List<DoctorDto> getByFilter(DoctorFilter filter) {
         String filterQuery = "SELECT * FROM doctors WHERE 1=1" + filter.buildQuery();
         return fetchDoctors(filterQuery);
@@ -58,8 +62,7 @@ public class DoctorRepository extends StaffRepository {
     public static String generateDocPassword(String firstName) {
         String id = generateDoctorID();
         System.out.println(generatePassword(firstName, id));
-        return generatePassword(id, firstName);
+        return generatePassword(firstName, id);
     }
-
 
 }
