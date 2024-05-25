@@ -31,6 +31,7 @@ import service.CountStaffService;
 import service.Rec.AppointmentService;
 import service.Rec.PatientService;
 //import service.Rec.ReceptionistService;
+import service.Rec.ReceptionistServicee;
 import service.Staff.AdminService;
 import service.Staff.DoctorService;
 
@@ -779,7 +780,8 @@ public class ReceptionistPageController implements Initializable {
             loggedReceptionist.setEmail(email);
             loggedReceptionist.setAddress(address);
 
-          /*  boolean updated = ReceptionistService.updateReceptionistDetails(loggedReceptionist);
+
+            boolean updated = ReceptionistServicee.updateReceptionistDetails(loggedReceptionist);
             if (updated) {
                 Alerts.successMessage("Account details were successfully updated.");
                 setRecInfo(); // Refresh the displayed info
@@ -787,7 +789,7 @@ public class ReceptionistPageController implements Initializable {
                 Alerts.errorMessage("Failed to update account details.");
             }
 
-           */
+
         }
     }
 
