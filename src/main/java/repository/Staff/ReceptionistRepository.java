@@ -21,6 +21,9 @@ public class ReceptionistRepository extends StaffRepository {
     public static boolean createReceptionist(CreateReceptionistDto receptionistData) {
         return createStaff(receptionistData, query);
     }
+    public static User getRecByEmail(String email) {
+        return getStaffByEmail(email, "receptionists");
+    }
 
     public static User getRecByEmail(String email) {
         return getStaffByEmail(email, "receptionists");

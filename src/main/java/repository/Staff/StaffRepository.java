@@ -36,6 +36,33 @@ public class StaffRepository {
             return false;
         }
     }
+    public static User getStaffByEmail(String email, String tableName) {
+        String query = "select * from " + tableName + " where email=?";
+        Connection conn = DatabaseUtil.getConnection();
+        try {
+            PreparedStatement pst = conn.prepareStatement(query);
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return getFromResultSet(rs);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static User getFromResultSet(ResultSet rs) {
+        try {
+            String email = rs.getString("email");
+            String salt = rs.getString("salt");
+            String hashPassword = rs.getString("hashPassword");
+            return new User(email, salt, hashPassword);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     public static User getStaffByEmail(String email, String tableName) {
         String query = "select * from " + tableName + " where email=?";
