@@ -39,17 +39,7 @@ public class Navigator {
         stage.show();
     }
 
-    public static void loadContent(AnchorPane contentPane, String fxmlFile) {
-        try {
-            FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(fxmlFile));
-            Node content = loader.load();
-            contentPane.getChildren().setAll(content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-//to navigate to a specific form
+    //to navigate to a specific form
     public static void navigateToForm(ActionEvent event, String page, String formToDisplay) {
         try {
             FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(page));
@@ -66,6 +56,18 @@ public class Navigator {
             e.printStackTrace();
         }
     }
+
+    public static void loadContent(AnchorPane contentPane, String fxmlFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(Navigator.class.getResource(fxmlFile));
+            Node content = loader.load();
+            contentPane.getChildren().setAll(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     private static Pane loadPane(String form) {
 
         ResourceBundle bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
