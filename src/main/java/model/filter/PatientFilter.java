@@ -1,7 +1,6 @@
 package model.filter;
 
-public class PatientFilter
-{
+public class PatientFilter {
     private String firstName;
     private String lastName;
 
@@ -11,8 +10,7 @@ public class PatientFilter
         this.lastName = lastName;
     }
 
-    public String buildQuery()
-    {
+    public String buildQuery() {
         StringBuilder query = new StringBuilder();
         if (firstName != null && !firstName.isEmpty()) {
             query.append("patient_firstName like '%").append(firstName).append("%'");
@@ -23,6 +21,6 @@ public class PatientFilter
             }
             query.append("patient_lastName like '%").append(lastName).append("%'");
         }
-        return query.toString();
+        return !query.isEmpty() ? " AND " + query.toString() : "";
     }
 }

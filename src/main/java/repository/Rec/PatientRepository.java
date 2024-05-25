@@ -56,7 +56,7 @@ public class PatientRepository {
     }
 
     public static List<Patient> getByFilter(PatientFilter filter) {
-        String filterQuery = "SELECT * FROM doctors WHERE 1=1" + filter.buildQuery();
+        String filterQuery = "SELECT * FROM patients WHERE 1=1" + filter.buildQuery();
         return fetchPatient(filterQuery);
     }
 
@@ -68,16 +68,16 @@ public class PatientRepository {
             ResultSet result = pst.executeQuery();
 
             while (result.next()) {
-                Patient patient = new Patient(result.getInt("id"),
-                                             result.getString("firstName"),
-                                             result.getString("lastName"),
-                                             result.getString("department"),
-                                             result.getString("doctor"),
-                                             result.getString("nurse"),
-                                             result.getString("phone"),
-                                             result.getString("email"),
-                                             result.getString("address"),
-                                             result.getString("payment"));
+                Patient patient = new Patient(result.getInt("patient_id"),
+                        result.getString("patient_firstName"),
+                        result.getString("patient_lastName"),
+                        result.getString("patient_department"),
+                        result.getString("patient_doctor"),
+                        result.getString("patient_nurse"),
+                        result.getString("patient_phone"),
+                        result.getString("patient_email"),
+                        result.getString("patient_address"),
+                        result.getString("patient_payment"));
                 patients.add(patient);
             }
         } catch (Exception e) {
