@@ -66,6 +66,10 @@ public class ReceptionistPageController implements Initializable {
     private TableColumn<?, ?> patients_col_name;
 
     @FXML
+    private TableColumn<?, ?> patients_col_lastname;
+
+
+    @FXML
     private TableColumn<?, ?> patients_col_department;
 
     @FXML
@@ -228,6 +232,7 @@ public class ReceptionistPageController implements Initializable {
     @FXML
     private TableColumn<?, ?> app_col_hour;
 
+
     @FXML
     private Button addApp_btn;
 
@@ -320,6 +325,7 @@ public class ReceptionistPageController implements Initializable {
     @FXML
     private Label hourr;
 
+
     @FXML
     public void registerPatient(ActionEvent event) {
 
@@ -371,7 +377,7 @@ public class ReceptionistPageController implements Initializable {
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_lastName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
                 listPatients.add(patData);
             }
         } catch (Exception e) {
@@ -401,6 +407,7 @@ public class ReceptionistPageController implements Initializable {
     public void patientDisplayData() {
         patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("id"));
         patients_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        patients_col_lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         patients_col_department.setCellValueFactory(new PropertyValueFactory<>("department"));
         patients_col_doctor.setCellValueFactory(new PropertyValueFactory<>("doctor"));
         patients_col_nurse.setCellValueFactory(new PropertyValueFactory<>("nurse"));
@@ -473,10 +480,6 @@ public class ReceptionistPageController implements Initializable {
         });
         Navigator.loadContent(contentPane, "ReceptionistPage.fxml");
         this.translate();
-
-
-
-
     }
 
     @FXML
@@ -551,6 +554,7 @@ public class ReceptionistPageController implements Initializable {
         this.datte.setText(rb.getString("Date"));
         this.hourr.setText(rb.getString("Hour"));
         this.addApp_btn.setText(rb.getString("Add"));
+        this.patients_col_lastname.setText(rb.getString("Subname"));
 
 
 

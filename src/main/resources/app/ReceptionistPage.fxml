@@ -77,7 +77,7 @@
             </left>
             <center>
                 <AnchorPane fx:id="contentPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="886.0">
+                    <AnchorPane fx:id="dashboard_form" prefHeight="560.0" prefWidth="886.0" visible="false">
                         <children>
                             <AnchorPane layoutX="96.0" layoutY="80.0" prefHeight="173.0" prefWidth="263.0" style="-fx-background-radius: 5px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);">
                                 <children>
@@ -149,7 +149,7 @@
                             </AnchorPane>
                         </children>
                     </AnchorPane>
-                    <AnchorPane fx:id="patients_form" layoutX="324.0" layoutY="144.0" prefHeight="560.0" prefWidth="886.0" style="-fx-background-color: #fff;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <AnchorPane fx:id="patients_form" layoutX="324.0" layoutY="144.0" prefHeight="560.0" prefWidth="886.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
                             <AnchorPane fx:id="patient_table" layoutX="178.0" layoutY="-66.0" prefHeight="560.0" prefWidth="886.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <children>
@@ -170,6 +170,7 @@
                                                                 <columns>
                                                                     <TableColumn fx:id="patients_col_patientID" prefWidth="75.0" text="%Patient ID" />
                                                                     <TableColumn fx:id="patients_col_name" prefWidth="75.0" text="%Name" />
+                                                   <TableColumn fx:id="patients_col_lastname" prefWidth="100.0" text="%Subname" />
                                                                     <TableColumn fx:id="patients_col_department" prefWidth="100.66668701171875" text="%Department" />
                                                                     <TableColumn fx:id="patients_col_doctor" prefWidth="91.99995422363281" text="%Doctor" />
                                                                     <TableColumn fx:id="patients_col_nurse" prefWidth="85.3333740234375" text="%Nurse" />
