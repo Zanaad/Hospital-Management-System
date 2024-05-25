@@ -9,6 +9,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import model.dto.LoginUserDto;
+import service.Alerts;
+import service.Staff.DoctorService;
+import service.Staff.NurseService;
+import service.Staff.ReceptionistService;
 
 public class LoginController {
 
@@ -111,23 +116,34 @@ public class LoginController {
 
     @FXML
     void loginDoctor(ActionEvent event) {
-//        LoginUserDto loginUserData = new LoginUserDto(this.login_docEmail.getText(), this.login_docPassword.getText());
-//        boolean isLogin = DoctorService.login(loginUserData);
-//        if (isLogin) {
-//            Navigator.navigate(event, Navigator.AdminMainForm);
-//        } else {
-//            Alerts.errorMessage("Error");
-//        }
+        LoginUserDto loginData = new LoginUserDto(this.login_docEmail.getText(), this.login_docPassword.getText());
+        boolean isLogin = DoctorService.login(loginData);
+        if (isLogin) {
+            Navigator.navigate(event, Navigator.Doctor_App);
+        } else {
+            Alerts.errorMessage("Error");
+        }
     }
 
     @FXML
     void loginNurse(ActionEvent event) {
-
+        LoginUserDto loginData = new LoginUserDto(this.login_nurseEmail.getText(), this.login_nursePwd.getText());
+        boolean isLogin = NurseService.login(loginData);
+        if (isLogin) {
+            Navigator.navigate(event, Navigator.NursePage);
+        }
+        else{
+            Alerts.errorMessage("error");
+        }
     }
 
     @FXML
     void loginRec(ActionEvent event) {
-
+        LoginUserDto loginData = new LoginUserDto(this.login_recEmail.getText(), this.login_recPwd.getText());
+        boolean isLogin = ReceptionistService.login(loginData);
+        if (isLogin) {
+            Navigator.navigate(event, Navigator.ReceptionistPage);
+        }
     }
 
     @FXML

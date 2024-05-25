@@ -61,7 +61,8 @@ public class ReceptionistRepository extends StaffRepository {
 
     public static String generateRecPassword(String firstName) {
         String id = generateRecID();
-        return generatePassword(id, firstName);
+        System.out.println(generatePassword(firstName, id));
+        return generatePassword(firstName, id);
     }
 }
 
