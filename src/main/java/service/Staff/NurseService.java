@@ -40,24 +40,6 @@ public class NurseService extends StaffService {
         return login(loginData, user);
     }
 
-    public static boolean changePassword(ChangePasswordDto user) {
-        UpdateUserPasswordDto userPasswordInfo = NurseRepository.getUserPasswordInfo(user.getEmail());
-        if (userPasswordInfo == null) {
-            return false;
-        }
-        String storedPasswordHash = userPasswordInfo.getPasswordHash();
-        String salt = userPasswordInfo.getSalt();
-        if (!PasswordHasher.compareSaltedHash(user.getCurrentPassword(), salt, storedPasswordHash)) {
-            Alerts.errorMessage("Credentials are not correct");
-            return false;
-        }
-        return NurseRepository.changePwd(user, salt);
-    }
-
-    public static boolean updateNurseDetails(User user) {
-        return NurseRepository.updateNurseDetails(user);
-    }
-
     public static boolean isEmailInUse(String email) {
         User user = NurseRepository.getNurseByEmail(email);
         return user != null;

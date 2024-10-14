@@ -70,7 +70,7 @@ public class AddDepController implements Initializable {
     }
 
     public ObservableList<DepartmentDto> getDepartments() {
-        return FXCollections.observableArrayList(DepartmentRepository.getAllDepartments());
+        return FXCollections.observableArrayList(DepartmentService.getAllDepartments());
     }
 
     public void depDisplayData() {

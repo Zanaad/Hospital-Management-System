@@ -42,7 +42,6 @@ public class DoctorRepository extends StaffRepository {
             Connection conn = DatabaseUtil.getConnection();
             PreparedStatement pst = conn.prepareStatement(query);
             ResultSet result = pst.executeQuery();
-
             while (result.next()) {
                 DoctorDto doctor = new DoctorDto(result.getString("id"), result.getString("firstName"), result.getString("lastName"), result.getDate("birthdate"), result.getString("phone"), result.getString("email"), result.getString("hashPassword"), result.getString("address"), result.getString("department"), result.getString("university"), result.getString("specialty"), result.getDate("contractStart"), result.getDate("contractEnd"), result.getString("bankName"), result.getString("bankAccount"), result.getString("routingNumber"));
                 doctors.add(doctor);

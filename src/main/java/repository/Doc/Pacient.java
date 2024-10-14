@@ -11,37 +11,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Pacient {
-    int PID,mosha,nrtel,pagesa;
-    String emri,mbiemri,gjinia,ditelindja,adresa,dataeshtrirjes,dataelirimit,diagnoza,tretmani,pershkrimi;
-
-    public Pacient(int PID, int mosha, int nrtel, int pagesa, String emri, String mbiemri, String gjinia, String ditelindja, String adresa, String dataeshtrirjes, String dataelirimit, String diagnoza, String tretmani, String pershkrimi) {
-        this.PID = PID;
-        this.mosha = mosha;
-        this.nrtel = nrtel;
-        this.pagesa = pagesa;
-        this.emri = emri;
-        this.mbiemri = mbiemri;
-        this.gjinia = gjinia;
-        this.ditelindja = ditelindja;
-        this.adresa = adresa;
-        this.dataeshtrirjes = dataeshtrirjes;
-        this.dataelirimit = dataelirimit;
-        this.diagnoza = diagnoza;
-        this.tretmani = tretmani;
-        this.pershkrimi = pershkrimi;
-    }
-
-
-
-
-    public static ObservableList<PacientDto> getPacientData(){
-        Connection conn= DatabaseUtil.getConnection();
-        ObservableList<PacientDto> list= FXCollections.observableArrayList();
-        try{
+    public static ObservableList<PacientDto> getPacientData() {
+        Connection conn = DatabaseUtil.getConnection();
+        ObservableList<PacientDto> list = FXCollections.observableArrayList();
+        try {
             PreparedStatement ps = conn.prepareStatement("select * from pacienti");
-            ResultSet rs=ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
                 list.add(new PacientDto(Integer.parseInt(rs.getString("PID")),
                         Integer.parseInt(rs.getString("mosha")),
                         Integer.parseInt(rs.getString("pagesa")),
@@ -60,15 +37,14 @@ public class Pacient {
 
                 ));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return list;
     }
 
-    public static void updatePacient(PacientDto selectedPacient,String emri,String mbiemri,String  gjinia,int mosha,String ditelindja,int nrtel,String adresa, String dataSh, String dataL, String diagnoza,
+    public static void updatePacient(PacientDto selectedPacient, String emri, String mbiemri, String gjinia, int mosha, String ditelindja, int nrtel, String adresa, String dataSh, String dataL, String diagnoza,
                                      String tretmani, String pershkrimi, int pagesa) {
         Connection conn = null;
         PreparedStatement pst = null;
@@ -85,9 +61,9 @@ public class Pacient {
             pst.setString(5, ditelindja);
             pst.setInt(6, nrtel);
             pst.setString(7, adresa);
-            pst.setString(8,dataSh);
+            pst.setString(8, dataSh);
             pst.setString(9, dataL);
-            pst.setString(10,diagnoza);
+            pst.setString(10, diagnoza);
             pst.setString(11, tretmani);
             pst.setString(12, pershkrimi);
             pst.setInt(13, pagesa);

@@ -15,7 +15,7 @@ public abstract class Filter {
             query.append("firstName like '%").append(firstName).append("%'");
         }
         if (email != null && !email.isEmpty()) {
-            if (query.length() > 0) {
+            if (!query.isEmpty()) {
                 query.append(" AND ");
             }
             query.append("email like '%").append(email).append("%'");
@@ -25,3 +25,4 @@ public abstract class Filter {
 
     public abstract String buildQuery();
 }
+

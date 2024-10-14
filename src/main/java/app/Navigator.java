@@ -65,16 +65,6 @@ public class Navigator {
         }
     }
 
-    public static void handleLanguage() {
-        Locale degaultLocale = Locale.getDefault();
-        if (degaultLocale.getLanguage().equals("en")) {
-            Locale.setDefault(Locale.of("sq"));
-        } else {
-            Locale.setDefault(Locale.ENGLISH);
-        }
-        bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());
-    }
-
     private static Pane loadPane(String form) {
 
         ResourceBundle bundle = ResourceBundle.getBundle("translations.content", Locale.getDefault());

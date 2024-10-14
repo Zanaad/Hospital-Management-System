@@ -34,8 +34,9 @@ public class ChartService {
         String selectData = "SELECT DATE(appointment_date) AS appointment_date, COUNT(appointment_id) AS appointment_count FROM appointments GROUP BY DATE(appointment_date) ORDER BY DATE(appointment_date) ASC;";
         areaChart(areaChart, selectData);
     }
-    public static void donorsAreaChart(AreaChart<String, Number> areaChart){
-        String selectData="SELECT DATE(donor_lastDonation) AS donor_lastDonation, COUNT(donor_ID) AS donor_count FROM donors GROUP BY DATE(donor_lastDonation) ORDER BY DATE(donor_lastDonation) ASC;";
-        areaChart(areaChart,selectData);
+
+    public static void donorsAreaChart(AreaChart<String, Number> areaChart) {
+        String selectData = "SELECT DATE(donor_lastDonation) AS donor_lastDonation, COUNT(donor_ID) AS donor_count FROM donors GROUP BY DATE(donor_lastDonation) ORDER BY DATE(donor_lastDonation) ASC;";
+        areaChart(areaChart, selectData);
     }
 }

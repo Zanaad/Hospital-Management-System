@@ -14,6 +14,7 @@ public class CountStaffService {
     public static final String countDepartment = "select count(department_id) from departments";
     public static final String countPatients = "select count(patient_id) from patients";
     public static final String countAppointments = "select count(appointment_id) from appointments";
+    public static final String countDonors = "select count(donor_id) from donors";
 
     public static int getCount(String query, String depName) {
         int count = 0;

@@ -38,6 +38,10 @@ public class DepartmentService {
         }
     }
 
+    public static List<DepartmentDto> getAllDepartments() {
+        return DepartmentRepository.getAllDepartments();
+    }
+
     public static List<DepartmentDto> filter(DepFilter filter) {
         return DepartmentRepository.getByFilter(filter);
     }

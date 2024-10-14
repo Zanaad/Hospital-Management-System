@@ -14,16 +14,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.*;
-import model.dto.ChangePasswordDto;
 import model.dto.RecDto.PatientDto;
 import model.dto.ReportDto.*;
-import service.Alerts;
 import service.ChartService;
-import service.CountNurseService;
 import service.CountStaffService;
 import service.Rec.PatientService;
 import service.Report.*;
-import service.Staff.NurseService;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -202,10 +198,10 @@ public class NursePageController implements Initializable {
     private AnchorPane contentPane;
 
     @FXML
-    private AreaChart<String,Number> dashboad_chart_BD;
+    private AreaChart<String, Number> dashboad_chart_BD;
 
     @FXML
-    private AreaChart<String,Number> dashboad_chart_PD;
+    private AreaChart<String, Number> dashboad_chart_PD;
 
     @FXML
     private Label dashboard_beds;
@@ -534,10 +530,9 @@ public class NursePageController implements Initializable {
     private TextField bedPatient;
 
 
-
-//Account FXMLs
-@FXML
-private TextField ChangePwdEmail;
+    //Account FXMLs
+    @FXML
+    private TextField ChangePwdEmail;
 
     @FXML
     private AnchorPane account_form;
@@ -631,7 +626,6 @@ private TextField ChangePwdEmail;
     }
 
 
-
     //change the forms depending on what the user chooses-----------------------------------------------------------
 
     @FXML
@@ -672,7 +666,7 @@ private TextField ChangePwdEmail;
             bedWards_form.setVisible(false);
             bloodBank_form.setVisible(true);
             account_form.setVisible(false);
-        }else if (event.getSource() == account_btn){
+        } else if (event.getSource() == account_btn) {
             dashboard_form.setVisible(false);
             patients_form.setVisible(false);
             report_form.setVisible(false);
@@ -687,15 +681,13 @@ private TextField ChangePwdEmail;
     //database tools--------------------------------------------------------------------------------------------------
 
 
-
     @FXML
     void registerOperation(ActionEvent event) {
         Date operationDate = Date.valueOf(this.txtOperationDate.getValue());
 
-        OperationDto operation = new OperationDto (this.txtOperationDescription.getText(), this.txtOperationPatient.getText(),this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
+        OperationDto operation = new OperationDto(this.txtOperationDescription.getText(), this.txtOperationPatient.getText(), this.txtOperationDoctor.getText(), operationDate, this.txtOperationTime.getText());
         boolean operationCreated = operationService.createOperation(operation);
-        if (operationCreated)
-        {
+        if (operationCreated) {
             // Navigate to report_form
             Navigator.navigate(event, Navigator.NursePage);
         }
@@ -706,10 +698,9 @@ private TextField ChangePwdEmail;
     void registerBirth(ActionEvent event) {
         Date birthDate = Date.valueOf(this.txtBirthDate.getValue());
 
-        BirthsDto birth = new BirthsDto (this.txtBirthDescription.getText(),this.txtBirthPatient.getText(),this.txtBirthNewBorn.getText(), birthDate, this.txtBirthTime.getText());
+        BirthsDto birth = new BirthsDto(this.txtBirthDescription.getText(), this.txtBirthPatient.getText(), this.txtBirthNewBorn.getText(), birthDate, this.txtBirthTime.getText());
         boolean birthCreated = birthService.createBirth(birth);
-        if (birthCreated)
-        {
+        if (birthCreated) {
             // Navigate to report_form
             Navigator.navigate(event, Navigator.NursePage);
         }
@@ -723,7 +714,7 @@ private TextField ChangePwdEmail;
         DeathsDto deaths = new DeathsDto(this.txtDeathDescription.getText(), this.txtDeathPatient.getText(), deathDate, this.txtDeathTime.getText());
         boolean deathCreated = deathService.createDeath(deaths);
         if (deathCreated) {
-            Navigator.navigate(event,Navigator.NursePage);
+            Navigator.navigate(event, Navigator.NursePage);
         }
     }
 
@@ -754,6 +745,7 @@ private TextField ChangePwdEmail;
         }
 
     }
+
     @FXML
     void registerDonor(ActionEvent event) {
         Date donationDate = Date.valueOf(this.txtDonorDate.getValue());
@@ -764,8 +756,7 @@ private TextField ChangePwdEmail;
                 (String) this.chooseDonorGender.getValue(),
                 donationDate);
         boolean donorCreated = donorService.createDonor(donor);
-        if (donorCreated)
-        {
+        if (donorCreated) {
             // Navigate to bloodBank_form
             Navigator.navigate(event, Navigator.NursePage);
         }
@@ -777,25 +768,16 @@ private TextField ChangePwdEmail;
         bedDto beds = new bedDto(this.bedPatient.getText(),
                 this.bedNumber.getText());
         boolean bedCreated = bedService.createBed(beds);
-        if (bedCreated)
-        {
+        if (bedCreated) {
             Navigator.navigate(event, Navigator.NursePage);
         }
 
     }
 
 
-
-
-
-
-
-
-
-
 //display data at the tables----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//display Operations
+    //display Operations
     public ObservableList<Operation> getOperations() {
         ObservableList<Operation> listOperation = FXCollections.observableArrayList();
         String query = "SELECT * FROM operations";
@@ -833,8 +815,7 @@ private TextField ChangePwdEmail;
     }
 
 
-
-//display Births
+    //display Births
     public ObservableList<Births> getBirths() {
         ObservableList<Births> listBirths = FXCollections.observableArrayList();
         String query = "SELECT * FROM births";
@@ -859,6 +840,7 @@ private TextField ChangePwdEmail;
         }
         return listBirths;
     }
+
     public void birthDisplayData() {
         births_col_birthID.setCellValueFactory(new PropertyValueFactory<>("birthID"));
         births_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -870,7 +852,7 @@ private TextField ChangePwdEmail;
         birth_table.setItems(getBirths());
     }
 
-//display Deaths
+    //display Deaths
     public ObservableList<Deaths> getDeaths() {
         ObservableList<Deaths> listDeaths = FXCollections.observableArrayList();
         String query = "SELECT * FROM deaths";
@@ -907,7 +889,7 @@ private TextField ChangePwdEmail;
     }
 
 
-//display Others
+    //display Others
     public ObservableList<Others> getOthers() {
         ObservableList<Others> listOthers = FXCollections.observableArrayList();
         String query = "SELECT * FROM others";
@@ -931,7 +913,7 @@ private TextField ChangePwdEmail;
         return listOthers;
     }
 
-    public void otherDisplayData(){
+    public void otherDisplayData() {
         others_col_otherID.setCellValueFactory(new PropertyValueFactory<>("otherID"));
         others_col_description.setCellValueFactory(new PropertyValueFactory<>("description"));
         others_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
@@ -962,7 +944,8 @@ private TextField ChangePwdEmail;
         }
         return listBeds;
     }
-    public void bedDisplayData(){
+
+    public void bedDisplayData() {
         bed_col_bedID.setCellValueFactory(new PropertyValueFactory<>("bedID"));
         bed_col_patient.setCellValueFactory(new PropertyValueFactory<>("patient"));
         bed_col_bedNumber.setCellValueFactory(new PropertyValueFactory<>("bed"));
@@ -972,7 +955,7 @@ private TextField ChangePwdEmail;
     }
 
 
-//display Patient
+    //display Patient
     public ObservableList<Patient> getPatients() {
         ObservableList<Patient> listPatients = FXCollections.observableArrayList();
         String query = "select * from patients";
@@ -981,7 +964,7 @@ private TextField ChangePwdEmail;
             PreparedStatement prepare = con.prepareStatement(query);
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
-                Patient patData = new Patient(result.getInt("patient_id"),result.getString("patient_firstName"),result.getString("patient_lastName"),result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
+                Patient patData = new Patient(result.getInt("patient_id"), result.getString("patient_firstName"), result.getString("patient_lastName"), result.getString("patient_department"), result.getString("patient_doctor"), result.getString("patient_nurse"), result.getString("patient_phone"), result.getString("patient_email"), result.getString("patient_address"), result.getString("patient_payment"));
                 listPatients.add(patData);
             }
         } catch (Exception e) {
@@ -989,6 +972,7 @@ private TextField ChangePwdEmail;
         }
         return listPatients;
     }
+
     public void patientDisplayData() {
         patients_col_patientID.setCellValueFactory(new PropertyValueFactory<>("id"));
         patients_col_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -1029,7 +1013,8 @@ private TextField ChangePwdEmail;
         }
         return listDonors;
     }
-    public void donorDisplayData(){
+
+    public void donorDisplayData() {
         blood_col_donor_id.setCellValueFactory(new PropertyValueFactory<>("id"));
         blood_col_donorPatient.setCellValueFactory(new PropertyValueFactory<>("patient"));
         blood_col_bloodGroup.setCellValueFactory(new PropertyValueFactory<>("bloodGroup"));
@@ -1042,7 +1027,7 @@ private TextField ChangePwdEmail;
 
     public void nurse_dashboard_numbersCount() {
         CountStaffService.countStaff(dashboard_patients, CountStaffService.countPatients);
-        CountNurseService.count(dashboard_donors, CountNurseService.countDonors);
+        CountStaffService.countStaff(dashboard_donors, CountStaffService.countDonors);
     }
 
 
@@ -1062,54 +1047,6 @@ private TextField ChangePwdEmail;
             updateAddress.setText(loggedNurse.getAddress());
         } else {
 
-        }
-    }
-
-    @FXML
-    void updateAccount(ActionEvent event) {
-
-        String firstName = updateFirstName.getText();
-        String lastName = updateLastName.getText();
-        String email = updateEmail.getText();
-        String address = updateAddress.getText();
-
-        if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || address.isBlank()) {
-            Alerts.errorMessage("Please fill all the fields before proceeding.");
-        } else {
-            loggedNurse.setFirstName(firstName);
-            loggedNurse.setLastName(lastName);
-            loggedNurse.setEmail(email);
-            loggedNurse.setAddress(address);
-
-            boolean updated = NurseService.updateNurseDetails(loggedNurse);
-            if (updated) {
-                Alerts.successMessage("Account details were successfully updated.");
-                setNurseInfo(); // Refresh the displayed info
-            } else {
-                Alerts.errorMessage("Failed to update account details.");
-            }
-        }
-    }
-
-
-    @FXML
-    void changePassword(ActionEvent event) {
-
-        String currentPassword = this.currentPassword.getText();
-        String newPassword = this.newPassword.getText();
-        String confirmNewPassword = this.confirmNewPassword.getText();
-        if (currentPassword.isBlank() || ChangePwdEmail.getText().isEmpty() || newPassword.isBlank() || confirmNewPassword.isEmpty())
-            Alerts.errorMessage("Please fill all the fields before proceeding.");
-        else if (!newPassword.equals(confirmNewPassword)) {
-            Alerts.errorMessage("Passwords do not match.");
-        } else {
-            ChangePasswordDto change = new ChangePasswordDto(this.ChangePwdEmail.getText(), this.currentPassword.getText(), this.newPassword.getText(), this.confirmNewPassword.getText());
-            boolean changed = NurseService.changePassword(change);
-            if (changed) {
-                Alerts.successMessage("Password was successfully changed.");
-            } else {
-                Alerts.errorMessage("Password was not changed");
-            }
         }
     }
 
@@ -1206,17 +1143,18 @@ private TextField ChangePwdEmail;
         this.translate();
     }
 
-// Method to handle blood group selection
+    // Method to handle blood group selection
     private void handleBloodGroupSelection() {
         String selectedBloodGroup = chooseDonorBloodGroup.getValue();
 
     }
 
-// Method to handle gender selection
+    // Method to handle gender selection
     private void handleGenderSelection() {
         String selectedGender = chooseDonorGender.getValue();
 
     }
+
     @FXML
     void handleRegjistro(MouseEvent event) {
 
@@ -1234,7 +1172,6 @@ private TextField ChangePwdEmail;
         }
         this.translate();
     }
-
 
 
     public void translate() {

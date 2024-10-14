@@ -188,7 +188,16 @@ public class LoginController {
 
     private void switchLanguage() {
         Locale currentLocale = bundle.getLocale();
-        Locale newLocale = currentLocale.equals(new Locale("sq")) ? Locale.ENGLISH : new Locale("sq");
+        Locale newLocale;
+        if (currentLocale.equals(Locale.ENGLISH)) {
+            newLocale = new Locale("sq");
+        } else if (currentLocale.equals(new Locale("sq"))) {
+            newLocale = new Locale("tr");
+        } else if (currentLocale.equals(new Locale("tr"))) {
+            newLocale = Locale.ENGLISH;
+        } else {
+            newLocale = new Locale("sq");
+        }
         bundle = ResourceBundle.getBundle("translations.content", newLocale);
         setTexts();
     }

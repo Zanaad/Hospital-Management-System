@@ -193,7 +193,7 @@ public class AddDoctorController implements Initializable {
 
     //Filter doctors
     @FXML
-    void handleDoctorFilter(ActionEvent event) {
+    void handleDoctorFilter() {
         String firstName = filterDocName.getText();
         String email = filterDocEmail.getText();
         String specialty = filterDocSpecialty.getText();

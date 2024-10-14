@@ -281,7 +281,7 @@
                                  <Font size="15.0" />
                               </font>
                            </Label>
-                           <Button layoutX="196.0" layoutY="222.0" mnemonicParsing="false" onAction="#updateAccount" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Update" textFill="WHITE" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="214.39999999999998" AnchorPane.topAnchor="222.0">
+                           <Button layoutX="196.0" layoutY="222.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Update" textFill="WHITE" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="214.39999999999998" AnchorPane.topAnchor="222.0">
                               <font>
                                  <Font name="Arial" size="13.0" />
                               </font>
@@ -321,7 +321,7 @@
                            <PasswordField fx:id="currentPassword" layoutX="195.0" layoutY="54.0" prefHeight="26.0" prefWidth="290.0" />
                            <PasswordField fx:id="newPassword" layoutX="195.0" layoutY="91.0" prefHeight="26.0" prefWidth="290.0" />
                            <PasswordField fx:id="confirmNewPassword" layoutX="195.0" layoutY="127.0" prefHeight="26.0" prefWidth="290.0" />
-                           <Button fx:id="changePasswordbtn" layoutX="195.0" layoutY="180.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="215.39999999999998" AnchorPane.topAnchor="180.0">
+                           <Button fx:id="changePasswordbtn" layoutX="195.0" layoutY="180.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="156.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);" text="Change Password" textFill="WHITE" AnchorPane.leftAnchor="195.0" AnchorPane.rightAnchor="215.39999999999998" AnchorPane.topAnchor="180.0">
                               <font>
                                  <Font name="Arial" size="13.0" />
                               </font>
