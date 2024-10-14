@@ -8,7 +8,7 @@ The Hospital Management System (HMS) is an interactive software designed to stre
 Before running the Hospital Management System, ensure you have the following:
 
 - Java Development Kit (JDK) installed on your machine.
-- MySQL Server installed and configured for database management.
+- MySQL Workbench (for database design and management).
 - JavaFX libraries set up in your development environment (e.g., IntelliJ IDEA).
 
 ## System Features
